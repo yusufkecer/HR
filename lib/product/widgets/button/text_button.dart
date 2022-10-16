@@ -1,29 +1,25 @@
+import 'package:chat/Product/Constant/colors.dart';
 import 'package:flutter/material.dart';
-import '../../../login/RegisterPage.dart';
 
-import '../../constant/colors.dart';
+class MyTextButton extends StatelessWidget {
+  final String? named;
+  final Function? onPressed;
 
-class TextButtonIcon extends StatelessWidget {
-  final FontWeight weight;
-  final String buttonName;
-  const TextButtonIcon(this.weight, this.buttonName, {super.key});
+  const MyTextButton({this.onPressed, this.named = "aa", super.key});
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
-      style: TextButton.styleFrom(foregroundColor: MyColor.lightBlack),
-      onPressed: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const Register(),
-          ),
-        );
-      },
-      icon: const Icon(Icons.lock_person_outlined),
-      label: Text(
-        buttonName,
-        textAlign: TextAlign.right,
-        style: TextStyle(fontWeight: weight),
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),
+      onPressed: () => onPressed!(),
+      child: Text(
+        named!,
+        style: const TextStyle(
+          fontSize: 16,
+          color: MyColor.purplishBlue,
+        ),
       ),
     );
   }

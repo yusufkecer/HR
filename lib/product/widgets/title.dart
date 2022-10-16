@@ -15,24 +15,27 @@ class Titles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          textScaleFactor: 2.3,
-          style: const TextStyle(fontWeight: Weight.bold),
-        ),
-        BoxSpace(
-          height: ProjectSize.smallHeight().height,
-        ),
-        Text(
-          subtitle,
-          textAlign: TextAlign.left,
-          textScaleFactor: 1.5,
-          style: const TextStyle(fontWeight: Weight.midium),
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.fromLTRB(18, 30, 0, 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            textScaleFactor: 2.3,
+            style: const TextStyle(fontWeight: Weight.bold),
+          ),
+          BoxSpace(
+            height: ProjectSize.smallHeight().height,
+          ),
+          Text(
+            subtitle,
+            textAlign: TextAlign.left,
+            textScaleFactor: 1.5,
+            style: const TextStyle(fontWeight: Weight.midium),
+          ),
+        ],
+      ),
     );
   }
 }

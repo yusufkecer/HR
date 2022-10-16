@@ -22,16 +22,17 @@ class _CheckboxTextState extends State<CheckboxText> {
       children: [
         SizedBox(
           height: ProjectSize.veryBigHeight().height,
-          width: ProjectSize.veryBigHeight().height,
+          width: ProjectSize.veryBigWidth().width,
           child: Checkbox(
             checkColor: MyColor.white,
             activeColor: MyColor.lightBlack,
             side: BorderSide(
-                color: MyColor.lightBlack,
-                width: ProjectSize.borderHeight().width),
+                color: MyColor.lightBlack, width: ProjectSize.border().height),
             value: widget.onChanged,
             onChanged: (value) {
-              widget.onChanged = value!;
+              setState(() {
+                widget.onChanged = value;
+              });
             },
           ),
         ),

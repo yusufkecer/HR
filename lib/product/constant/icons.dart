@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class IconsData {
-  static const loginIcon = Icon(Icons.login_outlined);
-  static const visibilityOn = Icon(Icons.visibility_outlined);
-  static const visibilityOff = Icon(Icons.visibility_off_outlined);
-  static const mail = Icon(Icons.mail_outline_rounded);
-  static const password = Icon(Icons.password_outlined);
-  static const user = Icon(Icons.person_outline);
+class ProjectIcons {
+  static const loginIcon = Icons.login_outlined;
+  static const visibilityOn = Icons.visibility_outlined;
+  static const visibilityOff = Icons.visibility_off_outlined;
+  static const mail = Icons.mail_outline_rounded;
+  static const password = Icons.password_outlined;
+  static const user = Icons.person_outline;
+  static const addPerson = Icons.person_add_alt_outlined;
 }

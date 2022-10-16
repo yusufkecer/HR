@@ -1,43 +1,40 @@
 import 'package:chat/Core/Constant/edge_insets.dart';
+import 'package:chat/core/constant/size.dart';
 import 'package:flutter/material.dart';
 import '../../Core/Constant/radius.dart';
 import '../Constant/colors.dart';
+import 'package:chat/product/widgets/sized_box/box_space.dart';
 
 class TextFields extends StatelessWidget {
   final String? info;
-  final Icon? suffixIcon;
+  Widget? suffixButton;
   final FontWeight? fontWeight;
-  final Map<String, dynamic>? users;
-  final Icon? icon;
+  final Widget? icon;
   final EdgeInsets? titlePadding;
-  const TextFields({
+  Function? validator;
+  Function? onchange;
+
+  bool? secure;
+  TextFields({
+    required String? Function(String? value) validator,
+    required String? Function(String? value) onchange,
     this.titlePadding,
-    this.suffixIcon,
+    this.suffixButton,
     this.fontWeight,
     this.info,
-    this.users,
     this.icon,
+    this.secure = false,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final FocusNode focusNode = FocusNode();
-    final TextEditingController controller = TextEditingController();
-    focusNode.addListener(() {
-      if (focusNode.hasFocus) {
-        controller.selection =
-            TextSelection(baseOffset: 0, extentOffset: controller.text.length);
-      }
-    });
+    suffixButton ??= const SizedBox();
 
-    controller.addListener(() {
-      if (controller.value.text != "") {
-        users?[info!] = controller.value.text;
-      }
-    });
+    final TextEditingController controller = TextEditingController();
+
     if (info == null ||
-        suffixIcon == null ||
+        suffixButton == null ||
         fontWeight == null ||
         titlePadding == null ||
         icon == null) {
@@ -56,31 +53,32 @@ class TextFields extends StatelessWidget {
           ),
         ),
         Container(
-            decoration: CustomDecoration(),
-            child: Padding(
-              padding: const ProjectPadding.allEight(),
-              child: textfField(controller, focusNode),
-            )),
+          decoration: CustomDecoration(),
+          child: Padding(
+              padding: const ProjectPadding.allEight(), child: textfField()),
+        ),
+        BoxSpace(
+          height: ProjectSize.normalHeight().height,
+        )
       ],
     );
   }
 
-  TextFormField textfField(controller, focusNode) {
+  TextFormField textfField() {
     return TextFormField(
-      controller: controller,
-      focusNode: focusNode,
+      obscureText: secure!,
+      autocorrect: secure!,
       cursorColor: Colors.black,
       decoration: InputDecoration(
         border: InputBorder.none,
         hintText: info,
         prefixIcon: icon,
-        suffixIcon: IconButton(
-          onPressed: () {},
-          icon: suffixIcon!,
-        ),
+        suffixIcon: suffixButton,
       ),
     );
   }
+
+  void showPassword() {}
 }
 
 class CustomDecoration extends BoxDecoration {
