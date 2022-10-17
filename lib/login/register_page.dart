@@ -3,6 +3,7 @@ import 'package:chat/product/constant/colors.dart';
 import 'package:chat/product/mixin/password_visible.dart';
 import 'package:chat/product/widgets/button/elevated_icon.dart';
 import 'package:chat/product/widgets/button/text_button.dart';
+import 'package:chat/product/widgets/checkbox.dart';
 import 'package:chat/product/widgets/text_fields.dart';
 import 'package:chat/product/widgets/title.dart';
 import 'package:flutter/gestures.dart';
@@ -30,76 +31,82 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
         child: ListView(
           shrinkWrap: true,
           children: [
-            title(),
-            BoxSpace(
-              height: ProjectSize.bigHeight().height,
-            ),
             Padding(
               padding: const ProjectPadding.allEightteen(),
-              child: Column(
-                children: [
-                  forms(),
-                  Divider(
-                    color: MyColor.veryLightBlack,
-                    height: ProjectSize.bigHeight().height,
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Center(
-                      child: Text.rich(
-                        TextSpan(
-                          text: StringData.termsText,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: MyColor.black,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: StringData.terms,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: MyColor.purplishBlue,
-                                fontWeight: Weight.bold,
-                                decoration: TextDecoration.underline,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  // code to open / launch terms of service link here
-                                },
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: title(),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const ProjectPadding.allEightteen(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    forms(),
+                    Divider(
+                      color: MyColor.veryLightBlack,
+                      height: ProjectSize.bigHeight().height,
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: Center(
+                        child: Text.rich(
+                          TextSpan(
+                            text: StringData.termsText,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: MyColor.black,
                             ),
-                            TextSpan(
-                              text: StringData.and,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: MyColor.black,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: StringData.condition,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: MyColor.purplishBlue,
-                                    fontWeight: Weight.bold,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      // code to open / launch privacy policy link here
-                                    },
+                            children: [
+                              TextSpan(
+                                text: StringData.terms,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: MyColor.purplishBlue,
+                                  fontWeight: Weight.bold,
+                                  decoration: TextDecoration.underline,
                                 ),
-                              ],
-                            ),
-                            const TextSpan(text: StringData.termsTextEnd)
-                          ],
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.pop(context);
+                                  },
+                              ),
+                              TextSpan(
+                                text: StringData.and,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: MyColor.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text: StringData.condition,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: MyColor.purplishBlue,
+                                      fontWeight: Weight.bold,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        // code to open / launch privacy policy link here
+                                      },
+                                  ),
+                                ],
+                              ),
+                              const TextSpan(text: StringData.termsTextEnd)
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  BoxSpace(
-                    height: ProjectSize.normalHeight().height,
-                  ),
-                  registerButton(),
-                ],
+                    BoxSpace(
+                      height: ProjectSize.normalHeight().height,
+                    ),
+                    registerButton(),
+                  ],
+                ),
               ),
             ),
           ],
@@ -128,6 +135,9 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
             fontWeight: Weight.midium,
             info: StringData.name,
           ),
+          BoxSpace(
+            height: ProjectSize.bigHeight().height,
+          ),
           TextFields(
             onchange: (value) {},
             validator: (value) {},
@@ -138,6 +148,9 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
             ),
             fontWeight: Weight.midium,
             info: StringData.email,
+          ),
+          BoxSpace(
+            height: ProjectSize.bigHeight().height,
           ),
           TextFields(
             validator: (value) {

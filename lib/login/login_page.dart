@@ -2,11 +2,11 @@ import 'package:chat/core/constant/size.dart';
 import 'package:chat/login/register_page.dart';
 import 'package:chat/product/mixin/password_visible.dart';
 import 'package:chat/product/widgets/button/text_button.dart';
-import 'package:chat/product/widgets/sized_box/box_space.dart';
 import 'package:chat/product/widgets/checkbox.dart';
 import 'package:chat/product/widgets/text_fields.dart';
 import 'package:chat/product/widgets/title.dart';
 import 'package:flutter/material.dart';
+import '../Product/widgets/sized_box/box_space.dart';
 import '../core/constant/edge_insets.dart';
 import '../product/constant/colors.dart';
 import '../product/constant/icons.dart';
@@ -22,42 +22,50 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
-  Map<String, dynamic> users = {};
+class _LoginPageState extends State<LoginPage> {
+  bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            titles(),
-            BoxSpace(
-              height: ProjectSize.bigHeight().height,
-            ),
-            Padding(
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: SafeArea(
+            child: Padding(
               padding: const ProjectPadding.allEightteen(),
               child: Column(
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  forms(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      checkText(),
-                      resetPassword(),
-                    ],
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: titles(),
                   ),
-                  Divider(
-                    height: ProjectSize.veryBigHeight().height,
-                    color: MyColor.veryLightBlack,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        forms(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            checkText(),
+                            resetPassword(),
+                          ],
+                        ),
+                        Divider(
+                          height: ProjectSize.veryBigHeight().height,
+                          color: MyColor.veryLightBlack,
+                        ),
+                        loginButton(),
+                        registerNavigate()
+                      ],
+                    ),
                   ),
-                  loginButton(),
-                  registerNavigate()
                 ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -131,6 +139,9 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
             fontWeight: Weight.midium,
             info: StringData.email,
           ),
+          BoxSpace(
+            height: ProjectSize.bigHeight().height,
+          ),
           TextFields(
             onchange: (value) {
               print("object");
@@ -143,7 +154,7 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
             ),
             suffixButton: IconButton(
               onPressed: () {
-                changeVisibility();
+                //   changeVisibility();
               },
               icon: isVisible
                   ? const Icon(ProjectIcons.visibilityOn)

@@ -1,3 +1,4 @@
+// ignore_for_file: must_be_immutable
 import 'package:chat/Core/Constant/edge_insets.dart';
 import 'package:chat/core/constant/size.dart';
 import 'package:flutter/material.dart';
@@ -57,9 +58,6 @@ class TextFields extends StatelessWidget {
           child: Padding(
               padding: const ProjectPadding.allEight(), child: textfField()),
         ),
-        BoxSpace(
-          height: ProjectSize.normalHeight().height,
-        )
       ],
     );
   }
