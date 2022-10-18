@@ -5,7 +5,7 @@ class MyTextButton extends StatelessWidget {
   final String? named;
   final Function? onPressed;
 
-  const MyTextButton({this.onPressed, this.named = "aa", super.key});
+  const MyTextButton({this.onPressed, this.named, super.key});
 
   @override
   Widget build(BuildContext context) {
