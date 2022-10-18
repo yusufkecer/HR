@@ -28,85 +28,93 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            Padding(
-              padding: const ProjectPadding.allEightteen(),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: title(),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const ProjectPadding.allEightteen(),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    forms(),
-                    Divider(
-                      color: MyColor.veryLightBlack,
-                      height: ProjectSize.bigHeight().height,
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const ProjectPadding.allEightteen(),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: title(),
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Center(
-                        child: Text.rich(
-                          TextSpan(
-                            text: StringData.termsText,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: MyColor.black,
-                            ),
-                            children: [
-                              TextSpan(
-                                text: StringData.terms,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: MyColor.purplishBlue,
-                                  fontWeight: Weight.bold,
-                                  decoration: TextDecoration.underline,
-                                ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.pop(context);
-                                  },
-                              ),
-                              TextSpan(
-                                text: StringData.and,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: MyColor.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: StringData.condition,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      color: MyColor.purplishBlue,
-                                      fontWeight: Weight.bold,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        // code to open / launch privacy policy link here
-                                      },
-                                  ),
-                                ],
-                              ),
-                              const TextSpan(text: StringData.termsTextEnd)
-                            ],
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const ProjectPadding.allEightteen(),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          forms(),
+                          Divider(
+                            color: MyColor.veryLightBlack,
+                            height: ProjectSize.bigHeight().height,
                           ),
-                        ),
+                          Container(
+                            alignment: Alignment.center,
+                            child: Center(
+                              child: Text.rich(
+                                TextSpan(
+                                  text: StringData.termsText,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: MyColor.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: StringData.terms,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: MyColor.purplishBlue,
+                                        fontWeight: Weight.bold,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Navigator.pop(context);
+                                        },
+                                    ),
+                                    TextSpan(
+                                      text: StringData.and,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: MyColor.black,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text: StringData.condition,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: MyColor.purplishBlue,
+                                            fontWeight: Weight.bold,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () {
+                                              // code to open / launch privacy policy link here
+                                            },
+                                        ),
+                                      ],
+                                    ),
+                                    const TextSpan(
+                                        text: StringData.termsTextEnd)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          BoxSpace(
+                            height: ProjectSize.normalHeight().height,
+                          ),
+                          registerButton(),
+                        ],
                       ),
                     ),
-                    BoxSpace(
-                      height: ProjectSize.normalHeight().height,
-                    ),
-                    registerButton(),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],

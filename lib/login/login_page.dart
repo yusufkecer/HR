@@ -1,4 +1,5 @@
 import 'package:chat/core/constant/size.dart';
+import 'package:chat/core/extensions/context_extension.dart';
 import 'package:chat/login/register_page.dart';
 import 'package:chat/product/mixin/password_visible.dart';
 import 'package:chat/product/widgets/button/text_button.dart';
@@ -30,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
+          height: context.height,
           child: SafeArea(
             child: Padding(
               padding: const ProjectPadding.allEightteen(),
