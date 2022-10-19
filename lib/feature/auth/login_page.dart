@@ -1,20 +1,20 @@
 import 'package:chat/core/constant/size.dart';
 import 'package:chat/core/extensions/context_extension.dart';
-import 'package:chat/login/register_page.dart';
-import 'package:chat/product/mixin/password_visible.dart';
+import 'package:chat/feature/auth/register_page.dart';
 import 'package:chat/product/widgets/button/text_button.dart';
 import 'package:chat/product/widgets/checkbox.dart';
 import 'package:chat/product/widgets/text_fields.dart';
 import 'package:chat/product/widgets/title.dart';
 import 'package:flutter/material.dart';
-import '../Product/widgets/sized_box/box_space.dart';
-import '../core/constant/edge_insets.dart';
-import '../product/constant/colors.dart';
-import '../product/constant/icons.dart';
-import '../product/constant/string_data.dart';
-import '../product/constant/weight.dart';
-import '../product/widgets/button/elevated_icon.dart';
-import '../product/widgets/button/text_button_icon.dart';
+import '../../Product/widgets/sized_box/box_space.dart';
+import '../../core/constant/edge_insets.dart';
+import '../../product/constant/colors.dart';
+import '../../product/constant/font_Size.dart';
+import '../../product/constant/icons.dart';
+import '../../product/constant/string_data.dart';
+import '../../product/constant/weight.dart';
+import '../../product/widgets/button/elevated_icon.dart';
+import '../../product/widgets/button/text_button_icon.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
           const Text(
             StringData.doYouHaveAnAccount,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: ProjectFontSize.mainSize,
             ),
           ),
           MyTextButton(

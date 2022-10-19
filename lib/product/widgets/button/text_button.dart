@@ -1,6 +1,8 @@
 import 'package:chat/Product/Constant/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../constant/font_Size.dart';
+
 class MyTextButton extends StatelessWidget {
   final String? named;
   final Function? onPressed;
@@ -17,7 +19,7 @@ class MyTextButton extends StatelessWidget {
       child: Text(
         named!,
         style: const TextStyle(
-          fontSize: 16,
+          fontSize: ProjectFontSize.mainSize,
           color: MyColor.purplishBlue,
         ),
       ),

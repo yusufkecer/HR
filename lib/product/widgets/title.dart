@@ -3,6 +3,7 @@ import 'package:chat/Product/widgets/sized_box/box_space.dart';
 
 import 'package:flutter/material.dart';
 import '../Constant/weight.dart';
+import '../constant/font_Size.dart';
 
 class Titles extends StatelessWidget {
   final String title;
@@ -20,7 +21,7 @@ class Titles extends StatelessWidget {
       children: [
         Text(
           title,
-          textScaleFactor: 2.3,
+          textScaleFactor: ProjectFontSize.mainTitle,
           style: const TextStyle(fontWeight: Weight.bold),
         ),
         BoxSpace(
@@ -29,7 +30,7 @@ class Titles extends StatelessWidget {
         Text(
           subtitle,
           textAlign: TextAlign.left,
-          textScaleFactor: 1.5,
+          textScaleFactor: ProjectFontSize.subTitle,
           style: const TextStyle(fontWeight: Weight.midium),
         ),
       ],

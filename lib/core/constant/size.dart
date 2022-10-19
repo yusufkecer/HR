@@ -11,7 +11,7 @@ class ProjectSize extends Size {
   ProjectSize.veryBigWidth() : super.fromWidth(25);
 
 //border disgn
-  ProjectSize.border() : super.fromHeight(2);
+  ProjectSize.border() : super.fromWidth(2);
 
 //title disgn
   ProjectSize.authSize(context)
