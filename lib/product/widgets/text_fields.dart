@@ -1,10 +1,10 @@
 // ignore_for_file: must_be_immutable
-import 'package:chat/Core/Constant/edge_insets.dart';
-import 'package:chat/core/constant/size.dart';
+
+import 'package:chat/core/constant/edge_insets.dart';
+import 'package:chat/product/widgets/decoration/custom_decoration.dart';
 import 'package:flutter/material.dart';
-import '../../Core/Constant/radius.dart';
-import '../Constant/colors.dart';
-import 'package:chat/product/widgets/sized_box/box_space.dart';
+
+import '../constant/font_Size.dart';
 
 class TextFields extends StatelessWidget {
   final String? info;
@@ -49,51 +49,41 @@ class TextFields extends StatelessWidget {
           padding: titlePadding!,
           child: Text(
             info!,
-            textScaleFactor: 1.1,
+            textScaleFactor: ProjectFontSize.fieldTitle,
             style: TextStyle(fontWeight: fontWeight),
           ),
         ),
         Container(
           decoration: CustomDecoration(),
           child: Padding(
-              padding: const ProjectPadding.allEight(), child: textfField()),
+              padding: const ProjectPadding.allEight(), child: textField()),
         ),
       ],
     );
   }
 
-  TextFormField textfField() {
+  TextFormField textField() {
     return TextFormField(
       obscureText: secure!,
       autocorrect: secure!,
       cursorColor: Colors.black,
       decoration: InputDecoration(
+        contentPadding: const ProjectPadding.textFieldContent(14.8),
         border: InputBorder.none,
         hintText: info,
-        prefixIcon: icon,
+        prefixIcon: prefixButton(),
         suffixIcon: suffixButton,
       ),
     );
   }
 
-  void showPassword() {}
-}
-
-class CustomDecoration extends BoxDecoration {
-  CustomDecoration({Color backgroundColor = MyColor.desertStorm})
-      : super(
-          borderRadius: const ProjectBorders.smallAll(),
-          color: backgroundColor,
-          boxShadow: [
-            const BoxShadow(
-              color: MyColor.boxShadowColor,
-              offset: Offset(
-                0,
-                0,
-              ),
-              blurRadius: 4,
-              spreadRadius: 2,
-            ),
-          ],
-        );
+  Padding prefixButton() {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+        decoration: CustomPrefixDecoration(),
+        child: icon,
+      ),
+    );
+  }
 }

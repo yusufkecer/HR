@@ -27,7 +27,9 @@ class _CheckboxTextState extends State<CheckboxText> {
             checkColor: MyColor.white,
             activeColor: MyColor.lightBlack,
             side: BorderSide(
-                color: MyColor.lightBlack, width: ProjectSize.border().height),
+              color: MyColor.lightBlack,
+              width: ProjectSize.border().width,
+            ),
             value: widget.onChanged,
             onChanged: (value) {
               setState(() {
