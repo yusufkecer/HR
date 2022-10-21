@@ -32,7 +32,7 @@ class TextFields extends StatelessWidget {
   Widget build(BuildContext context) {
     suffixButton ??= const SizedBox();
 
-    final TextEditingController controller = TextEditingController();
+    // final TextEditingController controller = TextEditingController();
 
     if (info == null ||
         suffixButton == null ||
@@ -56,7 +56,9 @@ class TextFields extends StatelessWidget {
         Container(
           decoration: CustomDecoration(),
           child: Padding(
-              padding: const ProjectPadding.allEight(), child: textField()),
+            padding: const ProjectPadding.allEight(),
+            child: textField(),
+          ),
         ),
       ],
     );
