@@ -1,15 +1,14 @@
-import 'package:chat/core/constant/edge_insets.dart';
-import 'package:chat/core/constant/size.dart';
-import 'package:chat/core/extensions/context_extension.dart';
-import 'package:chat/feature/splash_screen/loading_screen.dart';
-import 'package:chat/product/constant/colors.dart';
-import 'package:chat/product/constant/icons.dart';
-import 'package:chat/product/constant/string_data.dart';
-import 'package:chat/product/constant/weight.dart';
-import 'package:chat/product/widgets/button/elevated_icon.dart';
-import 'package:chat/product/widgets/sized_box/box_space.dart';
-import 'package:chat/product/widgets/text_fields.dart';
-import 'package:chat/product/widgets/title.dart';
+import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/size.dart';
+import 'package:hrapp/feature/splash_screen/loading_screen.dart';
+import 'package:hrapp/product/constant/colors.dart';
+import 'package:hrapp/product/constant/icons.dart';
+import 'package:hrapp/product/constant/string_data.dart';
+import 'package:hrapp/product/constant/weight.dart';
+import 'package:hrapp/product/widgets/button/elevated_icon.dart';
+import 'package:hrapp/product/widgets/sized_box/box_space.dart';
+import 'package:hrapp/product/widgets/text_fields.dart';
+import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
 
 class ResetPassword extends StatefulWidget {
@@ -23,65 +22,78 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const ProjectPadding.allEightteen(),
-          child: Column(
-            children: [
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Titles(
-                  title: StringData.resetPassword,
-                  subtitle: StringData.changePassword,
+      body: Center(
+        child: SafeArea(
+          child: Padding(
+            padding: const ProjectPadding.allEightteen(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                title(),
+                BoxSpace(
+                  height: ProjectSize.veryBigHeight().height,
                 ),
-              ),
-              Expanded(
-                child: Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Form(
-                      child: Column(
-                        children: [
-                          TextFields(
-                            fontWeight: Weight.midium,
-                            icon: const Icon(
-                              MyIcons.mail,
-                              color: MyColor.black,
-                            ),
-                            info: StringData.email,
-                            titlePadding: const ProjectPadding.textFieldTitle(),
-                            validator: (value) {
-                              return null;
-                            },
-                            onchange: (value) {
-                              return null;
-                            },
-                          )
-                        ],
-                      ),
+                      child: textFields(),
                     ),
                     Divider(
                       height: ProjectSize.veryBigHeight().height,
+                      color: MyColor.veryLightBlack,
                     ),
-                    MyElevatedIcons(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const Splash(),
-                          ),
-                        );
-                      },
-                      buttonName: StringData.changePassword,
-                      icons: const Icon(
-                        MyIcons.resetPassword,
-                      ),
-                    ),
+                    resetPasswordButton(context),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+
+  TextFields textFields() {
+    return TextFields(
+      fontWeight: Weight.midium,
+      icon: const Icon(
+        MyIcons.mail,
+        color: MyColor.black,
+      ),
+      info: StringData.email,
+      titlePadding: const ProjectPadding.textFieldTitle(),
+      validator: (value) {
+        return null;
+      },
+      onchange: (value) {
+        return null;
+      },
+    );
+  }
+
+  MyElevatedIcons resetPasswordButton(BuildContext context) {
+    return MyElevatedIcons(
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const Splash(),
+          ),
+        );
+      },
+      buttonName: StringData.changePassword,
+      icons: const Icon(
+        MyIcons.resetPassword,
+      ),
+    );
+  }
+
+  Align title() {
+    return const Align(
+      alignment: Alignment.topLeft,
+      child: Titles(
+        title: StringData.resetPassword,
+        subtitle: StringData.changePassword,
       ),
     );
   }

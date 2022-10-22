@@ -1,6 +1,6 @@
 {
-    "name": "chat",
-    "short_name": "chat",
+    "name": "hrapp",
+    "short_name": "hrapp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,17 +1,16 @@
-import 'package:chat/core/constant/size.dart';
-import 'package:chat/core/extensions/context_extension.dart';
-import 'package:chat/feature/auth/register_page.dart';
-import 'package:chat/feature/auth/reset_password.dart';
-import 'package:chat/feature/splash_screen/loading_screen.dart';
-import 'package:chat/product/widgets/button/text_button.dart';
-import 'package:chat/product/widgets/checkbox.dart';
-import 'package:chat/product/widgets/text_fields.dart';
-import 'package:chat/product/widgets/title.dart';
+import 'package:hrapp/core/constant/size.dart';
+import 'package:hrapp/feature/auth/register_page.dart';
+import 'package:hrapp/feature/auth/reset_password.dart';
+import 'package:hrapp/feature/splash_screen/loading_screen.dart';
+import 'package:hrapp/product/widgets/button/text_button.dart';
+import 'package:hrapp/product/widgets/checkbox.dart';
+import 'package:hrapp/product/widgets/text_fields.dart';
+import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
 import '../../Product/widgets/sized_box/box_space.dart';
 import '../../core/constant/edge_insets.dart';
 import '../../product/constant/colors.dart';
-import '../../product/constant/font_Size.dart';
+import '../../product/constant/font_size.dart';
 import '../../product/constant/icons.dart';
 import '../../product/constant/string_data.dart';
 import '../../product/constant/weight.dart';
@@ -44,40 +43,35 @@ class _LoginPageState extends State<LoginPage> {
     return splash
         ? const Splash()
         : Scaffold(
-            body: SingleChildScrollView(
-              child: SizedBox(
-                height: context.height,
+            body: Center(
+              child: SingleChildScrollView(
                 child: SafeArea(
                   child: Padding(
                     padding: const ProjectPadding.allEightteen(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: titles(),
+                        titles(),
+                        BoxSpace(
+                          height: ProjectSize.veryBigHeight().height,
                         ),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              forms(),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  checkText(),
-                                  resetPassword(),
-                                ],
-                              ),
-                              Divider(
-                                height: ProjectSize.veryBigHeight().height,
-                                color: MyColor.veryLightBlack,
-                              ),
-                              loginButton(),
-                              registerNavigate()
-                            ],
-                          ),
+                        Column(
+                          children: [
+                            forms(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                checkText(),
+                                resetPassword(),
+                              ],
+                            ),
+                            Divider(
+                              height: ProjectSize.veryBigHeight().height,
+                              color: MyColor.veryLightBlack,
+                            ),
+                            loginButton(),
+                            registerNavigate()
+                          ],
                         ),
                       ],
                     ),
@@ -142,10 +136,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Titles titles() {
-    return const Titles(
-      title: StringData.singin,
-      subtitle: StringData.welcome,
+  Align titles() {
+    return const Align(
+      alignment: Alignment.topLeft,
+      child: Titles(
+        title: StringData.singin,
+        subtitle: StringData.welcome,
+      ),
     );
   }
 
