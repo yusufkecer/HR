@@ -1,9 +1,9 @@
-import 'package:chat/Core/Constant/size.dart';
-import 'package:chat/Product/widgets/sized_box/box_space.dart';
+import 'package:hrapp/Core/Constant/size.dart';
+import 'package:hrapp/Product/widgets/sized_box/box_space.dart';
 
 import 'package:flutter/material.dart';
 import '../Constant/weight.dart';
-import '../constant/font_Size.dart';
+import '../constant/font_size.dart';
 
 class Titles extends StatelessWidget {
   final String title;

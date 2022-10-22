@@ -1,7 +1,7 @@
-import 'package:chat/Product/Constant/colors.dart';
+import 'package:hrapp/Product/Constant/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../constant/font_Size.dart';
+import '../../constant/font_size.dart';
 
 class MyTextButton extends StatelessWidget {
   final String? named;

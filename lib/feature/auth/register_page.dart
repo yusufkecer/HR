@@ -1,15 +1,13 @@
-import 'package:chat/core/constant/edge_insets.dart';
-import 'package:chat/product/constant/colors.dart';
-import 'package:chat/product/mixin/password_visible.dart';
-import 'package:chat/product/widgets/button/elevated_icon.dart';
-import 'package:chat/product/widgets/button/text_button.dart';
-import 'package:chat/product/widgets/checkbox.dart';
-import 'package:chat/product/widgets/text_fields.dart';
-import 'package:chat/product/widgets/title.dart';
+import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/product/constant/colors.dart';
+import 'package:hrapp/product/mixin/password_visible.dart';
+import 'package:hrapp/product/widgets/button/elevated_icon.dart';
+import 'package:hrapp/product/widgets/text_fields.dart';
+import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../core/constant/size.dart';
-import '../../product/constant/font_Size.dart';
+import '../../product/constant/font_size.dart';
 import '../../product/constant/icons.dart';
 import '../../product/constant/string_data.dart';
 import '../../product/constant/weight.dart';
@@ -23,43 +21,41 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> with PasswordVisibilityMixin {
-  bool isVisible = false;
+  // bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Padding(
-                padding: const ProjectPadding.allEightteen(),
-                child: Column(
-                  children: [
-                    apptitle(),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          forms(),
-                          Divider(
-                            color: MyColor.veryLightBlack,
-                            height: ProjectSize.bigHeight().height,
-                          ),
-                          termsAndConditions(context),
-                          BoxSpace(
-                            height: ProjectSize.normalHeight().height,
-                          ),
-                          registerButton(),
-                        ],
+      body: Center(
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const ProjectPadding.allEightteen(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  apptitle(),
+                  BoxSpace(
+                    height: ProjectSize.veryBigHeight().height,
+                  ),
+                  Column(
+                    children: [
+                      forms(),
+                      Divider(
+                        color: MyColor.veryLightBlack,
+                        height: ProjectSize.bigHeight().height,
                       ),
-                    ),
-                  ],
-                ),
+                      termsAndConditions(context),
+                      BoxSpace(
+                        height: ProjectSize.bigHeight().height,
+                      ),
+                      registerButton(),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -112,7 +108,7 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
                   ),
                 ],
               ),
-              const TextSpan(text: StringData.termsTextEnd)
+              const TextSpan(text: StringData.termsTextEnd),
             ],
           ),
         ),
@@ -137,11 +133,15 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
       child: Column(
         children: [
           TextFields(
-            onchange: (value) {},
-            validator: (value) {},
+            onchange: (value) {
+              return null;
+            },
+            validator: (value) {
+              return null;
+            },
             titlePadding: const ProjectPadding.textFieldTitle(),
             icon: const Icon(
-              ProjectIcons.user,
+              MyIcons.user,
               color: MyColor.black,
             ),
             fontWeight: Weight.midium,
@@ -151,11 +151,15 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
             height: ProjectSize.bigHeight().height,
           ),
           TextFields(
-            onchange: (value) {},
-            validator: (value) {},
+            onchange: (value) {
+              return null;
+            },
+            validator: (value) {
+              return null;
+            },
             titlePadding: const ProjectPadding.textFieldTitle(),
             icon: const Icon(
-              ProjectIcons.mail,
+              MyIcons.mail,
               color: MyColor.black,
             ),
             fontWeight: Weight.midium,
@@ -173,7 +177,7 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
             icon: const Icon(
-              ProjectIcons.password,
+              MyIcons.password,
               color: MyColor.black,
             ),
             secure: !isVisible,
@@ -182,8 +186,8 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
                 changeVisibility();
               },
               icon: isVisible
-                  ? const Icon(ProjectIcons.visibilityOn)
-                  : const Icon(ProjectIcons.visibilityOff),
+                  ? const Icon(MyIcons.visibilityOn)
+                  : const Icon(MyIcons.visibilityOff),
               color: Colors.black,
             ),
             fontWeight: Weight.midium,
@@ -197,7 +201,7 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
   MyElevatedIcons registerButton() {
     return MyElevatedIcons(
       buttonName: StringData.register,
-      icons: const Icon(ProjectIcons.addPerson),
+      icons: const Icon(MyIcons.addPerson),
       onPressed: onpressed,
     );
   }

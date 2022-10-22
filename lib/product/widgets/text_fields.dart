@@ -1,10 +1,10 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:chat/core/constant/edge_insets.dart';
-import 'package:chat/product/widgets/decoration/custom_decoration.dart';
+import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/product/widgets/decoration/custom_decoration.dart';
 import 'package:flutter/material.dart';
 
-import '../constant/font_Size.dart';
+import '../constant/font_size.dart';
 
 class TextFields extends StatelessWidget {
   final String? info;
@@ -32,7 +32,7 @@ class TextFields extends StatelessWidget {
   Widget build(BuildContext context) {
     suffixButton ??= const SizedBox();
 
-    final TextEditingController controller = TextEditingController();
+    // final TextEditingController controller = TextEditingController();
 
     if (info == null ||
         suffixButton == null ||
@@ -56,7 +56,9 @@ class TextFields extends StatelessWidget {
         Container(
           decoration: CustomDecoration(),
           child: Padding(
-              padding: const ProjectPadding.allEight(), child: textField()),
+            padding: const ProjectPadding.allEight(),
+            child: textField(),
+          ),
         ),
       ],
     );

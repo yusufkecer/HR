@@ -1,15 +1,16 @@
-import 'package:chat/core/constant/size.dart';
-import 'package:chat/core/extensions/context_extension.dart';
-import 'package:chat/feature/auth/register_page.dart';
-import 'package:chat/product/widgets/button/text_button.dart';
-import 'package:chat/product/widgets/checkbox.dart';
-import 'package:chat/product/widgets/text_fields.dart';
-import 'package:chat/product/widgets/title.dart';
+import 'package:hrapp/core/constant/size.dart';
+import 'package:hrapp/feature/auth/register_page.dart';
+import 'package:hrapp/feature/auth/reset_password.dart';
+import 'package:hrapp/feature/splash_screen/loading_screen.dart';
+import 'package:hrapp/product/widgets/button/text_button.dart';
+import 'package:hrapp/product/widgets/checkbox.dart';
+import 'package:hrapp/product/widgets/text_fields.dart';
+import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
 import '../../Product/widgets/sized_box/box_space.dart';
 import '../../core/constant/edge_insets.dart';
 import '../../product/constant/colors.dart';
-import '../../product/constant/font_Size.dart';
+import '../../product/constant/font_size.dart';
 import '../../product/constant/icons.dart';
 import '../../product/constant/string_data.dart';
 import '../../product/constant/weight.dart';
@@ -24,52 +25,61 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool splash = true;
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 4)).then((value) {
+      setState(() {
+        splash = false;
+      });
+    });
+    super.initState();
+  }
+
   bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: context.height,
-          child: SafeArea(
-            child: Padding(
-              padding: const ProjectPadding.allEightteen(),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: titles(),
-                  ),
-                  Expanded(
+    return splash
+        ? const Splash()
+        : Scaffold(
+            body: Center(
+              child: SingleChildScrollView(
+                child: SafeArea(
+                  child: Padding(
+                    padding: const ProjectPadding.allEightteen(),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        forms(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        titles(),
+                        BoxSpace(
+                          height: ProjectSize.veryBigHeight().height,
+                        ),
+                        Column(
                           children: [
-                            checkText(),
-                            resetPassword(),
+                            forms(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                checkText(),
+                                resetPassword(),
+                              ],
+                            ),
+                            Divider(
+                              height: ProjectSize.veryBigHeight().height,
+                              color: MyColor.veryLightBlack,
+                            ),
+                            loginButton(),
+                            registerNavigate()
                           ],
                         ),
-                        Divider(
-                          height: ProjectSize.veryBigHeight().height,
-                          color: MyColor.veryLightBlack,
-                        ),
-                        loginButton(),
-                        registerNavigate()
                       ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 
   CheckboxText checkText() {
@@ -83,7 +93,15 @@ class _LoginPageState extends State<LoginPage> {
     return TextButtonIcon(
       weight: Weight.midium,
       buttonName: StringData.resetPassword,
-      onPressed: onPressed,
+      onPressed: navigateResetPassword,
+    );
+  }
+
+  navigateResetPassword() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ResetPassword(),
+      ),
     );
   }
 
@@ -101,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           MyTextButton(
             named: StringData.registerHere,
-            onPressed: onPressed,
+            onPressed: navigateApp,
           ),
         ],
       ),
@@ -110,18 +128,21 @@ class _LoginPageState extends State<LoginPage> {
 
   MyElevatedIcons loginButton() {
     return MyElevatedIcons(
-      onPressed: onPressed,
+      onPressed: navigateApp,
       buttonName: StringData.singin,
       icons: const Icon(
-        ProjectIcons.loginIcon,
+        MyIcons.loginIcon,
       ),
     );
   }
 
-  Titles titles() {
-    return const Titles(
-      title: StringData.singin,
-      subtitle: StringData.welcome,
+  Align titles() {
+    return const Align(
+      alignment: Alignment.topLeft,
+      child: Titles(
+        title: StringData.singin,
+        subtitle: StringData.welcome,
+      ),
     );
   }
 
@@ -130,11 +151,15 @@ class _LoginPageState extends State<LoginPage> {
       child: Column(
         children: [
           TextFields(
-            onchange: (value) {},
-            validator: (value) {},
+            onchange: (value) {
+              return null;
+            },
+            validator: (value) {
+              return null;
+            },
             titlePadding: const ProjectPadding.textFieldTitle(),
             icon: const Icon(
-              ProjectIcons.mail,
+              MyIcons.mail,
               color: Colors.black,
             ),
             fontWeight: Weight.midium,
@@ -145,12 +170,15 @@ class _LoginPageState extends State<LoginPage> {
           ),
           TextFields(
             onchange: (value) {
-              print("object");
+              // print("object");
+              return null;
             },
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
             titlePadding: const ProjectPadding.textFieldTitle(),
             icon: const Icon(
-              ProjectIcons.password,
+              MyIcons.password,
               color: Colors.black,
             ),
             suffixButton: IconButton(
@@ -158,8 +186,8 @@ class _LoginPageState extends State<LoginPage> {
                 //   changeVisibility();
               },
               icon: isVisible
-                  ? const Icon(ProjectIcons.visibilityOn)
-                  : const Icon(ProjectIcons.visibilityOff),
+                  ? const Icon(MyIcons.visibilityOn)
+                  : const Icon(MyIcons.visibilityOff),
               color: Colors.black,
             ),
             fontWeight: Weight.midium,
@@ -171,7 +199,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  onPressed() {
+  navigateApp() {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => const Register(),
     ));
