@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 class ProjectPadding extends EdgeInsets {
 //all
   const ProjectPadding.allEightteen() : super.all(18);
+  const ProjectPadding.allSixteen() : super.all(16);
   const ProjectPadding.allEight() : super.all(8);
   const ProjectPadding.edgeZero() : super.all(0);
 //only

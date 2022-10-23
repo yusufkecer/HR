@@ -1,7 +1,7 @@
 import 'package:hrapp/core/constant/size.dart';
 import 'package:hrapp/feature/auth/register_page.dart';
 import 'package:hrapp/feature/auth/reset_password.dart';
-import 'package:hrapp/feature/splash_screen/loading_screen.dart';
+import 'package:hrapp/product/mixin/password_visible.dart';
 import 'package:hrapp/product/widgets/button/text_button.dart';
 import 'package:hrapp/product/widgets/checkbox.dart';
 import 'package:hrapp/product/widgets/text_fields.dart';
@@ -24,62 +24,49 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  bool splash = true;
-  @override
-  void initState() {
-    Future.delayed(const Duration(seconds: 4)).then((value) {
-      setState(() {
-        splash = false;
-      });
-    });
-    super.initState();
-  }
-
+class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
   bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
-    return splash
-        ? const Splash()
-        : Scaffold(
-            body: Center(
-              child: SingleChildScrollView(
-                child: SafeArea(
-                  child: Padding(
-                    padding: const ProjectPadding.allEightteen(),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        titles(),
-                        BoxSpace(
-                          height: ProjectSize.veryBigHeight().height,
-                        ),
-                        Column(
-                          children: [
-                            forms(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                checkText(),
-                                resetPassword(),
-                              ],
-                            ),
-                            Divider(
-                              height: ProjectSize.veryBigHeight().height,
-                              color: MyColor.veryLightBlack,
-                            ),
-                            loginButton(),
-                            registerNavigate()
-                          ],
-                        ),
-                      ],
-                    ),
+    return Scaffold(
+      body: Center(
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const ProjectPadding.allEightteen(),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  titles(),
+                  BoxSpace(
+                    height: ProjectSize.veryBigHeight().height,
                   ),
-                ),
+                  Column(
+                    children: [
+                      forms(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          checkText(),
+                          resetPassword(),
+                        ],
+                      ),
+                      Divider(
+                        height: ProjectSize.veryBigHeight().height,
+                        color: MyColor.veryLightBlack,
+                      ),
+                      loginButton(),
+                      registerNavigate()
+                    ],
+                  ),
+                ],
               ),
             ),
-          );
+          ),
+        ),
+      ),
+    );
   }
 
   CheckboxText checkText() {

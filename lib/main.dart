@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-import 'feature/auth/login_page.dart';
+import 'feature/splash/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +19,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         backgroundColor: const Color(0xFF6711fe),
       ),
-      home: const LoginPage(),
+      home: const Splash(),
+      //LoginPage(),
     );
   }
 }
