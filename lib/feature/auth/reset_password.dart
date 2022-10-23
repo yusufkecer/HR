@@ -1,6 +1,6 @@
 import 'package:hrapp/core/constant/edge_insets.dart';
 import 'package:hrapp/core/constant/size.dart';
-import 'package:hrapp/feature/splash_screen/loading_screen.dart';
+import 'package:hrapp/feature/splash/splash_screen.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/string_data.dart';
