@@ -16,10 +16,8 @@ class Introduction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int initialPage = 0;
     return SafeArea(
       child: IntroductionScreen(
-        initialPage: initialPage,
         curve: Curves.easeInCirc,
         pages: [
           pageView(StringData.titleFirst, StringData.subtitleFirst,
@@ -39,7 +37,6 @@ class Introduction extends StatelessWidget {
               (route) => false);
         },
         controlsPadding: const ProjectPadding.topEight(),
-        next: nextButton(initialPage),
       ),
     );
   }
@@ -47,15 +44,8 @@ class Introduction extends StatelessWidget {
   SizedBox nextButton(int initialPage) {
     return SizedBox(
       height: ProjectSize.veryBigHeight().height,
-      child: IconButton(
-        onPressed: () {
-          initialPage = 1;
-        },
-        icon: const Icon(
-          MyIcons.arrowIOSIcon,
-        ),
-        padding: EdgeInsets.zero,
-        tooltip: "Geç",
+      child: const Icon(
+        MyIcons.arrowIOSIcon,
       ),
     );
   }
