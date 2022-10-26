@@ -25,7 +25,7 @@ class NavigationService {
               clipBehavior: Clip.none,
               children: [
                 const Positioned(
-                  top: -17,
+                  top: -15,
                   child: SizedBox(
                     height: 7,
                     width: 60,
