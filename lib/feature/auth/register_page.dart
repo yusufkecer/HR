@@ -1,4 +1,5 @@
 import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/services/navigation_service.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/mixin/password_visible.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
@@ -22,6 +23,13 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> with PasswordVisibilityMixin {
   // bool isVisible = false;
+  NavigationService? nav;
+  @override
+  void initState() {
+    nav = NavigationService();
+    nav == null ? throw "NAV BOŞŞŞ" : null;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +91,11 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    Navigator.pop(context);
+                    nav?.showBottomModal(
+                      context,
+                      StringData.termsSheetTitle,
+                      StringData.termsSheetText,
+                    );
                   },
               ),
               TextSpan(
@@ -103,12 +115,18 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        // code to open / launch privacy policy link here
+                        nav?.showBottomModal(
+                          context,
+                          StringData.conditionsTitle,
+                          StringData.conditionsText,
+                        );
                       },
                   ),
                 ],
               ),
-              const TextSpan(text: StringData.termsTextEnd),
+              const TextSpan(
+                text: StringData.termsTextEnd,
+              ),
             ],
           ),
         ),
@@ -125,7 +143,9 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
 
   Titles title() {
     return const Titles(
-        title: StringData.registerHere, subtitle: StringData.registerNow);
+      title: StringData.registerHere,
+      subtitle: StringData.registerNow,
+    );
   }
 
   Form forms() {
@@ -186,8 +206,12 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
                 changeVisibility();
               },
               icon: isVisible
-                  ? const Icon(MyIcons.visibilityOn)
-                  : const Icon(MyIcons.visibilityOff),
+                  ? const Icon(
+                      MyIcons.visibilityOn,
+                    )
+                  : const Icon(
+                      MyIcons.visibilityOff,
+                    ),
               color: Colors.black,
             ),
             fontWeight: Weight.midium,
@@ -207,6 +231,46 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
   }
 
   onpressed() {
-    Navigator.pop(context);
+    print(nav.runtimeType);
+    //   Navigator.pop(context);
   }
+
+  // showBottomModal() {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     shape:
+  //         const RoundedRectangleBorder(borderRadius: ProjectBorders.bigOnly()),
+  //     builder: (context) {
+  //       return buildBottomSheet();
+  //     },
+  //   );
+  // }
+
+  // Padding buildBottomSheet() {
+  //   return Padding(
+  //     padding: const ProjectPadding.allEightteen().copyWith(
+  //       bottom: const ProjectPadding.edgeZero().bottom,
+  //     ),
+  //     child: ListView(
+  //       shrinkWrap: true,
+  //       children: [
+  //         const Text(
+  //           StringData.termsSheetText,
+  //           textAlign: TextAlign.center,
+  //           style: TextStyle(
+  //               fontSize: ProjectFontSize.mainSize, fontWeight: Weight.bold),
+  //         ),
+  //         BoxSpace(
+  //           height: ProjectSize.normalHeight().height,
+  //         ),
+  //         const Text(
+  //           StringData.termsSheetTitle,
+  //           textAlign: TextAlign.justify,
+  //           style: TextStyle(
+  //               fontSize: ProjectFontSize.mainSize, fontWeight: Weight.light),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

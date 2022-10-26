@@ -10,6 +10,8 @@ class MyIcons {
   static const addPerson = Icons.person_add_alt_1_outlined;
   static const resetPassword = Icons.key_outlined;
 
-  static const arrowIcon = Icons.arrow_forward_outlined;
-  static const arrowIOSIcon = Icons.arrow_forward_ios_outlined;
+  static const nextIcon = Icons.arrow_forward_outlined;
+  static const nextIOSIcon = Icons.arrow_forward_ios_outlined;
+
+  static const IconData backIOSIcon = Icons.arrow_back_ios_new_outlined;
 }
