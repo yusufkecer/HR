@@ -29,6 +29,8 @@ class Introduction extends StatelessWidget {
         ],
         done: doneText(),
         dotsDecorator: dotsDecorator(),
+        next: routeButton(MyIcons.nextIOSIcon),
+        back: routeButton(MyIcons.backIOSIcon),
         onDone: () {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
@@ -41,11 +43,11 @@ class Introduction extends StatelessWidget {
     );
   }
 
-  SizedBox nextButton(int initialPage) {
+  SizedBox routeButton(IconData routeIcon) {
     return SizedBox(
       height: ProjectSize.veryBigHeight().height,
-      child: const Icon(
-        MyIcons.arrowIOSIcon,
+      child: Icon(
+        routeIcon,
       ),
     );
   }

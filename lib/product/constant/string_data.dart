@@ -21,11 +21,21 @@ class StringData {
   static const and = "ve ";
   static const termsTextEnd = " kabul etmiş sayılırsınız.";
 
-  static const done = "Geç";
+// Bottom sheet text
+  static const termsSheetTitle = "Nullam non magna elit";
 
+  static const termsSheetText =
+      "Donec eget libero quis ipsum tempus ultricies pellentesque vitae sem. Integer ut congue risus, non aliquet nibh. Cras aliquam ante est, ut tincidunt erat gravida eu. Sed sed odio odio. Integer non massa et erat congue auctor ac mattis elit. Vivamus eu odio est. Donec vulputate pharetra tellus, dignissim volutpat leo ultrices eu. Morbi semper turpis turpis, at condimentum ante tincidunt sed. Vivamus tempor metus vel erat congue commodo. Nullam pretium porttitor magna non maximus. Quisque porta pellentesque nisl, lacinia dignissim justo euismod semper."
+      "Vestibulum urna nisl, varius sodales porta et, consequat at quam. Donec in laoreet turpis, sit amet sodales urna. In eleifend at odio et venenatis. Donec fringilla ornare sagittis. Mauris sagittis urna vel volutpat egestas. Praesent arcu orci, sodales et lorem mattis, posuere vestibulum massa. Mauris congue, metus ut porta faucibus, sapien nisi dictum arcu, a bibendum ex eros a nisl. In tristique ullamcorper scelerisque. Ut scelerisque ligula a iaculis cursus.1"
+      "Donec eget libero quis ipsum tempus ultricies pellentesque vitae sem. Integer ut congue risus, non aliquet nibh. Cras aliquam ante est, ut tincidunt erat gravida eu. Sed sed odio odio. Integer non massa et erat congue auctor ac mattis elit. Vivamus eu odio est. Donec vulputate pharetra tellus, dignissim volutpat leo ultrices eu. Morbi semper turpis turpis, at condimentum ante tincidunt sed. Vivamus tempor metus vel erat congue commodo. Nullam pretium porttitor magna non maximus. Quisque porta pellentesque nisl, lacinia dignissim justo euismod semper."
+      "Vestibulum urna nisl, varius sodales porta et, consequat at quam. Donec in laoreet turpis, sit amet sodales urna. In eleifend at odio et venenatis. Donec fringilla ornare sagittis. Mauris sagittis urna vel volutpat egestas. Praesent arcu orci, sodales et lorem mattis, posuere vestibulum massa. Mauris congue, metus ut porta faucibus, sapien nisi dictum arcu, a bibendum ex eros a nisl. In tristique ullamcorper scelerisque. Ut scelerisque ligula a iaculis cursus.1sdf";
+  static const conditionsText =
+      "Sed interdum massa ac lorem malesuada lobortis. Praesent pharetra commodo ligula, et commodo nulla molestie a. Integer orci nunc, luctus id libero ac, mattis cursus nibh. Phasellus rhoncus massa sit amet elementum euismod. Integer accumsan nulla non augue semper, in faucibus augue maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras ligula mauris, vehicula sit amet sodales sed, tristique et nisl. Phasellus in augue vitae diam venenatis varius. Nullam sodales rhoncus urna, eu faucibus nisi rhoncus vitae. Integer vitae dolor ut tortor pellentesque pellentesque quis eu eros.";
+  static const conditionsTitle = "Nullam non bibendum quam";
 //Intro
   static const titleFirst =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+  static const done = "Geç";
   static const subtitleFirst =
       " Morbi lacus purus, consectetur non ante sit amet, varius consequat elit. Etiam et libero eu nisl laoreet luctus ut sit amet mauris.";
 
