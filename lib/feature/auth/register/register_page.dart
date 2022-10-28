@@ -147,8 +147,8 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
       child: Column(
         children: [
           TextFields(
-            onchange: (value) {
-              return null;
+            listener: (value) {
+              return;
             },
             validator: (value) {
               return null;
@@ -165,8 +165,8 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
             height: ProjectSize.bigHeight().height,
           ),
           TextFields(
-            onchange: (value) {
-              return null;
+            listener: (value) {
+              return;
             },
             validator: (value) {
               return null;
@@ -186,8 +186,8 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
             validator: (value) {
               return null;
             },
-            onchange: (value) {
-              return null;
+            listener: (value) {
+              return;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
             icon: const Icon(

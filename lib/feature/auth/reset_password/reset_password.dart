@@ -66,9 +66,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       validator: (value) {
         return null;
       },
-      onchange: (value) {
-        return null;
-      },
+      listener: (value) {},
     );
   }
 

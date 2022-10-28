@@ -142,7 +142,7 @@ class _LoginViewState extends LoginViewModel {
       child: Column(
         children: [
           TextFields(
-            onchange: (value) {
+            listener: (value) {
               print(value);
             },
             validator: (value) {
@@ -160,8 +160,8 @@ class _LoginViewState extends LoginViewModel {
             height: ProjectSize.bigHeight().height,
           ),
           TextFields(
-            onchange: (value) {
-              // print("object");
+            listener: (value) {
+              print("object");
               return;
             },
             validator: (value) {
