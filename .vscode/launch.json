@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "chat",
+            "name": "hrapp",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "chat (profile mode)",
+            "name": "hrapp (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "chat (release mode)",
+            "name": "hrapp (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

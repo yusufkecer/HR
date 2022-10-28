@@ -12,13 +12,13 @@ class TextFields extends StatelessWidget {
   final FontWeight? fontWeight;
   final Widget? icon;
   final EdgeInsets? titlePadding;
-  Function? validator;
-  Function? onchange;
+  final String? Function(String?)? validator;
+  final void Function(String?)? listener;
 
   bool? secure;
   TextFields({
-    required String? Function(String? value) validator,
-    required String? Function(String? value) onchange,
+    required this.validator,
+    required this.listener,
     this.titlePadding,
     this.suffixButton,
     this.fontWeight,
@@ -68,6 +68,7 @@ class TextFields extends StatelessWidget {
     return TextFormField(
       obscureText: secure!,
       autocorrect: secure!,
+      onChanged: listener,
       cursorColor: Colors.black,
       decoration: InputDecoration(
         contentPadding: const ProjectPadding.textFieldContent(14.8),

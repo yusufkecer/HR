@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/edge_insets.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/core/constant/size.dart';
-import 'package:hrapp/feature/auth/login_page.dart';
+import 'package:hrapp/feature/auth/login/login_view/login_view.dart';
 import 'package:hrapp/product/constant/assets.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
@@ -29,12 +29,13 @@ class Introduction extends StatelessWidget {
         ],
         done: doneText(),
         dotsDecorator: dotsDecorator(),
+        showBackButton: true,
         next: routeButton(MyIcons.nextIOSIcon),
         back: routeButton(MyIcons.backIOSIcon),
         onDone: () {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (context) => const LoginPage(),
+                builder: (context) => const LoginView(),
               ),
               (route) => false);
         },

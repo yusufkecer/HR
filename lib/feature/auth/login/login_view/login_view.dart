@@ -1,32 +1,31 @@
 import 'package:hrapp/core/constant/size.dart';
-import 'package:hrapp/feature/auth/register_page.dart';
-import 'package:hrapp/feature/auth/reset_password.dart';
-import 'package:hrapp/product/mixin/password_visible.dart';
+import 'package:hrapp/feature/auth/reset_password/reset_password.dart';
 import 'package:hrapp/product/widgets/button/text_button.dart';
-import 'package:hrapp/product/widgets/checkbox.dart';
+import 'package:hrapp/product/widgets/checkbox_text.dart';
 import 'package:hrapp/product/widgets/text_fields.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
-import '../../Product/widgets/sized_box/box_space.dart';
-import '../../core/constant/edge_insets.dart';
-import '../../product/constant/colors.dart';
-import '../../product/constant/font_size.dart';
-import '../../product/constant/icons.dart';
-import '../../product/constant/string_data.dart';
-import '../../product/constant/weight.dart';
-import '../../product/widgets/button/elevated_icon.dart';
-import '../../product/widgets/button/text_button_icon.dart';
+import '../../../../Product/widgets/sized_box/box_space.dart';
+import '../../../../core/constant/edge_insets.dart';
+import '../../../../product/constant/colors.dart';
+import '../../../../product/constant/font_size.dart';
+import '../../../../product/constant/icons.dart';
+import '../../../../product/constant/string_data.dart';
+import '../../../../product/constant/weight.dart';
+import '../../../../product/widgets/button/elevated_icon.dart';
+import '../../../../product/widgets/button/text_button_icon.dart';
+import '../login_view_model/login_view_model.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
-  bool isVisible = false;
-
+class _LoginViewState extends LoginViewModel {
+  // bool isVisible = false;
+  List value2 = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +70,11 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
 
   CheckboxText checkText() {
     return CheckboxText(
+      onChanged: (value) {
+        setState(() {
+          value = !value;
+        });
+      },
       Weight.midium,
       StringData.rememberMe,
     );
@@ -84,7 +88,7 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
     );
   }
 
-  navigateResetPassword() {
+  void navigateResetPassword() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const ResetPassword(),
@@ -138,8 +142,8 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
       child: Column(
         children: [
           TextFields(
-            onchange: (value) {
-              return null;
+            listener: (value) {
+              print(value);
             },
             validator: (value) {
               return null;
@@ -156,9 +160,9 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
             height: ProjectSize.bigHeight().height,
           ),
           TextFields(
-            onchange: (value) {
-              // print("object");
-              return null;
+            listener: (value) {
+              print("object");
+              return;
             },
             validator: (value) {
               return null;
@@ -170,7 +174,7 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
             ),
             suffixButton: IconButton(
               onPressed: () {
-                //   changeVisibility();
+                changeVisibility();
               },
               icon: isVisible
                   ? const Icon(MyIcons.visibilityOn)
@@ -186,9 +190,7 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
     );
   }
 
-  navigateApp() {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const Register(),
-    ));
+  void navigateApp() {
+    print(value2.length);
   }
 }
