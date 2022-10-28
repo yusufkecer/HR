@@ -20,7 +20,7 @@ abstract class LoginViewModel extends State<LoginView>
 
   checkValidator() {
     if (formKey.currentState!.validate()) {
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => const CompanyHomePage(),
         ),

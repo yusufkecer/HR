@@ -1,4 +1,5 @@
 import 'package:hrapp/core/constant/size.dart';
+import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/feature/auth/reset_password/reset_password.dart';
 import 'package:hrapp/product/widgets/button/text_button.dart';
 import 'package:hrapp/product/widgets/checkbox_text.dart';
@@ -25,7 +26,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends LoginViewModel {
   // bool isVisible = false;
-  List value2 = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,13 +140,16 @@ class _LoginViewState extends LoginViewModel {
 
   Form forms() {
     return Form(
+      key: formKey,
       child: Column(
         children: [
           TextFields(
-            listener: (value) {
-              print(value);
-            },
+            controller: emailController,
+            listener: (value) {},
             validator: (value) {
+              if (!value.passwordValid()) {
+                return StringData.writeEmail;
+              }
               return null;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
@@ -160,11 +164,14 @@ class _LoginViewState extends LoginViewModel {
             height: ProjectSize.bigHeight().height,
           ),
           TextFields(
+            controller: passwordController,
             listener: (value) {
-              print("object");
               return;
             },
             validator: (value) {
+              if (!value.passwordValid()) {
+                return StringData.writeEmail;
+              }
               return null;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
@@ -191,6 +198,6 @@ class _LoginViewState extends LoginViewModel {
   }
 
   void navigateApp() {
-    print(value2.length);
+    checkValidator();
   }
 }

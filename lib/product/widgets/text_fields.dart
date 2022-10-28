@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../constant/font_size.dart';
 
 class TextFields extends StatelessWidget {
+  final TextEditingController? controller;
   final String? info;
   Widget? suffixButton;
   final FontWeight? fontWeight;
@@ -17,6 +18,7 @@ class TextFields extends StatelessWidget {
 
   bool? secure;
   TextFields({
+    this.controller,
     required this.validator,
     required this.listener,
     this.titlePadding,
@@ -66,6 +68,7 @@ class TextFields extends StatelessWidget {
 
   TextFormField textField() {
     return TextFormField(
+      controller: controller,
       obscureText: secure!,
       autocorrect: secure!,
       onChanged: listener,

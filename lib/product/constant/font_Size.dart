@@ -1,4 +1,3 @@
-// ignore_for_file: file_names
 class ProjectFontSize {
   static const double mainSize = 16;
   static const double normalSize = 18;
