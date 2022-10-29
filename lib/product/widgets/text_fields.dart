@@ -7,17 +7,19 @@ import 'package:flutter/material.dart';
 import '../constant/font_size.dart';
 
 class TextFields extends StatelessWidget {
+  final TextEditingController? controller;
   final String? info;
   Widget? suffixButton;
   final FontWeight? fontWeight;
   final Widget? icon;
   final EdgeInsets? titlePadding;
-  final String? Function(String?)? validator;
+  final String? Function(String?)? validation;
   final void Function(String?)? listener;
 
   bool? secure;
   TextFields({
-    required this.validator,
+    this.controller,
+    required this.validation,
     required this.listener,
     this.titlePadding,
     this.suffixButton,
@@ -33,14 +35,6 @@ class TextFields extends StatelessWidget {
     suffixButton ??= const SizedBox();
 
     // final TextEditingController controller = TextEditingController();
-
-    if (info == null ||
-        suffixButton == null ||
-        fontWeight == null ||
-        titlePadding == null ||
-        icon == null) {
-      throw "null değer döndü";
-    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,6 +60,8 @@ class TextFields extends StatelessWidget {
 
   TextFormField textField() {
     return TextFormField(
+      controller: controller,
+      validator: validation,
       obscureText: secure!,
       autocorrect: secure!,
       onChanged: listener,

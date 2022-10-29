@@ -14,6 +14,12 @@ class StringData {
   static const registerHere = "Kayıt Ol!";
   static const register = "Kayıt Ol";
 
+//validation
+  static const writeEmail = "Geçerli bir mail adresi giriniz.";
+  static const writePassword =
+      "Geçerli bir şifre giriniz. (sayı ve büyük harf ve özel karakter.)";
+  static const writeName = "Geçerli bir isim giriniz.";
+
   //Terms
   static const termsText = "Kayıt işlemini tamamladığınızda, ";
   static const condition = "şartları ";

@@ -1,4 +1,6 @@
 import 'package:hrapp/core/constant/size.dart';
+import 'package:hrapp/core/extensions/string_extension.dart';
+import 'package:hrapp/core/services/navigation_service.dart';
 import 'package:hrapp/feature/auth/reset_password/reset_password.dart';
 import 'package:hrapp/product/widgets/button/text_button.dart';
 import 'package:hrapp/product/widgets/checkbox_text.dart';
@@ -14,7 +16,7 @@ import '../../../../product/constant/string_data.dart';
 import '../../../../product/constant/weight.dart';
 import '../../../../product/widgets/button/elevated_icon.dart';
 import '../../../../product/widgets/button/text_button_icon.dart';
-import '../login_view_model/login_view_model.dart';
+import '../login_model/login_view_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -25,7 +27,9 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends LoginViewModel {
   // bool isVisible = false;
-  List value2 = [];
+
+  @override
+  NavigationService nav = NavigationService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,11 +74,12 @@ class _LoginViewState extends LoginViewModel {
 
   CheckboxText checkText() {
     return CheckboxText(
-      onChanged: (value) {
+      onChange: (value) {
         setState(() {
-          value = !value;
+          check = value!;
         });
       },
+      value: check,
       Weight.midium,
       StringData.rememberMe,
     );
@@ -110,7 +115,9 @@ class _LoginViewState extends LoginViewModel {
           ),
           MyTextButton(
             named: StringData.registerHere,
-            onPressed: navigateApp,
+            onPressed: () {
+              nav.navigateToRegister(context);
+            },
           ),
         ],
       ),
@@ -139,13 +146,16 @@ class _LoginViewState extends LoginViewModel {
 
   Form forms() {
     return Form(
+      key: formKey,
       child: Column(
         children: [
           TextFields(
-            listener: (value) {
-              print(value);
-            },
-            validator: (value) {
+            controller: emailController,
+            listener: (value) {},
+            validation: (value) {
+              if (!value.emailValid()) {
+                return StringData.writeEmail;
+              }
               return null;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
@@ -160,11 +170,14 @@ class _LoginViewState extends LoginViewModel {
             height: ProjectSize.bigHeight().height,
           ),
           TextFields(
+            controller: passwordController,
             listener: (value) {
-              print("object");
               return;
             },
-            validator: (value) {
+            validation: (value) {
+              if (!value.passwordValid()) {
+                return StringData.writePassword;
+              }
               return null;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
@@ -191,6 +204,10 @@ class _LoginViewState extends LoginViewModel {
   }
 
   void navigateApp() {
-    print(value2.length);
+    if (check == true) {
+      nav.navigteToCompany(context);
+      return;
+    }
+    checkValidator();
   }
 }
