@@ -1,5 +1,6 @@
 import 'package:hrapp/core/constant/size.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
+import 'package:hrapp/core/services/navigation_service.dart';
 import 'package:hrapp/feature/auth/reset_password/reset_password.dart';
 import 'package:hrapp/product/widgets/button/text_button.dart';
 import 'package:hrapp/product/widgets/checkbox_text.dart';
@@ -15,7 +16,7 @@ import '../../../../product/constant/string_data.dart';
 import '../../../../product/constant/weight.dart';
 import '../../../../product/widgets/button/elevated_icon.dart';
 import '../../../../product/widgets/button/text_button_icon.dart';
-import '../login_view_model/login_view_model.dart';
+import '../login_model/login_view_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -26,7 +27,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends LoginViewModel {
   // bool isVisible = false;
-
+  NavigationService nav = NavigationService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,7 +112,9 @@ class _LoginViewState extends LoginViewModel {
           ),
           MyTextButton(
             named: StringData.registerHere,
-            onPressed: navigateApp,
+            onPressed: () {
+              nav.navigateToRegister(context);
+            },
           ),
         ],
       ),
@@ -146,7 +149,7 @@ class _LoginViewState extends LoginViewModel {
           TextFields(
             controller: emailController,
             listener: (value) {},
-            validator: (value) {
+            validation: (value) {
               if (!value.passwordValid()) {
                 return StringData.writeEmail;
               }
@@ -168,9 +171,9 @@ class _LoginViewState extends LoginViewModel {
             listener: (value) {
               return;
             },
-            validator: (value) {
+            validation: (value) {
               if (!value.passwordValid()) {
-                return StringData.writeEmail;
+                return StringData.writePassword;
               }
               return null;
             },

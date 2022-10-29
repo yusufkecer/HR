@@ -1,27 +1,28 @@
 import 'package:hrapp/core/constant/edge_insets.dart';
 import 'package:hrapp/core/services/navigation_service.dart';
+import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/product/constant/colors.dart';
-import 'package:hrapp/core/mixin/password_visible.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/text_fields.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../../core/constant/size.dart';
-import '../../../product/constant/font_size.dart';
-import '../../../product/constant/icons.dart';
-import '../../../product/constant/string_data.dart';
-import '../../../product/constant/weight.dart';
-import '../../../product/widgets/sized_box/box_space.dart';
+import '../../../../core/constant/size.dart';
+import '../../../../product/constant/font_size.dart';
+import '../../../../product/constant/icons.dart';
+import '../../../../product/constant/string_data.dart';
+import '../../../../product/constant/weight.dart';
+import '../../../../product/widgets/sized_box/box_space.dart';
+import '../view_model/register_model.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _RegisterState extends State<Register> with PasswordVisibilityMixin {
+class _RegisterViewState extends LoginViewModel {
   // bool isVisible = false;
   NavigationService nav = NavigationService();
 
@@ -144,13 +145,17 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
 
   Form forms() {
     return Form(
+      key: formKey,
       child: Column(
         children: [
           TextFields(
             listener: (value) {
               return;
             },
-            validator: (value) {
+            validation: (value) {
+              if (!value.nameValid()) {
+                return StringData.writeName;
+              }
               return null;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
@@ -168,7 +173,10 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
             listener: (value) {
               return;
             },
-            validator: (value) {
+            validation: (value) {
+              if (!value.emailValid()) {
+                return StringData.writeEmail;
+              }
               return null;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
@@ -183,7 +191,10 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
             height: ProjectSize.bigHeight().height,
           ),
           TextFields(
-            validator: (value) {
+            validation: (value) {
+              if (!value.passwordValid()) {
+                return StringData.writePassword;
+              }
               return null;
             },
             listener: (value) {
@@ -225,6 +236,6 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
   }
 
   onpressed() {
-    // Navigator.pop(context);
+    checkvalid();
   }
 }

@@ -63,7 +63,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       ),
       info: StringData.email,
       titlePadding: const ProjectPadding.textFieldTitle(),
-      validator: (value) {
+      validation: (value) {
         return null;
       },
       listener: (value) {},

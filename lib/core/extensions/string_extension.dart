@@ -5,6 +5,10 @@ extension EmailValidator on String? {
     ).hasMatch(this ?? '');
   }
 
+  bool nameValid() {
+    return RegExp(r'[(a-zA-Z)]').hasMatch(this ?? "");
+  }
+
   bool passwordValid() {
     String pattern =
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
