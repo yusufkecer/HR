@@ -27,6 +27,8 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends LoginViewModel {
   // bool isVisible = false;
+
+  @override
   NavigationService nav = NavigationService();
   @override
   Widget build(BuildContext context) {
@@ -72,11 +74,12 @@ class _LoginViewState extends LoginViewModel {
 
   CheckboxText checkText() {
     return CheckboxText(
-      onChanged: (value) {
+      onChange: (value) {
         setState(() {
-          value = !value;
+          check = value!;
         });
       },
+      value: check,
       Weight.midium,
       StringData.rememberMe,
     );
@@ -150,7 +153,7 @@ class _LoginViewState extends LoginViewModel {
             controller: emailController,
             listener: (value) {},
             validation: (value) {
-              if (!value.passwordValid()) {
+              if (!value.emailValid()) {
                 return StringData.writeEmail;
               }
               return null;
@@ -201,6 +204,10 @@ class _LoginViewState extends LoginViewModel {
   }
 
   void navigateApp() {
+    if (check == true) {
+      nav.navigteToCompany(context);
+      return;
+    }
     checkValidator();
   }
 }

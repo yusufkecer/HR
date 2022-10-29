@@ -7,17 +7,17 @@ import 'sized_box/box_space.dart';
 
 class CheckboxText extends StatefulWidget {
   final FontWeight fontWeight;
-  Function? onChange;
+  final bool? value;
+  final Function(bool?)? onChange;
   final String checkboxName;
-  CheckboxText(this.fontWeight, this.checkboxName,
-      {required Function(bool value) onChanged, super.key});
+  const CheckboxText(this.fontWeight, this.checkboxName,
+      {this.onChange, this.value, super.key});
 
   @override
   State<CheckboxText> createState() => _CheckboxTextState();
 }
 
 class _CheckboxTextState extends State<CheckboxText> {
-  bool value = false;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,10 +32,8 @@ class _CheckboxTextState extends State<CheckboxText> {
               color: MyColor.lightBlack,
               width: ProjectSize.border().width,
             ),
-            value: value,
-            onChanged: (value1) {
-              widget.onChange;
-            },
+            value: widget.value,
+            onChanged: widget.onChange,
           ),
         ),
         BoxSpace(
