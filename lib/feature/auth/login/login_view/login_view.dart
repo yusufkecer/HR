@@ -1,6 +1,5 @@
 import 'package:hrapp/core/constant/size.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
-import 'package:hrapp/core/services/navigation_service.dart';
 import 'package:hrapp/feature/auth/reset_password/reset_password.dart';
 import 'package:hrapp/product/widgets/button/text_button.dart';
 import 'package:hrapp/product/widgets/checkbox_text.dart';
@@ -29,7 +28,6 @@ class _LoginViewState extends LoginViewModel {
   // bool isVisible = false;
 
   @override
-  NavigationService nav = NavigationService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
