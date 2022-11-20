@@ -14,4 +14,7 @@ class MyIcons {
   static const nextIOSIcon = Icons.arrow_forward_ios_outlined;
 
   static const IconData backIOSIcon = Icons.arrow_back_ios_new_outlined;
+  static const IconData home = Icons.home;
+  static const list = Icons.list_alt;
+  static const profile = Icons.person;
 }

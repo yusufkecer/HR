@@ -53,4 +53,9 @@ class StringData {
   static const titleEnd = "Nullam non magna elit.";
   static const subtitleEnd =
       "Etiam facilisis purus non mauris interdum venenatis. Pellentesque ac tortor suscipit, interdum nulla vel, pulvinar lacus. ";
+
+  //Navbar
+  static const homePage = "Ana Sayfa";
+  static const postings = "İlanlarım";
+  static const profile = "Profil";
 }
