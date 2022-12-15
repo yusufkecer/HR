@@ -9,17 +9,5 @@
             "request": "launch",
             "type": "dart"
         },
-        {
-            "name": "hrapp (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "hrapp (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
     ]
 }

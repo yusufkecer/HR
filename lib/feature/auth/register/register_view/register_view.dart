@@ -1,5 +1,5 @@
 import 'package:hrapp/core/constant/edge_insets.dart';
-import 'package:hrapp/core/services/navigation_service.dart';
+import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
@@ -33,7 +33,7 @@ class _RegisterViewState extends LoginViewModel {
         child: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
-              padding: const ProjectPadding.allEightteen(),
+              padding: const ProjectPadding.allEightTeen(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

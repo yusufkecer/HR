@@ -35,7 +35,7 @@ class _LoginViewState extends LoginViewModel {
         child: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
-              padding: const ProjectPadding.allEightteen(),
+              padding: const ProjectPadding.allEightTeen(),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
