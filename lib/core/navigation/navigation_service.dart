@@ -41,7 +41,7 @@ class NavigationService {
                 ),
               ),
               Padding(
-                padding: const ProjectPadding.allEightteen().copyWith(
+                padding: const ProjectPadding.allEightTeen().copyWith(
                   bottom: const ProjectPadding.edgeZero().bottom,
                 ),
                 child: ListView(

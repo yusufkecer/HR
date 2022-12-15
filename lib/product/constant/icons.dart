@@ -9,6 +9,7 @@ class MyIcons {
   static const user = Icons.person_outline_outlined;
   static const addPerson = Icons.person_add_alt_1_outlined;
   static const resetPassword = Icons.key_outlined;
+  static const add = Icons.add;
 
   static const nextIcon = Icons.arrow_forward_outlined;
   static const nextIOSIcon = Icons.arrow_forward_ios_outlined;
@@ -17,4 +18,7 @@ class MyIcons {
   static const IconData home = Icons.home;
   static const list = Icons.list_alt;
   static const profile = Icons.person;
+
+  static const saveAdd = Icons.bookmark_add_rounded;
+  static const saved = Icons.bookmark_added_rounded;
 }

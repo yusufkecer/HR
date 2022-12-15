@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/mixin/check_mixin.dart';
-import 'package:hrapp/core/services/navigation_service.dart';
+import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/feature/auth/login/login_view/login_view.dart';
 
 import '../../../../core/mixin/password_visible.dart';

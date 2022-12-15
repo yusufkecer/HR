@@ -10,9 +10,14 @@ class MyColor {
 
   static const purplishBlue = Color(0xFF6711fe);
   static const fuchsiaBlue = Color(0xFF7e57c2);
+
   static const butterflyBush = Color(0xFF65459b);
   static const osloGrey = Color(0xFF8f8f8f);
   static const softPeach = Color(0xFFeeeeee);
   static const lightLavender = Color(0xFFd8c1ff);
   static const mercury = Color(0xFFe6e6e6);
+
+  static const tints = Color.fromARGB(129, 219, 212, 242);
+  static const discovreyPurplishBlue = Color.fromARGB(214, 104, 17, 254);
+  static const fuchsiaBlueLight = Color(0xFF650e8c);
 }

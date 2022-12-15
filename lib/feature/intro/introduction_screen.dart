@@ -39,7 +39,7 @@ class Introduction extends StatelessWidget {
               ),
               (route) => false);
         },
-        controlsPadding: const ProjectPadding.topEight(),
+        controlsPadding: const ProjectPadding.allEight(),
       ),
     );
   }

@@ -25,7 +25,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       body: Center(
         child: SafeArea(
           child: Padding(
-            padding: const ProjectPadding.allEightteen(),
+            padding: const ProjectPadding.allEightTeen(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

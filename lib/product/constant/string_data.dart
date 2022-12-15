@@ -58,4 +58,8 @@ class StringData {
   static const homePage = "Ana Sayfa";
   static const postings = "İlanlarım";
   static const profile = "Profil";
+
+  static const companyWorker = "Şirketteki Çalışanlar";
+
+  static const popularJobs = "Popüler İlanlar";
 }
