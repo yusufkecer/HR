@@ -41,20 +41,19 @@ class _NavBarState extends State<NavBar> with TickerProviderStateMixin {
               offset: const Offset(1, 3),
             ),
           ],
-          borderRadius: ProjectBorders.mediumAll(),
+          borderRadius: const ProjectBorders.mediumAll(),
         ),
         child: BottomAppBar(
           shape: const CircularNotchedRectangle(),
           color: Colors.white,
           elevation: 0,
-          //FIXME: Colorlar düzenlenecek
           child: TabBar(
             indicator: const BoxDecoration(
               borderRadius: ProjectBorders.mediumAll(),
             ),
             indicatorColor: Colors.purple,
             labelColor: MyColor.purplishBlue,
-            unselectedLabelColor: Colors.grey,
+            unselectedLabelColor: MyColor.osloGrey,
             controller: tabController,
             tabs: [
               bottomNavBarItems(navBar![0].key, navBar![0].value),

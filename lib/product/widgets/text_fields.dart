@@ -43,7 +43,7 @@ class TextFields extends StatelessWidget {
           padding: titlePadding!,
           child: Text(
             info!,
-            textScaleFactor: ProjectFontSize.fieldTitle,
+            textScaleFactor: ProjectFontSize.oneToOne,
             style: TextStyle(fontWeight: fontWeight),
           ),
         ),

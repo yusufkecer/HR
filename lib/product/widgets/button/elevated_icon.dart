@@ -33,7 +33,7 @@ class MyElevatedIcons extends StatelessWidget {
       icon: icons!,
       label: Text(
         buttonName!,
-        textScaleFactor: ProjectFontSize.elevatedButton,
+        textScaleFactor: ProjectFontSize.oneToFour,
       ),
     );
   }
