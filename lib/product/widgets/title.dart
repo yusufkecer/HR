@@ -30,7 +30,7 @@ class Titles extends StatelessWidget {
         Text(
           subtitle,
           textAlign: TextAlign.left,
-          textScaleFactor: ProjectFontSize.subTitle,
+          textScaleFactor: ProjectFontSize.oneToFive,
           style: const TextStyle(fontWeight: Weight.midium),
         ),
       ],

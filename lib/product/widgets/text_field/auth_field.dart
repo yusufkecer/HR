@@ -4,9 +4,9 @@ import 'package:hrapp/core/constant/edge_insets.dart';
 import 'package:hrapp/product/widgets/decoration/custom_decoration.dart';
 import 'package:flutter/material.dart';
 
-import '../constant/font_size.dart';
+import '../../constant/font_size.dart';
 
-class TextFields extends StatelessWidget {
+class AuthField extends StatelessWidget {
   final TextEditingController? controller;
   final String? info;
   Widget? suffixButton;
@@ -15,9 +15,9 @@ class TextFields extends StatelessWidget {
   final EdgeInsets? titlePadding;
   final String? Function(String?)? validation;
   final void Function(String?)? listener;
+  final bool? secure;
 
-  bool? secure;
-  TextFields({
+  AuthField({
     this.controller,
     required this.validation,
     required this.listener,
@@ -43,7 +43,7 @@ class TextFields extends StatelessWidget {
           padding: titlePadding!,
           child: Text(
             info!,
-            textScaleFactor: ProjectFontSize.fieldTitle,
+            textScaleFactor: ProjectFontSize.oneToOne,
             style: TextStyle(fontWeight: fontWeight),
           ),
         ),

@@ -2,8 +2,8 @@ class Company {
   String? companyName;
   String? sector;
   String? companyImage;
-  Jobs? jobModel;
-  Company({this.companyName, this.sector, this.jobModel, this.companyImage});
+  Jobs? jobs;
+  Company({this.companyName, this.sector, this.jobs, this.companyImage});
 }
 
 class Jobs {
@@ -12,11 +12,13 @@ class Jobs {
   String? timing;
   String? level;
   double? wage;
+  bool? isSaveJob;
   Jobs({
     this.jobTitle,
     this.skills,
     this.timing,
     this.level,
     this.wage,
+    this.isSaveJob,
   });
 }
