@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../Product/Constant/colors.dart';
 import '../../Product/widgets/sized_box/box_space.dart';
 import '../../feature/auth/register/register_view/register_view.dart';
-import '../../feature/company/company_home_page/company_home_page.dart';
+import '../../feature/company/company_home_view/company_home_view.dart';
 import '../../product/Constant/weight.dart';
 import '../../product/constant/font_size.dart';
 import '../Constant/radius.dart';
@@ -51,9 +51,7 @@ class NavigationService {
                     Text(
                       title,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          fontSize: ProjectFontSize.mainSize,
-                          fontWeight: Weight.bold),
+                      style: const TextStyle(fontSize: ProjectFontSize.mainSize, fontWeight: Weight.bold),
                     ),
                     BoxSpace(
                       height: ProjectSize.normalHeight().height,
@@ -87,7 +85,7 @@ class NavigationService {
   void navigteToCompany(context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const CompanyHomePage(),
+        builder: (context) => const CompanyHomeView(),
       ),
     );
   }

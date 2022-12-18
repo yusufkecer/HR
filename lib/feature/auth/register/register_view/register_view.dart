@@ -3,7 +3,7 @@ import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
-import 'package:hrapp/product/widgets/text_fields.dart';
+import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -148,7 +148,7 @@ class _RegisterViewState extends LoginViewModel {
       key: formKey,
       child: Column(
         children: [
-          TextFields(
+          AuthField(
             listener: (value) {
               return;
             },
@@ -169,7 +169,7 @@ class _RegisterViewState extends LoginViewModel {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          TextFields(
+          AuthField(
             listener: (value) {
               return;
             },
@@ -190,7 +190,7 @@ class _RegisterViewState extends LoginViewModel {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          TextFields(
+          AuthField(
             validation: (value) {
               if (!value.passwordValid()) {
                 return StringData.writePassword;

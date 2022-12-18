@@ -7,7 +7,7 @@ import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/sized_box/box_space.dart';
-import 'package:hrapp/product/widgets/text_fields.dart';
+import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
 
@@ -54,8 +54,8 @@ class _ResetPasswordState extends State<ResetPassword> {
     );
   }
 
-  TextFields textFields() {
-    return TextFields(
+  AuthField textFields() {
+    return AuthField(
       fontWeight: Weight.midium,
       icon: const Icon(
         MyIcons.mail,

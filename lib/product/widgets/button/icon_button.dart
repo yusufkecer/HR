@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:hrapp/product/constant/colors.dart';
 
-class ProjectIconButton extends StatelessWidget {
+class ChangeIconButton extends StatelessWidget {
   final void Function()? pressButton;
   final IconData? buttonIcon;
   final IconData? changeIcon;
   final bool? change;
   final String? buttonTooltip;
-  const ProjectIconButton({
+  const ChangeIconButton({
     Key? key,
     this.pressButton,
     this.buttonIcon,
@@ -20,7 +19,12 @@ class ProjectIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(change == false ? buttonIcon : changeIcon),
+      splashRadius: 20,
+      splashColor: MyColor.fuchsiaBlue,
+      iconSize: 27,
+      icon: Icon(
+        change == false ? buttonIcon : changeIcon,
+      ),
       onPressed: pressButton,
       tooltip: buttonTooltip,
     );

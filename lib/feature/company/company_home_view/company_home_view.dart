@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
@@ -12,25 +12,28 @@ import 'package:hrapp/product/models/company_model/company_model.dart';
 import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/button/icon_button.dart';
 import 'package:hrapp/product/widgets/nav_bar.dart';
+import 'package:hrapp/product/widgets/profile_list.dart';
 
-class CompanyHomePage extends StatefulWidget {
-  const CompanyHomePage({super.key});
+class CompanyHomeView extends StatefulWidget {
+  const CompanyHomeView({super.key});
 
   @override
-  State<CompanyHomePage> createState() => _CompanyHomePageState();
+  State<CompanyHomeView> createState() => _CompanyHomeViewState();
 }
 
-class _CompanyHomePageState extends State<CompanyHomePage> {
-  Map bottomBar = {
+class _CompanyHomeViewState extends State<CompanyHomeView> {
+  final CompanyRepo _companyRepo = CompanyRepo();
+  final Map bottomBar = {
     StringData.homePage: MyIcons.home,
     StringData.postings: MyIcons.list,
   };
   int cardCount = 4;
-  bool save = false;
+
   List<Company> jobInfo = CompanyRepo().companys.toList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       drawer: const Drawer(
         child: SafeArea(child: Text("blabla")),
       ),
@@ -52,7 +55,8 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
           ),
         ],
       ),
-      body: Column(
+      body: ListView(
+        shrinkWrap: true,
         children: [
           Padding(
             padding: const ProjectPadding.allEight().copyWith(bottom: 0),
@@ -69,7 +73,7 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
           ),
           topJobs(),
           companyWorkerTitle(),
-          companyWorkers()
+          companyWorkers(),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -80,36 +84,12 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
     );
   }
 
-  Expanded companyWorkers() {
-    return Expanded(
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return const ListTile();
-        },
-      ),
-    );
-  }
-
-  Padding companyWorkerTitle() {
-    return const Padding(
-      padding: ProjectPadding.allEight(),
-      child: Align(
-        alignment: Alignment.topLeft,
-        child: Text(
-          StringData.companyWorker,
-          textScaleFactor: ProjectFontSize.oneToThree,
-          style: TextStyle(
-            fontWeight: Weight.midium,
-          ),
-        ),
-      ),
-    );
-  }
-
   SizedBox topJobs() {
     return SizedBox(
       height: 200,
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemCount: cardCount,
         itemBuilder: (context, index) {
@@ -121,19 +101,23 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
                 borderRadius: ProjectBorders.mediumAll(),
                 color: MyColor.tints,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Stack(
                 children: [
-                  saveJobButton(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  saveJobButton(index),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      jobImage(index),
-                      jobTitle(index),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          jobImage(index),
+                          jobTitle(index),
+                        ],
+                      ),
+                      skills(index),
+                      jobWage(index)
                     ],
                   ),
-                  skills(index),
-                  jobWage(index)
                 ],
               ),
             ),
@@ -143,17 +127,17 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
     );
   }
 
-  Align saveJobButton() {
+  Align saveJobButton(index) {
     return Align(
       alignment: Alignment.topRight,
-      child: SizedBox(
-        child: ProjectIconButton(
-          buttonIcon: MyIcons.saveAdd,
-          changeIcon: MyIcons.saved,
-          buttonTooltip: StringData.save,
-          pressButton: saveJob,
-          change: save,
-        ),
+      child: ChangeIconButton(
+        buttonIcon: MyIcons.a1,
+        changeIcon: MyIcons.a2,
+        buttonTooltip: StringData.save,
+        pressButton: () {
+          saveJob(index);
+        },
+        change: _companyRepo.companys[index].jobs?.isSaveJob,
       ),
     );
   }
@@ -179,20 +163,10 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
 
   Text jobTitle(int index) {
     return Text(
-      jobInfo[index].jobModel?.jobTitle ?? "-",
+      jobInfo[index].jobs?.jobTitle ?? "-",
       textScaleFactor: ProjectFontSize.oneToTwo,
       style: const TextStyle(
         fontWeight: Weight.midium,
-      ),
-    );
-  }
-
-  Padding jobWage(int index) {
-    return Padding(
-      padding: const ProjectPadding.allEight().copyWith(left: 18),
-      child: Text(
-        "₺ ${jobInfo[index].jobModel?.wage?.toDouble().toStringAsFixed(3) ?? "-"}/Ay",
-        style: const TextStyle(fontWeight: Weight.midium),
       ),
     );
   }
@@ -203,11 +177,13 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount:
-            jobInfo[parentIndex].jobModel!.skills!.length > 3 ? 3 : jobInfo[parentIndex].jobModel!.skills!.length,
+        itemCount: jobInfo[parentIndex].jobs!.skills!.length > 3 ? 3 : jobInfo[parentIndex].jobs!.skills!.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const ProjectPadding.allEight().copyWith(left: index == 0 ? 18 : 0, top: 0),
+            padding: const ProjectPadding.allEight().copyWith(
+              left: index == 0 ? 18 : 0,
+              top: 0,
+            ),
             child: Container(
               padding: const ProjectPadding.allEight(),
               decoration: const BoxDecoration(
@@ -215,13 +191,51 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
                 color: MyColor.white,
               ),
               child: Text(
-                jobInfo[parentIndex].jobModel!.skills![index],
+                jobInfo[parentIndex].jobs!.skills![index],
                 textScaleFactor: ProjectFontSize.zeroToNine,
               ),
             ),
           );
         },
       ),
+    );
+  }
+
+  Padding jobWage(int index) {
+    return Padding(
+      padding: const ProjectPadding.allEight().copyWith(left: 18),
+      child: Text(
+        "₺ ${jobInfo[index].jobs?.wage?.toDouble().toStringAsFixed(3) ?? "-"}/Ay",
+        style: const TextStyle(fontWeight: Weight.midium),
+      ),
+    );
+  }
+
+  Padding companyWorkerTitle() {
+    return const Padding(
+      padding: ProjectPadding.allEight(),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Text(
+          StringData.companyWorker,
+          textScaleFactor: ProjectFontSize.oneToThree,
+          style: TextStyle(
+            fontWeight: Weight.midium,
+          ),
+        ),
+      ),
+    );
+  }
+
+  ListView companyWorkers() {
+    return ListView.builder(
+      padding: const ProjectPadding.bottomThirty(),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return const ProfileList();
+      },
     );
   }
 
@@ -236,9 +250,9 @@ class _CompanyHomePageState extends State<CompanyHomePage> {
     );
   }
 
-  void saveJob() {
+  void saveJob(int index) {
     setState(() {
-      save = !save;
+      _companyRepo.saveJob(index);
     });
   }
 }

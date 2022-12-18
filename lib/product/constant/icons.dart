@@ -19,6 +19,9 @@ class MyIcons {
   static const list = Icons.list_alt;
   static const profile = Icons.person;
 
+  static const a1 = Icons.bookmark_add_outlined;
+  static const a2 = Icons.bookmark_added_rounded;
+
   static const saveAdd = Icons.bookmark_add_rounded;
   static const saved = Icons.bookmark_added_rounded;
 }

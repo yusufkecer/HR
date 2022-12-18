@@ -3,7 +3,7 @@ import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/feature/auth/reset_password/reset_password.dart';
 import 'package:hrapp/product/widgets/button/text_button.dart';
 import 'package:hrapp/product/widgets/checkbox_text.dart';
-import 'package:hrapp/product/widgets/text_fields.dart';
+import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
 import '../../../../Product/widgets/sized_box/box_space.dart';
@@ -25,9 +25,6 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends LoginViewModel {
-  // bool isVisible = false;
-
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,9 +70,7 @@ class _LoginViewState extends LoginViewModel {
   CheckboxText checkText() {
     return CheckboxText(
       onChange: (value) {
-        setState(() {
-          check = value!;
-        });
+        changeCheck(value);
       },
       value: check,
       Weight.midium,
@@ -147,7 +142,7 @@ class _LoginViewState extends LoginViewModel {
       key: formKey,
       child: Column(
         children: [
-          TextFields(
+          AuthField(
             controller: emailController,
             listener: (value) {},
             validation: (value) {
@@ -167,7 +162,7 @@ class _LoginViewState extends LoginViewModel {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          TextFields(
+          AuthField(
             controller: passwordController,
             listener: (value) {
               return;
@@ -187,9 +182,7 @@ class _LoginViewState extends LoginViewModel {
               onPressed: () {
                 changeVisibility();
               },
-              icon: isVisible
-                  ? const Icon(MyIcons.visibilityOn)
-                  : const Icon(MyIcons.visibilityOff),
+              icon: isVisible ? const Icon(MyIcons.visibilityOn) : const Icon(MyIcons.visibilityOff),
               color: Colors.black,
             ),
             fontWeight: Weight.midium,
