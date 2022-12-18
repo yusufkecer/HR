@@ -1,4 +1,4 @@
-import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/size.dart';
 import 'package:hrapp/feature/splash/splash_screen.dart';
 import 'package:hrapp/product/constant/colors.dart';

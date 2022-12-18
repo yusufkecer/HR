@@ -7,7 +7,7 @@ import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
 import '../../../../Product/widgets/sized_box/box_space.dart';
-import '../../../../core/constant/edge_insets.dart';
+import '../../../../core/constant/project_padding.dart';
 import '../../../../product/constant/colors.dart';
 import '../../../../product/constant/font_size.dart';
 import '../../../../product/constant/icons.dart';

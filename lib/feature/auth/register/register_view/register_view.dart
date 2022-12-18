@@ -1,4 +1,4 @@
-import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/product/constant/colors.dart';
@@ -23,9 +23,6 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends LoginViewModel {
-  // bool isVisible = false;
-  NavigationService nav = NavigationService();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

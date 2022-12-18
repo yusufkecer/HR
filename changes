@@ -9,4 +9,5 @@ kaydetme özelliği fikrini düşündük, beğenilen ilanlar kaydedilip daha son
 arama çubuğu ile şirketler kullanıcıları veya şirketleri arayabilecek. (Arama özelliği sonradan eklenecek).
 Şirketteki çalışanlar kısımı eklendi. Bu sayfa sayesinde şirket çalışanlarını, departmanlarını basit bir şekilde görüntülenebilecek ve kontrol edebilecek.
 çeşitli kod düzeltmeleri ve arayüz fixleri atıldı.
+mvvm mimamrisine uygun olarak tüm sayfalar yeniden düzenlendi
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/core/constant/size.dart';
 import 'package:hrapp/feature/auth/login/login_view/login_view.dart';
@@ -20,12 +20,9 @@ class Introduction extends StatelessWidget {
       child: IntroductionScreen(
         curve: Curves.easeInCirc,
         pages: [
-          pageView(StringData.titleFirst, StringData.subtitleFirst,
-              MyAssets.contact),
-          pageView(
-              StringData.titleSecond, StringData.subtitleSecond, MyAssets.join),
-          pageView(
-              StringData.titleEnd, StringData.subtitleEnd, MyAssets.programmer),
+          pageView(StringData.titleFirst, StringData.subtitleFirst, MyAssets.contact),
+          pageView(StringData.titleSecond, StringData.subtitleSecond, MyAssets.join),
+          pageView(StringData.titleEnd, StringData.subtitleEnd, MyAssets.programmer),
         ],
         done: doneText(),
         dotsDecorator: dotsDecorator(),

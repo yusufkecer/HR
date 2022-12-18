@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/product/widgets/decoration/custom_decoration.dart';
 import 'package:flutter/material.dart';
 
@@ -33,8 +33,6 @@ class AuthField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     suffixButton ??= const SizedBox();
-
-    // final TextEditingController controller = TextEditingController();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

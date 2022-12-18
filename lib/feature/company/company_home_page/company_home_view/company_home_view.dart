@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
+import 'package:hrapp/feature/company/company_home_page/company_home_view_model/company_home_view_model.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
-import 'package:hrapp/product/data/company_repo/company_repo.dart';
-import 'package:hrapp/product/models/company_model/company_model.dart';
+
 import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/button/icon_button.dart';
 import 'package:hrapp/product/widgets/nav_bar.dart';
 import 'package:hrapp/product/widgets/profile_list.dart';
+import 'package:hrapp/product/widgets/text_field/search_field.dart';
 
 class CompanyHomeView extends StatefulWidget {
   const CompanyHomeView({super.key});
@@ -21,18 +22,11 @@ class CompanyHomeView extends StatefulWidget {
   State<CompanyHomeView> createState() => _CompanyHomeViewState();
 }
 
-class _CompanyHomeViewState extends State<CompanyHomeView> {
-  final CompanyRepo _companyRepo = CompanyRepo();
-  final Map bottomBar = {
-    StringData.homePage: MyIcons.home,
-    StringData.postings: MyIcons.list,
-  };
-  int cardCount = 4;
-
-  List<Company> jobInfo = CompanyRepo().companys.toList();
+class _CompanyHomeViewState extends CompanyHomeViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBody: true,
       drawer: const Drawer(
         child: SafeArea(child: Text("blabla")),
@@ -55,31 +49,47 @@ class _CompanyHomeViewState extends State<CompanyHomeView> {
           ),
         ],
       ),
-      body: ListView(
-        shrinkWrap: true,
-        children: [
-          Padding(
-            padding: const ProjectPadding.allEight().copyWith(bottom: 0),
-            child: const Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                StringData.popularJobs,
-                textScaleFactor: ProjectFontSize.oneToThree,
-                style: TextStyle(
-                  fontWeight: Weight.midium,
-                ),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(left: 5, right: 5),
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(15.0, 20, 15, 15),
+                child: SearchField(),
               ),
-            ),
+              topJobTitle(),
+              topJobs(),
+              companyWorkerTitle(),
+              companyWorkers(),
+            ],
           ),
-          topJobs(),
-          companyWorkerTitle(),
-          companyWorkers(),
-        ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: floatingButton(),
       bottomNavigationBar: NavBar(
         navBarItem: bottomBar,
+      ),
+    );
+  }
+
+  Padding topJobTitle() {
+    return Padding(
+      padding: const ProjectPadding.allEight().copyWith(bottom: 0),
+      child: const Align(
+        alignment: Alignment.topLeft,
+        child: Text(
+          StringData.popularJobs,
+          textScaleFactor: ProjectFontSize.oneToThree,
+          style: TextStyle(
+            fontWeight: Weight.midium,
+          ),
+        ),
       ),
     );
   }
@@ -137,7 +147,7 @@ class _CompanyHomeViewState extends State<CompanyHomeView> {
         pressButton: () {
           saveJob(index);
         },
-        change: _companyRepo.companys[index].jobs?.isSaveJob,
+        change: companyRepo.companys[index].jobs?.isSaveJob,
       ),
     );
   }
@@ -229,7 +239,7 @@ class _CompanyHomeViewState extends State<CompanyHomeView> {
 
   ListView companyWorkers() {
     return ListView.builder(
-      padding: const ProjectPadding.bottomThirty(),
+      padding: const ProjectPadding.bottomTwentySix(),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: 5,
@@ -252,7 +262,7 @@ class _CompanyHomeViewState extends State<CompanyHomeView> {
 
   void saveJob(int index) {
     setState(() {
-      _companyRepo.saveJob(index);
+      companyRepo.saveJob(index);
     });
   }
 }
