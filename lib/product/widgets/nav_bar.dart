@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
 

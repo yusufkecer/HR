@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../../Product/Constant/colors.dart';
 import '../../Product/widgets/sized_box/box_space.dart';
 import '../../feature/auth/register/register_view/register_view.dart';
-import '../../feature/company/company_home_view/company_home_view.dart';
+import '../../feature/company/company_home_page/company_home_view/company_home_view.dart';
 import '../../product/Constant/weight.dart';
 import '../../product/constant/font_size.dart';
 import '../Constant/radius.dart';
 import '../Constant/size.dart';
-import '../constant/edge_insets.dart';
+import '../constant/project_padding.dart';
 
 class NavigationService {
   showBottomModal(context, String title, String subtitle) {

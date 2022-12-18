@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 
 class AppBarLogoTitle extends StatelessWidget {

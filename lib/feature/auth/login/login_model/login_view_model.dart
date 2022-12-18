@@ -5,8 +5,7 @@ import 'package:hrapp/feature/auth/login/login_view/login_view.dart';
 
 import '../../../../core/mixin/password_visible.dart';
 
-abstract class LoginViewModel extends State<LoginView>
-    with PasswordVisibilityMixin, CheckMixin {
+abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMixin, CheckMixin {
   late TextEditingController emailController;
   late TextEditingController passwordController;
 

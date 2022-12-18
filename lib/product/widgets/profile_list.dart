@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
 
 class ProfileList extends StatelessWidget {
@@ -18,6 +19,10 @@ class ProfileList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: const RoundedRectangleBorder(
+        borderRadius: ProjectBorders.smallAll(),
+      ),
+      clipBehavior: Clip.antiAlias,
       child: ColoredBox(
         color: MyColor.tints,
         child: ListTile(
