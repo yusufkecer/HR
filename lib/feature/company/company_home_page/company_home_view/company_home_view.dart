@@ -28,8 +28,14 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,
-      drawer: const Drawer(
-        child: SafeArea(child: Text("blabla")),
+      drawer: Drawer(
+        child: SafeArea(
+            child: Column(
+          children: [
+            for (var i in companyRepo.companys)
+              if (i.jobs!.isSaveJob == true) Text("${i.jobs!.jobTitle!} ${i.jobs!.level!}")
+          ],
+        )),
       ),
       appBar: AppBar(
         titleSpacing: 0,
