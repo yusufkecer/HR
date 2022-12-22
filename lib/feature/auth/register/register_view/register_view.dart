@@ -1,5 +1,4 @@
 import 'package:hrapp/core/constant/project_padding.dart';
-import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
