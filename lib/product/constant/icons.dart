@@ -16,7 +16,9 @@ class MyIcons {
 
   static const IconData backIOSIcon = Icons.arrow_back_ios_new_outlined;
   static const IconData home = Icons.home;
-  static const list = Icons.list_alt;
+  static const listAlt = Icons.list_alt;
+  static const list = Icons.list;
+  static const grid = Icons.grid_view_outlined;
   static const profile = Icons.person;
 
   static const a1 = Icons.bookmark_add_outlined;

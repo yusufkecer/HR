@@ -195,7 +195,7 @@ class _LoginViewState extends LoginViewModel {
   }
 
   void navigateApp() {
-    if (check == true) {
+    if (check == false) {
       nav.navigteToCompany(context);
       return;
     }

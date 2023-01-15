@@ -25,6 +25,7 @@ class SearchField extends StatelessWidget {
             cursorColor: MyColor.butterflyBush,
             decoration: InputDecoration(
               contentPadding: const ProjectPadding.textFieldContent(14.0),
+              hintText: "Ne Verelim Abime?",
               suffixIcon: Padding(
                 padding: const EdgeInsets.only(
                   right: 8.0,

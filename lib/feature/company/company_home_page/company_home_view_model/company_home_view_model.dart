@@ -10,8 +10,10 @@ abstract class CompanyHomeViewModel extends State<CompanyHomeView> {
   final CompanyRepo companyRepo = CompanyRepo();
   final Map bottomBar = {
     StringData.homePage: MyIcons.home,
-    StringData.postings: MyIcons.list,
+    StringData.postings: MyIcons.listAlt,
   };
+  double aspectRatio = 1;
+  bool gridView = false;
   NavigationService nav = NavigationService();
   int cardCount = 4;
 
