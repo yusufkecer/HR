@@ -227,31 +227,54 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
     );
   }
 
-  Padding companyWorkerTitle() {
-    return const Padding(
-      padding: ProjectPadding.allEight(),
-      child: Align(
-        alignment: Alignment.topLeft,
-        child: Text(
-          StringData.companyWorker,
-          textScaleFactor: ProjectFontSize.oneToThree,
-          style: TextStyle(
-            fontWeight: Weight.midium,
+  Row companyWorkerTitle() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Padding(
+          padding: ProjectPadding.allEight(),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              StringData.companyWorker,
+              textScaleFactor: ProjectFontSize.oneToThree,
+              style: TextStyle(
+                fontWeight: Weight.midium,
+              ),
+            ),
           ),
         ),
-      ),
+        ChangeIconButton(
+          buttonIcon: MyIcons.grid,
+          changeIcon: MyIcons.list,
+          buttonTooltip: StringData.changeView,
+          change: gridView,
+          pressButton: changeWorkerList,
+        )
+      ],
     );
   }
 
-  ListView companyWorkers() {
-    return ListView.builder(
-      padding: const ProjectPadding.bottomTwentySix(),
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return const ProfileList();
-      },
+  Padding companyWorkers() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 5,
+      ),
+      child: GridView.builder(
+        padding: const ProjectPadding.bottomTwentySix(),
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: gridView ? aspectRatio : aspectRatio * 1.5,
+          crossAxisCount: gridView ? 2 : 1,
+        ),
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return ProfileList(
+            itemCount: gridView,
+          );
+        },
+      ),
     );
   }
 
@@ -269,6 +292,16 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
   void saveJob(int index) {
     setState(() {
       companyRepo.saveJob(index);
+    });
+  }
+
+  void changeWorkerList() {
+    setState(() {
+      if (gridView) {
+        gridView = false;
+      } else {
+        gridView = true;
+      }
     });
   }
 }

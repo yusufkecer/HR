@@ -53,7 +53,6 @@ class _NavBarState extends State<NavBar> with TickerProviderStateMixin {
               indicator: const BoxDecoration(
                 borderRadius: ProjectBorders.mediumAll(),
               ),
-              indicatorColor: Colors.purple,
               labelColor: MyColor.purplishBlue,
               unselectedLabelColor: MyColor.osloGrey,
               controller: tabController,

@@ -1,5 +1,7 @@
 import 'package:hrapp/product/models/company_model/company_model.dart';
 
+import '../../models/job_model/job_model.dart';
+
 class CompanyRepo {
   List<Company> companys = [
     Company(

@@ -13,6 +13,10 @@ class ProjectPadding extends EdgeInsets {
   const ProjectPadding.topTwenty() : super.only(top: 20);
   const ProjectPadding.bottomTwentySix() : super.only(bottom: 26);
   const ProjectPadding.leftEightTeen() : super.only(left: 18);
+//symetric
+  const ProjectPadding.horizontalEight() : super.symmetric(horizontal: 8);
+  const ProjectPadding.horizontalTen() : super.symmetric(horizontal: 10);
+  const ProjectPadding.horizontalTwelve() : super.symmetric(horizontal: 12);
 //spesific
   const ProjectPadding.textFieldTitle() : super.only(left: 3.0, bottom: 8);
   const ProjectPadding.textFieldContent(content) : super.only(top: content);
