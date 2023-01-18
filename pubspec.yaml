@@ -41,6 +41,7 @@ dependencies:
   cloud_firestore: ^3.5.0
   lottie: ^1.4.3
   introduction_screen: ^3.0.1
+  http: ^0.13.5
   
 
 dev_dependencies:
