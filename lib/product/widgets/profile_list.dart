@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/weight.dart';
+import 'package:hrapp/product/models/worker_model/worker_model.dart';
 
 import '../../core/constant/project_padding.dart';
 
 class ProfileList extends StatelessWidget {
   final String? image;
+  final int? gridIndex;
   final String? userName;
   final String? userSurName;
   final String? department;
@@ -15,9 +17,11 @@ class ProfileList extends StatelessWidget {
   final String? jobType;
   final String? jobPosition;
   final bool? itemCount;
+  final List<Worker>? workerList;
   const ProfileList({
     Key? key,
     this.image = "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+    this.gridIndex,
     this.userName = "Yusuf",
     this.userSurName = "Keçer",
     this.department = "Yazılım Departmanı",
@@ -25,6 +29,7 @@ class ProfileList extends StatelessWidget {
     this.jobType = "Tam Zamanlı",
     this.jobPosition = "Web Geliştirici",
     this.itemCount,
+    this.workerList,
   }) : super(key: key);
 
   @override
@@ -40,18 +45,18 @@ class ProfileList extends StatelessWidget {
         child: SizedBox(
           child: Column(
             children: [
-              profileImage(),
+              profileImage(gridIndex!, workerList!),
               itemCount!
-                  ? workerInfo(worker)
+                  ? workerInfo(worker, workerList!, gridIndex!)
                   : Row(
                       children: [
-                        workerInfo(worker),
+                        workerInfo(worker, workerList!, gridIndex!),
                         Container(
                           color: Colors.white,
                           height: 120,
                           width: 1.5,
                         ),
-                        workerInfo(worker),
+                        workerInfo(worker, workerList!, gridIndex!),
                       ],
                     )
             ],
@@ -61,7 +66,7 @@ class ProfileList extends StatelessWidget {
     );
   }
 
-  Expanded workerInfo(List<dynamic> worker) {
+  Expanded workerInfo(List<dynamic> worker, List<Worker> workerList, int gridIndex) {
     return Expanded(
       child: Padding(
         padding: const ProjectPadding.horizontalTwelve(),
@@ -72,48 +77,51 @@ class ProfileList extends StatelessWidget {
               "Bilgiler",
               style: TextStyle(fontWeight: Weight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: itemCount! ? 3 : worker.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return Column(
-                    crossAxisAlignment: itemCount! ? CrossAxisAlignment.center : CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${worker[index]}",
-                        style: const TextStyle(fontWeight: Weight.normal),
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(
-                        height: 7,
-                      ),
-                    ],
-                  );
-                })
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                children: [
+                  !itemCount!
+                      ? Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "${workerList[gridIndex].fullName}\n${workerList[gridIndex].department}\n${workerList[gridIndex].jobType}\n"
+                            "${workerList[gridIndex].jobPosition}\n${workerList[gridIndex].experience}",
+                            style: const TextStyle(fontWeight: Weight.normal),
+                            textAlign: TextAlign.start,
+                          ),
+                        )
+                      : Text(
+                          "${workerList[gridIndex].fullName}\n${workerList[gridIndex].department}\n${workerList[gridIndex].jobType}\n",
+                          style: const TextStyle(fontWeight: Weight.normal),
+                          textAlign: TextAlign.start,
+                        ),
+                ],
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  Padding profileImage() {
+  Padding profileImage(int i, List<Worker> list) {
     return Padding(
       padding: const ProjectPadding.allEight().copyWith(bottom: 4),
       child: SizedBox(
         height: 55,
         width: 55,
         child: CircleAvatar(
-          backgroundImage: NetworkImage(image!),
+          backgroundImage: NetworkImage(list[i].image!),
         ),
       ),
     );
   }
 }
- // child: ListTile(
+// child: ListTile(
         //   leading: CircleAvatar(
         //     backgroundImage: NetworkImage(
         //       image!,

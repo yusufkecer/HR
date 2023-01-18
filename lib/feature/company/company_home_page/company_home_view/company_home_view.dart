@@ -8,7 +8,6 @@ import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
-
 import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/button/icon_button.dart';
 import 'package:hrapp/product/widgets/nav_bar.dart';
@@ -24,62 +23,84 @@ class CompanyHomeView extends StatefulWidget {
 
 class _CompanyHomeViewState extends CompanyHomeViewModel {
   @override
+  void initState() {
+    getWorkers();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      extendBody: true,
-      drawer: Drawer(
-        child: SafeArea(
-            child: Column(
-          children: [
-            for (var i in companyRepo.companys)
-              if (i.jobs!.isSaveJob == true) Text("${i.jobs!.jobTitle!} ${i.jobs!.level!}")
-          ],
-        )),
-      ),
-      appBar: AppBar(
-        titleSpacing: 0,
-        title: const AppBarLogoTitle(),
-        iconTheme: const IconThemeData(
-          color: MyColor.fuchsiaBlueLight,
-        ),
-        elevation: 0,
-        actions: const [
-          Padding(
-            padding: ProjectPadding.allEight(),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                ImagePath.temporaryImage,
+    return workers != null
+        ? Scaffold(
+            resizeToAvoidBottomInset: false,
+            extendBody: true,
+            drawer: Drawer(
+              child: SafeArea(
+                  child: Column(
+                children: [
+                  for (var i in companyRepo.companys)
+                    if (i.jobs!.isSaveJob == true) Text("${i.jobs!.jobTitle!} ${i.jobs!.level!}")
+                ],
+              )),
+            ),
+            appBar: AppBar(
+              titleSpacing: 0,
+              title: const AppBarLogoTitle(),
+              iconTheme: const IconThemeData(
+                color: MyColor.fuchsiaBlueLight,
+              ),
+              elevation: 0,
+              actions: [
+                circleProfileImage(),
+              ],
+            ),
+            body: GestureDetector(
+              onTap: () {
+                FocusScope.of(context).requestFocus(FocusNode());
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 5, right: 5),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(15.0, 20, 15, 15),
+                      child: SearchField(),
+                    ),
+                    topJobTitle(),
+                    topJobs(),
+                    companyWorkerTitle(),
+                    companyWorkers(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(left: 5, right: 5),
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              const Padding(
-                padding: EdgeInsets.fromLTRB(15.0, 20, 15, 15),
-                child: SearchField(),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: floatingButton(),
+            bottomNavigationBar: NavBar(
+              navBarItem: bottomBar,
+            ),
+          )
+        : const Scaffold(
+            body: Center(
+              child: SizedBox(
+                height: 50,
+                width: 50,
+                child: CircularProgressIndicator(
+                  color: MyColor.purplishBlue,
+                ),
               ),
-              topJobTitle(),
-              topJobs(),
-              companyWorkerTitle(),
-              companyWorkers(),
-            ],
-          ),
+            ),
+          );
+  }
+
+  Padding circleProfileImage() {
+    return const Padding(
+      padding: ProjectPadding.allEight(),
+      child: CircleAvatar(
+        backgroundImage: NetworkImage(
+          ImagePath.temporaryImage,
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: floatingButton(),
-      bottomNavigationBar: NavBar(
-        navBarItem: bottomBar,
       ),
     );
   }
@@ -268,9 +289,11 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
           childAspectRatio: gridView ? aspectRatio : aspectRatio * 1.5,
           crossAxisCount: gridView ? 2 : 1,
         ),
-        itemCount: 5,
+        itemCount: workers!.length,
         itemBuilder: (context, index) {
           return ProfileList(
+            gridIndex: index,
+            workerList: workers,
             itemCount: gridView,
           );
         },
@@ -278,31 +301,16 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
     );
   }
 
-  Transform floatingButton() {
-    return Transform.translate(
-      offset: const Offset(8, 0),
-      child: FloatingActionButton(
-        backgroundColor: MyColor.discovreyPurplishBlue,
-        onPressed: () {},
-        child: const Icon(MyIcons.add),
-      ),
+  Widget floatingButton() {
+    return FloatingActionButton(
+      backgroundColor: MyColor.discovreyPurplishBlue,
+      onPressed: () {
+        if (workers != null) {
+          print(workers![2].fullName);
+        }
+      },
+      child: const Icon(MyIcons.add),
     );
-  }
-
-  void saveJob(int index) {
-    setState(() {
-      companyRepo.saveJob(index);
-    });
-  }
-
-  void changeWorkerList() {
-    setState(() {
-      if (gridView) {
-        gridView = false;
-      } else {
-        gridView = true;
-      }
-    });
   }
 }
 //170 250

@@ -13,3 +13,8 @@ mvvm mimamrisine uygun olarak tüm sayfalar yeniden düzenlendi
 
 15.01
 Şirkette çalışan kullanıcılar listesinin görünümü düzenlendi
+18.01
+navbar ve buton ortalandı
+api bağlantısı sağlandı
+apiden gelen verilerle şirket personelleri oluşturuldu
+ızgara ve liste görünümü olarak alternatif görüntü seçenekleri eklendi.
