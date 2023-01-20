@@ -73,7 +73,6 @@ class NavigationService {
       ),
     );
   }
-
   void navigateToRegister(context) {
     Navigator.of(context).push(
       MaterialPageRoute(
