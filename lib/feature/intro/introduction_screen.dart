@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/core/constant/size.dart';
-import 'package:hrapp/feature/auth/login/login_view/login_view.dart';
+import 'package:hrapp/feature/auth/login/login_view.dart';
 import 'package:hrapp/product/constant/assets.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/mixin/password_visible.dart';
-import 'package:hrapp/feature/auth/login/login_view/login_view.dart';
+import 'package:hrapp/feature/auth/login/login_view.dart';
 
-import '../../../../core/navigation/navigation_service.dart';
-import '../register_view/register_view.dart';
+import '../../../core/navigation/navigation_service.dart';
+import 'register_view.dart';
 
 abstract class LoginViewModel extends State<RegisterView> with PasswordVisibilityMixin {
   TextEditingController? emailController;

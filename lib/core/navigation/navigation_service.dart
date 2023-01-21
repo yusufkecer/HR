@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../Product/Constant/colors.dart';
 import '../../Product/widgets/sized_box/box_space.dart';
-import '../../feature/auth/register/register_view/register_view.dart';
-import '../../feature/company/company_home_page/company_home_view/company_home_view.dart';
+import '../../feature/auth/register/register_view.dart';
+import '../../feature/company/company_main_page/company_main_view.dart';
 import '../../product/Constant/weight.dart';
 import '../../product/constant/font_size.dart';
 import '../Constant/radius.dart';
@@ -11,6 +11,27 @@ import '../Constant/size.dart';
 import '../constant/project_padding.dart';
 
 class NavigationService {
+  showLoading(context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: SizedBox(
+            height: 50,
+            width: 50,
+            child: CircularProgressIndicator(
+              color: MyColor.purplishBlue,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void hideLoading(context) {
+    Navigator.of(context, rootNavigator: true).pop('dialog');
+  }
+
   showBottomModal(context, String title, String subtitle) {
     showModalBottomSheet(
       context: context,
@@ -85,7 +106,7 @@ class NavigationService {
   void navigteToCompany(context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const CompanyHomeView(),
+        builder: (context) => const CompanyMainView(),
       ),
     );
   }

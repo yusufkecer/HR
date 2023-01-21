@@ -45,20 +45,22 @@ class ProfileList extends StatelessWidget {
         child: SizedBox(
           child: Column(
             children: [
-              profileImage(gridIndex!, workerList!),
-              itemCount!
-                  ? workerInfo(worker, workerList!, gridIndex!)
-                  : Row(
-                      children: [
-                        workerInfo(worker, workerList!, gridIndex!),
-                        Container(
-                          color: Colors.white,
-                          height: 120,
-                          width: 1.5,
-                        ),
-                        workerInfo(worker, workerList!, gridIndex!),
-                      ],
-                    )
+              workerList != null ? profileImage(gridIndex!, workerList!) : SizedBox(),
+              workerList != null
+                  ? itemCount!
+                      ? workerInfo(worker, workerList!, gridIndex!)
+                      : Row(
+                          children: [
+                            workerInfo(worker, workerList!, gridIndex!),
+                            Container(
+                              color: Colors.white,
+                              height: 120,
+                              width: 1.5,
+                            ),
+                            workerInfo(worker, workerList!, gridIndex!),
+                          ],
+                        )
+                  : SizedBox()
             ],
           ),
         ),
