@@ -1,11 +1,11 @@
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
-import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../../../Product/Constant/colors.dart';
 import '../../../core/constant/size.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';

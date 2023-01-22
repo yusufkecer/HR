@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/radius.dart';
-import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/weight.dart';
 import 'package:hrapp/product/models/worker_model/worker_model.dart';
 
 import '../../core/constant/project_padding.dart';
+import '../constant/colors.dart';
 
 class ProfileList extends StatelessWidget {
   final double? aspectRatio;

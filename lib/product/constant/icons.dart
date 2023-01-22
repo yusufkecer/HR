@@ -26,4 +26,5 @@ class MyIcons {
 
   static const saveAdd = Icons.bookmark_add_rounded;
   static const saved = Icons.bookmark_added_rounded;
+  static const delete = Icons.delete_forever;
 }

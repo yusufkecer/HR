@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
+
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
-import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
+import 'package:hrapp/product/models/worker_model/worker_model.dart';
 import 'package:hrapp/product/widgets/button/icon_button.dart';
 import 'package:hrapp/product/widgets/profile_list.dart';
+import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_field/search_field.dart';
+
+import '../../../Product/Constant/colors.dart';
+import '../../../product/data/company_repo/company_repo.dart';
 import 'company_home_view_model.dart';
 
 class CompanyHomeView extends StatefulWidget {
-  const CompanyHomeView({super.key});
+  final List<Worker>? workers;
+  const CompanyHomeView({
+    Key? key,
+    this.workers,
+  }) : super(key: key);
 
   @override
   State<CompanyHomeView> createState() => _CompanyHomeViewState();
 }
 
 class _CompanyHomeViewState extends CompanyHomeViewModel {
-  late TabController tabController;
-  @override
-  void initState() {
-    getWorkers();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    print(widget.workers?.length);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -41,27 +44,13 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
               padding: EdgeInsets.fromLTRB(15.0, 20, 15, 15),
               child: SearchField(),
             ),
-            topJobTitle(),
+            const SubTitle(
+              title: StringData.popularJobs,
+            ),
             topJobs(),
             companyWorkerTitle(),
             companyWorkers(),
           ],
-        ),
-      ),
-    );
-  }
-
-  Padding topJobTitle() {
-    return Padding(
-      padding: const ProjectPadding.allEight().copyWith(bottom: 0),
-      child: const Align(
-        alignment: Alignment.topLeft,
-        child: Text(
-          StringData.popularJobs,
-          textScaleFactor: ProjectFontSize.oneToThree,
-          style: TextStyle(
-            fontWeight: Weight.midium,
-          ),
         ),
       ),
     );
@@ -120,7 +109,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
         pressButton: () {
           saveJob(index);
         },
-        change: companyRepo.companys[index].jobs?.isSaveJob,
+        change: CompanyRepo.instance.companys[index].jobs?.isSaveJob,
       ),
     );
   }
@@ -138,7 +127,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
             ),
           ),
           borderRadius: const ProjectBorders.smallAll(),
-          color: Colors.transparent,
+          color: MyColor.transparent,
         ),
       ),
     );
@@ -230,7 +219,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
       child: ProfileList(
         check: check,
         aspectRatio: aspectRatio,
-        workerList: workers,
+        workerList: widget.workers,
         itemCount: check,
       ),
     );

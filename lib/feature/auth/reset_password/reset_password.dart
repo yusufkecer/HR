@@ -1,7 +1,6 @@
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/size.dart';
 import 'package:hrapp/feature/splash/splash_screen.dart';
-import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
@@ -10,6 +9,8 @@ import 'package:hrapp/product/widgets/sized_box/box_space.dart';
 import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
+
+import '../../../Product/Constant/colors.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
