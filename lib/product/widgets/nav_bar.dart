@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
-import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/widgets/nav_bar_shape.dart';
+
+import '../constant/colors.dart';
 
 class NavBar extends StatelessWidget {
   final Map? navBarItem;

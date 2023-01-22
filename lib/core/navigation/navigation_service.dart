@@ -13,6 +13,7 @@ import '../constant/project_padding.dart';
 class NavigationService {
   showLoading(context) {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) {
         return const Center(

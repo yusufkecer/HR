@@ -54,7 +54,7 @@ class StringData {
 
   //Navbar
   static const homePage = "Ana Sayfa";
-  static const postings = "İlanlarım";
+  static const myAdvertisement = "İlanlarım";
   static const profile = "Profil";
 
   static const companyWorker = "Şirketteki Çalışanlar";

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'feature/company/company_job_list/company_job_view.dart';
 import 'feature/splash/splash_screen.dart';
 
 void main() {
@@ -14,11 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'IK App',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(color: Colors.transparent),
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
         backgroundColor: const Color(0xFF6711fe),
       ),
       home: const Splash(),
-      // Splash(),
     );
   }
 }

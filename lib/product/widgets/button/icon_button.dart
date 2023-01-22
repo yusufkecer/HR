@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hrapp/product/constant/colors.dart';
+
+import '../../constant/colors.dart';
 
 class ChangeIconButton extends StatelessWidget {
   final void Function()? pressButton;

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/feature/company/company_job_list/company_job_view.dart';
+import 'package:hrapp/product/data/company_repo/company_repo.dart';
 import '../../../Product/Constant/colors.dart';
 import '../../../core/constant/project_padding.dart';
 import '../../../product/constant/icons.dart';
@@ -18,6 +20,7 @@ class CompanyMainView extends StatefulWidget {
 class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStateMixin {
   @override
   void initState() {
+    getWorkers();
     tabController = TabController(
       length: 2,
       vsync: this,
@@ -32,12 +35,13 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
       extendBody: true,
       drawer: Drawer(
         child: SafeArea(
-            child: Column(
-          children: [
-            for (var i in companyRepo.companys)
-              if (i.jobs!.isSaveJob == true) Text("${i.jobs!.jobTitle!} ${i.jobs!.level!}")
-          ],
-        )),
+          child: Column(
+            children: [
+              for (var i in CompanyRepo.instance.companys)
+                if (i.jobs!.isSaveJob == true) Text("${i.jobs!.jobTitle!} ${i.jobs!.level!}"),
+            ],
+          ),
+        ),
       ),
       appBar: AppBar(
         titleSpacing: 0,
@@ -50,7 +54,10 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
           circleProfileImage(),
         ],
       ),
-      body: TabBarView(controller: tabController, children: const [CompanyHomeView(), Text("data")]),
+      body: TabBarView(controller: tabController, children: [
+        CompanyHomeView(workers: workers),
+        const CompanyJobView(),
+      ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: floatingButton(),
       bottomNavigationBar: NavBar(
