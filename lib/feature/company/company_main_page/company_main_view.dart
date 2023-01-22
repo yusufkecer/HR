@@ -3,11 +3,10 @@ import '../../../Product/Constant/colors.dart';
 import '../../../core/constant/project_padding.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/constant/image_path.dart';
-import '../../../product/constant/string_data.dart';
-import '../../../product/data/company_repo/company_repo.dart';
 import '../../../product/widgets/app_bar_logo.dart';
 import '../../../product/widgets/nav_bar.dart';
 import '../company_home_page/company_home_view.dart';
+import 'company_main_view_model.dart';
 
 class CompanyMainView extends StatefulWidget {
   const CompanyMainView({super.key});
@@ -16,13 +15,7 @@ class CompanyMainView extends StatefulWidget {
   State<CompanyMainView> createState() => _CompanyMainViewState();
 }
 
-class _CompanyMainViewState extends State<CompanyMainView> with TickerProviderStateMixin {
-  final Map bottomBar = {
-    StringData.homePage: MyIcons.home,
-    StringData.postings: MyIcons.listAlt,
-  };
-  final CompanyRepo companyRepo = CompanyRepo();
-  late TabController tabController;
+class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStateMixin {
   @override
   void initState() {
     tabController = TabController(
@@ -57,7 +50,7 @@ class _CompanyMainViewState extends State<CompanyMainView> with TickerProviderSt
           circleProfileImage(),
         ],
       ),
-      body: TabBarView(controller: tabController, children: [CompanyHomeView(), Text("data")]),
+      body: TabBarView(controller: tabController, children: const [CompanyHomeView(), Text("data")]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: floatingButton(),
       bottomNavigationBar: NavBar(

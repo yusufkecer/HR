@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/weight.dart';
@@ -8,67 +7,66 @@ import 'package:hrapp/product/models/worker_model/worker_model.dart';
 import '../../core/constant/project_padding.dart';
 
 class ProfileList extends StatelessWidget {
-  final String? image;
-  final int? gridIndex;
-  final String? userName;
-  final String? userSurName;
-  final String? department;
-  final String? experience;
-  final String? jobType;
-  final String? jobPosition;
+  final double? aspectRatio;
   final bool? itemCount;
   final List<Worker>? workerList;
+  final bool? check;
   const ProfileList({
     Key? key,
-    this.image = "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
-    this.gridIndex,
-    this.userName = "Yusuf",
-    this.userSurName = "Keçer",
-    this.department = "Yazılım Departmanı",
-    this.experience = "3 Yıl Deneyimli",
-    this.jobType = "Tam Zamanlı",
-    this.jobPosition = "Web Geliştirici",
+    this.aspectRatio,
     this.itemCount,
     this.workerList,
+    this.check,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List worker = [("${userName!} ${userSurName!}"), department, jobPosition, experience, jobType];
-    return Card(
-      shape: const RoundedRectangleBorder(
-        borderRadius: ProjectBorders.smallAll(),
+    return GridView.builder(
+      padding: const ProjectPadding.bottomTwentySix(),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: check! ? aspectRatio! : aspectRatio! * 1.5,
+        crossAxisCount: check! ? 2 : 1,
       ),
-      clipBehavior: Clip.antiAlias,
-      child: ColoredBox(
-        color: MyColor.tints,
-        child: SizedBox(
-          child: Column(
-            children: [
-              workerList != null ? profileImage(gridIndex!, workerList!) : SizedBox(),
-              workerList != null
-                  ? itemCount!
-                      ? workerInfo(worker, workerList!, gridIndex!)
-                      : Row(
-                          children: [
-                            workerInfo(worker, workerList!, gridIndex!),
-                            Container(
-                              color: Colors.white,
-                              height: 120,
-                              width: 1.5,
-                            ),
-                            workerInfo(worker, workerList!, gridIndex!),
-                          ],
-                        )
-                  : SizedBox()
-            ],
+      itemCount: workerList != null ? workerList!.length : 0,
+      itemBuilder: (context, index) {
+        return Card(
+          shape: const RoundedRectangleBorder(
+            borderRadius: ProjectBorders.smallAll(),
           ),
-        ),
-      ),
+          clipBehavior: Clip.antiAlias,
+          child: ColoredBox(
+            color: MyColor.tints,
+            child: SizedBox(
+              child: Column(
+                children: [
+                  workerList != null ? profileImage(index, workerList!) : const SizedBox(),
+                  workerList != null
+                      ? itemCount!
+                          ? workerInfo(workerList!, index)
+                          : Row(
+                              children: [
+                                workerInfo(workerList!, index),
+                                Container(
+                                  color: Colors.white,
+                                  height: 120,
+                                  width: 1.5,
+                                ),
+                                workerInfo(workerList!, index),
+                              ],
+                            )
+                      : const SizedBox()
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
-  Expanded workerInfo(List<dynamic> worker, List<Worker> workerList, int gridIndex) {
+  Expanded workerInfo(List<Worker> workerList, int gridIndex) {
     return Expanded(
       child: Padding(
         padding: const ProjectPadding.horizontalTwelve(),
@@ -136,3 +134,8 @@ class ProfileList extends StatelessWidget {
         //     department ?? "-",
         //   ),
         // ),
+
+
+
+
+      

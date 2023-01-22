@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
-import 'package:hrapp/core/navigation/navigation_service.dart';
-
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
-import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
-import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/button/icon_button.dart';
-import 'package:hrapp/product/widgets/nav_bar.dart';
 import 'package:hrapp/product/widgets/profile_list.dart';
 import 'package:hrapp/product/widgets/text_field/search_field.dart';
-
 import 'company_home_view_model.dart';
 
 class CompanyHomeView extends StatefulWidget {
@@ -221,35 +215,23 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
           buttonIcon: MyIcons.grid,
           changeIcon: MyIcons.list,
           buttonTooltip: StringData.changeView,
-          change: gridView,
-          pressButton: changeWorkerList,
+          change: check,
+          pressButton: changeCheck,
         )
       ],
     );
   }
 
   Padding companyWorkers() {
-    //TODO:Düzenlenecek
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 5,
       ),
-      child: GridView.builder(
-        padding: const ProjectPadding.bottomTwentySix(),
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: gridView ? aspectRatio : aspectRatio * 1.5,
-          crossAxisCount: gridView ? 2 : 1,
-        ),
-        itemCount: workers != null ? workers!.length : 0,
-        itemBuilder: (context, index) {
-          return ProfileList(
-            gridIndex: index,
-            workerList: workers,
-            itemCount: gridView,
-          );
-        },
+      child: ProfileList(
+        check: check,
+        aspectRatio: aspectRatio,
+        workerList: workers,
+        itemCount: check,
       ),
     );
   }

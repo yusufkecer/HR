@@ -70,7 +70,7 @@ class _LoginViewState extends LoginViewModel {
   CheckboxText checkText() {
     return CheckboxText(
       onChange: (value) {
-        changeCheck(value);
+        changeCheck();
       },
       value: check,
       Weight.midium,
