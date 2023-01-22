@@ -1,33 +1,22 @@
 import 'package:flutter/material.dart';
+
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/widgets/nav_bar_shape.dart';
 
-class NavBar extends StatefulWidget {
+class NavBar extends StatelessWidget {
   final Map? navBarItem;
+  final TabController? tabController;
   const NavBar({
+    Key? key,
     this.navBarItem,
-    super.key,
-  });
-
-  @override
-  State<NavBar> createState() => _NavBarState();
-}
-
-class _NavBarState extends State<NavBar> with TickerProviderStateMixin {
-  List<MapEntry<dynamic, dynamic>>? navBar;
-  TabController? tabController;
-
-  @override
-  void initState() {
-    navBar = widget.navBarItem?.entries.toList();
-    tabController = TabController(length: 2, vsync: this);
-    super.initState();
-  }
+    this.tabController,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var navBar = navBarItem?.entries.toList();
     return Container(
       color: Colors.transparent,
       child: Padding(
@@ -60,8 +49,8 @@ class _NavBarState extends State<NavBar> with TickerProviderStateMixin {
                 unselectedLabelColor: MyColor.osloGrey,
                 controller: tabController,
                 tabs: [
-                  bottomNavBarItems(navBar![0].key, navBar![0].value),
-                  bottomNavBarItems(navBar![1].key, navBar![1].value),
+                  bottomNavBarItems(navBar![0].key, navBar[0].value),
+                  bottomNavBarItems(navBar[1].key, navBar[1].value),
                 ],
               ),
             ),

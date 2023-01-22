@@ -6,16 +6,16 @@ import 'package:hrapp/product/widgets/checkbox_text.dart';
 import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
-import '../../../../Product/widgets/sized_box/box_space.dart';
-import '../../../../core/constant/project_padding.dart';
-import '../../../../product/constant/colors.dart';
-import '../../../../product/constant/font_size.dart';
-import '../../../../product/constant/icons.dart';
-import '../../../../product/constant/string_data.dart';
-import '../../../../product/constant/weight.dart';
-import '../../../../product/widgets/button/elevated_icon.dart';
-import '../../../../product/widgets/button/text_button_icon.dart';
-import '../login_model/login_view_model.dart';
+import '../../../Product/widgets/sized_box/box_space.dart';
+import '../../../core/constant/project_padding.dart';
+import '../../../product/constant/colors.dart';
+import '../../../product/constant/font_size.dart';
+import '../../../product/constant/icons.dart';
+import '../../../product/constant/string_data.dart';
+import '../../../product/constant/weight.dart';
+import '../../../product/widgets/button/elevated_icon.dart';
+import '../../../product/widgets/button/text_button_icon.dart';
+import 'login_view_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -70,7 +70,7 @@ class _LoginViewState extends LoginViewModel {
   CheckboxText checkText() {
     return CheckboxText(
       onChange: (value) {
-        changeCheck(value);
+        changeCheck();
       },
       value: check,
       Weight.midium,

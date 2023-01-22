@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
-import 'package:hrapp/feature/company/company_home_page/company_home_view_model/company_home_view_model.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
-import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
-import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/button/icon_button.dart';
-import 'package:hrapp/product/widgets/nav_bar.dart';
 import 'package:hrapp/product/widgets/profile_list.dart';
 import 'package:hrapp/product/widgets/text_field/search_field.dart';
+import 'company_home_view_model.dart';
 
 class CompanyHomeView extends StatefulWidget {
   const CompanyHomeView({super.key});
@@ -22,6 +19,7 @@ class CompanyHomeView extends StatefulWidget {
 }
 
 class _CompanyHomeViewState extends CompanyHomeViewModel {
+  late TabController tabController;
   @override
   void initState() {
     getWorkers();
@@ -30,76 +28,24 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
 
   @override
   Widget build(BuildContext context) {
-    return workers != null
-        ? Scaffold(
-            resizeToAvoidBottomInset: false,
-            extendBody: true,
-            drawer: Drawer(
-              child: SafeArea(
-                  child: Column(
-                children: [
-                  for (var i in companyRepo.companys)
-                    if (i.jobs!.isSaveJob == true) Text("${i.jobs!.jobTitle!} ${i.jobs!.level!}")
-                ],
-              )),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 5, right: 5),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            const Padding(
+              padding: EdgeInsets.fromLTRB(15.0, 20, 15, 15),
+              child: SearchField(),
             ),
-            appBar: AppBar(
-              titleSpacing: 0,
-              title: const AppBarLogoTitle(),
-              iconTheme: const IconThemeData(
-                color: MyColor.fuchsiaBlueLight,
-              ),
-              elevation: 0,
-              actions: [
-                circleProfileImage(),
-              ],
-            ),
-            body: GestureDetector(
-              onTap: () {
-                FocusScope.of(context).requestFocus(FocusNode());
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(left: 5, right: 5),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(15.0, 20, 15, 15),
-                      child: SearchField(),
-                    ),
-                    topJobTitle(),
-                    topJobs(),
-                    companyWorkerTitle(),
-                    companyWorkers(),
-                  ],
-                ),
-              ),
-            ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: floatingButton(),
-            bottomNavigationBar: NavBar(
-              navBarItem: bottomBar,
-            ),
-          )
-        : const Scaffold(
-            body: Center(
-              child: SizedBox(
-                height: 50,
-                width: 50,
-                child: CircularProgressIndicator(
-                  color: MyColor.purplishBlue,
-                ),
-              ),
-            ),
-          );
-  }
-
-  Padding circleProfileImage() {
-    return const Padding(
-      padding: ProjectPadding.allEight(),
-      child: CircleAvatar(
-        backgroundImage: NetworkImage(
-          ImagePath.temporaryImage,
+            topJobTitle(),
+            topJobs(),
+            companyWorkerTitle(),
+            companyWorkers(),
+          ],
         ),
       ),
     );
@@ -269,8 +215,8 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
           buttonIcon: MyIcons.grid,
           changeIcon: MyIcons.list,
           buttonTooltip: StringData.changeView,
-          change: gridView,
-          pressButton: changeWorkerList,
+          change: check,
+          pressButton: changeCheck,
         )
       ],
     );
@@ -281,35 +227,12 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
       padding: const EdgeInsets.symmetric(
         horizontal: 5,
       ),
-      child: GridView.builder(
-        padding: const ProjectPadding.bottomTwentySix(),
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: gridView ? aspectRatio : aspectRatio * 1.5,
-          crossAxisCount: gridView ? 2 : 1,
-        ),
-        itemCount: workers!.length,
-        itemBuilder: (context, index) {
-          return ProfileList(
-            gridIndex: index,
-            workerList: workers,
-            itemCount: gridView,
-          );
-        },
+      child: ProfileList(
+        check: check,
+        aspectRatio: aspectRatio,
+        workerList: workers,
+        itemCount: check,
       ),
-    );
-  }
-
-  Widget floatingButton() {
-    return FloatingActionButton(
-      backgroundColor: MyColor.discovreyPurplishBlue,
-      onPressed: () {
-        if (workers != null) {
-          print(workers![2].fullName);
-        }
-      },
-      child: const Icon(MyIcons.add),
     );
   }
 }

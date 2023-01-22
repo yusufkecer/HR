@@ -6,13 +6,13 @@ import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/constant/size.dart';
-import '../../../../product/constant/font_size.dart';
-import '../../../../product/constant/icons.dart';
-import '../../../../product/constant/string_data.dart';
-import '../../../../product/constant/weight.dart';
-import '../../../../product/widgets/sized_box/box_space.dart';
-import '../view_model/register_model.dart';
+import '../../../core/constant/size.dart';
+import '../../../product/constant/font_size.dart';
+import '../../../product/constant/icons.dart';
+import '../../../product/constant/string_data.dart';
+import '../../../product/constant/weight.dart';
+import '../../../product/widgets/sized_box/box_space.dart';
+import 'register_model.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});

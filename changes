@@ -13,8 +13,16 @@ mvvm mimamrisine uygun olarak tüm sayfalar yeniden düzenlendi
 
 15.01
 Şirkette çalışan kullanıcılar listesinin görünümü düzenlendi
+kullanıcı istediği şekilde görüntüleyebiliyor 
+local storagea kaydedilip daha sonra kullanılabilir
 18.01
 navbar ve buton ortalandı
-api bağlantısı sağlandı
+api bağlantısı sağlandı loading ekranı eklendi skeleton loading değerlendirildi
 apiden gelen verilerle şirket personelleri oluşturuldu
-ızgara ve liste görünümü olarak alternatif görüntü seçenekleri eklendi.
+ızgara ve liste görünümü olarak alternatif görüntü seçenekleri eklendi. 
+
+21.01
+dosya yapısı güncellendi ve loading ekranı düzenlendi
+tüm sayfalar düzenlendi (main company veiw ve view model sayfaları eklendi)
+requeste thread eklendi (?)
+
