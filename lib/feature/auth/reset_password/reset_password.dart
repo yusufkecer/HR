@@ -1,15 +1,16 @@
-import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/size.dart';
 import 'package:hrapp/feature/splash/splash_screen.dart';
-import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/sized_box/box_space.dart';
-import 'package:hrapp/product/widgets/text_fields.dart';
+import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
+
+import '../../../Product/Constant/colors.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -25,7 +26,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       body: Center(
         child: SafeArea(
           child: Padding(
-            padding: const ProjectPadding.allEightteen(),
+            padding: const ProjectPadding.allEightTeen(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -54,8 +55,8 @@ class _ResetPasswordState extends State<ResetPassword> {
     );
   }
 
-  TextFields textFields() {
-    return TextFields(
+  AuthField textFields() {
+    return AuthField(
       fontWeight: Weight.midium,
       icon: const Icon(
         MyIcons.mail,
@@ -63,12 +64,10 @@ class _ResetPasswordState extends State<ResetPassword> {
       ),
       info: StringData.email,
       titlePadding: const ProjectPadding.textFieldTitle(),
-      validator: (value) {
+      validation: (value) {
         return null;
       },
-      onchange: (value) {
-        return null;
-      },
+      listener: (value) {},
     );
   }
 

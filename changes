@@ -1,0 +1,28 @@
+Beni hatırla özelliğindeki change işlemi mixin olarak eklendi.
+CompanyModel elden geçirildi. Bunun Yanında JobModel eklendi (job şirketlerin oluşturduğu ilanla ilgili temel bilgileri barındırıyor).
+Bu modeller kullanılarak api formatına yakın data seti oluşturuldu ve bu data seti ekrana eklendi
+Proje riverpod eklentisi (stM) kullanılmaya uygun bir hâle getirildi.
+Şirket ana sayfasındaki bottom navbar baştan düzenlendi.
+drawer(içi boş) profil fotoğrafı özelliği eklendi.
+popüler ilanlar isimli bir alan oluşturup, orada popüler olan (kaydedilme sayısı ya da başvuru sayısına göre düzenlenecek) ilanlar dinamik şekilde listelendi.
+kaydetme özelliği fikrini düşündük, beğenilen ilanlar kaydedilip daha sonra görüntülenebilecek. bu özellik modele entegre edildi.
+arama çubuğu ile şirketler kullanıcıları veya şirketleri arayabilecek. (Arama özelliği sonradan eklenecek).
+Şirketteki çalışanlar kısımı eklendi. Bu sayfa sayesinde şirket çalışanlarını, departmanlarını basit bir şekilde görüntülenebilecek ve kontrol edebilecek.
+çeşitli kod düzeltmeleri ve arayüz fixleri atıldı.
+mvvm mimamrisine uygun olarak tüm sayfalar yeniden düzenlendi
+
+15.01
+Şirkette çalışan kullanıcılar listesinin görünümü düzenlendi
+kullanıcı istediği şekilde görüntüleyebiliyor 
+local storagea kaydedilip daha sonra kullanılabilir
+18.01
+navbar ve buton ortalandı
+api bağlantısı sağlandı loading ekranı eklendi skeleton loading değerlendirildi
+apiden gelen verilerle şirket personelleri oluşturuldu
+ızgara ve liste görünümü olarak alternatif görüntü seçenekleri eklendi. 
+
+21.01
+dosya yapısı güncellendi ve loading ekranı düzenlendi
+tüm sayfalar düzenlendi (main company veiw ve view model sayfaları eklendi)
+requeste thread eklendi (?)
+

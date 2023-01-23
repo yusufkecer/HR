@@ -4,8 +4,7 @@ import '../../../Core/Constant/radius.dart';
 import '../../constant/colors.dart';
 
 class CustomPrefixDecoration extends BoxDecoration {
-  CustomPrefixDecoration(
-      {Color borderColor = MyColor.osloGrey, double borderWidth = 1})
+  CustomPrefixDecoration({Color borderColor = MyColor.osloGrey, double borderWidth = 1})
       : super(
           border: Border(
             right: BorderSide(

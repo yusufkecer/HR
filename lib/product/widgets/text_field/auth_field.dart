@@ -1,24 +1,26 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/product/widgets/decoration/custom_decoration.dart';
 import 'package:flutter/material.dart';
 
-import '../constant/font_size.dart';
+import '../../constant/font_size.dart';
 
-class TextFields extends StatelessWidget {
+class AuthField extends StatelessWidget {
+  final TextEditingController? controller;
   final String? info;
   Widget? suffixButton;
   final FontWeight? fontWeight;
   final Widget? icon;
   final EdgeInsets? titlePadding;
-  Function? validator;
-  Function? onchange;
+  final String? Function(String?)? validation;
+  final void Function(String?)? listener;
+  final bool? secure;
 
-  bool? secure;
-  TextFields({
-    required String? Function(String? value) validator,
-    required String? Function(String? value) onchange,
+  AuthField({
+    this.controller,
+    required this.validation,
+    required this.listener,
     this.titlePadding,
     this.suffixButton,
     this.fontWeight,
@@ -32,16 +34,6 @@ class TextFields extends StatelessWidget {
   Widget build(BuildContext context) {
     suffixButton ??= const SizedBox();
 
-    // final TextEditingController controller = TextEditingController();
-
-    if (info == null ||
-        suffixButton == null ||
-        fontWeight == null ||
-        titlePadding == null ||
-        icon == null) {
-      throw "null değer döndü";
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -49,7 +41,7 @@ class TextFields extends StatelessWidget {
           padding: titlePadding!,
           child: Text(
             info!,
-            textScaleFactor: ProjectFontSize.fieldTitle,
+            textScaleFactor: ProjectFontSize.oneToOne,
             style: TextStyle(fontWeight: fontWeight),
           ),
         ),
@@ -66,8 +58,11 @@ class TextFields extends StatelessWidget {
 
   TextFormField textField() {
     return TextFormField(
+      controller: controller,
+      validator: validation,
       obscureText: secure!,
       autocorrect: secure!,
+      onChanged: listener,
       cursorColor: Colors.black,
       decoration: InputDecoration(
         contentPadding: const ProjectPadding.textFieldContent(14.8),

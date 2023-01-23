@@ -1,4 +1,5 @@
 // ignore_for_file: must_be_immutable
+
 import 'package:hrapp/Core/Constant/size.dart';
 import 'package:flutter/material.dart';
 import '../Constant/colors.dart';
@@ -6,10 +7,11 @@ import 'sized_box/box_space.dart';
 
 class CheckboxText extends StatefulWidget {
   final FontWeight fontWeight;
-  bool? onChanged;
+  final bool? value;
+  final Function(bool?)? onChange;
   final String checkboxName;
-  CheckboxText(this.fontWeight, this.checkboxName,
-      {this.onChanged = false, super.key});
+  const CheckboxText(this.fontWeight, this.checkboxName,
+      {this.onChange, this.value, super.key});
 
   @override
   State<CheckboxText> createState() => _CheckboxTextState();
@@ -30,12 +32,8 @@ class _CheckboxTextState extends State<CheckboxText> {
               color: MyColor.lightBlack,
               width: ProjectSize.border().width,
             ),
-            value: widget.onChanged,
-            onChanged: (value) {
-              setState(() {
-                widget.onChanged = value;
-              });
-            },
+            value: widget.value,
+            onChanged: widget.onChange,
           ),
         ),
         BoxSpace(

@@ -14,6 +14,11 @@ class StringData {
   static const registerHere = "Kayıt Ol!";
   static const register = "Kayıt Ol";
 
+//validation
+  static const writeEmail = "Geçerli bir mail adresi giriniz.";
+  static const writePassword = "Geçerli bir şifre giriniz. (sayı ve büyük harf ve özel karakter.)";
+  static const writeName = "Geçerli bir isim giriniz.";
+
   //Terms
   static const termsText = "Kayıt işlemini tamamladığınızda, ";
   static const condition = "şartları ";
@@ -33,8 +38,7 @@ class StringData {
       "Sed interdum massa ac lorem malesuada lobortis. Praesent pharetra commodo ligula, et commodo nulla molestie a. Integer orci nunc, luctus id libero ac, mattis cursus nibh. Phasellus rhoncus massa sit amet elementum euismod. Integer accumsan nulla non augue semper, in faucibus augue maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras ligula mauris, vehicula sit amet sodales sed, tristique et nisl. Phasellus in augue vitae diam venenatis varius. Nullam sodales rhoncus urna, eu faucibus nisi rhoncus vitae. Integer vitae dolor ut tortor pellentesque pellentesque quis eu eros.";
   static const conditionsTitle = "Nullam non bibendum quam";
 //Intro
-  static const titleFirst =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+  static const titleFirst = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
   static const done = "Geç";
   static const subtitleFirst =
       " Morbi lacus purus, consectetur non ante sit amet, varius consequat elit. Etiam et libero eu nisl laoreet luctus ut sit amet mauris.";
@@ -47,4 +51,17 @@ class StringData {
   static const titleEnd = "Nullam non magna elit.";
   static const subtitleEnd =
       "Etiam facilisis purus non mauris interdum venenatis. Pellentesque ac tortor suscipit, interdum nulla vel, pulvinar lacus. ";
+
+  //Navbar
+  static const homePage = "Ana Sayfa";
+  static const myAdvertisement = "İlanlarım";
+  static const profile = "Profil";
+
+  static const companyWorker = "Şirketteki Çalışanlar";
+
+  static const popularJobs = "Popüler İlanlar";
+
+  static const save = "Kaydet";
+
+  static const changeView = "Görünümü değiştir";
 }

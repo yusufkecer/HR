@@ -1,36 +1,27 @@
-import 'package:hrapp/core/constant/edge_insets.dart';
-import 'package:hrapp/core/services/navigation_service.dart';
-import 'package:hrapp/product/constant/colors.dart';
-import 'package:hrapp/product/mixin/password_visible.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
+import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
-import 'package:hrapp/product/widgets/text_fields.dart';
+import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../core/constant/size.dart';
-import '../../product/constant/font_size.dart';
-import '../../product/constant/icons.dart';
-import '../../product/constant/string_data.dart';
-import '../../product/constant/weight.dart';
-import '../../product/widgets/sized_box/box_space.dart';
+import '../../../Product/Constant/colors.dart';
+import '../../../core/constant/size.dart';
+import '../../../product/constant/font_size.dart';
+import '../../../product/constant/icons.dart';
+import '../../../product/constant/string_data.dart';
+import '../../../product/constant/weight.dart';
+import '../../../product/widgets/sized_box/box_space.dart';
+import 'register_model.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _RegisterState extends State<Register> with PasswordVisibilityMixin {
-  // bool isVisible = false;
-  NavigationService? nav;
-  @override
-  void initState() {
-    nav = NavigationService();
-    nav == null ? throw "NAV BOŞŞŞ" : null;
-    super.initState();
-  }
-
+class _RegisterViewState extends LoginViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +29,7 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
         child: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
-              padding: const ProjectPadding.allEightteen(),
+              padding: const ProjectPadding.allEightTeen(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -91,7 +82,7 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    nav?.showBottomModal(
+                    nav.showBottomModal(
                       context,
                       StringData.termsSheetTitle,
                       StringData.termsSheetText,
@@ -115,7 +106,7 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        nav?.showBottomModal(
+                        nav.showBottomModal(
                           context,
                           StringData.conditionsTitle,
                           StringData.conditionsText,
@@ -150,13 +141,17 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
 
   Form forms() {
     return Form(
+      key: formKey,
       child: Column(
         children: [
-          TextFields(
-            onchange: (value) {
-              return null;
+          AuthField(
+            listener: (value) {
+              return;
             },
-            validator: (value) {
+            validation: (value) {
+              if (!value.nameValid()) {
+                return StringData.writeName;
+              }
               return null;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
@@ -170,11 +165,14 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          TextFields(
-            onchange: (value) {
-              return null;
+          AuthField(
+            listener: (value) {
+              return;
             },
-            validator: (value) {
+            validation: (value) {
+              if (!value.emailValid()) {
+                return StringData.writeEmail;
+              }
               return null;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
@@ -188,19 +186,22 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          TextFields(
-            validator: (value) {
+          AuthField(
+            validation: (value) {
+              if (!value.passwordValid()) {
+                return StringData.writePassword;
+              }
               return null;
             },
-            onchange: (value) {
-              return null;
+            listener: (value) {
+              return;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
             icon: const Icon(
               MyIcons.password,
               color: MyColor.black,
             ),
-            secure: !isVisible,
+            secure: isVisible,
             suffixButton: IconButton(
               onPressed: () {
                 changeVisibility();
@@ -231,46 +232,6 @@ class _RegisterState extends State<Register> with PasswordVisibilityMixin {
   }
 
   onpressed() {
-    print(nav.runtimeType);
-    //   Navigator.pop(context);
+    checkvalid();
   }
-
-  // showBottomModal() {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     shape:
-  //         const RoundedRectangleBorder(borderRadius: ProjectBorders.bigOnly()),
-  //     builder: (context) {
-  //       return buildBottomSheet();
-  //     },
-  //   );
-  // }
-
-  // Padding buildBottomSheet() {
-  //   return Padding(
-  //     padding: const ProjectPadding.allEightteen().copyWith(
-  //       bottom: const ProjectPadding.edgeZero().bottom,
-  //     ),
-  //     child: ListView(
-  //       shrinkWrap: true,
-  //       children: [
-  //         const Text(
-  //           StringData.termsSheetText,
-  //           textAlign: TextAlign.center,
-  //           style: TextStyle(
-  //               fontSize: ProjectFontSize.mainSize, fontWeight: Weight.bold),
-  //         ),
-  //         BoxSpace(
-  //           height: ProjectSize.normalHeight().height,
-  //         ),
-  //         const Text(
-  //           StringData.termsSheetTitle,
-  //           textAlign: TextAlign.justify,
-  //           style: TextStyle(
-  //               fontSize: ProjectFontSize.mainSize, fontWeight: Weight.light),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 }

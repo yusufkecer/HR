@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hrapp/core/constant/edge_insets.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/core/constant/size.dart';
-import 'package:hrapp/feature/auth/login_page.dart';
-import 'package:hrapp/product/constant/assets.dart';
-import 'package:hrapp/product/constant/colors.dart';
+import 'package:hrapp/feature/auth/login/login_view.dart';
+import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+
+import '../../Product/Constant/colors.dart';
 
 class Introduction extends StatelessWidget {
   const Introduction({super.key});
@@ -20,25 +21,23 @@ class Introduction extends StatelessWidget {
       child: IntroductionScreen(
         curve: Curves.easeInCirc,
         pages: [
-          pageView(StringData.titleFirst, StringData.subtitleFirst,
-              MyAssets.contact),
-          pageView(
-              StringData.titleSecond, StringData.subtitleSecond, MyAssets.join),
-          pageView(
-              StringData.titleEnd, StringData.subtitleEnd, MyAssets.programmer),
+          pageView(StringData.titleFirst, StringData.subtitleFirst, ImagePath.contact),
+          pageView(StringData.titleSecond, StringData.subtitleSecond, ImagePath.join),
+          pageView(StringData.titleEnd, StringData.subtitleEnd, ImagePath.programmer),
         ],
         done: doneText(),
         dotsDecorator: dotsDecorator(),
+        showBackButton: true,
         next: routeButton(MyIcons.nextIOSIcon),
         back: routeButton(MyIcons.backIOSIcon),
         onDone: () {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (context) => const LoginPage(),
+                builder: (context) => const LoginView(),
               ),
               (route) => false);
         },
-        controlsPadding: const ProjectPadding.topEight(),
+        controlsPadding: const ProjectPadding.allEight(),
       ),
     );
   }

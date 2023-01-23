@@ -1,32 +1,30 @@
 import 'package:hrapp/core/constant/size.dart';
-import 'package:hrapp/feature/auth/register_page.dart';
-import 'package:hrapp/feature/auth/reset_password.dart';
-import 'package:hrapp/product/mixin/password_visible.dart';
+import 'package:hrapp/core/extensions/string_extension.dart';
+import 'package:hrapp/feature/auth/reset_password/reset_password.dart';
 import 'package:hrapp/product/widgets/button/text_button.dart';
-import 'package:hrapp/product/widgets/checkbox.dart';
-import 'package:hrapp/product/widgets/text_fields.dart';
+import 'package:hrapp/product/widgets/checkbox_text.dart';
+import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
-import '../../Product/widgets/sized_box/box_space.dart';
-import '../../core/constant/edge_insets.dart';
-import '../../product/constant/colors.dart';
-import '../../product/constant/font_size.dart';
-import '../../product/constant/icons.dart';
-import '../../product/constant/string_data.dart';
-import '../../product/constant/weight.dart';
-import '../../product/widgets/button/elevated_icon.dart';
-import '../../product/widgets/button/text_button_icon.dart';
+import '../../../Product/Constant/colors.dart';
+import '../../../Product/widgets/sized_box/box_space.dart';
+import '../../../core/constant/project_padding.dart';
+import '../../../product/constant/font_size.dart';
+import '../../../product/constant/icons.dart';
+import '../../../product/constant/string_data.dart';
+import '../../../product/constant/weight.dart';
+import '../../../product/widgets/button/elevated_icon.dart';
+import '../../../product/widgets/button/text_button_icon.dart';
+import 'login_view_model.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
-  bool isVisible = false;
-
+class _LoginViewState extends LoginViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +32,7 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
         child: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
-              padding: const ProjectPadding.allEightteen(),
+              padding: const ProjectPadding.allEightTeen(),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -71,6 +69,10 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
 
   CheckboxText checkText() {
     return CheckboxText(
+      onChange: (value) {
+        changeCheck();
+      },
+      value: check,
       Weight.midium,
       StringData.rememberMe,
     );
@@ -84,7 +86,7 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
     );
   }
 
-  navigateResetPassword() {
+  void navigateResetPassword() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const ResetPassword(),
@@ -106,7 +108,9 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
           ),
           MyTextButton(
             named: StringData.registerHere,
-            onPressed: navigateApp,
+            onPressed: () {
+              nav.navigateToRegister(context);
+            },
           ),
         ],
       ),
@@ -135,13 +139,16 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
 
   Form forms() {
     return Form(
+      key: formKey,
       child: Column(
         children: [
-          TextFields(
-            onchange: (value) {
-              return null;
-            },
-            validator: (value) {
+          AuthField(
+            controller: emailController,
+            listener: (value) {},
+            validation: (value) {
+              if (!value.emailValid()) {
+                return StringData.writeEmail;
+              }
               return null;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
@@ -155,12 +162,15 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          TextFields(
-            onchange: (value) {
-              // print("object");
-              return null;
+          AuthField(
+            controller: passwordController,
+            listener: (value) {
+              return;
             },
-            validator: (value) {
+            validation: (value) {
+              if (!value.passwordValid()) {
+                return StringData.writePassword;
+              }
               return null;
             },
             titlePadding: const ProjectPadding.textFieldTitle(),
@@ -170,11 +180,9 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
             ),
             suffixButton: IconButton(
               onPressed: () {
-                //   changeVisibility();
+                changeVisibility();
               },
-              icon: isVisible
-                  ? const Icon(MyIcons.visibilityOn)
-                  : const Icon(MyIcons.visibilityOff),
+              icon: isVisible ? const Icon(MyIcons.visibilityOn) : const Icon(MyIcons.visibilityOff),
               color: Colors.black,
             ),
             fontWeight: Weight.midium,
@@ -186,9 +194,11 @@ class _LoginPageState extends State<LoginPage> with PasswordVisibilityMixin {
     );
   }
 
-  navigateApp() {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const Register(),
-    ));
+  void navigateApp() {
+    if (check == false) {
+      nav.navigteToCompany(context);
+      return;
+    }
+    checkValidator();
   }
 }
