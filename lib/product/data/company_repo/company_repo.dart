@@ -9,6 +9,7 @@ class CompanyRepo {
   }
 
   CompanyRepo._internal() {
+    // ignore: unused_local_variable
     List<Company> companys = [
       Company(
         companyName: "Atık Nakit",
@@ -67,7 +68,6 @@ class CompanyRepo {
     ];
   }
   saveJob(index) {
-    print(singleton.companys[index].jobs?.isSaveJob);
     if (companys[index].jobs?.isSaveJob == false) {
       singleton.companys[index].jobs?.isSaveJob = true;
     } else {
@@ -134,7 +134,6 @@ class CompanyRepo {
   CompanyRepo();
 
   void delete(index) {
-    print(companys.length);
     companys.removeAt(index);
   }
 }

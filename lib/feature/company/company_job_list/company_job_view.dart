@@ -41,7 +41,7 @@ class _CompanyJobViewState extends State<CompanyJobView> {
                   ImagePath.dontResult,
                   height: 100,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 const Text(

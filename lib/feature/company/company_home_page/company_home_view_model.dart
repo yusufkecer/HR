@@ -8,7 +8,6 @@ abstract class CompanyHomeViewModel extends State<CompanyHomeView> with CheckMix
   void saveJob(int index) async {
     setState(() {
       CompanyRepo.instance.saveJob(index);
-      print(index);
     });
     // getWorkers();
   }

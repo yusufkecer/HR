@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'feature/company/company_job_list/company_job_view.dart';
 import 'feature/splash/splash_screen.dart';
 
 void main() {
