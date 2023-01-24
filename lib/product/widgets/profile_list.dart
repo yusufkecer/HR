@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:hrapp/core/constant/radius.dart';
+import 'package:hrapp/product/constant/font_Size.dart';
 import 'package:hrapp/product/constant/weight.dart';
 import 'package:hrapp/product/models/worker_model/worker_model.dart';
 
@@ -11,59 +13,74 @@ class ProfileList extends StatelessWidget {
   final bool? itemCount;
   final List<Worker>? workerList;
   final bool? check;
+  final String? connectionError;
   const ProfileList({
     Key? key,
     this.aspectRatio,
     this.itemCount,
     this.workerList,
     this.check,
+    this.connectionError,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      padding: const ProjectPadding.bottomTwentySix(),
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: check! ? aspectRatio! : aspectRatio! * 1.5,
-        crossAxisCount: check! ? 2 : 1,
-      ),
-      itemCount: workerList != null ? workerList!.length : 0,
-      itemBuilder: (context, index) {
-        return Card(
-          shape: const RoundedRectangleBorder(
-            borderRadius: ProjectBorders.smallAll(),
-          ),
-          clipBehavior: Clip.antiAlias,
-          child: ColoredBox(
-            color: MyColor.tints,
+    return workerList != null
+        ? GridView.builder(
+            padding: const ProjectPadding.bottomTwentySix(),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: check! ? aspectRatio! : aspectRatio! * 1.5,
+              crossAxisCount: check! ? 2 : 1,
+            ),
+            itemCount: workerList != null ? workerList!.length : 0,
+            //! FIXME: Burası
+            itemBuilder: (context, index) {
+              return Card(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: ProjectBorders.smallAll(),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: ColoredBox(
+                  color: MyColor.tints,
+                  child: SizedBox(
+                    child: Column(
+                      children: [
+                        profileImage(index, workerList!),
+                        itemCount!
+                            ? workerInfo(workerList!, index)
+                            : Row(
+                                children: [
+                                  workerInfo(workerList!, index),
+                                  Container(
+                                    color: Colors.white,
+                                    height: 120,
+                                    width: 1.5,
+                                  ),
+                                  workerInfo(workerList!, index),
+                                ],
+                              )
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          )
+        : Padding(
+            padding: const ProjectPadding.bottomTwentySix().copyWith(bottom: 50),
             child: SizedBox(
-              child: Column(
-                children: [
-                  workerList != null ? profileImage(index, workerList!) : const SizedBox(),
-                  workerList != null
-                      ? itemCount!
-                          ? workerInfo(workerList!, index)
-                          : Row(
-                              children: [
-                                workerInfo(workerList!, index),
-                                Container(
-                                  color: Colors.white,
-                                  height: 120,
-                                  width: 1.5,
-                                ),
-                                workerInfo(workerList!, index),
-                              ],
-                            )
-                      : const SizedBox()
-                ],
+              child: Center(
+                child: Text(
+                  connectionError ?? "", //! FIXME:burası düzenlenecek
+                  textScaleFactor: ProjectFontSize.oneToThree,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: MyColor.osloGrey),
+                ),
               ),
             ),
-          ),
-        );
-      },
-    );
+          );
   }
 
   Expanded workerInfo(List<Worker> workerList, int gridIndex) {

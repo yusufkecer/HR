@@ -13,6 +13,7 @@ mvvm mimamrisine uygun olarak tüm sayfalar yeniden düzenlendi
 
 15.01
 Şirkette çalışan kullanıcılar listesinin görünümü düzenlendi
+mock apiden şirket için veriler çekildi
 kullanıcı istediği şekilde görüntüleyebiliyor 
 local storagea kaydedilip daha sonra kullanılabilir
 18.01
@@ -20,9 +21,17 @@ navbar ve buton ortalandı
 api bağlantısı sağlandı loading ekranı eklendi skeleton loading değerlendirildi
 apiden gelen verilerle şirket personelleri oluşturuldu
 ızgara ve liste görünümü olarak alternatif görüntü seçenekleri eklendi. 
-
 21.01
 dosya yapısı güncellendi ve loading ekranı düzenlendi
 tüm sayfalar düzenlendi (main company veiw ve view model sayfaları eklendi)
-requeste thread eklendi (?)
+request atarken thread eklendi (?)
+23.01
+Şirketin iş ilanlarını görünleyebileceği sayfa eklendi
+iş ilanı listeleme sayfasına iş silebilme özelliği eklendi.
+24.01
+apiden veri gelmemesi durumunda oluşacak hata önlendi ve geçici olarak hata mesajı eklendi.
+iş sayfası boşsa "ilanınız bulunmamaktadır" uyarısı eklendi.
+navbar gölge eklenerek beyaz arka plandan öne çıkarıldı.
+silme butonu revize edildi
+
 

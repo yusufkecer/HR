@@ -78,8 +78,8 @@ class _LoginViewState extends LoginViewModel {
     );
   }
 
-  TextButtonIcon resetPassword() {
-    return TextButtonIcon(
+  TextButtonWeight resetPassword() {
+    return TextButtonWeight(
       weight: Weight.midium,
       buttonName: StringData.resetPassword,
       onPressed: navigateResetPassword,

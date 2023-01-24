@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../constant/colors.dart';
 
-class TextButtonIcon extends StatelessWidget {
+class TextButtonWeight extends StatelessWidget {
   final FontWeight? weight;
   final String? buttonName;
   final Function? onPressed;
-  const TextButtonIcon({this.weight = FontWeight.normal, this.buttonName = "", this.onPressed, super.key});
+  const TextButtonWeight({this.weight = FontWeight.normal, this.buttonName = "", this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -2,26 +2,27 @@ import 'package:hrapp/product/models/company_model/company_model.dart';
 
 import '../../models/job_model/job_model.dart';
 
-class CompanyRepo {
-  static final CompanyRepo singleton = CompanyRepo._internal();
-  static CompanyRepo get instance {
+class AdvertRepo {
+  static final AdvertRepo singleton = AdvertRepo._internal();
+  static AdvertRepo get instance {
     return singleton;
   }
 
-  CompanyRepo._internal() {
+  AdvertRepo._internal() {
     // ignore: unused_local_variable
-    List<Company> companys = [
+    List<Company> adverts = [
       Company(
         companyName: "Atık Nakit",
         sector: "Software",
         companyImage: "https://atiknakit.com/assets/images/atiknakitbeyaz.png",
         jobs: Jobs(
+          upperWage: 40.000,
           jobTitle: "UI/UX Designer",
           level: "Junior",
           skills: ["Figma", "AdobeXD"],
           timing: "Yarı Zamanlı/Tam zamanlı",
           isSaveJob: false,
-          wage: 39.000,
+          lowerWage: 39.000,
         ),
       ),
       Company(
@@ -34,7 +35,8 @@ class CompanyRepo {
           skills: ["Node.Js", "ASP.NET"],
           timing: "Yarı Zamanlı/Tam zamanlı",
           isSaveJob: false,
-          wage: 25.000,
+          lowerWage: 25.000,
+          upperWage: 26.000,
         ),
       ),
       Company(
@@ -48,7 +50,8 @@ class CompanyRepo {
           skills: ["Flutter", "Kotlin"],
           timing: "Yarı Zamanlı/Tam zamanlı",
           isSaveJob: true,
-          wage: 40.000,
+          lowerWage: 40.000,
+          upperWage: 56.000,
         ),
       ),
       Company(
@@ -62,31 +65,33 @@ class CompanyRepo {
           isSaveJob: false,
           skills: ["React", "React Native", "Angular"],
           timing: "Yarı Zamanlı/Tam zamanlı",
-          wage: 24.000,
+          lowerWage: 24.000,
+          upperWage: 27.000,
         ),
       ),
     ];
   }
   saveJob(index) {
-    if (companys[index].jobs?.isSaveJob == false) {
-      singleton.companys[index].jobs?.isSaveJob = true;
+    if (adverts[index].jobs?.isSaveJob == false) {
+      singleton.adverts[index].jobs?.isSaveJob = true;
     } else {
-      singleton.companys[index].jobs?.isSaveJob = false;
+      singleton.adverts[index].jobs?.isSaveJob = false;
     }
   }
 
-  List<Company> companys = [
+  List<Company> adverts = [
     Company(
       companyName: "Atık Nakit",
       sector: "Software",
       companyImage: "https://atiknakit.com/assets/images/atiknakitbeyaz.png",
       jobs: Jobs(
+        upperWage: 40.000,
         jobTitle: "UI/UX Designer",
         level: "Junior",
         skills: ["Figma", "AdobeXD"],
-        timing: "Yarı Zamanlı/Tam zamanlı",
+        timing: "Tam zamanlı",
         isSaveJob: false,
-        wage: 39.000,
+        lowerWage: 39.000,
       ),
     ),
     Company(
@@ -97,9 +102,10 @@ class CompanyRepo {
         jobTitle: "Backend Developer",
         level: "Mid",
         skills: ["Node.Js", "ASP.NET"],
-        timing: "Yarı Zamanlı/Tam zamanlı",
+        timing: "Yarı Zamanlı",
         isSaveJob: false,
-        wage: 25.000,
+        lowerWage: 25.000,
+        upperWage: 26.000,
       ),
     ),
     Company(
@@ -111,9 +117,10 @@ class CompanyRepo {
         jobTitle: "Android Developer",
         level: "Senior",
         skills: ["Flutter", "Kotlin"],
-        timing: "Yarı Zamanlı/Tam zamanlı",
+        timing: "Yarı Zamanlı",
         isSaveJob: true,
-        wage: 40.000,
+        lowerWage: 40.000,
+        upperWage: 56.000,
       ),
     ),
     Company(
@@ -126,14 +133,15 @@ class CompanyRepo {
         level: "Junior/Senior",
         isSaveJob: false,
         skills: ["React", "React Native", "Angular"],
-        timing: "Yarı Zamanlı/Tam zamanlı",
-        wage: 24.000,
+        timing: "Danışman",
+        lowerWage: 24.000,
+        upperWage: 27.000,
       ),
     ),
   ];
-  CompanyRepo();
+  AdvertRepo();
 
   void delete(index) {
-    companys.removeAt(index);
+    adverts.removeAt(index);
   }
 }

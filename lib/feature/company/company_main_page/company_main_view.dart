@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/feature/company/company_job_list/company_job_view.dart';
-import 'package:hrapp/product/data/company_repo/company_repo.dart';
+import 'package:hrapp/product/data/company_repo/advert_repo.dart';
 import '../../../Product/Constant/colors.dart';
 import '../../../core/constant/project_padding.dart';
 import '../../../product/constant/icons.dart';
@@ -37,7 +37,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
         child: SafeArea(
           child: Column(
             children: [
-              for (var i in CompanyRepo.instance.companys)
+              for (var i in AdvertRepo.instance.adverts)
                 if (i.jobs!.isSaveJob == true) Text("${i.jobs!.jobTitle!} ${i.jobs!.level!}"),
             ],
           ),
@@ -55,8 +55,13 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
         ],
       ),
       body: TabBarView(controller: tabController, children: [
-        CompanyHomeView(workers: workers),
-        const CompanyJobView(),
+        CompanyHomeView(
+          workers: workers,
+          connectionError: dontReachApi,
+        ),
+        CompanyJobView(
+          advertRepo: jobList,
+        ),
       ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: floatingButton(),

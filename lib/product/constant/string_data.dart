@@ -64,4 +64,7 @@ class StringData {
   static const save = "Kaydet";
 
   static const changeView = "Görünümü değiştir";
+
+  static const connectionError = "Bağlantı hatası. :(\nLütfen daha sonra tekrar deneyin.";
+  static const delete = "Sil";
 }

@@ -13,14 +13,16 @@ import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_field/search_field.dart';
 
 import '../../../Product/Constant/colors.dart';
-import '../../../product/data/company_repo/company_repo.dart';
+import '../../../product/data/company_repo/advert_repo.dart';
 import 'company_home_view_model.dart';
 
 class CompanyHomeView extends StatefulWidget {
   final List<Worker>? workers;
+  final String? connectionError;
   const CompanyHomeView({
     Key? key,
     this.workers,
+    required this.connectionError,
   }) : super(key: key);
 
   @override
@@ -35,12 +37,12 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Padding(
-        padding: const EdgeInsets.only(left: 5, right: 5),
+        padding: const ProjectPadding.horizontalFive(),
         child: ListView(
           shrinkWrap: true,
           children: [
             const Padding(
-              padding: EdgeInsets.fromLTRB(15.0, 20, 15, 15),
+              padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
               child: SearchField(),
             ),
             const SubTitle(
@@ -108,7 +110,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
         pressButton: () {
           saveJob(index);
         },
-        change: CompanyRepo.instance.companys[index].jobs?.isSaveJob,
+        change: AdvertRepo.instance.adverts[index].jobs?.isSaveJob,
       ),
     );
   }
@@ -176,7 +178,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
     return Padding(
       padding: const ProjectPadding.allEight().copyWith(left: 18),
       child: Text(
-        "₺ ${jobInfo[index].jobs?.wage?.toDouble().toStringAsFixed(3) ?? "-"}/Ay",
+        "₺ ${jobInfo[index].jobs?.lowerWage?.toDouble().toStringAsFixed(3) ?? "-"}/Ay",
         style: const TextStyle(fontWeight: Weight.midium),
       ),
     );
@@ -212,10 +214,9 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
 
   Padding companyWorkers() {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 5,
-      ),
+      padding: const ProjectPadding.horizontalFive(),
       child: ProfileList(
+        connectionError: widget.connectionError,
         check: check,
         aspectRatio: aspectRatio,
         workerList: widget.workers,
