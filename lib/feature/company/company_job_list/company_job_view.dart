@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrapp/Product/Constant/colors.dart';
+import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
@@ -8,29 +8,36 @@ import '../../../core/constant/project_padding.dart';
 import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
-import '../../../product/data/company_repo/company_repo.dart';
+import '../../../product/data/company_repo/advert_repo.dart';
 
 class CompanyJobView extends StatefulWidget {
-  const CompanyJobView({super.key});
+  final AdvertRepo? advertRepo;
+  const CompanyJobView({
+    Key? key,
+    this.advertRepo,
+  }) : super(key: key);
 
   @override
   State<CompanyJobView> createState() => _CompanyJobViewState();
 }
 
 class _CompanyJobViewState extends State<CompanyJobView> {
-  final CompanyRepo companyRepo = CompanyRepo();
+  bool isSelectedPopup = false;
   @override
   Widget build(BuildContext context) {
-    return companyRepo.companys.isNotEmpty
-        ? ListView(
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            children: [
-              const SubTitle(
-                title: StringData.myAdvertisement,
-              ),
-              topJobs(),
-            ],
+    return widget.advertRepo!.adverts.isNotEmpty
+        ? Padding(
+            padding: const ProjectPadding.bottomTwentySix(),
+            child: ListView(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              children: [
+                const SubTitle(
+                  title: StringData.myAdvertisement,
+                ),
+                topJobs(),
+              ],
+            ),
           )
         : Padding(
             padding: const EdgeInsets.only(bottom: 80.0),
@@ -61,7 +68,7 @@ class _CompanyJobViewState extends State<CompanyJobView> {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        itemCount: companyRepo.companys.length,
+        itemCount: widget.advertRepo!.adverts.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const ProjectPadding.allEight(),
@@ -73,7 +80,6 @@ class _CompanyJobViewState extends State<CompanyJobView> {
               ),
               child: Stack(
                 children: [
-                  deleteJob(index),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -85,9 +91,23 @@ class _CompanyJobViewState extends State<CompanyJobView> {
                         ],
                       ),
                       skills(index),
-                      jobWage(index)
+                      Row(
+                        children: [
+                          jobWage(index),
+                          const SizedBox(
+                            height: 17,
+                            child: VerticalDivider(
+                              color: MyColor.osloGrey,
+                              width: 10,
+                              thickness: 1.5,
+                            ),
+                          ),
+                          jobTiming(index)
+                        ],
+                      )
                     ],
                   ),
+                  jobSettings(index),
                 ],
               ),
             ),
@@ -97,15 +117,41 @@ class _CompanyJobViewState extends State<CompanyJobView> {
     );
   }
 
-  Align deleteJob(index) {
+  Align jobSettings(index) {
     return Align(
-        alignment: Alignment.topRight,
-        child: IconButton(
-            onPressed: (() {
-              delete(index);
-            }),
-            icon: const Icon(MyIcons.delete),
-            color: MyColor.red));
+      alignment: Alignment.topRight,
+      child: Padding(
+        padding: const ProjectPadding.allTwelve(),
+        child: PopupMenuButton(
+          enabled: isSelectedPopup ? false : true,
+          onCanceled: () {
+            isSelectedPopup = isSelectedPopup;
+          },
+          onSelected: (value) {
+            isSelectedPopup = isSelectedPopup;
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20).copyWith(
+              topRight: const Radius.circular(0),
+            ),
+          ),
+          color: Colors.grey.shade100,
+          child: const Icon(
+            MyIcons.popupMenu,
+            color: MyColor.red,
+          ),
+          itemBuilder: (context) {
+            return [PopupMenuItem(child: const Text(StringData.delete))];
+          },
+        ),
+      ),
+      // child: IconButton(
+      //     onPressed: (() {
+      //       delete(index);
+      //     }),
+      //     icon: const Icon(MyIcons.delete),
+      //     color: MyColor.red),
+    );
   }
 
   Padding jobImage(int index) {
@@ -129,7 +175,7 @@ class _CompanyJobViewState extends State<CompanyJobView> {
 
   Text jobTitle(int index) {
     return Text(
-      companyRepo.companys[index].jobs?.jobTitle ?? "-",
+      widget.advertRepo!.adverts[index].jobs?.jobTitle ?? "-",
       textScaleFactor: ProjectFontSize.oneToTwo,
       style: const TextStyle(
         fontWeight: Weight.midium,
@@ -143,9 +189,9 @@ class _CompanyJobViewState extends State<CompanyJobView> {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: companyRepo.companys[parentIndex].jobs!.skills!.length > 3
+        itemCount: widget.advertRepo!.adverts[parentIndex].jobs!.skills!.length > 3
             ? 3
-            : companyRepo.companys[parentIndex].jobs!.skills!.length,
+            : widget.advertRepo!.adverts[parentIndex].jobs!.skills!.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const ProjectPadding.allEight().copyWith(
@@ -159,7 +205,7 @@ class _CompanyJobViewState extends State<CompanyJobView> {
                 color: MyColor.white,
               ),
               child: Text(
-                companyRepo.companys[parentIndex].jobs!.skills![index],
+                widget.advertRepo!.adverts[parentIndex].jobs!.skills![index],
                 textScaleFactor: ProjectFontSize.zeroToNine,
               ),
             ),
@@ -171,17 +217,27 @@ class _CompanyJobViewState extends State<CompanyJobView> {
 
   Padding jobWage(int index) {
     return Padding(
-      padding: const ProjectPadding.allEight().copyWith(left: 18),
+      padding: const ProjectPadding.allEightTeen().copyWith(left: 18, right: 0),
       child: Text(
-        "₺ ${companyRepo.companys[index].jobs?.wage?.toDouble().toStringAsFixed(3) ?? "-"}/Ay",
+        "₺ ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toDouble().toStringAsFixed(3)}"
+        "-"
+        "${widget.advertRepo!.adverts[index].jobs?.upperWage?.toDouble().toStringAsFixed(3)}/Ay",
         style: const TextStyle(fontWeight: Weight.midium),
       ),
     );
   }
 
+  Text jobTiming(int index) {
+    return Text(
+      "${widget.advertRepo!.adverts[index].jobs!.timing}",
+      style: const TextStyle(fontWeight: Weight.midium),
+    );
+  }
+
   void delete(int index) async {
+    Navigator.pop(context);
     setState(() {
-      companyRepo.delete(index);
+      widget.advertRepo!.delete(index);
     });
   }
 }

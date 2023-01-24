@@ -3,14 +3,16 @@ class Jobs {
   List? skills;
   String? timing;
   String? level;
-  double? wage;
+  double? lowerWage;
+  double? upperWage;
   bool? isSaveJob;
   Jobs({
     this.jobTitle,
     this.skills,
     this.timing,
     this.level,
-    this.wage,
+    this.lowerWage,
+    this.upperWage,
     this.isSaveJob,
   });
 }

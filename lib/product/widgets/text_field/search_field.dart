@@ -27,9 +27,7 @@ class SearchField extends StatelessWidget {
               contentPadding: const ProjectPadding.textFieldContent(14.0),
               hintText: "Ne Verelim Abime?",
               suffixIcon: Padding(
-                padding: const EdgeInsets.only(
-                  right: 8.0,
-                ),
+                padding: const ProjectPadding.rightEight(),
                 child: IconButton(
                   onPressed: () {},
                   icon: const Icon(
@@ -40,7 +38,7 @@ class SearchField extends StatelessWidget {
               border: InputBorder.none,
               prefixIconColor: Colors.grey,
               prefixIcon: const Padding(
-                padding: EdgeInsets.only(left: 8.0),
+                padding: ProjectPadding.leftEight(),
                 child: Icon(
                   Icons.search,
                 ),

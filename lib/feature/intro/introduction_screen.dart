@@ -90,7 +90,7 @@ class Introduction extends StatelessWidget {
         fontSize: ProjectFontSize.introSize,
         fontWeight: Weight.bold,
       ),
-      imagePadding: EdgeInsets.zero,
+      imagePadding: const ProjectPadding.edgeZero(),
       titlePadding: const ProjectPadding.allEight().copyWith(bottom: 0),
       bodyPadding: const ProjectPadding.allEight().copyWith(bottom: 0),
       bodyTextStyle: const TextStyle(

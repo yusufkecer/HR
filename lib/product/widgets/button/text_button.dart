@@ -1,6 +1,7 @@
 import 'package:hrapp/Product/Constant/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/constant/project_padding.dart';
 import '../../constant/font_size.dart';
 
 class MyTextButton extends StatelessWidget {
@@ -13,7 +14,7 @@ class MyTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        padding: EdgeInsets.zero,
+        padding: const ProjectPadding.edgeZero(),
       ),
       onPressed: () => onPressed!(),
       child: Text(

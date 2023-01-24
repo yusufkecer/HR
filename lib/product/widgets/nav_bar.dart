@@ -24,20 +24,19 @@ class NavBar extends StatelessWidget {
         padding: const ProjectPadding.appBarPadding(),
         child: Container(
           clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(shape: MyBorderShape()),
+          decoration: ShapeDecoration(shape: MyBorderShape(), shadows: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(1, 3),
+            ),
+          ]),
           child: Container(
             height: 65,
             clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(1, 3),
-                ),
-              ],
-              borderRadius: const ProjectBorders.mediumAll(),
+            decoration: const BoxDecoration(
+              borderRadius: ProjectBorders.mediumAll(),
             ),
             child: BottomAppBar(
               color: Colors.white,

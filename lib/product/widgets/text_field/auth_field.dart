@@ -76,7 +76,7 @@ class AuthField extends StatelessWidget {
 
   Padding prefixButton() {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const ProjectPadding.allFive(),
       child: Container(
         decoration: CustomPrefixDecoration(),
         child: icon,
