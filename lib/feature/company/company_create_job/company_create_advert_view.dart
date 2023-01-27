@@ -6,7 +6,7 @@ import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
 import '../../../product/constant/icons.dart';
-import '../../../product/widgets/text_field/resize_text_field.dart';
+import '../../../product/widgets/dropdown.dart';
 import 'company_create_advert_view_model.dart';
 
 class CompanyCreateJobView extends StatefulWidget {
@@ -19,6 +19,7 @@ class CompanyCreateJobView extends StatefulWidget {
 class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
   @override
   void initState() {
+    getProvince();
     // ignore: avoid_function_literals_in_foreach_calls
     jobQualities.forEach((element) {
       textController.add(TextEditingController());
@@ -44,7 +45,7 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
           actions: [
             IconButton(
               onPressed: () {
-                print(jobQualities.length);
+                print(province?.keys);
               },
               icon: const Icon(MyIcons.confirm),
             ),
@@ -53,6 +54,10 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
         body: SizedBox(
           width: context.width,
           child: ListView(
+            shrinkWrap: true,
+            physics: focusNode.hasFocus == false
+                ? const AlwaysScrollableScrollPhysics()
+                : const NeverScrollableScrollPhysics(),
             children: [
               const Padding(
                 padding: ProjectPadding.allEight(),
@@ -66,8 +71,9 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                 itemCount: jobQualities.length - 1,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(7).copyWith(right: 13, left: 13),
+                    padding: const ProjectPadding.createJob(),
                     child: CustomTextField(
+                      maxLine: 1,
                       title: jobQualities[index][0],
                       hint: jobQualities[index][2],
                       icon: jobQualities[index][1],
@@ -78,12 +84,13 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                 },
               ),
               Padding(
-                padding: const EdgeInsets.all(7).copyWith(right: 13, left: 13),
+                padding: const ProjectPadding.createJob(),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: CustomTextField(
+                        maxLine: 1,
                         textEditingController: textController[jobQualities.length - 1],
                         title: jobQualities[jobQualities.length - 1][0],
                         icon: jobQualities[jobQualities.length - 1][1],
@@ -102,10 +109,19 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                   ],
                 ),
               ),
-              ExpandableTextField(
-                  child: CustomTextField(
-                title: "",
-              )),
+              province != null
+                  ? Padding(
+                      padding: const ProjectPadding.createJob(),
+                      child: CustomDropdown(hint: StringData.province, items: province),
+                    )
+                  : const SizedBox(),
+              const Padding(
+                padding: ProjectPadding.createJob(),
+                child: CustomTextField(
+                  maxLine: 15,
+                  title: "",
+                ),
+              ),
             ],
           ),
         ),

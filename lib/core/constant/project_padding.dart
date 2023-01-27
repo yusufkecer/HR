@@ -24,4 +24,5 @@ class ProjectPadding extends EdgeInsets {
 //spesific
   const ProjectPadding.textFieldTitle() : super.only(left: 3.0, bottom: 8);
   const ProjectPadding.textFieldContent(content) : super.only(top: content);
+  const ProjectPadding.createJob() : super.fromLTRB(13, 7, 13, 7);
 }

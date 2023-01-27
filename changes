@@ -33,5 +33,10 @@ apiden veri gelmemesi durumunda oluşacak hata önlendi ve geçici olarak hata m
 iş sayfası boşsa "ilanınız bulunmamaktadır" uyarısı eklendi.
 navbar gölge eklenerek beyaz arka plandan öne çıkarıldı.
 silme butonu revize edildi
+25-27.01
+ilan oluşturma sayfası yapına başlandı (bitti sayılır)
+çeşitli düzenlemeler yapıldı
+singleton yapısı eklendi
+yeni componentler oluşturuldu
 
 
