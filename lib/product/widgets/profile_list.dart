@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:hrapp/core/constant/radius.dart';
-import 'package:hrapp/product/constant/font_Size.dart';
+import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/weight.dart';
 import 'package:hrapp/product/models/worker_model/worker_model.dart';
 
@@ -39,7 +39,7 @@ class ProfileList extends StatelessWidget {
             itemBuilder: (context, index) {
               return Card(
                 shape: const RoundedRectangleBorder(
-                  borderRadius: ProjectBorders.smallAll(),
+                  borderRadius: ProjectRadius.smallAll(),
                 ),
                 clipBehavior: Clip.antiAlias,
                 child: ColoredBox(

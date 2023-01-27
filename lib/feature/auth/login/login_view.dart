@@ -1,7 +1,6 @@
 import 'package:hrapp/core/constant/size.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
-import 'package:hrapp/feature/auth/reset_password/reset_password.dart';
-import 'package:hrapp/product/widgets/button/text_button.dart';
+import 'package:hrapp/feature/auth/reset_password/reset_password_view.dart';
 import 'package:hrapp/product/widgets/checkbox_text.dart';
 import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
@@ -106,11 +105,18 @@ class _LoginViewState extends LoginViewModel {
               fontSize: ProjectFontSize.mainSize,
             ),
           ),
-          MyTextButton(
-            named: StringData.registerHere,
-            onPressed: () {
-              nav.navigateToRegister(context);
-            },
+          TextButton(
+            style: TextButton.styleFrom(
+              padding: const ProjectPadding.edgeZero(),
+            ),
+            onPressed: () => nav.navigateToRegister(context),
+            child: const Text(
+              StringData.registerHere,
+              style: TextStyle(
+                fontSize: ProjectFontSize.mainSize,
+                color: MyColor.purplishBlue,
+              ),
+            ),
           ),
         ],
       ),

@@ -9,7 +9,6 @@ import 'package:hrapp/product/widgets/sized_box/box_space.dart';
 import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
 import 'package:flutter/material.dart';
-
 import '../../../Product/Constant/colors.dart';
 
 class ResetPassword extends StatefulWidget {

@@ -38,7 +38,7 @@ class NavigationService {
       context: context,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: ProjectBorders.bigOnly(),
+        borderRadius: ProjectRadius.bigOnly(),
       ),
       builder: (context) => DraggableScrollableSheet(
         expand: false,
@@ -57,7 +57,7 @@ class NavigationService {
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       color: MyColor.white,
-                      borderRadius: ProjectBorders.mediumAll(),
+                      borderRadius: ProjectRadius.mediumAll(),
                     ),
                   ),
                 ),

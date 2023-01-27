@@ -13,7 +13,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> {
     StringData.homePage: MyIcons.home,
     StringData.myAdvertisement: MyIcons.listAlt,
   };
-  final AdvertRepo advertRepo = AdvertRepo();
+
   final AdvertRepo jobList = AdvertRepo();
   late TabController tabController;
   getWorkers() async {

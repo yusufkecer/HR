@@ -39,7 +39,6 @@ class MyElevatedIcons extends StatelessWidget {
   }
 
   RoundedRectangleBorder buttonShape() {
-    return const RoundedRectangleBorder(
-        borderRadius: ProjectBorders.smallAll());
+    return const RoundedRectangleBorder(borderRadius: ProjectRadius.smallAll());
   }
 }

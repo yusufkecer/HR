@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/Product/Constant/colors.dart';
+
 import 'feature/splash/splash_screen.dart';
 
 void main() {
@@ -13,7 +15,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'IK App',
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Colors.transparent),
+        appBarTheme: const AppBarTheme(
+          color: Colors.transparent,
+          elevation: 0,
+          iconTheme: IconThemeData(color: MyColor.fuchsiaBlueLight, size: 27),
+        ),
         primarySwatch: Colors.purple,
         backgroundColor: const Color(0xFF6711fe),
       ),

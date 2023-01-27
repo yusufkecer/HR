@@ -36,14 +36,14 @@ class NavBar extends StatelessWidget {
             height: 65,
             clipBehavior: Clip.antiAlias,
             decoration: const BoxDecoration(
-              borderRadius: ProjectBorders.mediumAll(),
+              borderRadius: ProjectRadius.mediumAll(),
             ),
             child: BottomAppBar(
               color: Colors.white,
               elevation: 0,
               child: TabBar(
                 indicator: const BoxDecoration(
-                  borderRadius: ProjectBorders.mediumAll(),
+                  borderRadius: ProjectRadius.mediumAll(),
                 ),
                 labelColor: MyColor.purplishBlue,
                 unselectedLabelColor: MyColor.osloGrey,

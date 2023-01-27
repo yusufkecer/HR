@@ -18,7 +18,7 @@ class CustomPrefixDecoration extends BoxDecoration {
 class CustomDecoration extends BoxDecoration {
   CustomDecoration({Color backgroundColor = MyColor.desertStorm})
       : super(
-          borderRadius: const ProjectBorders.smallAll(),
+          borderRadius: const ProjectRadius.smallAll(),
           color: backgroundColor,
           boxShadow: [
             const BoxShadow(
