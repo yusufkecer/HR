@@ -5,7 +5,8 @@ import '../../../product/constant/icons.dart';
 import '../../../product/constant/string_data.dart';
 
 import '../../../product/models/worker_model/worker_model.dart';
-import '../../../product/service/worker_service.dart';
+import '../../../product/service/api.dart';
+import '../../../product/service/get_data.dart';
 import 'company_main_view.dart';
 
 abstract class CopmanyMainViewModel extends State<CompanyMainView> {
@@ -21,7 +22,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> {
       nav.showLoading(context);
     });
 
-    futureWorker = await dt.fetchData();
+    futureWorker = await dt.fetchData(ApiUri.workerApi);
     setState(() {
       if (futureWorker != null) {
         workers = futureWorker!.map((e) => Worker.fromJson(e)).toList();

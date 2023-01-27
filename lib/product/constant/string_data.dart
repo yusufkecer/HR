@@ -82,7 +82,7 @@ class StringData {
   static const salaryRange = "20000 - 30000";
   static const currencyUnit = "Birim";
   static const description = "İş Tanımı";
-  static const province = "Şehir";
+  static const province = "Tercih Şehir Edilen";
 }
   //   String? jobTitle;
   // List? skills;

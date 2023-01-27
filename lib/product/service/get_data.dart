@@ -4,8 +4,8 @@ import 'package:hrapp/product/service/api.dart';
 import 'package:http/http.dart' as http;
 
 class DataService {
-  dynamic fetchData() async {
-    const url = ApiUri.workerApi;
+  dynamic fetchData(String api) async {
+    final String url = api;
     final http.Response response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
