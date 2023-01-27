@@ -7,6 +7,7 @@ import '../../../product/constant/icons.dart';
 import '../../../product/constant/image_path.dart';
 import '../../../product/widgets/app_bar_logo.dart';
 import '../../../product/widgets/nav_bar.dart';
+import '../company_create_job/company_create_advert_view.dart';
 import '../company_home_page/company_home_view.dart';
 import 'company_main_view_model.dart';
 
@@ -28,6 +29,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
     super.initState();
   }
 
+  var a = AdvertRepo.instance.adverts.first.jobs!.isSaveJob;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,19 +39,22 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
         child: SafeArea(
           child: Column(
             children: [
-              for (var i in AdvertRepo.instance.adverts)
-                if (i.jobs!.isSaveJob == true) Text("${i.jobs!.jobTitle!} ${i.jobs!.level!}"),
+              ListView.builder(
+                itemCount: AdvertRepo.instance.adverts.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  // setState(() {});
+                  return AdvertRepo.instance.adverts[index].jobs!.isSaveJob == true
+                      ? Text("${AdvertRepo.instance.adverts[index].jobs!.jobTitle}")
+                      : const SizedBox();
+                },
+              ),
             ],
           ),
         ),
       ),
       appBar: AppBar(
-        titleSpacing: 0,
         title: const AppBarLogoTitle(),
-        iconTheme: const IconThemeData(
-          color: MyColor.fuchsiaBlueLight,
-        ),
-        elevation: 0,
         actions: [
           circleProfileImage(),
         ],
@@ -75,7 +80,11 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
   Widget floatingButton() {
     return FloatingActionButton(
       backgroundColor: MyColor.discovreyPurplishBlue,
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const CompanyCreateJobView(),
+        ));
+      },
       child: const Icon(MyIcons.add),
     );
   }

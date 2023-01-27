@@ -14,19 +14,24 @@ class MyIcons {
   static const nextIcon = Icons.arrow_forward_outlined;
   static const nextIOSIcon = Icons.arrow_forward_ios_outlined;
 
-  static const IconData backIOSIcon = Icons.arrow_back_ios_new_outlined;
-  static const IconData home = Icons.home;
-  static const listAlt = Icons.list_alt;
+  static const backIOSIcon = Icons.arrow_back_ios_new_outlined;
+  static const home = Icons.home;
+  static const listAlt = Icons.list_alt_outlined;
   static const list = Icons.list;
   static const grid = Icons.grid_view_outlined;
   static const profile = Icons.person;
 
-  static const a1 = Icons.bookmark_add_outlined;
-  static const a2 = Icons.bookmark_added_rounded;
-
-  static const saveAdd = Icons.bookmark_add_rounded;
+  static const save = Icons.bookmark_add_outlined;
   static const saved = Icons.bookmark_added_rounded;
   static const delete = Icons.delete_forever;
-
   static const popupMenu = Icons.more_vert;
+  static const editNote = Icons.edit_note;
+  static const confirm = Icons.check_outlined;
+
+  //create advert
+  static const position = Icons.badge_outlined;
+  static const level = Icons.grade_outlined;
+  static const timinig = Icons.access_time_outlined;
+  static const skill = Icons.computer_outlined;
+  static const wage = Icons.money;
 }

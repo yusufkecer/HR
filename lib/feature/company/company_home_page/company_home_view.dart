@@ -71,7 +71,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
             child: Container(
               width: 280,
               decoration: const BoxDecoration(
-                borderRadius: ProjectBorders.mediumAll(),
+                borderRadius: ProjectRadius.mediumAll(),
                 color: MyColor.tints,
               ),
               child: Stack(
@@ -83,7 +83,8 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          jobImage(index),
+                          jobImage(jobInfo[index]),
+                          //TODO:böyle kullan
                           jobTitle(index),
                         ],
                       ),
@@ -104,8 +105,8 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
     return Align(
       alignment: Alignment.topRight,
       child: ChangeIconButton(
-        buttonIcon: MyIcons.a1,
-        changeIcon: MyIcons.a2,
+        buttonIcon: MyIcons.save,
+        changeIcon: MyIcons.saved,
         buttonTooltip: StringData.save,
         pressButton: () {
           saveJob(index);
@@ -115,7 +116,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
     );
   }
 
-  Padding jobImage(int index) {
+  Padding jobImage(index) {
     return Padding(
       padding: const ProjectPadding.allEightTeen(),
       child: Container(
@@ -124,10 +125,10 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
-              jobInfo[index].companyImage ?? "",
+              index.companyImage ?? "",
             ),
           ),
-          borderRadius: const ProjectBorders.smallAll(),
+          borderRadius: const ProjectRadius.smallAll(),
           color: MyColor.transparent,
         ),
       ),
@@ -160,7 +161,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
             child: Container(
               padding: const ProjectPadding.allEight(),
               decoration: const BoxDecoration(
-                borderRadius: ProjectBorders.verySmallAll(),
+                borderRadius: ProjectRadius.verySmallAll(),
                 color: MyColor.white,
               ),
               child: Text(
@@ -188,18 +189,8 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Padding(
-          padding: ProjectPadding.allEight(),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Text(
-              StringData.companyWorker,
-              textScaleFactor: ProjectFontSize.oneToThree,
-              style: TextStyle(
-                fontWeight: Weight.midium,
-              ),
-            ),
-          ),
+        const SubTitle(
+          title: StringData.companyWorker,
         ),
         ChangeIconButton(
           buttonIcon: MyIcons.grid,

@@ -12,7 +12,7 @@ class SearchField extends StatelessWidget {
       height: 55,
       decoration: const BoxDecoration(
         color: MyColor.tints,
-        borderRadius: ProjectBorders.mediumAll(),
+        borderRadius: ProjectRadius.mediumAll(),
       ),
       child: Center(
         child: Theme(

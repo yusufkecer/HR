@@ -67,4 +67,27 @@ class StringData {
 
   static const connectionError = "Bağlantı hatası. :(\nLütfen daha sonra tekrar deneyin.";
   static const delete = "Sil";
+  static const update = "Güncelle";
+  static const edit = "Düzenle";
+  static const createAdvert = "İlan Oluştur";
+  static const jobAdvertNotFound = "İlanınız bulunmamaktadır.\nHemen oluşturun!";
+
+  //advert
+  static const jobPosition = "Pozisyon";
+  static const skills = "Aranan Nitelikler";
+  static const skillsHint = "Word, Excel, Power Point";
+  static const timing = "Çalışma Türü";
+  static const level = "Deneyim";
+  static const wage = "Maaş Aralığı";
+  static const salaryRange = "20000 - 30000";
+  static const currencyUnit = "Birim";
+  static const description = "İş Tanımı";
+  static const province = "Şehir";
 }
+  //   String? jobTitle;
+  // List? skills;
+  // String? timing;
+  // String? level;
+  // double? lowerWage;
+  // double? upperWage;
+  // bool? isSaveJob;

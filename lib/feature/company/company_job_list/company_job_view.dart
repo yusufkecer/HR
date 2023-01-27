@@ -3,12 +3,14 @@ import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
+import 'package:hrapp/product/widgets/text_with_icon.dart';
 import '../../../Core/Constant/radius.dart';
 import '../../../core/constant/project_padding.dart';
 import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/data/company_repo/advert_repo.dart';
+import 'company_job_view_model.dart';
 
 class CompanyJobView extends StatefulWidget {
   final AdvertRepo? advertRepo;
@@ -21,8 +23,7 @@ class CompanyJobView extends StatefulWidget {
   State<CompanyJobView> createState() => _CompanyJobViewState();
 }
 
-class _CompanyJobViewState extends State<CompanyJobView> {
-  bool isSelectedPopup = false;
+class _CompanyJobViewState extends CompanyJobViewModel {
   @override
   Widget build(BuildContext context) {
     return widget.advertRepo!.adverts.isNotEmpty
@@ -52,7 +53,7 @@ class _CompanyJobViewState extends State<CompanyJobView> {
                   height: 10,
                 ),
                 const Text(
-                  "İlanınız bulunmamaktadır.\n Hemen oluşturun!",
+                  StringData.jobAdvertNotFound,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: MyColor.osloGrey, fontWeight: Weight.midium),
                   textScaleFactor: ProjectFontSize.oneToFour,
@@ -75,7 +76,7 @@ class _CompanyJobViewState extends State<CompanyJobView> {
             child: Container(
               width: 280,
               decoration: const BoxDecoration(
-                borderRadius: ProjectBorders.mediumAll(),
+                borderRadius: ProjectRadius.mediumAll(),
                 color: MyColor.tints,
               ),
               child: Stack(
@@ -141,16 +142,35 @@ class _CompanyJobViewState extends State<CompanyJobView> {
             color: MyColor.red,
           ),
           itemBuilder: (context) {
-            return [PopupMenuItem(child: const Text(StringData.delete))];
+            return [
+              popupItem(
+                index,
+                MyIcons.editNote,
+                StringData.update,
+                updateJob,
+              ),
+              popupItem(
+                index,
+                MyIcons.delete,
+                StringData.delete,
+                deleteJob,
+              ),
+            ];
           },
         ),
       ),
-      // child: IconButton(
-      //     onPressed: (() {
-      //       delete(index);
-      //     }),
-      //     icon: const Icon(MyIcons.delete),
-      //     color: MyColor.red),
+    );
+  }
+
+  PopupMenuItem popupItem(int index, IconData icon, String info, Function onTap) {
+    return PopupMenuItem(
+      child: TextWithIcon(
+        icon: icon,
+        text: info,
+      ),
+      onTap: () {
+        onTap(index);
+      },
     );
   }
 
@@ -166,7 +186,7 @@ class _CompanyJobViewState extends State<CompanyJobView> {
               ImagePath.temporaryImage,
             ),
           ),
-          borderRadius: ProjectBorders.smallAll(),
+          borderRadius: ProjectRadius.smallAll(),
           color: MyColor.transparent,
         ),
       ),
@@ -201,7 +221,7 @@ class _CompanyJobViewState extends State<CompanyJobView> {
             child: Container(
               padding: const ProjectPadding.allEight(),
               decoration: const BoxDecoration(
-                borderRadius: ProjectBorders.verySmallAll(),
+                borderRadius: ProjectRadius.verySmallAll(),
                 color: MyColor.white,
               ),
               child: Text(
@@ -218,12 +238,7 @@ class _CompanyJobViewState extends State<CompanyJobView> {
   Padding jobWage(int index) {
     return Padding(
       padding: const ProjectPadding.allEightTeen().copyWith(left: 18, right: 0),
-      child: Text(
-        "₺ ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toDouble().toStringAsFixed(3)}"
-        "-"
-        "${widget.advertRepo!.adverts[index].jobs?.upperWage?.toDouble().toStringAsFixed(3)}/Ay",
-        style: const TextStyle(fontWeight: Weight.midium),
-      ),
+      child: wageConditions(index),
     );
   }
 
@@ -234,10 +249,23 @@ class _CompanyJobViewState extends State<CompanyJobView> {
     );
   }
 
-  void delete(int index) async {
-    Navigator.pop(context);
-    setState(() {
-      widget.advertRepo!.delete(index);
-    });
+  Text wageConditions(int index) {
+    String? data;
+    if (widget.advertRepo!.adverts[index].jobs?.lowerWage != null &&
+        widget.advertRepo!.adverts[index].jobs?.upperWage != null) {
+      data = "₺ ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toDouble().toStringAsFixed(3)}"
+          "-"
+          "${widget.advertRepo!.adverts[index].jobs?.upperWage?.toDouble().toStringAsFixed(3)}/Ay";
+    } else if (widget.advertRepo!.adverts[index].jobs?.upperWage != null) {
+      data = "${widget.advertRepo!.adverts[index].jobs?.upperWage?.toDouble().toStringAsFixed(3)}/Ay";
+    } else if (widget.advertRepo!.adverts[index].jobs?.lowerWage != null) {
+      data = "${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toDouble().toStringAsFixed(3)}/Ay";
+    } else {
+      data = "";
+    }
+    return Text(
+      data,
+      style: const TextStyle(fontWeight: Weight.midium),
+    );
   }
 }

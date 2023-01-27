@@ -106,7 +106,7 @@ class Introduction extends StatelessWidget {
       size: Size(10, 10),
       activeSize: Size(22, 10),
       activeShape: RoundedRectangleBorder(
-        borderRadius: ProjectBorders.bigAll(),
+        borderRadius: ProjectRadius.bigAll(),
       ),
     );
   }
