@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
 
 class CustomDropdown extends StatefulWidget {
+  final String? selected;
   final String? hint;
+  final Function(dynamic) onChange;
   final Map? items;
   const CustomDropdown({
     Key? key,
+    this.selected,
     this.hint,
+    required this.onChange,
     this.items,
   }) : super(key: key);
 
@@ -18,7 +21,6 @@ class CustomDropdown extends StatefulWidget {
 }
 
 class _CustomDropdownState extends State<CustomDropdown> {
-  String? selected;
   List<DropdownMenuItem> dropItem = [];
   @override
   void initState() {
@@ -43,8 +45,8 @@ class _CustomDropdownState extends State<CustomDropdown> {
             menuMaxHeight: 300,
             isExpanded: true,
             isDense: true,
-            value: selected,
-            onChanged: change,
+            value: widget.selected,
+            onChanged: widget.onChange,
             hint: Text("${widget.hint}"),
             items: dropItem,
           ),
@@ -59,12 +61,6 @@ class _CustomDropdownState extends State<CustomDropdown> {
         value: key,
         child: Text(value),
       ));
-    });
-  }
-
-  change(value) {
-    setState(() {
-      selected = value;
     });
   }
 }

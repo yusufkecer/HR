@@ -24,8 +24,17 @@ class CompanyJobView extends StatefulWidget {
 }
 
 class _CompanyJobViewState extends CompanyJobViewModel {
+  AdvertRepo advertRepo = AdvertRepo();
+  @override
+  void initState() {
+    Future(() {});
+    setState(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    print("build çalıştı");
     return widget.advertRepo!.adverts.isNotEmpty
         ? Padding(
             padding: const ProjectPadding.bottomTwentySix(),
@@ -36,7 +45,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                 const SubTitle(
                   title: StringData.myAdvertisement,
                 ),
-                topJobs(),
+                jobs(),
               ],
             ),
           )
@@ -63,7 +72,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
           );
   }
 
-  SizedBox topJobs() {
+  SizedBox jobs() {
     return SizedBox(
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
@@ -209,9 +218,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: widget.advertRepo!.adverts[parentIndex].jobs!.skills!.length > 3
-            ? 3
-            : widget.advertRepo!.adverts[parentIndex].jobs!.skills!.length,
+        itemCount: widget.advertRepo!.adverts[parentIndex].jobs!.skills!.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const ProjectPadding.allEight().copyWith(
@@ -253,13 +260,16 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     String? data;
     if (widget.advertRepo!.adverts[index].jobs?.lowerWage != null &&
         widget.advertRepo!.adverts[index].jobs?.upperWage != null) {
-      data = "₺ ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toDouble().toStringAsFixed(3)}"
+      data =
+          "${widget.advertRepo?.adverts[index].jobs?.currency} ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toStringAsFixed(0)}"
           "-"
-          "${widget.advertRepo!.adverts[index].jobs?.upperWage?.toDouble().toStringAsFixed(3)}/Ay";
+          "${widget.advertRepo!.adverts[index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
     } else if (widget.advertRepo!.adverts[index].jobs?.upperWage != null) {
-      data = "${widget.advertRepo!.adverts[index].jobs?.upperWage?.toDouble().toStringAsFixed(3)}/Ay";
+      data =
+          "${widget.advertRepo?.adverts[index].jobs?.currency} ${widget.advertRepo!.adverts[index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
     } else if (widget.advertRepo!.adverts[index].jobs?.lowerWage != null) {
-      data = "${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toDouble().toStringAsFixed(3)}/Ay";
+      data =
+          "${widget.advertRepo?.adverts[index].jobs?.currency} ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toStringAsFixed(0)}/Ay";
     } else {
       data = "";
     }

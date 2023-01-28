@@ -32,6 +32,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
   var a = AdvertRepo.instance.adverts.first.jobs!.isSaveJob;
   @override
   Widget build(BuildContext context) {
+    print("build main çalıştı");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,
@@ -82,7 +83,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
       backgroundColor: MyColor.discovreyPurplishBlue,
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const CompanyCreateJobView(),
+          builder: (context) => CompanyCreateJobView(advertRepo: jobList),
         ));
       },
       child: const Icon(MyIcons.add),

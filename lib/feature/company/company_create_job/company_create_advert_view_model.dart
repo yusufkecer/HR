@@ -7,26 +7,22 @@ import '../../../product/service/get_data.dart';
 import 'company_create_advert_view.dart';
 
 abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
+  String? provinceItem;
+  String? currencyItem;
   FocusNode focusNode = FocusNode();
-  List? proviceList;
   DataService service = DataService();
   double textFieldWidth = 300;
   Map? province;
-  Map? currency = {"EUR": "€", "TL": "₺", "DLR": "\$"};
+  Map? currency = {"€": "EUR", "₺": "TL", "\$": "DLR"};
   List<TextEditingController> textController = [];
   List jobQualities = [
     [StringData.jobPosition, MyIcons.position, ""],
     [StringData.skills, MyIcons.skill, StringData.skillsHint],
     [StringData.timing, MyIcons.timinig, ""],
     [StringData.level, MyIcons.level, ""],
-    [StringData.wage, MyIcons.wage, StringData.salaryRange]
+    [StringData.wage, MyIcons.wage, StringData.salaryRange],
+    [StringData.description],
   ];
-  // StringData.wage,
-  // StringData.salaryRange,
-  // StringData.currencyUnit,
-  // StringData.description,
-  // StringData.province,
-
   getProvince() async {
     Future(() {
       NavigationService().showLoading(context);

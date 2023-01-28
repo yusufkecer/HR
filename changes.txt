@@ -42,4 +42,9 @@ yeni componentler oluşturuldu
 iller apiden çekildi (cliente yüklenilmesinin önününe geçildi)
 dropdown componenti oluşturuldu.
 genişleyen text input alanı oluşturuldu böylece kullanıcı giriş yaparken daha net şekilde okuyabilecek.
+29.01
+dropdown boyutları ayarlandı
+para birimleri eklendi
+içerik verileri alındı
+genişleyen textfield düzenlendi
 
