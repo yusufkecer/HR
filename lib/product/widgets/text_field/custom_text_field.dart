@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/core/constant/project_padding.dart';
 
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
@@ -29,12 +30,13 @@ class CustomTextField extends StatelessWidget {
         controller: textEditingController,
         cursorColor: MyColor.black,
         decoration: InputDecoration(
+          contentPadding: const ProjectPadding.allTwenty().copyWith(left: 23),
           hintText: hint,
           label: Text(
             title!,
             textScaleFactor: ProjectFontSize.oneToOne,
           ),
-          prefixIcon: Icon(icon),
+          prefixIcon: icon != null ? Icon(icon) : null,
           hoverColor: MyColor.black,
           border: const OutlineInputBorder(
             borderRadius: ProjectRadius.mediumAll(),

@@ -83,6 +83,8 @@ class StringData {
   static const currencyUnit = "Birim";
   static const description = "İş Tanımı";
   static const province = "Tercih Şehir Edilen";
+
+  static const turkishLiraSymbol = "₺";
 }
   //   String? jobTitle;
   // List? skills;

@@ -30,7 +30,7 @@ request atarken thread eklendi (?)
 iş ilanı listeleme sayfasına iş silebilme özelliği eklendi.
 24.01
 apiden veri gelmemesi durumunda oluşacak hata önlendi ve geçici olarak hata mesajı eklendi.
-iş sayfası boşsa "ilanınız bulunmamaktadır" uyarısı eklendi.
+iş sayfası boşsa ilanınız bulunmamaktadır uyarısı eklendi.
 navbar gölge eklenerek beyaz arka plandan öne çıkarıldı.
 silme butonu revize edildi
 25-27.01
@@ -38,5 +38,13 @@ ilan oluşturma sayfası yapına başlandı (bitti sayılır)
 çeşitli düzenlemeler yapıldı
 singleton yapısı eklendi
 yeni componentler oluşturuldu
-
+28.01
+iller apiden çekildi (cliente yüklenilmesinin önününe geçildi)
+dropdown componenti oluşturuldu.
+genişleyen text input alanı oluşturuldu böylece kullanıcı giriş yaparken daha net şekilde okuyabilecek.
+29.01
+dropdown boyutları ayarlandı
+para birimleri eklendi
+içerik verileri alındı
+genişleyen textfield düzenlendi
 
