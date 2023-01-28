@@ -12,6 +12,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   DataService service = DataService();
   double textFieldWidth = 300;
   Map? province;
+  Map? currency = {"EUR": "€", "TL": "₺", "DLR": "\$"};
   List<TextEditingController> textController = [];
   List jobQualities = [
     [StringData.jobPosition, MyIcons.position, ""],

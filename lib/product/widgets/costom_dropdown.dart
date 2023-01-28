@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:hrapp/core/constant/project_padding.dart';
+import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
 
 class CustomDropdown extends StatefulWidget {
@@ -28,32 +29,31 @@ class _CustomDropdownState extends State<CustomDropdown> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const ProjectPadding.horizontalTen().copyWith(right: 15, left: 15),
       height: 60,
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          color: MyColor.osloGrey,
-        ),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(16),
-        ),
-      ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton(
-          isExpanded: true,
-          value: selected,
-          onChanged: change,
-          hint: Text("${widget.hint}"),
-          items: dropItem,
+          border: Border.all(
+            width: 1,
+            color: MyColor.osloGrey,
+          ),
+          borderRadius: const ProjectRadius.mediumAll()),
+      child: ButtonTheme(
+        alignedDropdown: true,
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton(
+            menuMaxHeight: 300,
+            isExpanded: true,
+            isDense: true,
+            value: selected,
+            onChanged: change,
+            hint: Text("${widget.hint}"),
+            items: dropItem,
+          ),
         ),
       ),
     );
   }
 
   dropdownItem() {
-    print(widget.items?.keys);
-
     widget.items?.forEach((key, value) {
       dropItem.add(DropdownMenuItem(
         value: key,

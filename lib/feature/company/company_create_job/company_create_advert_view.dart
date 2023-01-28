@@ -6,7 +6,7 @@ import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
 import '../../../product/constant/icons.dart';
-import '../../../product/widgets/dropdown.dart';
+import '../../../product/widgets/costom_dropdown.dart';
 import 'company_create_advert_view_model.dart';
 
 class CompanyCreateJobView extends StatefulWidget {
@@ -100,10 +100,11 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                     const SizedBox(
                       width: 15,
                     ),
-                    const SizedBox(
-                      width: 80,
-                      child: CustomTextField(
-                        title: "",
+                    SizedBox(
+                      width: 100,
+                      child: CustomDropdown(
+                        hint: StringData.currencyUnit,
+                        items: currency,
                       ),
                     ),
                   ],
