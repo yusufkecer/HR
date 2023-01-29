@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/product/constant/string_data.dart';
+import 'package:hrapp/product/widgets/sub_title.dart';
 
 import '../../Product/Constant/colors.dart';
 import '../../Product/widgets/sized_box/box_space.dart';
@@ -24,6 +26,21 @@ class NavigationService {
               color: MyColor.purplishBlue,
             ),
           ),
+        );
+      },
+    );
+  }
+
+  checkDialog(context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Column(
+          children: [
+            SubTitle(
+              title: StringData.checkTitle,
+            )
+          ],
         );
       },
     );

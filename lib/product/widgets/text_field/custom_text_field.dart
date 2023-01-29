@@ -5,7 +5,7 @@ import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String? title;
   final int? maxLine;
   final TextEditingController? textEditingController;
@@ -22,21 +22,26 @@ class CustomTextField extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  @override
   Widget build(BuildContext context) {
     return Theme(
       data: ThemeData(colorScheme: ThemeData().colorScheme.copyWith(primary: MyColor.fuchsiaBlueLight)),
       child: TextField(
-        maxLines: maxLine,
-        controller: textEditingController,
+        maxLines: widget.maxLine,
+        controller: widget.textEditingController,
         cursorColor: MyColor.black,
         decoration: InputDecoration(
           contentPadding: const ProjectPadding.allTwenty().copyWith(left: 23),
-          hintText: hint,
+          hintText: widget.hint,
           label: Text(
-            title!,
+            widget.title!,
             textScaleFactor: ProjectFontSize.oneToOne,
           ),
-          prefixIcon: icon != null ? Icon(icon) : null,
+          prefixIcon: widget.icon != null ? Icon(widget.icon) : null,
           hoverColor: MyColor.black,
           border: const OutlineInputBorder(
             borderRadius: ProjectRadius.mediumAll(),

@@ -9,7 +9,18 @@ import '../../../product/service/api.dart';
 import '../../../product/service/get_data.dart';
 import 'company_main_view.dart';
 
-abstract class CopmanyMainViewModel extends State<CompanyMainView> {
+abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerProviderStateMixin {
+  @override
+  void initState() {
+    getWorkers();
+    tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
+    super.initState();
+  }
+
+  bool status = false;
   final Map bottomBar = {
     StringData.homePage: MyIcons.home,
     StringData.myAdvertisement: MyIcons.listAlt,

@@ -24,14 +24,6 @@ class CompanyJobView extends StatefulWidget {
 }
 
 class _CompanyJobViewState extends CompanyJobViewModel {
-  AdvertRepo advertRepo = AdvertRepo();
-  @override
-  void initState() {
-    Future(() {});
-    setState(() {});
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     print("build çalıştı");
@@ -104,14 +96,16 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                       Row(
                         children: [
                           jobWage(index),
-                          const SizedBox(
-                            height: 17,
-                            child: VerticalDivider(
-                              color: MyColor.osloGrey,
-                              width: 10,
-                              thickness: 1.5,
-                            ),
-                          ),
+                          verticalDivider
+                              ? const SizedBox(
+                                  height: 17,
+                                  child: VerticalDivider(
+                                    color: MyColor.osloGrey,
+                                    width: 10,
+                                    thickness: 1.5,
+                                  ),
+                                )
+                              : const SizedBox(),
                           jobTiming(index)
                         ],
                       )
@@ -133,13 +127,6 @@ class _CompanyJobViewState extends CompanyJobViewModel {
       child: Padding(
         padding: const ProjectPadding.allTwelve(),
         child: PopupMenuButton(
-          enabled: isSelectedPopup ? false : true,
-          onCanceled: () {
-            isSelectedPopup = isSelectedPopup;
-          },
-          onSelected: (value) {
-            isSelectedPopup = isSelectedPopup;
-          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20).copyWith(
               topRight: const Radius.circular(0),
@@ -218,7 +205,9 @@ class _CompanyJobViewState extends CompanyJobViewModel {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: widget.advertRepo!.adverts[parentIndex].jobs!.skills!.length,
+        itemCount: widget.advertRepo?.adverts[parentIndex].jobs?.skills != null
+            ? widget.advertRepo?.adverts[parentIndex].jobs?.skills?.length
+            : 0,
         itemBuilder: (context, index) {
           return Padding(
             padding: const ProjectPadding.allEight().copyWith(
@@ -231,10 +220,12 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                 borderRadius: ProjectRadius.verySmallAll(),
                 color: MyColor.white,
               ),
-              child: Text(
-                widget.advertRepo!.adverts[parentIndex].jobs!.skills![index],
-                textScaleFactor: ProjectFontSize.zeroToNine,
-              ),
+              child: widget.advertRepo?.adverts[parentIndex].jobs?.skills?[index] != null
+                  ? Text(
+                      widget.advertRepo?.adverts[parentIndex].jobs?.skills?[index],
+                      textScaleFactor: ProjectFontSize.zeroToNine,
+                    )
+                  : const SizedBox(),
             ),
           );
         },
@@ -272,6 +263,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
           "${widget.advertRepo?.adverts[index].jobs?.currency} ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toStringAsFixed(0)}/Ay";
     } else {
       data = "";
+      verticalDivider = false;
     }
     return Text(
       data,

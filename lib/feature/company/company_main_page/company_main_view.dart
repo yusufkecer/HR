@@ -18,21 +18,9 @@ class CompanyMainView extends StatefulWidget {
   State<CompanyMainView> createState() => _CompanyMainViewState();
 }
 
-class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStateMixin {
-  @override
-  void initState() {
-    getWorkers();
-    tabController = TabController(
-      length: 2,
-      vsync: this,
-    );
-    super.initState();
-  }
-
-  var a = AdvertRepo.instance.adverts.first.jobs!.isSaveJob;
+class _CompanyMainViewState extends CopmanyMainViewModel {
   @override
   Widget build(BuildContext context) {
-    print("build main çalıştı");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,
@@ -44,7 +32,6 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
                 itemCount: AdvertRepo.instance.adverts.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  // setState(() {});
                   return AdvertRepo.instance.adverts[index].jobs!.isSaveJob == true
                       ? Text("${AdvertRepo.instance.adverts[index].jobs!.jobTitle}")
                       : const SizedBox();
@@ -81,10 +68,13 @@ class _CompanyMainViewState extends CopmanyMainViewModel with TickerProviderStat
   Widget floatingButton() {
     return FloatingActionButton(
       backgroundColor: MyColor.discovreyPurplishBlue,
-      onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(
+      onPressed: () async {
+        status = await Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => CompanyCreateJobView(advertRepo: jobList),
         ));
+        if (status = true) {
+          setState(() {});
+        }
       },
       child: const Icon(MyIcons.add),
     );
