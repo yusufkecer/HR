@@ -4,13 +4,13 @@ import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/extensions/context_extension.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/data/company_repo/advert_repo.dart';
-import 'package:hrapp/product/models/job_model/job_model.dart';
 import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
 
 import '../../../product/constant/icons.dart';
 import '../../../product/models/company_model/company_model.dart';
+import '../../../product/models/job_model/job_model.dart';
 import '../../../product/widgets/costom_dropdown.dart';
 import 'company_create_advert_view_model.dart';
 
@@ -26,16 +26,6 @@ class CompanyCreateJobView extends StatefulWidget {
 }
 
 class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
-  @override
-  void initState() {
-    getProvince();
-    // ignore: avoid_function_literals_in_foreach_calls
-    jobQualities.forEach((element) {
-      textController.add(TextEditingController());
-    });
-    super.initState();
-  }
-
   @override
   void dispose() {
     for (var i = 0; i < textController.length; i++) {
@@ -53,29 +43,31 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
           title: const AppBarLogoTitle(),
           leading: BackButton(
             onPressed: () {
-              Navigator.of(context).pop();
-              setState(() {});
+              Navigator.of(context).pop(false);
             },
           ),
           actions: [
             IconButton(
               onPressed: () {
+                initController();
+
                 var data = Company(
-                    companyName: "PAÜ",
-                    sector: "Yazılım",
-                    jobs: Jobs(
-                        isSaveJob: false,
-                        jobTitle: textController[0].text,
-                        skills: textController[1].text.split(","),
-                        lowerWage: double.parse(textController[4].text.split("-")[0]),
-                        upperWage: double.parse(textController[4].text.split("-")[1]),
-                        timing: textController[2].text,
-                        currency: currencyItem,
-                        level: textController[3].text));
+                  companyName: "PAÜ",
+                  sector: "Yazılım",
+                  jobs: Jobs(
+                    isSaveJob: false,
+                    jobTitle: jobTitle,
+                    skills: skills,
+                    lowerWage: upperAndLowerWage?[0] != null ? double.parse(upperAndLowerWage?[0]) : null,
+                    upperWage: upperAndLowerWage?[1] != null ? double.parse(upperAndLowerWage?[1]) : null,
+                    timing: timing,
+                    currency: currencyValue,
+                    level: level,
+                  ),
+                );
                 setState(() {
                   widget.advertRepo?.adverts.add(data);
                 });
-                print(widget.advertRepo?.adverts.length);
               },
               icon: const Icon(MyIcons.confirm),
             ),

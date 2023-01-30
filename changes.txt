@@ -42,9 +42,25 @@ yeni componentler oluşturuldu
 iller apiden çekildi (cliente yüklenilmesinin önününe geçildi)
 dropdown componenti oluşturuldu.
 genişleyen text input alanı oluşturuldu böylece kullanıcı giriş yaparken daha net şekilde okuyabilecek.
+
 29.01
 dropdown boyutları ayarlandı
 para birimleri eklendi
 içerik verileri alındı
 genişleyen textfield düzenlendi
+para birimi seçeneği eklendi
+şirketler artık iş ilanı oluşturabiliyor.
+30.01
+kodlar düzenlendi
+textfield hatası giderildi
+null value ve ücret bilgisi yoksa| simgesi kaldırıldı
+iş ilanı girildiğinde build çalışmıyordu, iş ilanı girilince artık çalışıyor.split işleminden sonra değer nullsa ekrana eklenmesi önlenildi
+aynısı ücret işlemi için de gerçekleştirildi
+"ilanı oluşturmak istediğinize emin misiniz" popupu eklendi
+
+YAPILACAKLAR
+kayıt etme işlemini onaylıyor musunuz butonu eklenecek, o butona göre true veya false değer döndürülecek
+
+şehir bilgisi eklenecek
+her türlü değer dönmesi için sayfa willpopscope ile kontrol edilecek.
 

@@ -85,11 +85,9 @@ class StringData {
   static const province = "Tercih Şehir Edilen";
 
   static const turkishLiraSymbol = "₺";
+//check showdialog
+  static const checkTitle = "Emin Misiniz?";
+  static const checkText = "Kaydetmek İstediğinize Emin Misiniz?";
+  static const yes = "Evet";
+  static const no = "Hayır";
 }
-  //   String? jobTitle;
-  // List? skills;
-  // String? timing;
-  // String? level;
-  // double? lowerWage;
-  // double? upperWage;
-  // bool? isSaveJob;
