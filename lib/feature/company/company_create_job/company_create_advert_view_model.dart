@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/product/service/api.dart';
@@ -23,28 +25,35 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   String? timing;
   String? level;
   String? currencyValue;
-  List? skills;
+  List skills = [];
+  List? val;
   List? upperAndLowerWage;
   String? provinceValue;
   initController() {
     jobTitle = textController[0].text;
     timing = textController[2].text;
     level = textController[3].text;
-    currencyValue = currencyItem;
-    skills = textController[1].text.isNotEmpty ? textController[1].text.split(",") : null;
+
+    val = textController[1].text.isNotEmpty ? textController[1].text.replaceAll(" ", "").split(",") : null;
+
+    for (var i = 0; i < val!.length; i++) {
+      if (val![i] != "") {
+        skills.add(val![i]);
+      }
+    }
 
     upperAndLowerWage = textController[4].text.isNotEmpty ? textController[4].text.split("-") : null;
-    provinceValue = provinceItem;
+    provinceValue = provinceValue;
   }
 
   bool isAddJob = false;
-  String? provinceItem;
-  String? currencyItem;
+  Map? province;
   FocusNode focusNode = FocusNode();
   DataService service = DataService();
   double textFieldWidth = 300;
-  Map? province;
-  Map? currency = {"€": "EUR", "₺": "TL", "\$": "DLR"};
+
+  Map? currency = {"TL": "₺", "EUR": "€", "DLR": "\$"};
+  NavigationService nav = NavigationService();
 
   List jobQualities = [
     [StringData.jobPosition, MyIcons.position, ""],
@@ -55,11 +64,26 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     [StringData.description],
   ];
   getProvince() async {
+    Map? province;
     Future(() {
       NavigationService().showLoading(context);
     });
 
     province = await service.fetchData(ApiUri.provinceApi);
+
+    this.province = province?.map((key, val) => MapEntry(val, val));
+    if (this.province != null) {
+      for (String element in this.province!.values) {
+        for (var i = 0; i < element.length; i++) {
+          if (i == 0) {
+            this.province![element] = element[i];
+            continue;
+          }
+          this.province![element] += element[i].toLowerCase();
+        }
+      }
+    }
+
     Future(() {
       NavigationService().hideLoading(context);
     });

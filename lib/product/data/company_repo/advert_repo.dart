@@ -32,6 +32,7 @@ class AdvertRepo {
         skills: ["Figma", "AdobeXD"],
         timing: "Tam zamanlı",
         isSaveJob: false,
+        province: "Antalya",
       ),
     ),
     Company(
@@ -62,6 +63,7 @@ class AdvertRepo {
         timing: "Yarı Zamanlı",
         isSaveJob: true,
         lowerWage: 29000,
+        province: "Denizli",
       ),
     ),
     Company(

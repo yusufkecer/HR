@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hrapp/core/constant/project_padding.dart';
 
+import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
@@ -8,6 +8,7 @@ import 'package:hrapp/product/constant/font_size.dart';
 class CustomTextField extends StatefulWidget {
   final String? title;
   final int? maxLine;
+  final TextInputType? textInputType;
   final TextEditingController? textEditingController;
   final IconData? icon;
   final String? hint;
@@ -16,6 +17,7 @@ class CustomTextField extends StatefulWidget {
     Key? key,
     this.title,
     this.maxLine,
+    this.textInputType,
     this.textEditingController,
     this.icon,
     this.hint,
@@ -31,6 +33,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Theme(
       data: ThemeData(colorScheme: ThemeData().colorScheme.copyWith(primary: MyColor.fuchsiaBlueLight)),
       child: TextField(
+        keyboardType: widget.textInputType ?? TextInputType.text,
         maxLines: widget.maxLine,
         controller: widget.textEditingController,
         cursorColor: MyColor.black,

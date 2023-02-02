@@ -58,8 +58,8 @@ class _CustomDropdownState extends State<CustomDropdown> {
   dropdownItem() {
     widget.items?.forEach((key, value) {
       dropItem.add(DropdownMenuItem(
-        value: key,
-        child: Text(value),
+        value: value,
+        child: Text(key),
       ));
     });
   }

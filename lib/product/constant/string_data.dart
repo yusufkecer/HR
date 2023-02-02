@@ -73,21 +73,23 @@ class StringData {
   static const jobAdvertNotFound = "İlanınız bulunmamaktadır.\nHemen oluşturun!";
 
   //advert
-  static const jobPosition = "Pozisyon";
-  static const skills = "Aranan Nitelikler";
+  static const jobPosition = "Pozisyon*";
+  static const skills = "Aranan Nitelikler*";
   static const skillsHint = "Word, Excel, Power Point";
-  static const timing = "Çalışma Türü";
-  static const level = "Deneyim";
+  static const timing = "Çalışma Türü*";
+  static const level = "Deneyim*";
   static const wage = "Maaş Aralığı";
   static const salaryRange = "20000 - 30000";
   static const currencyUnit = "Birim";
   static const description = "İş Tanımı";
-  static const province = "Tercih Şehir Edilen";
+  static const province = "Tercih Edilen Şehir";
 
   static const turkishLiraSymbol = "₺";
 //check showdialog
   static const checkTitle = "Emin Misiniz?";
-  static const checkText = "Kaydetmek İstediğinize Emin Misiniz?";
+  static const checkText = "Kaydetmek stediğinize emin misiniz?";
   static const yes = "Evet";
   static const no = "Hayır";
+  static const missing = "Lütfen Eksiksiz Doldurun";
+  static const missingText = "İşaretli alanları (*) lütfen doldurunuz.";
 }

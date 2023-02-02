@@ -56,11 +56,21 @@ textfield hatası giderildi
 null value ve ücret bilgisi yoksa| simgesi kaldırıldı
 iş ilanı girildiğinde build çalışmıyordu, iş ilanı girilince artık çalışıyor.split işleminden sonra değer nullsa ekrana eklenmesi önlenildi
 aynısı ücret işlemi için de gerçekleştirildi
-"ilanı oluşturmak istediğinize emin misiniz" popupu eklendi
+
+02.02 
+kayıt etme işlemini onaylıyor musunuz butonu eklendi
+boş geçilmeyecek değerler ayarlandı"ilanı oluşturmak istediğinize emin misiniz" popupu eklendi
+her türlü değer dönmesi için sayfa willpopscope ile kontrol edilecek. null değer dönüyor
+boş yetenek artık ayırt ediliyor
+yetenekler kısmında sınırsız boşluk bırakma durumu kaldırıldı
+şehir bilgisi eklenecek
+para birimi seçilmediği durumda defauld olarak türk lirası eklendi
+şehir bilgisindeki tüm karakterler büyük olarak ekrana yazdırma sorunu çözüldü
+maaş bilgisindeki text input type düzenlendi
 
 YAPILACAKLAR
-kayıt etme işlemini onaylıyor musunuz butonu eklenecek, o butona göre true veya false değer döndürülecek
+yeteneklerde tekrarlamaya sebep olan hata giderilecek
+'ilanlarım' kısmındaki kart boyutu ve yazı boyutu arttırılacak o kısımdaki yeteneklerin boyutu ve font size arttırılacak
 
-şehir bilgisi eklenecek
-her türlü değer dönmesi için sayfa willpopscope ile kontrol edilecek.
+
 
