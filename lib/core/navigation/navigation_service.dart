@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/product/constant/string_data.dart';
-import 'package:hrapp/product/widgets/sub_title.dart';
-
 import '../../Product/Constant/colors.dart';
 import '../../Product/widgets/sized_box/box_space.dart';
 import '../../feature/auth/register/register_view.dart';
@@ -31,16 +29,48 @@ class NavigationService {
     );
   }
 
-  checkDialog(context) {
+  alert(context, alertTitle, text) {
     showDialog(
       context: context,
       builder: (context) {
-        return Column(
-          children: [
-            SubTitle(
-              title: StringData.checkTitle,
-            )
-          ],
+        return AlertDialog(
+          title: Center(child: Text(alertTitle)),
+          content: Text(text),
+        );
+      },
+    );
+  }
+
+  Future<bool?> checkDialog(context, alertTitle, text) async {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return WillPopScope(
+          onWillPop: () async {
+            return false;
+          },
+          child: AlertDialog(
+            title: Center(child: Text(alertTitle)),
+            content: Text(text),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: const Text(
+                  StringData.no,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: const Text(
+                  StringData.yes,
+                ),
+              )
+            ],
+          ),
         );
       },
     );

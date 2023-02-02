@@ -26,7 +26,6 @@ class CompanyJobView extends StatefulWidget {
 class _CompanyJobViewState extends CompanyJobViewModel {
   @override
   Widget build(BuildContext context) {
-    print("build çalıştı");
     return widget.advertRepo!.adverts.isNotEmpty
         ? Padding(
             padding: const ProjectPadding.bottomTwentySix(),
@@ -106,7 +105,18 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                                   ),
                                 )
                               : const SizedBox(),
-                          jobTiming(index)
+                          jobTiming(index),
+                          widget.advertRepo!.adverts[index].jobs!.province != null
+                              ? const SizedBox(
+                                  height: 18,
+                                  child: VerticalDivider(
+                                    color: MyColor.osloGrey,
+                                    width: 10,
+                                    thickness: 1.5,
+                                  ),
+                                )
+                              : const SizedBox(),
+                          widget.advertRepo!.adverts[index].jobs!.province != null ? province(index) : const SizedBox()
                         ],
                       )
                     ],
@@ -174,8 +184,8 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     return Padding(
       padding: const ProjectPadding.allEightTeen(),
       child: Container(
-        height: 60,
-        width: 60,
+        height: 75,
+        width: 75,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
@@ -192,7 +202,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
   Text jobTitle(int index) {
     return Text(
       widget.advertRepo!.adverts[index].jobs?.jobTitle ?? "-",
-      textScaleFactor: ProjectFontSize.oneToTwo,
+      textScaleFactor: ProjectFontSize.oneToThree,
       style: const TextStyle(
         fontWeight: Weight.midium,
       ),
@@ -201,7 +211,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
 
   SizedBox skills(parentIndex) {
     return SizedBox(
-      height: 39,
+      height: 40,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -223,7 +233,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
               child: widget.advertRepo?.adverts[parentIndex].jobs?.skills?[index] != null
                   ? Text(
                       widget.advertRepo?.adverts[parentIndex].jobs?.skills?[index],
-                      textScaleFactor: ProjectFontSize.zeroToNine,
+                      //  textScaleFactor: ProjectFontSize.zeroToNine,
                     )
                   : const SizedBox(),
             ),
@@ -243,30 +253,41 @@ class _CompanyJobViewState extends CompanyJobViewModel {
   Text jobTiming(int index) {
     return Text(
       "${widget.advertRepo!.adverts[index].jobs!.timing}",
+      textScaleFactor: ProjectFontSize.oneToOne,
       style: const TextStyle(fontWeight: Weight.midium),
     );
   }
 
+  Text province(int index) => Text(
+        "${widget.advertRepo!.adverts[index].jobs!.province}",
+        textScaleFactor: ProjectFontSize.oneToOne,
+        style: const TextStyle(fontWeight: Weight.midium),
+      );
+
   Text wageConditions(int index) {
+    String? currency;
     String? data;
+    if (widget.advertRepo?.adverts[index].jobs?.currency == null) {
+      currency = StringData.turkishLiraSymbol;
+    } else {
+      currency = widget.advertRepo!.adverts[index].jobs!.currency;
+    }
     if (widget.advertRepo!.adverts[index].jobs?.lowerWage != null &&
         widget.advertRepo!.adverts[index].jobs?.upperWage != null) {
-      data =
-          "${widget.advertRepo?.adverts[index].jobs?.currency} ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toStringAsFixed(0)}"
+      data = "$currency ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toStringAsFixed(0)}"
           "-"
           "${widget.advertRepo!.adverts[index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
     } else if (widget.advertRepo!.adverts[index].jobs?.upperWage != null) {
-      data =
-          "${widget.advertRepo?.adverts[index].jobs?.currency} ${widget.advertRepo!.adverts[index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
+      data = "$currency ${widget.advertRepo!.adverts[index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
     } else if (widget.advertRepo!.adverts[index].jobs?.lowerWage != null) {
-      data =
-          "${widget.advertRepo?.adverts[index].jobs?.currency} ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toStringAsFixed(0)}/Ay";
+      data = "$currency ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toStringAsFixed(0)}/Ay";
     } else {
       data = "";
       verticalDivider = false;
     }
     return Text(
       data,
+      textScaleFactor: ProjectFontSize.oneToOne,
       style: const TextStyle(fontWeight: Weight.midium),
     );
   }
