@@ -34,4 +34,8 @@ class MyIcons {
   static const timinig = Icons.access_time_outlined;
   static const skill = Icons.computer_outlined;
   static const wage = Icons.money;
+
+  static const phone = Icons.phone_outlined;
+  static const website = Icons.web_outlined;
+  static const edit = Icons.edit_outlined;
 }

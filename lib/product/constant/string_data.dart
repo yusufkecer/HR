@@ -51,7 +51,8 @@ class StringData {
   static const titleEnd = "Nullam non magna elit.";
   static const subtitleEnd =
       "Etiam facilisis purus non mauris interdum venenatis. Pellentesque ac tortor suscipit, interdum nulla vel, pulvinar lacus. ";
-
+  static const companyInfo =
+      "XYZ Şirketi, 20xx yılında kurulan ve müşteri odaklı hizmet anlayışı ile sektöründe öncü bir rol oynamaya devam eden bir teknolojik şirkettir. Şirket, kullanıcı dostu çözümler sunmak ve müşterilerine en iyi deneyimi sağlamak amacıyla sürekli olarak inovasyona odaklanmıştır. XYZ Şirketi, geniş müşteri kitlesine hitap eden ürün yelpazesi ve uzman ekibiyle tanınmaktadır. Şirket, müşterilerine en yüksek kalitede hizmet sunma amacıyla sürekli olarak büyür ve gelişir.";
   //Navbar
   static const homePage = "Ana Sayfa";
   static const myAdvertisement = "İlanlarım";
@@ -91,5 +92,6 @@ class StringData {
   static const yes = "Evet";
   static const no = "Hayır";
   static const missing = "Lütfen Eksiksiz Doldurun";
+
   static const missingText = "İşaretli alanları (*) lütfen doldurunuz.";
 }

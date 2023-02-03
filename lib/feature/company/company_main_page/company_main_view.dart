@@ -7,8 +7,9 @@ import '../../../product/constant/icons.dart';
 import '../../../product/constant/image_path.dart';
 import '../../../product/widgets/app_bar_logo.dart';
 import '../../../product/widgets/nav_bar.dart';
-import '../company_create_job/company_create_advert_view.dart';
+import '../company_create_advert/company_create_advert_view.dart';
 import '../company_home_page/company_home_view.dart';
+import '../company_profile/company_profile_view.dart';
 import 'company_main_view_model.dart';
 
 class CompanyMainView extends StatefulWidget {
@@ -80,12 +81,19 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
     );
   }
 
-  Padding circleProfileImage() {
-    return const Padding(
-      padding: ProjectPadding.allEight(),
-      child: CircleAvatar(
-        backgroundImage: NetworkImage(
-          ImagePath.temporaryImage,
+  GestureDetector circleProfileImage() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const CompanyProfileView(),
+        ));
+      },
+      child: const Padding(
+        padding: ProjectPadding.allEight(),
+        child: CircleAvatar(
+          backgroundImage: NetworkImage(
+            ImagePath.temporaryImage,
+          ),
         ),
       ),
     );

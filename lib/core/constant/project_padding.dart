@@ -6,6 +6,7 @@ class ProjectPadding extends EdgeInsets {
   const ProjectPadding.allFive() : super.all(5);
   const ProjectPadding.allSixteen() : super.all(16);
   const ProjectPadding.allEight() : super.all(8);
+  const ProjectPadding.allTen() : super.all(10);
   const ProjectPadding.allTwelve() : super.all(12);
   const ProjectPadding.allTwenty() : super.all(20);
   const ProjectPadding.edgeZero() : super.all(0);
