@@ -4,6 +4,20 @@ class Company {
   String? companyName;
   String? sector;
   String? companyImage;
+  String? phoneNumber;
+  String? website;
+  String? mail;
+  String? numberWorker;
+
   Jobs? jobs;
-  Company({this.companyName, this.sector, this.jobs, this.companyImage});
+  Company({
+    this.companyName,
+    this.sector,
+    this.companyImage,
+    this.phoneNumber,
+    this.website,
+    this.mail,
+    this.numberWorker,
+    this.jobs,
+  });
 }

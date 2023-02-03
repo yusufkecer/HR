@@ -211,7 +211,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
 
   SizedBox skills(parentIndex) {
     return SizedBox(
-      height: 40,
+      height: 44,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -224,18 +224,21 @@ class _CompanyJobViewState extends CompanyJobViewModel {
               left: index == 0 ? 18 : 0,
               top: 0,
             ),
-            child: Container(
-              padding: const ProjectPadding.allEight(),
-              decoration: const BoxDecoration(
-                borderRadius: ProjectRadius.verySmallAll(),
-                color: MyColor.white,
+            child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                padding: const ProjectPadding.allEight(),
+                decoration: const BoxDecoration(
+                  borderRadius: ProjectRadius.verySmallAll(),
+                  color: MyColor.white,
+                ),
+                child: widget.advertRepo?.adverts[parentIndex].jobs?.skills?[index] != null
+                    ? Text(
+                        widget.advertRepo?.adverts[parentIndex].jobs?.skills?[index], //textAlign: TextAlign.center,
+                        //  textScaleFactor: ProjectFontSize.zeroToNine,
+                      )
+                    : const SizedBox(),
               ),
-              child: widget.advertRepo?.adverts[parentIndex].jobs?.skills?[index] != null
-                  ? Text(
-                      widget.advertRepo?.adverts[parentIndex].jobs?.skills?[index],
-                      //  textScaleFactor: ProjectFontSize.zeroToNine,
-                    )
-                  : const SizedBox(),
             ),
           );
         },
@@ -258,10 +261,17 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     );
   }
 
-  Text province(int index) => Text(
-        "${widget.advertRepo!.adverts[index].jobs!.province}",
-        textScaleFactor: ProjectFontSize.oneToOne,
-        style: const TextStyle(fontWeight: Weight.midium),
+  Widget province(int index) => Flexible(
+        child: Padding(
+          padding: const ProjectPadding.rightEight(),
+          child: Text(
+            "${widget.advertRepo!.adverts[index].jobs!.province}",
+            textScaleFactor: ProjectFontSize.oneToOne,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: const TextStyle(fontWeight: Weight.midium),
+          ),
+        ),
       );
 
   Text wageConditions(int index) {

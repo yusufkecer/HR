@@ -1,10 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/product/service/api.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/constant/string_data.dart';
+import '../../../product/models/company_model/company_model.dart';
+import '../../../product/models/job_model/job_model.dart';
 import '../../../product/service/get_data.dart';
 import 'company_create_advert_view.dart';
 
@@ -35,10 +35,11 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     level = textController[3].text;
 
     val = textController[1].text.isNotEmpty ? textController[1].text.replaceAll(" ", "").split(",") : null;
-
-    for (var i = 0; i < val!.length; i++) {
-      if (val![i] != "") {
-        skills.add(val![i]);
+    if (val != null) {
+      for (var i = 0; i < val!.length; i++) {
+        if (val![i] != "") {
+          skills.add(val![i]);
+        }
       }
     }
 
@@ -88,5 +89,40 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       NavigationService().hideLoading(context);
     });
     setState(() {});
+  }
+
+  saveAdvert() async {
+    initController();
+    if (jobTitle == "" || val == null || level == "" || timing == "") {
+      nav.alert(
+        context,
+        StringData.missing,
+        StringData.missingText,
+      );
+      return;
+    }
+    bool? check = false;
+
+    check = await nav.checkDialog(context, StringData.checkTitle, StringData.checkText);
+    if (check ?? false) {
+      var data = Company(
+        companyName: "PAÜ",
+        sector: "Yazılım",
+        jobs: Jobs(
+          isSaveJob: false,
+          jobTitle: jobTitle,
+          skills: skills,
+          lowerWage: upperAndLowerWage?[0] != null ? double.parse(upperAndLowerWage?[0]) : null,
+          upperWage: upperAndLowerWage?[1] != null ? double.parse(upperAndLowerWage?[1]) : null,
+          timing: timing,
+          currency: currencyValue,
+          level: level,
+          province: provinceValue,
+        ),
+      );
+      setState(() {
+        widget.advertRepo?.adverts.add(data);
+      });
+    }
   }
 }
