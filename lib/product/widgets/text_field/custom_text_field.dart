@@ -41,7 +41,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           contentPadding: const ProjectPadding.allTwenty().copyWith(left: 23),
           hintText: widget.hint,
           label: Text(
-            widget.title!,
+            widget.title ?? "",
             textScaleFactor: ProjectFontSize.oneToOne,
           ),
           prefixIcon: widget.icon != null ? Icon(widget.icon) : null,

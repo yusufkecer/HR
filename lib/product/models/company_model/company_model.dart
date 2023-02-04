@@ -8,6 +8,7 @@ class Company {
   String? website;
   String? mail;
   String? numberWorker;
+  String? address;
 
   Jobs? jobs;
   Company({
@@ -18,6 +19,7 @@ class Company {
     this.website,
     this.mail,
     this.numberWorker,
+    this.address,
     this.jobs,
   });
 }
