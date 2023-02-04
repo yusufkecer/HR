@@ -53,7 +53,7 @@ para birimi seçeneği eklendi
 30.01
 kodlar düzenlendi
 textfield hatası giderildi
-null value ve ücret bilgisi yoksa| simgesi kaldırıldı
+null value ve ücret bilgisi yoksa vertical divider kaldırıldı
 iş ilanı girildiğinde build çalışmıyordu, iş ilanı girilince artık çalışıyor.split işleminden sonra değer nullsa ekrana eklenmesi önlenildi
 aynısı ücret işlemi için de gerçekleştirildi
 
@@ -70,10 +70,11 @@ maaş bilgisindeki text input type düzenlendi
 'ilanlarım' kısmındaki kart boyutu ve yazı boyutu arttırıldı o kısımdaki yeteneklerin boyutu ve font size arttırıldı
 ekrana sığmama sorunu düzeltildi
 yeteneklerde tekrarlamaya sebep olan hata giderildi
-
+company için profil oluşturuldu
 
 YAPILACAKLAR
-company için profil oluşturulacak
+crud işlemleri yapılacak (profile ekeleme silme vs)
+başlık ve içerik ayrı ayrı düzenlenebilecek
 
 
 

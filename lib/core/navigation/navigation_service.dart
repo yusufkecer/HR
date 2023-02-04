@@ -29,6 +29,10 @@ class NavigationService {
     );
   }
 
+  callSnackbar(context) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Başarıyla Kaydedildi")));
+  }
+
   alert(context, alertTitle, text) {
     showDialog(
       context: context,

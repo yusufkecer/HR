@@ -8,6 +8,7 @@ class ProjectRadius extends BorderRadius {
   const ProjectRadius.smallAll() : super.all(const Radius.circular(10));
   const ProjectRadius.mediumAll() : super.all(const Radius.circular(16));
   const ProjectRadius.bigAll() : super.all(const Radius.circular(20));
+  const ProjectRadius.veryBigAll() : super.all(const Radius.circular(30));
   const ProjectRadius.bigOnly()
       : super.only(
           topLeft: const Radius.circular(20),

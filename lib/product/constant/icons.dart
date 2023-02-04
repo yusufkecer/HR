@@ -38,4 +38,5 @@ class MyIcons {
   static const phone = Icons.phone_outlined;
   static const website = Icons.web_outlined;
   static const edit = Icons.edit_outlined;
+  static const location = Icons.location_on_outlined;
 }
