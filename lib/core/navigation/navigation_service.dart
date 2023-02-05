@@ -29,17 +29,28 @@ class NavigationService {
     );
   }
 
-  callSnackbar(context) {
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Başarıyla Kaydedildi")));
+  callSnackbar(context, text) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
   }
 
-  alert(context, alertTitle, text) {
+  alertWithButon(context, alertTitle, text, buttonText, onPress) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: Center(child: Text(alertTitle)),
           content: Text(text),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: TextButton(
+                onPressed: onPress,
+                child: Text(buttonText),
+              ),
+            ),
+          ],
         );
       },
     );

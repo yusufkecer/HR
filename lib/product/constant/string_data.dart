@@ -63,6 +63,8 @@ class StringData {
   static const popularJobs = "Popüler İlanlar";
 
   static const save = "Kaydet";
+  static const saved = "Kaydedildi";
+  static const advertSaved = "İlanınız başarıyla kaydedildi.";
 
   static const changeView = "Görünümü değiştir";
 
@@ -70,6 +72,7 @@ class StringData {
   static const delete = "Sil";
   static const update = "Güncelle";
   static const edit = "Düzenle";
+  static const ok = "Tamam";
   static const createAdvert = "İlan Oluştur";
   static const jobAdvertNotFound = "İlanınız bulunmamaktadır.\nHemen oluşturun!";
 
@@ -95,7 +98,7 @@ class StringData {
 
   static const missingText = "İşaretli alanları (*) lütfen doldurunuz.";
 
-  static const contactInfo = "İletişime Bilgileri";
+  static const contactInfo = "İletişim Bilgileri";
 
   static const generalInfo = "Temel Bilgiler";
 

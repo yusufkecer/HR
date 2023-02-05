@@ -10,6 +10,7 @@ import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/data/company_repo/advert_repo.dart';
+import '../company_create_advert/company_create_advert_view.dart';
 import 'company_job_view_model.dart';
 
 class CompanyJobView extends StatefulWidget {
@@ -147,19 +148,31 @@ class _CompanyJobViewState extends CompanyJobViewModel {
             MyIcons.popupMenu,
             color: MyColor.red,
           ),
-          itemBuilder: (context) {
+          // onSelected: (value) {
+          //   if (value == 0) {
+          //     Navigator.of(context).push(MaterialPageRoute(
+          //       builder: (context) => CompanyCreateJobView(
+          //         updateJob: widget.advertRepo?.adverts[index],
+          //         advertRepo: widget.advertRepo,
+          //       ),
+          //     ));
+          //   }
+          // },
+          itemBuilder: (ctx) {
             return [
               popupItem(
                 index,
                 MyIcons.editNote,
                 StringData.update,
                 updateJob,
+                0,
               ),
               popupItem(
                 index,
                 MyIcons.delete,
                 StringData.delete,
                 deleteJob,
+                1,
               ),
             ];
           },
@@ -168,16 +181,16 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     );
   }
 
-  PopupMenuItem popupItem(int index, IconData icon, String info, Function onTap) {
+  PopupMenuItem popupItem(int index, IconData icon, String info, Function onTap, int value) {
     return PopupMenuItem(
-      child: TextWithIcon(
-        icon: icon,
-        text: info,
-      ),
-      onTap: () {
-        onTap(index);
-      },
-    );
+        value: value,
+        child: TextWithIcon(
+          icon: icon,
+          text: info,
+        ),
+        onTap: () {
+          onTap(index);
+        });
   }
 
   Padding jobImage(int index) {
@@ -300,5 +313,16 @@ class _CompanyJobViewState extends CompanyJobViewModel {
       textScaleFactor: ProjectFontSize.oneToOne,
       style: const TextStyle(fontWeight: Weight.midium),
     );
+  }
+
+  void updateJob(index) async {
+    Future(() => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => CompanyCreateJobView(
+              updateJob: widget.advertRepo?.adverts[index].jobs,
+              advertRepo: widget.advertRepo,
+            ),
+          ),
+        ));
   }
 }

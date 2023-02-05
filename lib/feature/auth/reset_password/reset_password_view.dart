@@ -23,31 +23,29 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SafeArea(
-          child: Padding(
-            padding: const ProjectPadding.allEightTeen(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                title(),
-                BoxSpace(
-                  height: ProjectSize.veryBigHeight().height,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Form(
-                      child: textFields(),
-                    ),
-                    Divider(
-                      height: ProjectSize.veryBigHeight().height,
-                      color: MyColor.veryLightBlack,
-                    ),
-                    resetPasswordButton(context),
-                  ],
-                ),
-              ],
-            ),
+        child: Padding(
+          padding: const ProjectPadding.allEightTeen(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              title(),
+              BoxSpace(
+                height: ProjectSize.veryBigHeight().height,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Form(
+                    child: textFields(),
+                  ),
+                  Divider(
+                    height: ProjectSize.veryBigHeight().height,
+                    color: MyColor.veryLightBlack,
+                  ),
+                  resetPasswordButton(context),
+                ],
+              ),
+            ],
           ),
         ),
       ),

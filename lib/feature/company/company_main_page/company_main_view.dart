@@ -22,23 +22,20 @@ class CompanyMainView extends StatefulWidget {
 class _CompanyMainViewState extends CopmanyMainViewModel {
   @override
   Widget build(BuildContext context) {
+    print("build çalıştı");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,
       drawer: Drawer(
         child: SafeArea(
-          child: Column(
-            children: [
-              ListView.builder(
-                itemCount: AdvertRepo.instance.adverts.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return AdvertRepo.instance.adverts[index].jobs!.isSaveJob == true
-                      ? Text("${AdvertRepo.instance.adverts[index].jobs!.jobTitle}")
-                      : const SizedBox();
-                },
-              ),
-            ],
+          child: ListView.builder(
+            itemCount: AdvertRepo.instance.adverts.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return AdvertRepo.instance.adverts[index].jobs!.isSaveJob == true
+                  ? Text("${AdvertRepo.instance.adverts[index].jobs!.jobTitle}")
+                  : const SizedBox();
+            },
           ),
         ),
       ),
@@ -73,7 +70,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
         status = await Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => CompanyCreateJobView(advertRepo: jobList),
         ));
-        if (status = true) {
+        if (status) {
           setState(() {});
         }
       },

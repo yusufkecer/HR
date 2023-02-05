@@ -12,22 +12,20 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   @override
   void initState() {
     getProvince();
-    // ignore: avoid_function_literals_in_foreach_calls
-    jobQualities.forEach((element) {
-      textController.add(TextEditingController());
-    });
+    controllerSettings();
+
     super.initState();
   }
 
   List<TextEditingController> textController = [];
-
+  Jobs? updateJob;
   String? jobTitle;
   String? timing;
   String? level;
   String? currencyValue;
   List skills = [];
   List? val;
-  List? upperAndLowerWage;
+  List? wage;
   String? provinceValue;
   initController() {
     jobTitle = textController[0].text;
@@ -43,17 +41,17 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       }
     }
 
-    upperAndLowerWage = textController[4].text.isNotEmpty ? textController[4].text.split("-") : null;
+    wage = textController[4].text.isNotEmpty ? textController[4].text.split("-") : null;
     provinceValue = provinceValue;
   }
 
   bool isAddJob = false;
   Map? province;
-  FocusNode focusNode = FocusNode();
-  DataService service = DataService();
+  final FocusNode focusNode = FocusNode();
+  final DataService service = DataService();
   double textFieldWidth = 300;
 
-  Map? currency = {"TL": "₺", "EUR": "€", "DLR": "\$"};
+  final Map? currency = {"TL": "₺", "EUR": "€", "DLR": "\$"};
   NavigationService nav = NavigationService();
 
   List jobQualities = [
@@ -91,13 +89,40 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     setState(() {});
   }
 
+  void controllerSettings() {
+    for (var i = 0; i < jobQualities.length; i++) {
+      textController.add(TextEditingController());
+    }
+
+    if (widget.updateJob?.jobTitle != null) {
+      updateJob = widget.updateJob;
+
+      textController[0].text = updateJob!.jobTitle!;
+      textController[1].text = updateJob!.skills!.join(",");
+      textController[2].text = updateJob!.timing!;
+      textController[3].text = updateJob!.level!;
+      currencyValue = updateJob?.currency;
+      provinceValue = updateJob?.province;
+      String result = "";
+      if (updateJob?.upperWage != null && updateJob?.upperWage != null) {
+        result = "${updateJob?.lowerWage?.toStringAsFixed(0)}-${updateJob?.upperWage?.toStringAsFixed(0)}";
+      } else {
+        result += updateJob?.upperWage?.toStringAsFixed(0) ?? "";
+        result += updateJob?.lowerWage?.toStringAsFixed(0) ?? "";
+      }
+      textController[4].text = result;
+    }
+  }
+
   saveAdvert() async {
     initController();
     if (jobTitle == "" || val == null || level == "" || timing == "") {
-      nav.alert(
+      nav.alertWithButon(
         context,
         StringData.missing,
         StringData.missingText,
+        StringData.ok,
+        popButton,
       );
       return;
     }
@@ -112,8 +137,8 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
           isSaveJob: false,
           jobTitle: jobTitle,
           skills: skills,
-          lowerWage: upperAndLowerWage?[0] != null ? double.parse(upperAndLowerWage?[0]) : null,
-          upperWage: upperAndLowerWage?[1] != null ? double.parse(upperAndLowerWage?[1]) : null,
+          lowerWage: wage?[0] != null ? double.parse(wage?[0]) : null,
+          upperWage: wage?[1] != null ? double.parse(wage?[1]) : null,
           timing: timing,
           currency: currencyValue,
           level: level,
@@ -123,6 +148,20 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       setState(() {
         widget.advertRepo?.adverts.add(data);
       });
+      if (!mounted) return;
+      Navigator.pop(context, true);
+
+      Future(() => nav.alertWithButon(
+            context,
+            StringData.saved,
+            StringData.advertSaved,
+            StringData.ok,
+            popButton,
+          ));
     }
+  }
+
+  void popButton() {
+    Navigator.pop(context);
   }
 }
