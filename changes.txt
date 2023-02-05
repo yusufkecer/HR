@@ -66,15 +66,19 @@ yetenekler kısmında sınırsız boşluk bırakma durumu kaldırıldı
 şehir bilgisi eklenecek
 para birimi seçilmediği durumda defauld olarak türk lirası eklendi
 şehir bilgisindeki tüm karakterler büyük olarak ekrana yazdırma sorunu çözüldü
+04.02
 maaş bilgisindeki text input type düzenlendi
 'ilanlarım' kısmındaki kart boyutu ve yazı boyutu arttırıldı o kısımdaki yeteneklerin boyutu ve font size arttırıldı
 ekrana sığmama sorunu düzeltildi
 yeteneklerde tekrarlamaya sebep olan hata giderildi
 company için profil oluşturuldu
-
+05.02
+crud işlemleri yapıldı (profile ekeleme silme vs)
+ilan güncelleme eklendi
+context scopu çözüldü
+girilen valuelar üzerinden değişiklik yapıyor
 YAPILACAKLAR
-crud işlemleri yapılacak (profile ekeleme silme vs)
-başlık ve içerik ayrı ayrı düzenlenebilecek
+
 
 
 

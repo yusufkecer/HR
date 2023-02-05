@@ -15,17 +15,4 @@ abstract class CompanyJobViewModel extends State<CompanyJobView> {
       widget.advertRepo!.delete(index);
     });
   }
-
-  void updateJob(index) {
-    String value = "YUSUF";
-    String value2 = "";
-    for (var i = 0; i < value.length; i++) {
-      if (i == 0) {
-        value2 = value[i];
-        continue;
-      }
-      value2 += value[i].toLowerCase();
-    }
-    print(value2);
-  }
 }

@@ -27,32 +27,30 @@ class _RegisterViewState extends LoginViewModel {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          child: SafeArea(
-            child: Padding(
-              padding: const ProjectPadding.allEightTeen(),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  apptitle(),
-                  BoxSpace(
-                    height: ProjectSize.veryBigHeight().height,
-                  ),
-                  Column(
-                    children: [
-                      forms(),
-                      Divider(
-                        color: MyColor.veryLightBlack,
-                        height: ProjectSize.bigHeight().height,
-                      ),
-                      termsAndConditions(context),
-                      BoxSpace(
-                        height: ProjectSize.bigHeight().height,
-                      ),
-                      registerButton(),
-                    ],
-                  ),
-                ],
-              ),
+          child: Padding(
+            padding: const ProjectPadding.allEightTeen(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                apptitle(),
+                BoxSpace(
+                  height: ProjectSize.veryBigHeight().height,
+                ),
+                Column(
+                  children: [
+                    forms(),
+                    Divider(
+                      color: MyColor.veryLightBlack,
+                      height: ProjectSize.bigHeight().height,
+                    ),
+                    termsAndConditions(context),
+                    BoxSpace(
+                      height: ProjectSize.bigHeight().height,
+                    ),
+                    registerButton(),
+                  ],
+                ),
+              ],
             ),
           ),
         ),

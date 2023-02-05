@@ -1,15 +1,13 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/Constant/radius.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
-import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/feature/company/company_profile/company_profile_view_model.dart';
 import 'package:hrapp/product/Constant/weight.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
-import 'package:hrapp/product/models/company_model/company_model.dart';
+import 'package:hrapp/product/widgets/info_card.dart';
 import 'package:hrapp/product/widgets/card_listtile.dart';
 import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
 import 'package:hrapp/product/widgets/title_text_button.dart';
@@ -48,12 +46,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
           child: ListView(
             shrinkWrap: true,
             children: [
-              Row(
-                children: [
-                  profileImage(),
-                  nameAndInfo(),
-                ],
-              ),
+              titleAndImage(),
               sizedSpace(),
               infoTitle(),
               sizedSpace(height: 15),
@@ -70,29 +63,38 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
     );
   }
 
+  Row titleAndImage() {
+    return Row(
+      children: [
+        profileImage(),
+        nameAndInfo(),
+      ],
+    );
+  }
+
   TitleWithTextButton contactInfoTItle() {
     return TitleWithTextButton(
       buttonName: !isEditContact ? StringData.edit : StringData.save,
-      onPress: isEditContact
-          ? () {
-              company.mail = mailControoler.text;
-              company.phoneNumber = phoneController.text;
-              company.website = webController.text;
-              company.address = locationController.text;
-              setState(() {
-                isEditContact = !isEditContact;
-              });
-              nav.callSnackbar(context);
-            }
-          : () {
-              mailControoler.text = company.mail ?? "";
-              phoneController.text = company.phoneNumber ?? "";
-              webController.text = company.website ?? "";
-              locationController.text = company.address ?? "";
-              setState(() {
-                isEditContact = !isEditContact;
-              });
-            },
+      onPress: () {
+        if (isEditContact) {
+          company.mail = mailControoler.text;
+          company.phoneNumber = phoneController.text;
+          company.website = webController.text;
+          company.address = locationController.text;
+
+          isEditContact = !isEditContact;
+
+          nav.callSnackbar(context, StringData.saved);
+        } else {
+          mailControoler.text = company.mail ?? "";
+          phoneController.text = company.phoneNumber ?? "";
+          webController.text = company.website ?? "";
+          locationController.text = company.address ?? "";
+
+          isEditContact = !isEditContact;
+        }
+        setState(() {});
+      },
       title: StringData.contactInfo,
     );
   }
@@ -161,84 +163,34 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
 
   TitleWithTextButton infoTitle() {
     return TitleWithTextButton(
-      buttonName: isEditGeneralInfo ? StringData.save : StringData.edit,
-      title: StringData.generalInfo,
-      onPress: isEditGeneralInfo
-          ? () {
-              setState(() {
-                StringData.companyInfo = generalInfoController.text;
-                isEditGeneralInfo = !isEditGeneralInfo;
-              });
-              nav.callSnackbar(context);
-            }
-          : () {
-              generalInfoController.text = StringData.companyInfo;
-              setState(() {
-                isEditGeneralInfo = !isEditGeneralInfo;
-                log(isEditGeneralInfo.toString());
-              });
-            },
-    );
+        buttonName: isEditGeneralInfo ? StringData.save : StringData.edit,
+        title: StringData.generalInfo,
+        onPress: () {
+          if (isEditGeneralInfo) {
+            StringData.companyInfo = generalInfoController.text;
+            isEditGeneralInfo = !isEditGeneralInfo;
+
+            nav.callSnackbar(context, StringData.saved);
+          } else {
+            generalInfoController.text = StringData.companyInfo;
+
+            isEditGeneralInfo = !isEditGeneralInfo;
+          }
+          setState(() {});
+        });
   }
 
-  Container generalInfo() {
-    return Container(
-      padding: EdgeInsets.zero,
-      decoration: BoxDecoration(color: MyColor.white, borderRadius: const ProjectRadius.mediumAll(), boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.1),
-          spreadRadius: 2,
-          blurRadius: 20,
-          offset: const Offset(1, 3),
-        ),
-      ]),
-      child: Padding(
-        padding: const ProjectPadding.allSixteen(),
-        child: !isEditGeneralInfo
-            ? RichText(
-                text: TextSpan(
-                  children: [
-                    const TextSpan(
-                      text: "${StringData.aboutCompany}\n\n",
-                      style: TextStyle(
-                        color: MyColor.black,
-                        fontWeight: Weight.midium,
-                        fontSize: 18,
-                      ),
-                    ),
-                    TextSpan(
-                      style: const TextStyle(
-                        color: MyColor.black,
-                        fontSize: 16,
-                      ),
-                      text: StringData.companyInfo,
-                    ),
-                  ],
-                ),
-              )
-            : CustomTextField(
-                hint: StringData.aboutCompany,
-                maxLine: null,
-                textEditingController: generalInfoController,
-              ),
-      ),
+  InfoCard generalInfo() {
+    return InfoCard(
+      child: companyName(),
     );
   }
 
   Widget contactInfo() {
-    return Container(
-      padding: EdgeInsets.zero,
-      decoration: BoxDecoration(color: MyColor.white, borderRadius: const ProjectRadius.mediumAll(), boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.3),
-          spreadRadius: 2,
-          blurRadius: 10,
-          offset: const Offset(1, 3),
-        ),
-      ]),
+    return InfoCard(
       child: Column(
         children: [
-          const SizedBox(
+          sizedSpace(
             height: 15,
           ),
           !isEditContact
@@ -319,11 +271,44 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
                     textEditingController: locationController,
                   ),
                 ),
-          const SizedBox(
+          sizedSpace(
             height: 15,
           ),
         ],
       ),
+    );
+  }
+
+  Padding companyName() {
+    return Padding(
+      padding: const ProjectPadding.allSixteen(),
+      child: !isEditGeneralInfo
+          ? RichText(
+              text: TextSpan(
+                children: [
+                  const TextSpan(
+                    text: "${StringData.aboutCompany}\n\n",
+                    style: TextStyle(
+                      color: MyColor.black,
+                      fontWeight: Weight.midium,
+                      fontSize: 18,
+                    ),
+                  ),
+                  TextSpan(
+                    style: const TextStyle(
+                      color: MyColor.black,
+                      fontSize: 16,
+                    ),
+                    text: StringData.companyInfo,
+                  ),
+                ],
+              ),
+            )
+          : CustomTextField(
+              hint: StringData.aboutCompany,
+              maxLine: null,
+              textEditingController: generalInfoController,
+            ),
     );
   }
 
@@ -332,6 +317,8 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
       height: height,
     );
   }
+
+  edit() {}
 }
 
 class DecorationProfile extends BoxDecoration {

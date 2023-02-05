@@ -1,11 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/product/Constant/colors.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
-
 import '../constant/font_size.dart';
 
 class TitleWithTextButton extends StatelessWidget {
@@ -36,7 +32,7 @@ class TitleWithTextButton extends StatelessWidget {
             padding: const ProjectPadding.allEight().copyWith(bottom: 0),
             child: Text(
               "$buttonName",
-              style: TextStyle(color: MyColor.purplishBlue),
+              style: const TextStyle(color: MyColor.purplishBlue),
               textScaleFactor: ProjectFontSize.oneToThree,
               textAlign: TextAlign.center,
             ),

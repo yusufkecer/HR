@@ -35,7 +35,6 @@ class ProfileList extends StatelessWidget {
               crossAxisCount: check! ? 2 : 1,
             ),
             itemCount: workerList != null ? workerList!.length : 0,
-            //! FIXME: Burası
             itemBuilder: (context, index) {
               return Card(
                 shape: const RoundedRectangleBorder(
@@ -73,7 +72,7 @@ class ProfileList extends StatelessWidget {
             child: SizedBox(
               child: Center(
                 child: Text(
-                  connectionError ?? "", //! FIXME:burası düzenlenecek
+                  connectionError ?? "",
                   textScaleFactor: ProjectFontSize.oneToThree,
                   textAlign: TextAlign.center,
                   style: const TextStyle(color: MyColor.osloGrey),
