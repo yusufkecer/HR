@@ -45,7 +45,6 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     provinceValue = provinceValue;
   }
 
-  bool isAddJob = false;
   Map? province;
   final FocusNode focusNode = FocusNode();
   final DataService service = DataService();
@@ -115,20 +114,14 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   }
 
   saveAdvert() async {
+    FocusScope.of(context).requestFocus(FocusNode());
+    bool? check = false;
     initController();
     if (jobTitle == "" || val == null || level == "" || timing == "") {
-      nav.alertWithButon(
-        context,
-        StringData.missing,
-        StringData.missingText,
-        StringData.ok,
-        popButton,
-      );
+      nav.alertWithButon(context, StringData.missing, StringData.missingText, StringData.ok, popButton);
       return;
     }
-    bool? check = false;
-
-    check = await nav.checkDialog(context, StringData.checkTitle, StringData.checkText);
+    check = await nav.checkDialog(StringData.checkTitle, StringData.checkText);
     if (check ?? false) {
       var data = Company(
         companyName: "PAÜ",
@@ -145,19 +138,21 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
           province: provinceValue,
         ),
       );
-      setState(() {
+      if (updateJob == null) {
         widget.advertRepo?.adverts.add(data);
-      });
-      if (!mounted) return;
-      Navigator.pop(context, true);
+      } else {
+        widget.advertRepo?.adverts[widget.index!] = data;
+      }
+      setState(() {});
 
-      Future(() => nav.alertWithButon(
-            context,
-            StringData.saved,
-            StringData.advertSaved,
-            StringData.ok,
-            popButton,
-          ));
+      if (!mounted) {}
+      nav.alertWithButon(
+        context,
+        StringData.saved,
+        StringData.advertSaved,
+        StringData.ok,
+        nav.back,
+      );
     }
   }
 
