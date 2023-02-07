@@ -321,6 +321,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
             builder: (context) => CompanyCreateJobView(
               updateJob: widget.advertRepo?.adverts[index].jobs,
               advertRepo: widget.advertRepo,
+              index: index,
             ),
           ),
         ));

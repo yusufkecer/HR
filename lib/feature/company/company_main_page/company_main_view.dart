@@ -22,7 +22,6 @@ class CompanyMainView extends StatefulWidget {
 class _CompanyMainViewState extends CopmanyMainViewModel {
   @override
   Widget build(BuildContext context) {
-    print("build çalıştı");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,

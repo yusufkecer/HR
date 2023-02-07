@@ -77,7 +77,10 @@ crud işlemleri yapıldı (profile ekeleme silme vs)
 ilan güncelleme eklendi
 context scopu çözüldü
 girilen valuelar üzerinden değişiklik yapıyor
+07.02
+ilan güncelleme eklendi ve tamamlandı
 YAPILACAKLAR
+güncelleme esnasında fazladan yetenek ekleniyor
 
 
 

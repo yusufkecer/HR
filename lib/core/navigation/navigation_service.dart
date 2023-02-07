@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/core/navigation/navigator_key.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import '../../Product/Constant/colors.dart';
 import '../../Product/widgets/sized_box/box_space.dart';
@@ -35,20 +36,15 @@ class NavigationService {
 
   alertWithButon(context, alertTitle, text, buttonText, onPress) {
     showDialog(
-      context: context,
+      context: NavigatonKey.instance.navigatorKey.currentContext!,
       builder: (context) {
         return AlertDialog(
           title: Center(child: Text(alertTitle)),
           content: Text(text),
           actions: [
             TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: TextButton(
-                onPressed: onPress,
-                child: Text(buttonText),
-              ),
+              onPressed: onPress,
+              child: Text(buttonText),
             ),
           ],
         );
@@ -56,9 +52,9 @@ class NavigationService {
     );
   }
 
-  Future<bool?> checkDialog(context, alertTitle, text) async {
+  Future<bool?> checkDialog(alertTitle, text) async {
     return showDialog<bool>(
-      context: context,
+      context: NavigatonKey.instance.navigatorKey.currentContext!,
       builder: (context) {
         return WillPopScope(
           onWillPop: () async {
@@ -89,6 +85,14 @@ class NavigationService {
         );
       },
     );
+  }
+
+  void back() {
+    //! TODO güncellenecek
+    Navigator.of(
+      NavigatonKey.instance.navigatorKey.currentContext!,
+      rootNavigator: true,
+    ).pop();
   }
 
   void hideLoading(context) {

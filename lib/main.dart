@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/Product/Constant/colors.dart';
+import 'package:hrapp/core/navigation/navigation_service.dart';
+import 'package:hrapp/core/navigation/navigator_key.dart';
 
 import 'feature/splash/splash_screen.dart';
 
@@ -12,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: NavigatonKey.instance.navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'IK App',
       theme: ThemeData(
