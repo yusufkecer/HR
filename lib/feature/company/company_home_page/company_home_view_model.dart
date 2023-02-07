@@ -9,7 +9,6 @@ abstract class CompanyHomeViewModel extends State<CompanyHomeView> with CheckMix
     setState(() {
       AdvertRepo.instance.saveJob(index);
     });
-    // getWorkers();
   }
 
   double aspectRatio = 1;
