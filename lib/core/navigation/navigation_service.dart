@@ -34,27 +34,9 @@ class NavigationService {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
   }
 
-  alertWithButon(context, alertTitle, text, buttonText, onPress) {
-    showDialog(
-      context: NavigatonKey.instance.navigatorKey.currentContext!,
-      builder: (context) {
-        return AlertDialog(
-          title: Center(child: Text(alertTitle)),
-          content: Text(text),
-          actions: [
-            TextButton(
-              onPressed: onPress,
-              child: Text(buttonText),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   Future<bool?> checkDialog(alertTitle, text) async {
     return showDialog<bool>(
-      context: NavigatonKey.instance.navigatorKey.currentContext!,
+      context: NavigationKey.instance.navigatorKey.currentContext!,
       builder: (context) {
         return WillPopScope(
           onWillPop: () async {
@@ -87,16 +69,37 @@ class NavigationService {
     );
   }
 
+  alertWithButon(alertTitle, text, buttonText, [Function? onPress]) {
+    showDialog(
+      context: NavigationKey.instance.navigatorKey.currentContext!,
+      builder: (context) {
+        return AlertDialog(
+          title: Center(child: Text(alertTitle)),
+          content: Text(text),
+          actions: [
+            TextButton(
+              onPressed: () {
+                if (onPress != null) {
+                  onPress();
+                }
+                back();
+              },
+              child: Text(buttonText),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void back() {
-    //! TODO güncellenecek
     Navigator.of(
-      NavigatonKey.instance.navigatorKey.currentContext!,
-      rootNavigator: true,
-    ).pop();
+      NavigationKey.instance.navigatorKey.currentContext!,
+    ).pop(true);
   }
 
   void hideLoading(context) {
-    Navigator.of(context, rootNavigator: true).pop('dialog');
+    Navigator.of(context, rootNavigator: true).pop();
   }
 
   showBottomModal(context, String title, String subtitle) {
