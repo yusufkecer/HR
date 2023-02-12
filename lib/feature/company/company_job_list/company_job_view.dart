@@ -27,6 +27,7 @@ class CompanyJobView extends StatefulWidget {
 class _CompanyJobViewState extends CompanyJobViewModel {
   @override
   Widget build(BuildContext context) {
+    print("build çalıştı");
     return widget.advertRepo!.adverts.isNotEmpty
         ? Padding(
             padding: const ProjectPadding.bottomTwentySix(),
@@ -316,14 +317,20 @@ class _CompanyJobViewState extends CompanyJobViewModel {
   }
 
   void updateJob(index) async {
-    Future(() => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => CompanyCreateJobView(
-              updateJob: widget.advertRepo?.adverts[index].jobs,
-              advertRepo: widget.advertRepo,
-              index: index,
-            ),
+    Future(() async {
+      bool check = await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => CompanyCreateJobView(
+            updateJob: widget.advertRepo?.adverts[index].jobs,
+            advertRepo: widget.advertRepo,
+            index: index,
           ),
-        ));
+        ),
+      );
+
+      if (check) {
+        setState(() {});
+      }
+    });
   }
 }

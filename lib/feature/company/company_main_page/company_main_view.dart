@@ -69,6 +69,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
         status = await Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => CompanyCreateJobView(advertRepo: jobList),
         ));
+        print(status);
         if (status) {
           setState(() {});
         }

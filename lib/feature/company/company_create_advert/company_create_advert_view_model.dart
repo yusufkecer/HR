@@ -27,6 +27,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   List? val;
   List? wage;
   String? provinceValue;
+  bool? check = false;
   initController() {
     jobTitle = textController[0].text;
     timing = textController[2].text;
@@ -115,10 +116,10 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
 
   saveAdvert() async {
     FocusScope.of(context).requestFocus(FocusNode());
-    bool? check = false;
+
     initController();
     if (jobTitle == "" || val == null || level == "" || timing == "") {
-      nav.alertWithButon(context, StringData.missing, StringData.missingText, StringData.ok, popButton);
+      nav.alertWithButon(StringData.missing, StringData.missingText, StringData.ok);
       return;
     }
     check = await nav.checkDialog(StringData.checkTitle, StringData.checkText);
@@ -141,13 +142,12 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       if (updateJob == null) {
         widget.advertRepo?.adverts.add(data);
       } else {
+        widget.advertRepo?.adverts[widget.index!].jobs?.skills = [];
         widget.advertRepo?.adverts[widget.index!] = data;
       }
       setState(() {});
 
-      if (!mounted) {}
       nav.alertWithButon(
-        context,
         StringData.saved,
         StringData.advertSaved,
         StringData.ok,
