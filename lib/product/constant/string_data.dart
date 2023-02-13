@@ -87,6 +87,7 @@ class StringData {
   static const currencyUnit = "Birim";
   static const description = "İş Tanımı";
   static const province = "Tercih Edilen Şehir";
+  static const positionOpen = "Açık Pozisyon Sayısı*";
 
   static const turkishLiraSymbol = "₺";
 //check showdialog

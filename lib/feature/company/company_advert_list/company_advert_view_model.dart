@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'company_job_view.dart';
+
+import 'company_advert_view.dart';
 
 abstract class CompanyJobViewModel extends State<CompanyJobView> {
   @override

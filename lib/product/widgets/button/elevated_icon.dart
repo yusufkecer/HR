@@ -27,7 +27,7 @@ class MyElevatedIcons extends StatelessWidget {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
         shape: buttonShape(),
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
       ),
       onPressed: () => onPressed!(),
       icon: icons!,

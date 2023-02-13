@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hrapp/feature/company/company_job_list/company_job_view.dart';
+import 'package:hrapp/feature/company/company_advert_list/company_advert_view.dart';
 import 'package:hrapp/product/data/company_repo/advert_repo.dart';
 import '../../../Product/Constant/colors.dart';
 import '../../../core/constant/project_padding.dart';
@@ -69,7 +69,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
         status = await Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => CompanyCreateJobView(advertRepo: jobList),
         ));
-        print(status);
+
         if (status) {
           setState(() {});
         }

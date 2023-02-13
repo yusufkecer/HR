@@ -11,7 +11,7 @@ import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/data/company_repo/advert_repo.dart';
 import '../company_create_advert/company_create_advert_view.dart';
-import 'company_job_view_model.dart';
+import 'company_advert_view_model.dart';
 
 class CompanyJobView extends StatefulWidget {
   final AdvertRepo? advertRepo;
@@ -27,7 +27,6 @@ class CompanyJobView extends StatefulWidget {
 class _CompanyJobViewState extends CompanyJobViewModel {
   @override
   Widget build(BuildContext context) {
-    print("build çalıştı");
     return widget.advertRepo!.adverts.isNotEmpty
         ? Padding(
             padding: const ProjectPadding.bottomTwentySix(),
@@ -90,7 +89,16 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           jobImage(index),
-                          jobTitle(index),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              jobTitle(index),
+                              const SizedBox(
+                                height: 7,
+                              ),
+                              jobInfo(index),
+                            ],
+                          )
                         ],
                       ),
                       skills(index),
@@ -131,6 +139,87 @@ class _CompanyJobViewState extends CompanyJobViewModel {
         },
       ),
     );
+  }
+
+  Padding jobImage(int index) {
+    return Padding(
+      padding: const ProjectPadding.allEightTeen(),
+      child: Container(
+        height: 75,
+        width: 75,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              ImagePath.temporaryImage,
+            ),
+          ),
+          borderRadius: ProjectRadius.smallAll(),
+          color: MyColor.transparent,
+        ),
+      ),
+    );
+  }
+
+  Text jobTitle(int index) {
+    return Text(
+      widget.advertRepo!.adverts[index].jobs?.jobTitle ?? "-",
+      textScaleFactor: ProjectFontSize.oneToThree,
+      style: const TextStyle(
+        fontWeight: Weight.midium,
+      ),
+    );
+  }
+
+  Widget jobInfo(int index) {
+    return RichText(
+        text: TextSpan(children: [
+      TextSpan(
+        text: "${widget.advertRepo!.adverts[index].jobs?.level}",
+        style: const TextStyle(
+          fontWeight: Weight.midium,
+          color: MyColor.black,
+          fontSize: 15.5,
+        ),
+      ),
+      const WidgetSpan(
+          child: SizedBox(
+        height: 16,
+        child: VerticalDivider(
+          color: MyColor.osloGrey,
+          width: 10,
+          thickness: 1.5,
+          endIndent: 2,
+        ),
+      )),
+      TextSpan(
+        text: "${widget.advertRepo!.adverts[index].jobs?.positionOpen} Kişi",
+        style: const TextStyle(
+          fontWeight: Weight.midium,
+          color: MyColor.black,
+          fontSize: 15.5,
+        ),
+      ),
+    ]));
+
+    // return Row(
+    //   children: [
+    //     Text(
+    //       "${widget.advertRepo!.adverts[index].jobs?.level}",
+    //       style: const TextStyle(
+    //         fontWeight: Weight.midium,
+    //       ),
+    //     ),
+    //     SizedBox(
+    //       width: 10,
+    //     ),
+    //     Text(
+    //       "${widget.advertRepo!.adverts[index].jobs?.positionOpen}",
+    //       style: const TextStyle(
+    //         fontWeight: Weight.midium,
+    //       ),
+    //     ),
+    //   ],
+    // );
   }
 
   Align jobSettings(index) {
@@ -192,35 +281,6 @@ class _CompanyJobViewState extends CompanyJobViewModel {
         onTap: () {
           onTap(index);
         });
-  }
-
-  Padding jobImage(int index) {
-    return Padding(
-      padding: const ProjectPadding.allEightTeen(),
-      child: Container(
-        height: 75,
-        width: 75,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-              ImagePath.temporaryImage,
-            ),
-          ),
-          borderRadius: ProjectRadius.smallAll(),
-          color: MyColor.transparent,
-        ),
-      ),
-    );
-  }
-
-  Text jobTitle(int index) {
-    return Text(
-      widget.advertRepo!.adverts[index].jobs?.jobTitle ?? "-",
-      textScaleFactor: ProjectFontSize.oneToThree,
-      style: const TextStyle(
-        fontWeight: Weight.midium,
-      ),
-    );
   }
 
   SizedBox skills(parentIndex) {
