@@ -20,6 +20,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   List<TextEditingController> textController = [];
   Jobs? updateJob;
   String? jobTitle;
+  String? positionOpen;
   String? timing;
   String? level;
   String? currencyValue;
@@ -32,8 +33,10 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     jobTitle = textController[0].text;
     timing = textController[2].text;
     level = textController[3].text;
-
+    positionOpen = textController[4].text;
     val = textController[1].text.isNotEmpty ? textController[1].text.replaceAll(" ", "").split(",") : null;
+    wage = textController[5].text.isNotEmpty ? textController[5].text.split("-") : null;
+    provinceValue = provinceValue;
     if (val != null) {
       for (var i = 0; i < val!.length; i++) {
         if (val![i] != "") {
@@ -41,9 +44,6 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         }
       }
     }
-
-    wage = textController[4].text.isNotEmpty ? textController[4].text.split("-") : null;
-    provinceValue = provinceValue;
   }
 
   Map? province;
@@ -59,6 +59,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     [StringData.skills, MyIcons.skill, StringData.skillsHint],
     [StringData.timing, MyIcons.timinig, ""],
     [StringData.level, MyIcons.level, ""],
+    [StringData.positionOpen, MyIcons.number, ""],
     [StringData.wage, MyIcons.wage, StringData.salaryRange],
     [StringData.description],
   ];
@@ -93,14 +94,20 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     for (var i = 0; i < jobQualities.length; i++) {
       textController.add(TextEditingController());
     }
+    updateJob = widget.updateJob;
 
-    if (widget.updateJob?.jobTitle != null) {
+    if (updateJob?.jobTitle != null &&
+        updateJob?.skills != null &&
+        updateJob?.timing != null &&
+        updateJob?.level != null &&
+        updateJob?.positionOpen != null) {
       updateJob = widget.updateJob;
 
       textController[0].text = updateJob!.jobTitle!;
       textController[1].text = updateJob!.skills!.join(",");
       textController[2].text = updateJob!.timing!;
       textController[3].text = updateJob!.level!;
+      textController[4].text = updateJob!.positionOpen!;
       currencyValue = updateJob?.currency;
       provinceValue = updateJob?.province;
       String result = "";
@@ -110,7 +117,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         result += updateJob?.upperWage?.toStringAsFixed(0) ?? "";
         result += updateJob?.lowerWage?.toStringAsFixed(0) ?? "";
       }
-      textController[4].text = result;
+      textController[5].text = result;
     }
   }
 
@@ -118,7 +125,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     FocusScope.of(context).requestFocus(FocusNode());
 
     initController();
-    if (jobTitle == "" || val == null || level == "" || timing == "") {
+    if (jobTitle == "" || val == null || level == "" || timing == "" || positionOpen == "") {
       nav.alertWithButon(StringData.missing, StringData.missingText, StringData.ok);
       return;
     }
@@ -134,11 +141,13 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
           lowerWage: wage?[0] != null ? double.parse(wage?[0]) : null,
           upperWage: wage?[1] != null ? double.parse(wage?[1]) : null,
           timing: timing,
+          positionOpen: positionOpen,
           currency: currencyValue,
           level: level,
           province: provinceValue,
         ),
       );
+
       if (updateJob == null) {
         widget.advertRepo?.adverts.add(data);
       } else {

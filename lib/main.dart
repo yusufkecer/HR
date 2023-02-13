@@ -21,8 +21,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
           iconTheme: IconThemeData(color: MyColor.fuchsiaBlueLight, size: 27),
         ),
-        primarySwatch: Colors.purple,
-        backgroundColor: const Color(0xFF6711fe),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(background: const Color(0xFF6711fe)),
       ),
       home: const Splash(),
     );

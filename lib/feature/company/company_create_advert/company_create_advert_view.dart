@@ -59,12 +59,6 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                 onPressed: saveAdvert,
                 icon: const Icon(MyIcons.confirm),
               ),
-              IconButton(
-                onPressed: () {
-                  print(widget.index);
-                },
-                icon: const Icon(MyIcons.grid),
-              ),
             ],
           ),
           body: SizedBox(
@@ -84,20 +78,30 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                 ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: jobQualities.length - 2,
+                  itemCount: jobQualities.length - 3,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const ProjectPadding.createJob(),
                       child: CustomTextField(
                         maxLine: 1,
                         title: jobQualities[index][0],
-                        hint: jobQualities[index][2],
                         icon: jobQualities[index][1],
-                        //  width: textFieldWidth,
+                        hint: jobQualities[index][2],
                         textEditingController: textController[index],
                       ),
                     );
                   },
+                ),
+                Padding(
+                  padding: const ProjectPadding.createJob(),
+                  child: CustomTextField(
+                    textInputType: TextInputType.number,
+                    maxLine: 1,
+                    textEditingController: textController[jobQualities.length - 3],
+                    title: jobQualities[jobQualities.length - 3][0],
+                    icon: jobQualities[jobQualities.length - 3][1],
+                    hint: jobQualities[jobQualities.length - 3][2],
+                  ),
                 ),
                 Padding(
                   padding: const ProjectPadding.createJob(),

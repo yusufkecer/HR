@@ -82,9 +82,14 @@ ilan güncelleme eklendi ve tamamlandı
 08.02 
 contexti aldığımız key singleton design patternı kurgulandı
 güncelleme esnasında fazladan yetenek eklenme hatası çözüldü
-
+12.02
+açık pozisyon bilgisi oluşturuldu ve güncellenebilir hale getirildi
+açık pozisyon bilgisi eklendi
+ilanlarım sayfasındaki listeye seviye ve açık pozisyon sayısı eklendi
+isimler güncellendi
 YAPILACAKLAR
-açık pozisyon bilgisi eklenecek
+
+ilan tarihi eklenecek (geçerlilik tarihi ve oluşturma tarihi)
 profil resmi değiştirme eklenecek
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
 
