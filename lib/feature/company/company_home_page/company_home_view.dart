@@ -14,6 +14,7 @@ import 'package:hrapp/product/widgets/text_field/search_field.dart';
 
 import '../../../Product/Constant/colors.dart';
 import '../../../product/data/company_repo/advert_repo.dart';
+import '../company_advert_detail/company_advert_detail_view.dart';
 import 'company_home_view_model.dart';
 
 class CompanyHomeView extends StatefulWidget {
@@ -66,33 +67,44 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
         scrollDirection: Axis.horizontal,
         itemCount: cardCount,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const ProjectPadding.allEight(),
-            child: Container(
-              width: 280,
-              decoration: const BoxDecoration(
-                borderRadius: ProjectRadius.mediumAll(),
-                color: MyColor.tints,
-              ),
-              child: Stack(
-                children: [
-                  saveJobButton(index),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          jobImage(jobInfo[index]),
-                          //TODO:böyle kullan
-                          jobTitle(index),
-                        ],
-                      ),
-                      skills(index),
-                      jobWage(index)
-                    ],
+          return GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CompanyAdvertDetailView(
+                    adverts: jobInfo[index],
                   ),
-                ],
+                ),
+              );
+            },
+            child: Padding(
+              padding: const ProjectPadding.allEight(),
+              child: Container(
+                width: 280,
+                decoration: const BoxDecoration(
+                  borderRadius: ProjectRadius.mediumAll(),
+                  color: MyColor.tints,
+                ),
+                child: Stack(
+                  children: [
+                    saveJobButton(index),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            jobImage(jobInfo[index]),
+                            //TODO:böyle kullan
+                            jobTitle(index),
+                          ],
+                        ),
+                        skills(index),
+                        jobWage(index)
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           );

@@ -23,10 +23,11 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   String? positionOpen;
   String? timing;
   String? level;
+  String? description;
   String? currencyValue;
   List skills = [];
   List? val;
-  List? wage;
+  List? wage = [];
   String? provinceValue;
   bool? check = false;
   initController() {
@@ -36,8 +37,11 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     positionOpen = textController[4].text;
     val = textController[1].text.isNotEmpty ? textController[1].text.replaceAll(" ", "").split(",") : null;
     wage = textController[5].text.isNotEmpty ? textController[5].text.split("-") : null;
+
+    description = textController[6].text.isNotEmpty ? textController[6].text : null;
     provinceValue = provinceValue;
     if (val != null) {
+      skills = [];
       for (var i = 0; i < val!.length; i++) {
         if (val![i] != "") {
           skills.add(val![i]);
@@ -97,6 +101,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     updateJob = widget.updateJob;
 
     if (updateJob?.jobTitle != null &&
+        updateJob?.description != null &&
         updateJob?.skills != null &&
         updateJob?.timing != null &&
         updateJob?.level != null &&
@@ -108,6 +113,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       textController[2].text = updateJob!.timing!;
       textController[3].text = updateJob!.level!;
       textController[4].text = updateJob!.positionOpen!;
+      textController[6].text = updateJob!.description!;
       currencyValue = updateJob?.currency;
       provinceValue = updateJob?.province;
       String result = "";
@@ -125,11 +131,12 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     FocusScope.of(context).requestFocus(FocusNode());
 
     initController();
-    if (jobTitle == "" || val == null || level == "" || timing == "" || positionOpen == "") {
+    if (jobTitle == "" || val == null || level == "" || timing == "" || positionOpen == "" || description == null) {
       nav.alertWithButon(StringData.missing, StringData.missingText, StringData.ok);
       return;
     }
     check = await nav.checkDialog(StringData.checkTitle, StringData.checkText);
+
     if (check ?? false) {
       var data = Company(
         companyName: "PAÜ",
@@ -139,12 +146,13 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
           jobTitle: jobTitle,
           skills: skills,
           lowerWage: wage?[0] != null ? double.parse(wage?[0]) : null,
-          upperWage: wage?[1] != null ? double.parse(wage?[1]) : null,
+          upperWage: wage!.length >= 2 ? double.parse(wage?[1]) : null,
           timing: timing,
           positionOpen: positionOpen,
           currency: currencyValue,
           level: level,
           province: provinceValue,
+          description: description,
         ),
       );
 

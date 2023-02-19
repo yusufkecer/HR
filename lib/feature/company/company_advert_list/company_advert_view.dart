@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/feature/company/company_advert_detail/company_advert_detail_view.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
@@ -72,67 +73,78 @@ class _CompanyJobViewState extends CompanyJobViewModel {
         scrollDirection: Axis.vertical,
         itemCount: widget.advertRepo!.adverts.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const ProjectPadding.allEight(),
-            child: Container(
-              width: 280,
-              decoration: const BoxDecoration(
-                borderRadius: ProjectRadius.mediumAll(),
-                color: MyColor.tints,
-              ),
-              child: Stack(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          jobImage(index),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              jobTitle(index),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              jobInfo(index),
-                            ],
-                          )
-                        ],
-                      ),
-                      skills(index),
-                      Row(
-                        children: [
-                          jobWage(index),
-                          verticalDivider
-                              ? const SizedBox(
-                                  height: 17,
-                                  child: VerticalDivider(
-                                    color: MyColor.osloGrey,
-                                    width: 10,
-                                    thickness: 1.5,
-                                  ),
-                                )
-                              : const SizedBox(),
-                          jobTiming(index),
-                          widget.advertRepo!.adverts[index].jobs!.province != null
-                              ? const SizedBox(
-                                  height: 18,
-                                  child: VerticalDivider(
-                                    color: MyColor.osloGrey,
-                                    width: 10,
-                                    thickness: 1.5,
-                                  ),
-                                )
-                              : const SizedBox(),
-                          widget.advertRepo!.adverts[index].jobs!.province != null ? province(index) : const SizedBox()
-                        ],
-                      )
-                    ],
-                  ),
-                  jobSettings(index),
-                ],
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CompanyAdvertDetailView(adverts: widget.advertRepo!.adverts[index]),
+                  ));
+            },
+            child: Padding(
+              padding: const ProjectPadding.allEight(),
+              child: Container(
+                width: 280,
+                decoration: const BoxDecoration(
+                  borderRadius: ProjectRadius.mediumAll(),
+                  color: MyColor.tints,
+                ),
+                child: Stack(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            jobImage(index),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                jobTitle(index),
+                                const SizedBox(
+                                  height: 7,
+                                ),
+                                jobInfo(index),
+                              ],
+                            )
+                          ],
+                        ),
+                        skills(index),
+                        Row(
+                          children: [
+                            jobWage(index),
+                            verticalDivider
+                                ? const SizedBox(
+                                    height: 17,
+                                    child: VerticalDivider(
+                                      color: MyColor.osloGrey,
+                                      width: 10,
+                                      thickness: 1.5,
+                                    ),
+                                  )
+                                : const SizedBox(),
+                            jobTiming(index),
+                            widget.advertRepo!.adverts[index].jobs!.province != null
+                                ? const SizedBox(
+                                    height: 18,
+                                    child: VerticalDivider(
+                                      color: MyColor.osloGrey,
+                                      width: 10,
+                                      thickness: 1.5,
+                                    ),
+                                  )
+                                : const SizedBox(),
+                            widget.advertRepo!.adverts[index].jobs!.province != null
+                                ? province(index)
+                                : const SizedBox()
+                          ],
+                        )
+                      ],
+                    ),
+                    jobSettings(index),
+                  ],
+                ),
               ),
             ),
           );

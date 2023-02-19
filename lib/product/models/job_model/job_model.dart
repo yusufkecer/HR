@@ -8,6 +8,7 @@ class Jobs {
   String? currency;
   String? province;
   String? positionOpen;
+  String? description;
   bool? isSaveJob;
   Jobs({
     this.jobTitle,
@@ -19,6 +20,7 @@ class Jobs {
     this.currency,
     this.province,
     this.positionOpen,
+    this.description,
     this.isSaveJob,
   });
 }

@@ -76,7 +76,7 @@ class StringData {
   static const createAdvert = "İlan Oluştur";
   static const jobAdvertNotFound = "İlanınız bulunmamaktadır.\nHemen oluşturun!";
 
-  //advert
+  //create advert
   static const jobPosition = "Pozisyon*";
   static const skills = "Aranan Nitelikler*";
   static const skillsHint = "Word, Excel, Power Point";
@@ -85,7 +85,7 @@ class StringData {
   static const wage = "Maaş Aralığı";
   static const salaryRange = "20000 - 30000";
   static const currencyUnit = "Birim";
-  static const description = "İş Tanımı";
+  static const description = "İş Tanımı*";
   static const province = "Tercih Edilen Şehir";
   static const positionOpen = "Açık Pozisyon Sayısı*";
 
@@ -107,4 +107,14 @@ class StringData {
   static const phoneNumber = "Telefon No";
   static const webSite = "Web Sitesi";
   static const aboutCompany = "Şirket Hakkında";
+
+  //advert detail
+  static const skillsD = "Aranan Nitelikler:";
+  static const jobPositionD = "Pozisyon:";
+  static const timingD = "Çalışma Türü:";
+  static const wageD = "Maaş Aralığı";
+  static const levelD = "Deneyim:";
+  static const descriptionD = "İş Tanımı:";
+  static const positionOpenD = "Açık Pozisyon Sayısı:";
+  static const provinceD = "Tercih Edilen Şehir:";
 }

@@ -87,8 +87,15 @@ açık pozisyon bilgisi oluşturuldu ve güncellenebilir hale getirildi
 açık pozisyon bilgisi eklendi
 ilanlarım sayfasındaki listeye seviye ve açık pozisyon sayısı eklendi
 isimler güncellendi
-YAPILACAKLAR
+19.02
+ilan detay sayfası eklendi
+ilan detay sayfasıyla birlikte açıklama işlemi de eklendi
+birkaç entity düzenlendi
+sadece düşük ücret girilince oluşan hata düzeltildi
+birden fazla listeye eleman eklenmesiyle oluşan hata düzeltildi
 
+YAPILACAKLAR
+lower wage uppderdan düşükse hata vermesi lazım
 ilan tarihi eklenecek (geçerlilik tarihi ve oluşturma tarihi)
 profil resmi değiştirme eklenecek
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
