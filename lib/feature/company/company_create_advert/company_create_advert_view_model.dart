@@ -146,7 +146,11 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
           jobTitle: jobTitle,
           skills: skills,
           lowerWage: wage?[0] != null ? double.parse(wage?[0]) : null,
-          upperWage: wage!.length >= 2 ? double.parse(wage?[1]) : null,
+          upperWage: wage != null
+              ? wage!.length >= 2
+                  ? double.parse(wage?[1])
+                  : null
+              : null,
           timing: timing,
           positionOpen: positionOpen,
           currency: currencyValue,

@@ -52,7 +52,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
               sizedSpace(height: 15),
               generalInfo(),
               sizedSpace(),
-              contactInfoTItle(),
+              contactInfoTitle(),
               sizedSpace(height: 15),
               contactInfo(),
               sizedSpace(),
@@ -72,91 +72,72 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
     );
   }
 
-  TitleWithTextButton contactInfoTItle() {
-    return TitleWithTextButton(
-      buttonName: !isEditContact ? StringData.edit : StringData.save,
-      onPress: () {
-        if (isEditContact) {
-          company.mail = mailControoler.text;
-          company.phoneNumber = phoneController.text;
-          company.website = webController.text;
-          company.address = locationController.text;
-
-          isEditContact = !isEditContact;
-
-          nav.callSnackbar(context, StringData.saved);
-        } else {
-          mailControoler.text = company.mail ?? "";
-          phoneController.text = company.phoneNumber ?? "";
-          webController.text = company.website ?? "";
-          locationController.text = company.address ?? "";
-
-          isEditContact = !isEditContact;
-        }
-        setState(() {});
-      },
-      title: StringData.contactInfo,
-    );
-  }
-
-  Padding profileImage() {
-    return Padding(
-      padding: const ProjectPadding.allTen(),
-      child: Align(
-        child: Container(
-          height: 120,
-          width: 120,
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: const ProjectRadius.mediumAll(),
-            image: const DecorationImage(
-              image: NetworkImage(ImagePath.temporaryImage),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: MyColor.osloGrey.withOpacity(0.3),
-                spreadRadius: 4,
-                blurRadius: 8,
-                offset: const Offset(0, 0),
-              ),
-            ],
+  Widget profileImage() {
+    return Stack(
+      children: [
+        const Padding(
+          padding: ProjectPadding.allTen(),
+          child: SizedBox(
+            height: 130,
+            width: 130,
+            child: CircleAvatar(backgroundImage: NetworkImage(ImagePath.temporaryImage)),
           ),
         ),
-      ),
+        SizedBox(
+          height: 140,
+          width: 140,
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+                color: MyColor.desertStorm,
+              ),
+              child: IconButton(
+                onPressed: changeImage,
+                icon: const Icon(
+                  size: 28,
+                  color: MyColor.purplishBlue,
+                  MyIcons.camera,
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 
   Padding nameAndInfo() {
     return Padding(
-      padding: const EdgeInsets.all(5.0).copyWith(top: 8),
-      child: SizedBox(
-        height: 120,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                company.companyName!,
-                textScaleFactor: ProjectFontSize.oneToFive,
-                style: const TextStyle(
-                  fontWeight: Weight.bold,
-                ),
+      padding: const EdgeInsets.all(5.0).copyWith(top: 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              company.companyName!,
+              textScaleFactor: ProjectFontSize.oneToFive,
+              style: const TextStyle(
+                fontWeight: Weight.bold,
               ),
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "${company.sector}\n${company.numberWorker} Kişi",
-                textAlign: TextAlign.start,
-                textScaleFactor: ProjectFontSize.oneToTwo,
-                style: const TextStyle(
-                  fontWeight: Weight.midium,
-                ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "${company.sector}\n${company.numberWorker} Kişi",
+              textAlign: TextAlign.start,
+              textScaleFactor: ProjectFontSize.oneToTwo,
+              style: const TextStyle(
+                fontWeight: Weight.midium,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -165,24 +146,20 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
     return TitleWithTextButton(
         buttonName: isEditGeneralInfo ? StringData.save : StringData.edit,
         title: StringData.generalInfo,
-        onPress: () {
-          if (isEditGeneralInfo) {
-            StringData.companyInfo = generalInfoController.text;
-            isEditGeneralInfo = !isEditGeneralInfo;
-
-            nav.callSnackbar(context, StringData.saved);
-          } else {
-            generalInfoController.text = StringData.companyInfo;
-
-            isEditGeneralInfo = !isEditGeneralInfo;
-          }
-          setState(() {});
-        });
+        onPress: changeInfoTitle);
   }
 
   InfoCard generalInfo() {
     return InfoCard(
       child: companyName(),
+    );
+  }
+
+  TitleWithTextButton contactInfoTitle() {
+    return TitleWithTextButton(
+      buttonName: !isEditContact ? StringData.edit : StringData.save,
+      onPress: contactInfoTitleEdit,
+      title: StringData.contactInfo,
     );
   }
 
@@ -317,8 +294,6 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
       height: height,
     );
   }
-
-  edit() {}
 }
 
 class DecorationProfile extends BoxDecoration {
