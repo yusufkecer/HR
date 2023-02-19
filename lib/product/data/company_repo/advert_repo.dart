@@ -4,17 +4,17 @@ import 'package:hrapp/product/models/company_model/company_model.dart';
 import '../../models/job_model/job_model.dart';
 
 class AdvertRepo {
-  static final AdvertRepo singleton = AdvertRepo._internal();
+  static final AdvertRepo _singleton = AdvertRepo._internal();
   static AdvertRepo get instance {
-    return singleton;
+    return _singleton;
   }
 
   AdvertRepo._internal();
   saveJob(index) {
     if (adverts[index].jobs?.isSaveJob == false) {
-      singleton.adverts[index].jobs?.isSaveJob = true;
+      instance.adverts[index].jobs?.isSaveJob = true;
     } else {
-      singleton.adverts[index].jobs?.isSaveJob = false;
+      instance.adverts[index].jobs?.isSaveJob = false;
     }
   }
 
@@ -25,6 +25,8 @@ class AdvertRepo {
       companyImage: "https://atiknakit.com/assets/images/atiknakitbeyaz.png",
       jobs: Jobs(
         currency: StringData.turkishLiraSymbol,
+        description:
+            "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
         upperWage: 33000,
         lowerWage: 25000,
         jobTitle: "UI/UX Designer",
@@ -41,6 +43,8 @@ class AdvertRepo {
       sector: "Software",
       companyImage: "https://pbs.twimg.com/profile_images/1062993041324171265/CcUjyxc9_400x400.jpg",
       jobs: Jobs(
+        description:
+            "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
         currency: "€",
         positionOpen: "1",
         jobTitle: "Backend Developer",
@@ -58,6 +62,8 @@ class AdvertRepo {
       companyImage:
           "https://play-lh.googleusercontent.com/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1",
       jobs: Jobs(
+        description:
+            "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
         currency: StringData.turkishLiraSymbol,
         jobTitle: "Android Developer",
         level: "Senior",
@@ -75,6 +81,8 @@ class AdvertRepo {
       companyImage:
           "https://static.dezeen.com/uploads/2021/11/meta-facebook-rebranding-name-news_dezeen_2364_col_sq.jpg",
       jobs: Jobs(
+        description:
+            "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
         currency: StringData.turkishLiraSymbol,
         jobTitle: "Front-End Developer",
         level: "Junior/Senior",
