@@ -40,4 +40,6 @@ class MyIcons {
   static const website = Icons.web_outlined;
   static const edit = Icons.edit_outlined;
   static const location = Icons.location_on_outlined;
+  static const camera = Icons.camera_alt_outlined;
+  static const image = Icons.image_outlined;
 }

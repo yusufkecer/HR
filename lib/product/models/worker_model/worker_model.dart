@@ -8,15 +8,19 @@ class Worker {
   String? jobType;
   String? jobPosition;
   String? experience;
+  String? cv;
 
   Worker({
     this.id,
     this.image,
+    this.fullName,
+    this.userName,
     this.userLastName,
     this.department,
-    this.experience,
     this.jobType,
     this.jobPosition,
+    this.experience,
+    this.cv,
   });
   Worker.fromJson(json) {
     image = json["image"];
@@ -28,5 +32,6 @@ class Worker {
     jobPosition = json["jobPosition"];
     experience = (json["experience"]).toString();
     id = int.parse(json["id"]);
+    cv = json["cv"];
   }
 }

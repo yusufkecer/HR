@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/product/constant/font_size.dart';
+import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
 import 'package:hrapp/product/models/worker_model/worker_model.dart';
 
@@ -48,16 +49,18 @@ class ProfileList extends StatelessWidget {
                       children: [
                         profileImage(index, workerList!),
                         itemCount!
-                            ? workerInfo(workerList!, index)
+                            ? workerInfo(workerList!, index, StringData.info)
                             : Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  workerInfo(workerList!, index),
+                                  workerInfo(workerList!, index, StringData.info),
                                   Container(
                                     color: Colors.white,
                                     height: 120,
                                     width: 1.5,
                                   ),
-                                  workerInfo(workerList!, index),
+                                  workerCV(workerList!, index, StringData.cv),
                                 ],
                               )
                       ],
@@ -82,16 +85,41 @@ class ProfileList extends StatelessWidget {
           );
   }
 
-  Expanded workerInfo(List<Worker> workerList, int gridIndex) {
+  Widget workerCV(List<Worker> workerList, index, cv) {
     return Expanded(
       child: Padding(
         padding: const ProjectPadding.horizontalTwelve(),
         child: Column(
           crossAxisAlignment: itemCount! ? CrossAxisAlignment.center : CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Bilgiler",
-              style: TextStyle(fontWeight: Weight.bold),
+            Text(
+              cv,
+              style: const TextStyle(fontWeight: Weight.bold),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              workerList[index].cv ?? "",
+              overflow: TextOverflow.ellipsis,
+              maxLines: 6,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Expanded workerInfo(List<Worker> workerList, int gridIndex, String info) {
+    return Expanded(
+      child: Padding(
+        padding: const ProjectPadding.horizontalTwelve().copyWith(left: 22),
+        child: Column(
+          crossAxisAlignment: itemCount! ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+          children: [
+            Text(
+              info,
+              style: const TextStyle(fontWeight: Weight.bold),
             ),
             const SizedBox(
               height: 10,
@@ -108,11 +136,15 @@ class ProfileList extends StatelessWidget {
                             "${workerList[gridIndex].jobPosition}\n${workerList[gridIndex].experience}",
                             style: const TextStyle(fontWeight: Weight.normal),
                             textAlign: TextAlign.start,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 6,
                           ),
                         )
                       : Text(
                           "${workerList[gridIndex].fullName}\n${workerList[gridIndex].department}\n${workerList[gridIndex].jobType}\n",
                           style: const TextStyle(fontWeight: Weight.normal),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
                           textAlign: TextAlign.start,
                         ),
                 ],

@@ -69,7 +69,7 @@ class NavigationService {
     );
   }
 
-  alertWithButon(alertTitle, text, buttonText, [Function? onPress]) {
+  alertWithButon(alertTitle, text, [buttonText = "Tamam", Function? onPress]) {
     showDialog(
       context: NavigationKey.instance.navigatorKey.currentContext!,
       builder: (context) {
@@ -158,6 +158,57 @@ class NavigationService {
                   ],
                 ),
               ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  showBottomSelect(
+    context,
+    void Function() choice, [
+    String? title,
+    IconData? icon,
+    IconData? icon2,
+    String? text,
+    String? text2,
+    void Function()? choice2,
+  ]) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => BottomSheet(
+        onClosing: () {},
+        enableDrag: false,
+        builder: (context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const ProjectPadding.allEight(),
+                child: Text(
+                  title ?? "",
+                  textScaleFactor: ProjectFontSize.oneToFour,
+                  style: const TextStyle(fontWeight: Weight.midium),
+                ),
+              ),
+              ListTile(
+                onTap: choice,
+                leading: Icon(icon),
+                title: Text(
+                  text ?? "",
+                  style: const TextStyle(fontWeight: Weight.midium),
+                ),
+              ),
+              ListTile(
+                onTap: choice,
+                leading: Icon(icon2),
+                title: Text(
+                  text2 ?? "",
+                  style: const TextStyle(fontWeight: Weight.midium),
+                ),
+              )
             ],
           );
         },

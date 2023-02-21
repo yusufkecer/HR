@@ -102,19 +102,26 @@ class StringData {
   static const contactInfo = "İletişim Bilgileri";
 
   static const generalInfo = "Temel Bilgiler";
+  static const info = "Bilgiler";
+  static const cv = "CV";
 
   static const address = "Adres";
   static const phoneNumber = "Telefon No";
   static const webSite = "Web Sitesi";
   static const aboutCompany = "Şirket Hakkında";
 
+  static const error = "Hata";
+  static const errorWage = "Girilen birincil ücret, ikincil ücretten büyük olamaz.";
+
   //advert detail
   static const skillsD = "Aranan Nitelikler:";
   static const jobPositionD = "Pozisyon:";
   static const timingD = "Çalışma Türü:";
-  static const wageD = "Maaş Aralığı";
+  static const wageD = "Maaş Aralığı:";
   static const levelD = "Deneyim:";
   static const descriptionD = "İş Tanımı:";
   static const positionOpenD = "Açık Pozisyon Sayısı:";
   static const provinceD = "Tercih Edilen Şehir:";
+  static const camera = "Kamera";
+  static const gallery = "Galeri";
 }

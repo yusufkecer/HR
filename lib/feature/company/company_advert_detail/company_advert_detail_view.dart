@@ -27,13 +27,6 @@ class _CompanyAdvertDetailViewState extends CompanyAdvertDetailViewModel {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // actions: [
-        //   IconButton(
-        //       onPressed: () {
-        //         print(advertList!.companyName);
-        //       },
-        //       icon: Icon(MyIcons.add))
-        // ],
         title: const AppBarLogoTitle(),
       ),
       body: Padding(
@@ -53,15 +46,14 @@ class _CompanyAdvertDetailViewState extends CompanyAdvertDetailViewModel {
                 ),
                 child: Column(
                   children: [
-                    DecoratedBox(
-                      decoration: const BoxDecoration(borderRadius: ProjectRadius.mediumAll()),
-                      child: SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Image(
-                          image: NetworkImage(advertList?.companyImage ?? ImagePath.temporaryImage),
-                          //fit: BoxFit.cover,
-                        ),
+                    Container(
+                      clipBehavior: Clip.antiAlias,
+                      height: 100,
+                      width: 100,
+                      decoration: const BoxDecoration(borderRadius: ProjectRadius.bigAll()),
+                      child: Image(
+                        image: NetworkImage(advertList?.companyImage ?? ImagePath.temporaryImage),
+                        //fit: BoxFit.cover,
                       ),
                     ),
                     Padding(
