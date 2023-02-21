@@ -132,8 +132,16 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
 
     initController();
     if (jobTitle == "" || val == null || level == "" || timing == "" || positionOpen == "" || description == null) {
-      nav.alertWithButon(StringData.missing, StringData.missingText, StringData.ok);
+      nav.alertWithButon(StringData.missing, StringData.missingText);
       return;
+    }
+    if (wage != null) {
+      if (wage!.length > 1) {
+        if (double.parse(wage![0]) > double.parse(wage![1])) {
+          nav.alertWithButon(StringData.error, StringData.errorWage);
+          return;
+        }
+      }
     }
     check = await nav.checkDialog(StringData.checkTitle, StringData.checkText);
 

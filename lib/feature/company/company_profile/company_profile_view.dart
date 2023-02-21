@@ -75,12 +75,16 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
   Widget profileImage() {
     return Stack(
       children: [
-        const Padding(
-          padding: ProjectPadding.allTen(),
+        Padding(
+          padding: const ProjectPadding.allTen(),
           child: SizedBox(
             height: 130,
             width: 130,
-            child: CircleAvatar(backgroundImage: NetworkImage(ImagePath.temporaryImage)),
+            child: selectedImage != null
+                ? CircleAvatar(backgroundImage: FileImage(selectedImage!))
+                : const CircleAvatar(
+                    backgroundImage: NetworkImage(ImagePath.temporaryImage),
+                  ),
           ),
         ),
         SizedBox(

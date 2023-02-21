@@ -93,6 +93,15 @@ ilan detay sayfasıyla birlikte açıklama işlemi de eklendi
 birkaç entity düzenlendi
 sadece düşük ücret girilince oluşan hata düzeltildi
 birden fazla listeye eleman eklenmesiyle oluşan hata düzeltildi
+22.02
+text hatası düzeltildi
+düşük ücretin büyük ücretten büyük girilmesiyle ilgili oluşan hata düzeltildi
+mock apiye cv özelliği eklendi
+şirket ana ekranına temel bilgilerin yanı sıra cv özelliği eklendi
+profil resmi değiştirme işlemi eklendi
+profil resminde boş değer gelebileceği için kontroller sağlandı
+galeri veya kamera seçenekleri eklendi
+çalışanlar temel bilgiler kısmındaki oluşan kayma düzeltildi
 
 YAPILACAKLAR
 lower wage uppderdan düşükse hata vermesi lazım

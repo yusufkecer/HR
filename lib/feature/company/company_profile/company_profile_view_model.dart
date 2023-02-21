@@ -1,11 +1,15 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:hrapp/product/constant/icons.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../core/navigation/navigation_service.dart';
 import '../../../product/constant/string_data.dart';
 import '../../../product/models/company_model/company_model.dart';
 import 'company_profile_view.dart';
 
 abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
+  File? selectedImage;
   var company = Company(
     phoneNumber: "05333333333",
     mail: "info@info.com",
@@ -16,8 +20,10 @@ abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
     address: "Bahçelievler Mahallesi, Atatürk Caddesi, No:34, 16370 Nilüfer/Bursa, Türkiye.",
   );
   bool isEditContact = false;
-  void changeImage() {
-    print("image değiştir");
+
+  void changeImage() async {
+    nav.showBottomSelect(
+        context, openCamera, "Lütfen Seçiniz", MyIcons.camera, MyIcons.image, StringData.camera, StringData.gallery);
   }
 
   void contactInfoTitleEdit() {
@@ -62,4 +68,17 @@ abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
   TextEditingController mailControoler = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController webController = TextEditingController();
+
+  void openCamera() async {
+    final ImagePicker _picker = ImagePicker();
+    XFile? xImage = await _picker.pickImage(source: ImageSource.camera);
+    nav.back();
+    if (xImage == null) {
+      return;
+    }
+
+    setState(() {
+      selectedImage = File(xImage.path);
+    });
+  }
 }
