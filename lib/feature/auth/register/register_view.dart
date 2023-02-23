@@ -24,33 +24,38 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends LoginViewModel {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const ProjectPadding.allEightTeen(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                apptitle(),
-                BoxSpace(
-                  height: ProjectSize.veryBigHeight().height,
-                ),
-                Column(
-                  children: [
-                    forms(),
-                    Divider(
-                      color: MyColor.veryLightBlack,
-                      height: ProjectSize.bigHeight().height,
-                    ),
-                    termsAndConditions(context),
-                    BoxSpace(
-                      height: ProjectSize.bigHeight().height,
-                    ),
-                    registerButton(),
-                  ],
-                ),
-              ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        body: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const ProjectPadding.allEightTeen().copyWith(top: 26),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  apptitle(),
+                  BoxSpace(
+                    height: ProjectSize.veryBigHeight().height,
+                  ),
+                  Column(
+                    children: [
+                      forms(),
+                      Divider(
+                        color: MyColor.veryLightBlack,
+                        height: ProjectSize.bigHeight().height,
+                      ),
+                      termsAndConditions(context),
+                      BoxSpace(
+                        height: ProjectSize.bigHeight().height,
+                      ),
+                      registerButton(),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -142,82 +147,145 @@ class _RegisterViewState extends LoginViewModel {
       key: formKey,
       child: Column(
         children: [
-          AuthField(
-            listener: (value) {
-              return;
-            },
-            validation: (value) {
-              if (!value.nameValid()) {
-                return StringData.writeName;
-              }
-              return null;
-            },
-            titlePadding: const ProjectPadding.textFieldTitle(),
-            icon: const Icon(
-              MyIcons.user,
-              color: MyColor.black,
-            ),
-            fontWeight: Weight.midium,
-            info: StringData.name,
-          ),
+          name(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          AuthField(
-            listener: (value) {
-              return;
-            },
-            validation: (value) {
-              if (!value.emailValid()) {
-                return StringData.writeEmail;
-              }
-              return null;
-            },
-            titlePadding: const ProjectPadding.textFieldTitle(),
-            icon: const Icon(
-              MyIcons.mail,
-              color: MyColor.black,
-            ),
-            fontWeight: Weight.midium,
-            info: StringData.email,
-          ),
+          email(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          AuthField(
-            validation: (value) {
-              if (!value.passwordValid()) {
-                return StringData.writePassword;
-              }
-              return null;
-            },
-            listener: (value) {
-              return;
-            },
-            titlePadding: const ProjectPadding.textFieldTitle(),
-            icon: const Icon(
-              MyIcons.password,
-              color: MyColor.black,
-            ),
-            secure: isVisible,
-            suffixButton: IconButton(
-              onPressed: () {
-                changeVisibility();
-              },
-              icon: isVisible
-                  ? const Icon(
-                      MyIcons.visibilityOn,
-                    )
-                  : const Icon(
-                      MyIcons.visibilityOff,
-                    ),
-              color: Colors.black,
-            ),
-            fontWeight: Weight.midium,
-            info: StringData.password,
+          tc(),
+          BoxSpace(
+            height: ProjectSize.bigHeight().height,
           ),
+          datePicker(),
+          BoxSpace(
+            height: ProjectSize.bigHeight().height,
+          ),
+          password(),
         ],
       ),
+    );
+  }
+
+  AuthField datePicker() {
+    return AuthField(
+      controller: dateController,
+      textType: TextInputType.none,
+      listener: (value) {},
+      validation: (value) {
+        if (value == null) {
+          return StringData.selectBirthOfDay;
+        }
+        return null;
+      },
+      titlePadding: const ProjectPadding.textFieldTitle(),
+      onTap: openPicker,
+      icon: const Icon(
+        MyIcons.date,
+        color: MyColor.black,
+      ),
+      fontWeight: Weight.midium,
+      info: StringData.birthOfDay,
+    );
+  }
+
+  AuthField password() {
+    return AuthField(
+      validation: (value) {
+        if (!value.passwordValid()) {
+          return StringData.writePassword;
+        }
+        return null;
+      },
+      listener: (value) {},
+      titlePadding: const ProjectPadding.textFieldTitle(),
+      icon: const Icon(
+        MyIcons.password,
+        color: MyColor.black,
+      ),
+      secure: isVisible,
+      suffixButton: IconButton(
+        onPressed: () {
+          changeVisibility();
+        },
+        icon: isVisible
+            ? const Icon(
+                MyIcons.visibilityOn,
+              )
+            : const Icon(
+                MyIcons.visibilityOff,
+              ),
+        color: Colors.black,
+      ),
+      fontWeight: Weight.midium,
+      info: StringData.password,
+    );
+  }
+
+  AuthField name() {
+    return AuthField(
+      listener: (value) {
+        return;
+      },
+      validation: (value) {
+        if (!value.nameValid()) {
+          return StringData.writeName;
+        }
+        return null;
+      },
+      titlePadding: const ProjectPadding.textFieldTitle(),
+      icon: const Icon(
+        MyIcons.user,
+        color: MyColor.black,
+      ),
+      fontWeight: Weight.midium,
+      info: StringData.name,
+    );
+  }
+
+  AuthField tc() {
+    return AuthField(
+      textType: TextInputType.number,
+      listener: (value) {
+        return;
+      },
+      validation: (value) {
+        if (value?.length == 11) {
+          return null;
+        }
+        return StringData.writeTC;
+      },
+      titlePadding: const ProjectPadding.textFieldTitle(),
+      icon: const Icon(
+        MyIcons.listAlt,
+        color: MyColor.black,
+      ),
+      fontWeight: Weight.midium,
+      info: StringData.tc,
+    );
+  }
+
+  AuthField email() {
+    return AuthField(
+      textType: TextInputType.emailAddress,
+      listener: (value) {
+        return;
+      },
+      validation: (value) {
+        if (!value.emailValid()) {
+          return StringData.writeEmail;
+        }
+        return null;
+      },
+      titlePadding: const ProjectPadding.textFieldTitle(),
+      icon: const Icon(
+        MyIcons.mail,
+        color: MyColor.black,
+      ),
+      fontWeight: Weight.midium,
+      info: StringData.email,
     );
   }
 
@@ -227,9 +295,5 @@ class _RegisterViewState extends LoginViewModel {
       icons: const Icon(MyIcons.addPerson),
       onPressed: onpressed,
     );
-  }
-
-  onpressed() {
-    checkvalid();
   }
 }

@@ -1,15 +1,18 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:flutter/material.dart';
+
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/product/widgets/decoration/custom_decoration.dart';
-import 'package:flutter/material.dart';
 
 import '../../constant/font_size.dart';
 
 class AuthField extends StatelessWidget {
   final TextEditingController? controller;
   final String? info;
+  final TextInputType textType;
   Widget? suffixButton;
+  final Function()? onTap;
   final FontWeight? fontWeight;
   final Widget? icon;
   final EdgeInsets? titlePadding;
@@ -18,16 +21,18 @@ class AuthField extends StatelessWidget {
   final bool? secure;
 
   AuthField({
+    Key? key,
     this.controller,
+    this.info,
+    this.textType = TextInputType.text,
+    this.suffixButton,
+    this.onTap,
+    this.fontWeight,
+    this.icon,
+    this.titlePadding,
     required this.validation,
     required this.listener,
-    this.titlePadding,
-    this.suffixButton,
-    this.fontWeight,
-    this.info,
-    this.icon,
     this.secure = false,
-    Key? key,
   }) : super(key: key);
 
   @override
@@ -63,6 +68,8 @@ class AuthField extends StatelessWidget {
       obscureText: secure!,
       autocorrect: secure!,
       onChanged: listener,
+      onTap: onTap,
+      keyboardType: textType,
       cursorColor: Colors.black,
       decoration: InputDecoration(
         contentPadding: const ProjectPadding.textFieldContent(14.8),
