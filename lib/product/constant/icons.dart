@@ -20,7 +20,7 @@ class MyIcons {
   static const list = Icons.list;
   static const grid = Icons.grid_view_outlined;
   static const profile = Icons.person;
-
+  static const date = Icons.date_range_outlined;
   static const save = Icons.bookmark_add_outlined;
   static const saved = Icons.bookmark_added_rounded;
   static const delete = Icons.delete_forever;

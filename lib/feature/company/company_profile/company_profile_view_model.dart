@@ -23,7 +23,15 @@ abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
 
   void changeImage() async {
     nav.showBottomSelect(
-        context, openCamera, "Lütfen Seçiniz", MyIcons.camera, MyIcons.image, StringData.camera, StringData.gallery);
+      context,
+      openCamera,
+      openGallery,
+      "Lütfen Seçiniz",
+      MyIcons.camera,
+      MyIcons.image,
+      StringData.camera,
+      StringData.gallery,
+    );
   }
 
   void contactInfoTitleEdit() {
@@ -70,8 +78,21 @@ abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
   TextEditingController webController = TextEditingController();
 
   void openCamera() async {
-    final ImagePicker _picker = ImagePicker();
-    XFile? xImage = await _picker.pickImage(source: ImageSource.camera);
+    final ImagePicker picker = ImagePicker();
+    XFile? xImage = await picker.pickImage(source: ImageSource.camera);
+    nav.back();
+    if (xImage == null) {
+      return;
+    }
+
+    setState(() {
+      selectedImage = File(xImage.path);
+    });
+  }
+
+  void openGallery() async {
+    final ImagePicker picker = ImagePicker();
+    XFile? xImage = await picker.pickImage(source: ImageSource.gallery);
     nav.back();
     if (xImage == null) {
       return;

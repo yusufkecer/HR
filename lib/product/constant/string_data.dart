@@ -6,9 +6,11 @@ class StringData {
   static const resetPassword = "Şifremi Unuttum";
   static const rememberMe = "Beni Hatırla";
 
-  static const name = "İsim";
+  static const name = "İsim Soyisim";
   static const email = "Email";
   static const password = "Şifre";
+  static const tc = "TC Numarası";
+  static const birthOfDay = "Doğum Tarihi";
 
   static const doYouHaveAnAccount = "Hesabın yok mu?";
   static const registerHere = "Kayıt Ol!";
@@ -18,6 +20,8 @@ class StringData {
   static const writeEmail = "Geçerli bir mail adresi giriniz.";
   static const writePassword = "Geçerli bir şifre giriniz. (sayı ve büyük harf ve özel karakter.)";
   static const writeName = "Geçerli bir isim giriniz.";
+  static const writeTC = "Geçerli bir TC kimlik numarası giriniz.";
+  static const selectBirthOfDay = "Lütfen doğum tarihi seçiniz";
 
   //Terms
   static const termsText = "Kayıt işlemini tamamladığınızda, ";
@@ -72,6 +76,7 @@ class StringData {
   static const delete = "Sil";
   static const update = "Güncelle";
   static const edit = "Düzenle";
+  static const cancel = "İptal";
   static const ok = "Tamam";
   static const createAdvert = "İlan Oluştur";
   static const jobAdvertNotFound = "İlanınız bulunmamaktadır.\nHemen oluşturun!";
@@ -85,7 +90,7 @@ class StringData {
   static const wage = "Maaş Aralığı";
   static const salaryRange = "20000 - 30000";
   static const currencyUnit = "Birim";
-  static const description = "İş Tanımı*";
+  static const description = "Açıklama*";
   static const province = "Tercih Edilen Şehir";
   static const positionOpen = "Açık Pozisyon Sayısı*";
 

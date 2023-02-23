@@ -103,6 +103,11 @@ profil resminde boş değer gelebileceği için kontroller sağlandı
 galeri veya kamera seçenekleri eklendi
 çalışanlar temel bilgiler kısmındaki oluşan kayma düzeltildi
 
+23.02
+kayıt olma işlemleri için TC ve doğum tarhi isteme bilgisi eklendi
+doğum tarihindeki ay ve gün bilgilerinde düzenleme yapıldı
+datePicker dili güncellendi
+
 YAPILACAKLAR
 lower wage uppderdan düşükse hata vermesi lazım
 ilan tarihi eklenecek (geçerlilik tarihi ve oluşturma tarihi)

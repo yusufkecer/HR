@@ -69,7 +69,36 @@ class NavigationService {
     );
   }
 
-  alertWithButon(alertTitle, text, [buttonText = "Tamam", Function? onPress]) {
+  Future<DateTime?> showDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      locale: const Locale("tr", "TR"),
+      initialDate: DateTime.now().subtract(const Duration(days: 30)),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Theme.of(context).primaryColor, // header background color
+              onPrimary: Colors.white, // header text color
+              surface: Colors.white, // background color
+              onSurface: Colors.black, // text color
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                iconColor: Theme.of(context).primaryColor, // button text color
+              ),
+            ),
+          ),
+          child: child ?? const SizedBox.shrink(),
+        );
+      },
+    );
+    return picked;
+  }
+
+  void alertWithButon(alertTitle, text, [buttonText = "Tamam", Function? onPress]) {
     showDialog(
       context: NavigationKey.instance.navigatorKey.currentContext!,
       builder: (context) {
@@ -167,13 +196,13 @@ class NavigationService {
 
   showBottomSelect(
     context,
-    void Function() choice, [
+    void Function() choice,
+    void Function()? choice2, [
     String? title,
     IconData? icon,
     IconData? icon2,
     String? text,
     String? text2,
-    void Function()? choice2,
   ]) {
     showModalBottomSheet(
       context: context,
