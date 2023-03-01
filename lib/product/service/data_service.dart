@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:hrapp/product/service/api.dart';
 import 'package:http/http.dart' as http;
 
 class DataService {
@@ -15,6 +16,31 @@ class DataService {
       // then throw an exception.
       // throw "Data yok knk...";
       //404 505 403
+    }
+  }
+
+  //   email : "altananay@outlook.com",
+  //   password : "12345"
+  // }
+  Future authLogin(String email, String password) async {
+    String api = ApiUri.login;
+    try {
+      final response = await http.post(
+        Uri.parse(api),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          {
+            "email": email,
+            "password": password,
+          },
+        ),
+      );
+      var getToken = await jsonDecode(response.body);
+      return getToken;
+    } catch (e) {
+      throw "Hata var ama nerede söylemem";
     }
   }
 }

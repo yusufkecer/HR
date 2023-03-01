@@ -5,7 +5,7 @@ import '../../../product/constant/icons.dart';
 import '../../../product/constant/string_data.dart';
 import '../../../product/models/company_model/company_model.dart';
 import '../../../product/models/job_model/job_model.dart';
-import '../../../product/service/get_data.dart';
+import '../../../product/service/data_service.dart';
 import 'company_create_advert_view.dart';
 
 abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {

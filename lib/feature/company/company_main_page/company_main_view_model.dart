@@ -6,7 +6,8 @@ import '../../../product/constant/string_data.dart';
 
 import '../../../product/models/worker_model/worker_model.dart';
 import '../../../product/service/api.dart';
-import '../../../product/service/get_data.dart';
+
+import '../../../product/service/data_service.dart';
 import 'company_main_view.dart';
 
 abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerProviderStateMixin {
