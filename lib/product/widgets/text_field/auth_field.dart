@@ -30,7 +30,7 @@ class AuthField extends StatelessWidget {
     this.fontWeight,
     this.icon,
     this.titlePadding,
-    required this.validation,
+    this.validation,
     required this.listener,
     this.secure = false,
   }) : super(key: key);

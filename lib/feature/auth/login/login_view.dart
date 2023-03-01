@@ -26,38 +26,41 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends LoginViewModel {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: SafeArea(
-            child: Padding(
-              padding: const ProjectPadding.allEightTeen(),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  titles(),
-                  BoxSpace(
-                    height: ProjectSize.veryBigHeight().height,
-                  ),
-                  Column(
-                    children: [
-                      forms(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          checkText(),
-                          resetPassword(),
-                        ],
-                      ),
-                      Divider(
-                        height: ProjectSize.veryBigHeight().height,
-                        color: MyColor.veryLightBlack,
-                      ),
-                      loginButton(),
-                      registerNavigate()
-                    ],
-                  ),
-                ],
+    return GestureDetector(
+      onTap: closeKeyboard,
+      child: Scaffold(
+        body: Center(
+          child: SingleChildScrollView(
+            child: SafeArea(
+              child: Padding(
+                padding: const ProjectPadding.allEightTeen(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    titles(),
+                    BoxSpace(
+                      height: ProjectSize.veryBigHeight().height,
+                    ),
+                    Column(
+                      children: [
+                        forms(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            checkText(),
+                            resetPassword(),
+                          ],
+                        ),
+                        Divider(
+                          height: ProjectSize.veryBigHeight().height,
+                          color: MyColor.veryLightBlack,
+                        ),
+                        loginButton(),
+                        registerNavigate()
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -148,63 +151,51 @@ class _LoginViewState extends LoginViewModel {
       key: formKey,
       child: Column(
         children: [
-          AuthField(
-            controller: emailController,
-            listener: (value) {},
-            validation: (value) {
-              if (!value.emailValid()) {
-                return StringData.writeEmail;
-              }
-              return null;
-            },
-            titlePadding: const ProjectPadding.textFieldTitle(),
-            icon: const Icon(
-              MyIcons.mail,
-              color: Colors.black,
-            ),
-            fontWeight: Weight.midium,
-            info: StringData.email,
-          ),
+          emailForm(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          AuthField(
-            controller: passwordController,
-            listener: (value) {
-              return;
-            },
-            validation: (value) {
-              if (!value.passwordValid()) {
-                return StringData.writePassword;
-              }
-              return null;
-            },
-            titlePadding: const ProjectPadding.textFieldTitle(),
-            icon: const Icon(
-              MyIcons.password,
-              color: Colors.black,
-            ),
-            suffixButton: IconButton(
-              onPressed: () {
-                changeVisibility();
-              },
-              icon: isVisible ? const Icon(MyIcons.visibilityOn) : const Icon(MyIcons.visibilityOff),
-              color: Colors.black,
-            ),
-            fontWeight: Weight.midium,
-            secure: !isVisible,
-            info: StringData.password,
-          ),
+          passwordForm(),
         ],
       ),
     );
   }
 
-  void navigateApp() {
-    if (check == false) {
-      nav.navigteToCompany(context);
-      return;
-    }
-    checkValidator();
+  AuthField passwordForm() {
+    return AuthField(
+      controller: passwordController,
+      listener: (value) {
+        return;
+      },
+      titlePadding: const ProjectPadding.textFieldTitle(),
+      icon: const Icon(
+        MyIcons.password,
+        color: Colors.black,
+      ),
+      suffixButton: IconButton(
+        onPressed: () {
+          changeVisibility();
+        },
+        icon: isVisible ? const Icon(MyIcons.visibilityOn) : const Icon(MyIcons.visibilityOff),
+        color: Colors.black,
+      ),
+      fontWeight: Weight.midium,
+      secure: !isVisible,
+      info: StringData.password,
+    );
+  }
+
+  AuthField emailForm() {
+    return AuthField(
+      controller: emailController,
+      listener: (value) {},
+      titlePadding: const ProjectPadding.textFieldTitle(),
+      icon: const Icon(
+        MyIcons.mail,
+        color: Colors.black,
+      ),
+      fontWeight: Weight.midium,
+      info: StringData.email,
+    );
   }
 }
