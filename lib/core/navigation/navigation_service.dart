@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/navigation/navigator_key.dart';
 import 'package:hrapp/product/constant/string_data.dart';
+import 'package:lottie/lottie.dart';
 import '../../Product/Constant/colors.dart';
 import '../../Product/widgets/sized_box/box_space.dart';
 import '../../feature/auth/register/register_view.dart';
@@ -17,12 +18,10 @@ class NavigationService {
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        return const Center(
+        return Center(
           child: SizedBox(
-            height: 50,
-            width: 50,
-            child: CircularProgressIndicator(
-              color: MyColor.purplishBlue,
+            child: Lottie.asset(
+              "assets/splash.json",
             ),
           ),
         );

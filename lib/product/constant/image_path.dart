@@ -5,5 +5,5 @@ class ImagePath {
   static const join = "assets/images/join.png";
   static const dontResult = "assets/images/dontResult.png";
 
-  static const temporaryImage = "https://pbs.twimg.com/profile_images/1052808315942694912/mivGH4Sc_400x400.jpg";
+  static const temporaryImage = "https://simplyilm.com/wp-content/uploads/2017/08/temporary-profile-placeholder-1.jpg";
 }

@@ -8,20 +8,10 @@ class DataService {
     final http.Response response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
       return jsonDecode(response.body);
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      // throw "Data yok knk...";
-      //404 505 403
-    }
+    } else {}
   }
 
-  //   email : "altananay@outlook.com",
-  //   password : "12345"
-  // }
   Future authLogin(String email, String password) async {
     String api = ApiUri.login;
     try {
@@ -44,7 +34,7 @@ class DataService {
     }
   }
 }
-// class DataService {
+//  class DataService {
 //   Future<Iterable> fetchData() async {
 //     const url = "https://63c70d76d307b76967462d8b.mockapi.io/workers";
 //     final data = await compute(getWorkers, url);
