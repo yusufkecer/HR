@@ -22,6 +22,7 @@ class MyIcons {
   static const profile = Icons.person;
   static const date = Icons.date_range_outlined;
   static const save = Icons.bookmark_add_outlined;
+  static const saveIcon = Icons.bookmark;
   static const saved = Icons.bookmark_added_rounded;
   static const delete = Icons.delete_forever;
   static const popupMenu = Icons.more_vert;

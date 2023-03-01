@@ -107,12 +107,27 @@ galeri veya kamera seçenekleri eklendi
 kayıt olma işlemleri için TC ve doğum tarhi isteme bilgisi eklendi
 doğum tarihindeki ay ve gün bilgilerinde düzenleme yapıldı
 datePicker dili güncellendi
+localization işlemi yapıldı
 
-YAPILACAKLAR
-lower wage uppderdan düşükse hata vermesi lazım
-ilan tarihi eklenecek (geçerlilik tarihi ve oluşturma tarihi)
+27.03
+lower wage uppderdan düşükse hata validasyonu 
 profil resmi değiştirme eklenecek
+
+01.03
+apiye post atma eklendi
+giriş yapma işlemi eklendi
+dönen tokenen işlenmesi eklendi
+bu yapı clean code yapısına göre uyarlandı
+loading işlemi güncellendi
+drawer içi düzenlendi
+profil iş ilanı ekleme ve kayıtlı ilanlar sayfasına yönlendirme eklendi
+
+
+// Hatalar
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
+ilan tarihi eklenecek (geçerlilik tarihi ve oluşturma tarihi)
+
+
 
 
 
