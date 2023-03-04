@@ -67,7 +67,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     [StringData.wage, MyIcons.wage, StringData.salaryRange],
     [StringData.description],
   ];
-  getProvince() async {
+  void getProvince() async {
     Map? province;
     Future(() {
       NavigationService().showLoading(context);
@@ -127,7 +127,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     }
   }
 
-  saveAdvert() async {
+  void saveAdvert() async {
     FocusScope.of(context).requestFocus(FocusNode());
 
     initController();

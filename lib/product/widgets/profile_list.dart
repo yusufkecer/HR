@@ -15,6 +15,7 @@ class ProfileList extends StatelessWidget {
   final List<Worker>? workerList;
   final bool? check;
   final String? connectionError;
+  final int maxLine = 6;
   const ProfileList({
     Key? key,
     this.aspectRatio,
@@ -102,7 +103,7 @@ class ProfileList extends StatelessWidget {
             Text(
               workerList[index].cv ?? "",
               overflow: TextOverflow.ellipsis,
-              maxLines: 6,
+              maxLines: maxLine,
             )
           ],
         ),
@@ -137,7 +138,7 @@ class ProfileList extends StatelessWidget {
                             style: const TextStyle(fontWeight: Weight.normal),
                             textAlign: TextAlign.start,
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 6,
+                            maxLines: maxLine,
                           ),
                         )
                       : Text(

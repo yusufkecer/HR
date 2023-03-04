@@ -155,7 +155,7 @@ class _RegisterViewState extends LoginViewModel {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          tc(),
+          phoneNumber(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
@@ -245,14 +245,14 @@ class _RegisterViewState extends LoginViewModel {
     );
   }
 
-  AuthField tc() {
+  AuthField phoneNumber() {
     return AuthField(
       textType: TextInputType.number,
       listener: (value) {
         return;
       },
       validation: (value) {
-        if (value?.length == 11) {
+        if (value.phoneNumberValidator()) {
           return null;
         }
         return StringData.writeTC;
@@ -263,7 +263,7 @@ class _RegisterViewState extends LoginViewModel {
         color: MyColor.black,
       ),
       fontWeight: Weight.midium,
-      info: StringData.tc,
+      info: StringData.phoneNumber,
     );
   }
 

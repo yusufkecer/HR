@@ -3,66 +3,43 @@ import 'package:hrapp/feature/company/company_advert_detail/company_advert_detai
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
-import 'package:hrapp/product/widgets/sub_title.dart';
+import 'package:hrapp/product/data/auth.dart';
+import 'package:hrapp/product/models/company_model/company_model.dart';
 import 'package:hrapp/product/widgets/text_with_icon.dart';
 import '../../../Core/Constant/radius.dart';
 import '../../../core/constant/project_padding.dart';
 import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
-import '../../../product/data/company_repo/advert_repo.dart';
+import '../data/company_repo/advert_repo.dart';
+import 'button/icon_button.dart';
 
-import 'company_advert_view_model.dart';
-
-class CompanyJobView extends StatefulWidget {
-  final AdvertRepo? advertRepo;
-  const CompanyJobView({
+class AdvertVerticalList extends StatefulWidget {
+  final bool isSave;
+  final List? saveIndex;
+  final void Function(int index)? saveFunc;
+  final List<Company>? advertRepo;
+  final void Function()? updateAdvert;
+  final void Function()? deleteAdvert;
+  const AdvertVerticalList({
     Key? key,
-    this.advertRepo,
+    this.saveFunc,
+    required this.isSave,
+    this.saveIndex,
+    required this.advertRepo,
+    this.deleteAdvert,
+    this.updateAdvert,
   }) : super(key: key);
 
   @override
-  State<CompanyJobView> createState() => _CompanyJobViewState();
+  State<AdvertVerticalList> createState() => _AdvertVerticalListState();
 }
 
-class _CompanyJobViewState extends CompanyJobViewModel {
+class _AdvertVerticalListState extends State<AdvertVerticalList> {
+  bool verticalDivider = true;
   @override
   Widget build(BuildContext context) {
-    return widget.advertRepo!.adverts.isNotEmpty
-        ? Padding(
-            padding: const ProjectPadding.bottomTwentySix(),
-            child: ListView(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              children: [
-                const SubTitle(
-                  title: StringData.myAdvertisement,
-                ),
-                jobs(),
-              ],
-            ),
-          )
-        : Padding(
-            padding: const EdgeInsets.only(bottom: 80.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  ImagePath.dontResult,
-                  height: 100,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  StringData.jobAdvertNotFound,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: MyColor.osloGrey, fontWeight: Weight.midium),
-                  textScaleFactor: ProjectFontSize.oneToFour,
-                ),
-              ],
-            ),
-          );
+    return jobs();
   }
 
   SizedBox jobs() {
@@ -71,14 +48,14 @@ class _CompanyJobViewState extends CompanyJobViewModel {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        itemCount: widget.advertRepo!.adverts.length,
+        itemCount: widget.advertRepo?.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CompanyAdvertDetailView(adverts: widget.advertRepo!.adverts[index]),
+                    builder: (context) => CompanyAdvertDetailView(adverts: widget.advertRepo![index]),
                   ));
             },
             child: Padding(
@@ -125,7 +102,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                                   )
                                 : const SizedBox(),
                             jobTiming(index),
-                            widget.advertRepo!.adverts[index].jobs!.province != null
+                            widget.advertRepo![index].jobs!.province != null
                                 ? const SizedBox(
                                     height: 18,
                                     child: VerticalDivider(
@@ -135,14 +112,12 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                                     ),
                                   )
                                 : const SizedBox(),
-                            widget.advertRepo!.adverts[index].jobs!.province != null
-                                ? province(index)
-                                : const SizedBox()
+                            widget.advertRepo![index].jobs!.province != null ? province(index) : const SizedBox()
                           ],
                         )
                       ],
                     ),
-                    jobSettings(index),
+                    widget.isSave == false ? jobSettings(index) : savedIcon(index),
                   ],
                 ),
               ),
@@ -174,7 +149,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
 
   Text jobTitle(int index) {
     return Text(
-      widget.advertRepo!.adverts[index].jobs?.jobTitle ?? "-",
+      widget.advertRepo![index].jobs?.jobTitle ?? "-",
       textScaleFactor: ProjectFontSize.oneToThree,
       style: const TextStyle(
         fontWeight: Weight.midium,
@@ -186,7 +161,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     return RichText(
         text: TextSpan(children: [
       TextSpan(
-        text: "${widget.advertRepo!.adverts[index].jobs?.level}",
+        text: "${widget.advertRepo![index].jobs?.level}",
         style: const TextStyle(
           fontWeight: Weight.midium,
           color: MyColor.black,
@@ -204,7 +179,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
         ),
       )),
       TextSpan(
-        text: "${widget.advertRepo!.adverts[index].jobs?.positionOpen} Kişi",
+        text: "${widget.advertRepo![index].jobs?.positionOpen} Kişi",
         style: const TextStyle(
           fontWeight: Weight.midium,
           color: MyColor.black,
@@ -232,6 +207,28 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     //     ),
     //   ],
     // );
+  }
+
+  savedIcon(int index) {
+    return Align(
+      alignment: Alignment.topRight,
+      child: ChangeIconButton(
+        buttonIcon: MyIcons.saved,
+        changeIcon: MyIcons.save,
+        buttonTooltip: StringData.save,
+        pressButton: () {
+          print(index);
+
+          print("component içi ${widget.saveIndex}");
+          if (widget.saveIndex == null) {
+            throw "Save için index verilmedi";
+          }
+          widget.saveFunc!(widget.saveIndex![index]);
+          setState(() {});
+        },
+        change: AdvertRepo.instance.adverts[index].jobs?.isSaveJob,
+      ),
+    );
   }
 
   Align jobSettings(index) {
@@ -266,14 +263,14 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                 index,
                 MyIcons.editNote,
                 StringData.update,
-                updateJob,
+                () {},
                 0,
               ),
               popupItem(
                 index,
                 MyIcons.delete,
                 StringData.delete,
-                deleteJob,
+                () {},
                 1,
               ),
             ];
@@ -283,7 +280,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     );
   }
 
-  PopupMenuItem popupItem(int index, IconData icon, String info, Function onTap, int value) {
+  PopupMenuItem popupItem(int index, IconData icon, String info, Function? onTap, int value) {
     return PopupMenuItem(
         value: value,
         child: TextWithIcon(
@@ -291,7 +288,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
           text: info,
         ),
         onTap: () {
-          onTap(index);
+          onTap!(index);
         });
   }
 
@@ -301,8 +298,8 @@ class _CompanyJobViewState extends CompanyJobViewModel {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: widget.advertRepo?.adverts[parentIndex].jobs?.skills != null
-            ? widget.advertRepo?.adverts[parentIndex].jobs?.skills?.length
+        itemCount: widget.advertRepo?[parentIndex].jobs?.skills != null
+            ? widget.advertRepo![parentIndex].jobs?.skills?.length
             : 0,
         itemBuilder: (context, index) {
           return Padding(
@@ -318,9 +315,9 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                   borderRadius: ProjectRadius.verySmallAll(),
                   color: MyColor.white,
                 ),
-                child: widget.advertRepo?.adverts[parentIndex].jobs?.skills?[index] != null
+                child: widget.advertRepo?[parentIndex].jobs?.skills?[index] != null
                     ? Text(
-                        widget.advertRepo?.adverts[parentIndex].jobs?.skills?[index], //textAlign: TextAlign.center,
+                        widget.advertRepo?[parentIndex].jobs?.skills?[index], //textAlign: TextAlign.center,
                         //  textScaleFactor: ProjectFontSize.zeroToNine,
                       )
                     : const SizedBox(),
@@ -341,7 +338,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
 
   Text jobTiming(int index) {
     return Text(
-      "${widget.advertRepo!.adverts[index].jobs!.timing}",
+      "${widget.advertRepo![index].jobs!.timing}",
       textScaleFactor: ProjectFontSize.oneToOne,
       style: const TextStyle(fontWeight: Weight.midium),
     );
@@ -351,7 +348,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
         child: Padding(
           padding: const ProjectPadding.rightEight(),
           child: Text(
-            "${widget.advertRepo!.adverts[index].jobs!.province}",
+            "${widget.advertRepo![index].jobs!.province}",
             textScaleFactor: ProjectFontSize.oneToOne,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
@@ -363,20 +360,19 @@ class _CompanyJobViewState extends CompanyJobViewModel {
   Text wageConditions(int index) {
     String? currency;
     String? data;
-    if (widget.advertRepo?.adverts[index].jobs?.currency == null) {
+    if (widget.advertRepo?[index].jobs?.currency == null) {
       currency = StringData.turkishLiraSymbol;
     } else {
-      currency = widget.advertRepo!.adverts[index].jobs!.currency;
+      currency = widget.advertRepo![index].jobs!.currency;
     }
-    if (widget.advertRepo!.adverts[index].jobs?.lowerWage != null &&
-        widget.advertRepo!.adverts[index].jobs?.upperWage != null) {
-      data = "$currency ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toStringAsFixed(0)}"
+    if (widget.advertRepo![index].jobs?.lowerWage != null && widget.advertRepo![index].jobs?.upperWage != null) {
+      data = "$currency ${widget.advertRepo![index].jobs?.lowerWage?.toStringAsFixed(0)}"
           "-"
-          "${widget.advertRepo!.adverts[index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
-    } else if (widget.advertRepo!.adverts[index].jobs?.upperWage != null) {
-      data = "$currency ${widget.advertRepo!.adverts[index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
-    } else if (widget.advertRepo!.adverts[index].jobs?.lowerWage != null) {
-      data = "$currency ${widget.advertRepo!.adverts[index].jobs?.lowerWage?.toStringAsFixed(0)}/Ay";
+          "${widget.advertRepo![index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
+    } else if (widget.advertRepo![index].jobs?.upperWage != null) {
+      data = "$currency ${widget.advertRepo![index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
+    } else if (widget.advertRepo![index].jobs?.lowerWage != null) {
+      data = "$currency ${widget.advertRepo![index].jobs?.lowerWage?.toStringAsFixed(0)}/Ay";
     } else {
       data = "";
       verticalDivider = false;

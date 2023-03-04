@@ -18,6 +18,7 @@ class AdvertRepo {
     }
   }
 
+  List<Company> savedAdverts = [];
   List<Company> adverts = [
     Company(
       companyName: "Atık Nakit",

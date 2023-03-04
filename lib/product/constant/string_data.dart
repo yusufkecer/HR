@@ -9,7 +9,6 @@ class StringData {
   static const name = "İsim Soyisim";
   static const email = "Email";
   static const password = "Şifre";
-  static const tc = "TC Numarası";
   static const birthOfDay = "Doğum Tarihi";
 
   static const doYouHaveAnAccount = "Hesabın yok mu?";
@@ -20,7 +19,7 @@ class StringData {
   static const writeEmail = "Geçerli bir mail adresi giriniz.";
   static const writePassword = "Geçerli bir şifre giriniz. (sayı ve büyük harf ve özel karakter.)";
   static const writeName = "Geçerli bir isim giriniz.";
-  static const writeTC = "Geçerli bir TC kimlik numarası giriniz.";
+  static const writeTC = "Geçerli bir telefon numarası giriniz.";
   static const selectBirthOfDay = "Lütfen doğum tarihi seçiniz";
 
   //Terms
@@ -42,19 +41,16 @@ class StringData {
       "Sed interdum massa ac lorem malesuada lobortis. Praesent pharetra commodo ligula, et commodo nulla molestie a. Integer orci nunc, luctus id libero ac, mattis cursus nibh. Phasellus rhoncus massa sit amet elementum euismod. Integer accumsan nulla non augue semper, in faucibus augue maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras ligula mauris, vehicula sit amet sodales sed, tristique et nisl. Phasellus in augue vitae diam venenatis varius. Nullam sodales rhoncus urna, eu faucibus nisi rhoncus vitae. Integer vitae dolor ut tortor pellentesque pellentesque quis eu eros.";
   static const conditionsTitle = "Nullam non bibendum quam";
 //Intro
-  static const titleFirst = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+  static const titleFirst = "Hoş Geldiniz...";
   static const done = "Geç";
-  static const subtitleFirst =
-      " Morbi lacus purus, consectetur non ante sit amet, varius consequat elit. Etiam et libero eu nisl laoreet luctus ut sit amet mauris.";
+  static const subtitleFirst = "Hayalinizdeki iş bir tık kadar uzağınızda.";
 
-  static const titleSecond = "sit amet sodales tellus.";
+  static const titleSecond = "Kolay Kullanım";
   static const subtitleSecond =
-      "Praesent a gravida metus. In et dui fringilla, sagittis risus vel, tempus est. Cras sit amet ligula sit amet urna porttitor feugiat ut a eros."
-      " Proin vestibulum eleifend dolor consequat vulputate. Sed scelerisque ultrices augue et pharetra. Aenean at nunc iaculis, pulvinar augue ac, pretium nisl.";
+      "Hızlı bir şekilde iş ilanlarını listeleyip inceleyebilir, kaydedebilir ve son olarak başvurabilirsin.";
 
-  static const titleEnd = "Nullam non magna elit.";
-  static const subtitleEnd =
-      "Etiam facilisis purus non mauris interdum venenatis. Pellentesque ac tortor suscipit, interdum nulla vel, pulvinar lacus. ";
+  static const titleEnd = "Size En Uygun İlanları Öneriyoruz";
+  static const subtitleEnd = "Kullandığımız algoritmalarla birlikte size en uygun iş ilanlarını görüyorsunuz.";
   static String companyInfo =
       "XYZ Şirketi, 20xx yılında kurulan ve müşteri odaklı hizmet anlayışı ile sektöründe öncü bir rol oynamaya devam eden bir teknolojik şirkettir. Şirket, kullanıcı dostu çözümler sunmak ve müşterilerine en iyi deneyimi sağlamak amacıyla sürekli olarak inovasyona odaklanmıştır. XYZ Şirketi, geniş müşteri kitlesine hitap eden ürün yelpazesi ve uzman ekibiyle tanınmaktadır. Şirket, müşterilerine en yüksek kalitede hizmet sunma amacıyla sürekli olarak büyür ve gelişir.";
   //Navbar

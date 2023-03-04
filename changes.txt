@@ -119,10 +119,14 @@ giriş yapma işlemi eklendi
 dönen tokenen işlenmesi eklendi
 bu yapı clean code yapısına göre uyarlandı
 loading işlemi güncellendi
+02.03
 drawer içi düzenlendi
 profil iş ilanı ekleme ve kayıtlı ilanlar sayfasına yönlendirme eklendi
-
-
+kaydedilen iş ilanlarının listelendiği sayfa eklendi
+04.03
+email validasyonu güncellendi
+home pagedeki profil satır sayısı güncellendi
+giriş ekranındaki intro screen güncellendi
 // Hatalar
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
 ilan tarihi eklenecek (geçerlilik tarihi ve oluşturma tarihi)
