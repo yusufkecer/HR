@@ -3,7 +3,6 @@ import 'package:hrapp/core/extensions/context_extension.dart';
 import 'package:hrapp/feature/company/company_advert_list/company_advert_view.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/weight.dart';
-import 'package:hrapp/product/data/company_repo/advert_repo.dart';
 import '../../../Product/Constant/colors.dart';
 import '../../../core/constant/project_padding.dart';
 import '../../../product/constant/icons.dart';
@@ -11,9 +10,7 @@ import '../../../product/constant/image_path.dart';
 import '../../../product/data/auth.dart';
 import '../../../product/widgets/app_bar_logo.dart';
 import '../../../product/widgets/nav_bar.dart';
-import '../company_create_advert/company_create_advert_view.dart';
 import '../company_home_page/company_home_view.dart';
-import '../company_profile/company_profile_view.dart';
 import 'company_main_view_model.dart';
 
 class CompanyMainView extends StatefulWidget {
@@ -60,23 +57,23 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
                   ],
                 ),
                 const Divider(thickness: 1.2),
-                listTile(MyIcons.add, "İlan Oluştur", MyIcons.nextIOSIcon),
+                listTile(
+                  MyIcons.add,
+                  "İlan Oluştur",
+                  MyIcons.nextIOSIcon,
+                  navigateCreateAdvert,
+                ),
                 const SizedBox(
                   height: 5,
                 ),
-                listTile(MyIcons.saveIcon, "Kayıtlı İlanlar", MyIcons.nextIOSIcon),
+                listTile(
+                  MyIcons.saveIcon,
+                  "Kayıtlı İlanlar",
+                  MyIcons.nextIOSIcon,
+                  navigateSavedAdvert,
+                ),
               ],
             ),
-
-            // child: ListView.builder(
-            //   itemCount: AdvertRepo.instance.adverts.length,
-            //   shrinkWrap: true,
-            //   itemBuilder: (context, index) {
-            //     return AdvertRepo.instance.adverts[index].jobs!.isSaveJob == true
-            //         ? Text("${AdvertRepo.instance.adverts[index].jobs!.jobTitle}")
-            //         : const SizedBox();
-            //   },
-            // ),
           ),
         ),
       ),
@@ -104,7 +101,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
     );
   }
 
-  ListTile listTile(IconData leadingIcon, String title, IconData tralingIcon) {
+  ListTile listTile(IconData leadingIcon, String title, IconData tralingIcon, void Function()? ontap) {
     return ListTile(
       leading: Icon(
         leadingIcon,
@@ -114,7 +111,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
         title,
         textScaleFactor: ProjectFontSize.oneToTwo,
       ),
-      onTap: () {},
+      onTap: ontap,
       trailing: Icon(
         tralingIcon,
         size: 24,
@@ -125,15 +122,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
   Widget floatingButton() {
     return FloatingActionButton(
       backgroundColor: MyColor.discovreyPurplishBlue,
-      onPressed: () async {
-        status = await Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => CompanyCreateJobView(advertRepo: jobList),
-        ));
-
-        if (status) {
-          setState(() {});
-        }
-      },
+      onPressed: navigateCreateAdvert,
       child: const Icon(MyIcons.add),
     );
   }
@@ -142,11 +131,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const CompanyProfileView(),
-          ));
-        },
+        onTap: navigateProfile,
         child: const CircleAvatar(
           backgroundImage: NetworkImage(
             ImagePath.temporaryImage,

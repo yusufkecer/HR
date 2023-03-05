@@ -10,6 +10,8 @@ class Jobs {
   String? positionOpen;
   String? description;
   bool? isSaveJob;
+  String? date;
+  bool? isActive;
   Jobs({
     this.jobTitle,
     this.skills,
@@ -22,5 +24,7 @@ class Jobs {
     this.positionOpen,
     this.description,
     this.isSaveJob,
+    this.date,
+    this.isActive,
   });
 }

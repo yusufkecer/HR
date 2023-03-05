@@ -78,7 +78,7 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                 ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: jobQualities.length - 3,
+                  itemCount: jobQualities.length - 4,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const ProjectPadding.createJob(),
@@ -97,10 +97,10 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                   child: CustomTextField(
                     textInputType: TextInputType.number,
                     maxLine: 1,
-                    textEditingController: textController[jobQualities.length - 3],
-                    title: jobQualities[jobQualities.length - 3][0],
-                    icon: jobQualities[jobQualities.length - 3][1],
-                    hint: jobQualities[jobQualities.length - 3][2],
+                    textEditingController: textController[jobQualities.length - 4],
+                    title: jobQualities[jobQualities.length - 4][0],
+                    icon: jobQualities[jobQualities.length - 4][1],
+                    hint: jobQualities[jobQualities.length - 4][2],
                   ),
                 ),
                 Padding(
@@ -112,10 +112,10 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                         child: CustomTextField(
                           textInputType: TextInputType.number,
                           maxLine: 1,
-                          textEditingController: textController[jobQualities.length - 2],
-                          title: jobQualities[jobQualities.length - 2][0],
-                          icon: jobQualities[jobQualities.length - 2][1],
-                          hint: jobQualities[jobQualities.length - 2][2],
+                          textEditingController: textController[jobQualities.length - 3],
+                          title: jobQualities[jobQualities.length - 3][0],
+                          icon: jobQualities[jobQualities.length - 3][1],
+                          hint: jobQualities[jobQualities.length - 3][2],
                         ),
                       ),
                       const SizedBox(
@@ -139,6 +139,20 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Padding(
+                  padding: const ProjectPadding.createJob(),
+                  child: InkWell(
+                    onTap: getDate,
+                    child: CustomTextField(
+                      textInputType: TextInputType.none,
+                      maxLine: null,
+                      tap: getDate,
+                      title: jobQualities[jobQualities.length - 2][0],
+                      icon: jobQualities[jobQualities.length - 2][1],
+                      textEditingController: textController[jobQualities.length - 2],
+                    ),
                   ),
                 ),
                 province != null

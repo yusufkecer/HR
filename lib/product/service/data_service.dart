@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:hrapp/product/service/api.dart';
 import 'package:http/http.dart' as http;
 
 class DataService {
@@ -12,11 +11,10 @@ class DataService {
     } else {}
   }
 
-  Future authLogin(String email, String password) async {
-    String api = ApiUri.login;
+  Future authLogin(String email, String password, String endPoint) async {
     try {
       final response = await http.post(
-        Uri.parse(api),
+        Uri.parse(endPoint),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -30,7 +28,7 @@ class DataService {
       var getToken = await jsonDecode(response.body);
       return getToken;
     } catch (e) {
-      throw "Hata var ama nerede söylemem";
+      // throw "Hata var ama nerede söylemem";
     }
   }
 }

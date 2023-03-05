@@ -9,6 +9,10 @@ extension EmailValidator on String? {
     return RegExp(r'[(a-zA-Z)]').hasMatch(this ?? "");
   }
 
+  bool phoneNumberValidator() {
+    return RegExp(r'^(?:[+0]9)?[0-9]{10}$').hasMatch(this ?? "");
+  }
+
   bool passwordValid() {
     String pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?).{8,}$';
     // [!@#\$&*~.]

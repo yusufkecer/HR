@@ -9,7 +9,6 @@ class Company {
   String? mail;
   String? numberWorker;
   String? address;
-
   Jobs? jobs;
   Company({
     this.companyName,

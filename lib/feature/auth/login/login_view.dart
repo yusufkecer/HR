@@ -187,6 +187,7 @@ class _LoginViewState extends LoginViewModel {
 
   AuthField emailForm() {
     return AuthField(
+      textType: TextInputType.emailAddress,
       controller: emailController,
       listener: (value) {},
       titlePadding: const ProjectPadding.textFieldTitle(),

@@ -28,8 +28,34 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   List skills = [];
   List? val;
   List? wage = [];
+  String? date;
   String? provinceValue;
   bool? check = false;
+  DateTime? selectedDate;
+
+  void getDate() async {
+    if (updateJob?.date != null) {
+      List<String> dateParts = updateJob!.date!.split('/');
+
+      String newDateString = "${dateParts[2]}-${dateParts[1]}-${dateParts[0]} 00:00:00.000";
+      selectedDate = DateTime.parse(newDateString);
+    }
+    FocusScope.of(context).requestFocus(FocusNode());
+    selectedDate = await nav.showDate(context, selectedDate);
+
+    if (selectedDate != null) {
+      saveDate();
+    }
+  }
+
+  void saveDate() {
+    if (selectedDate != null) {
+      textController[6].text = ("${selectedDate!.day > 10 ? selectedDate!.day : "0${selectedDate!.day}"}/"
+          "${selectedDate!.month > 10 ? selectedDate!.month : "0${selectedDate!.month}"}/"
+          "${selectedDate!.year}");
+    }
+  }
+
   initController() {
     jobTitle = textController[0].text;
     timing = textController[2].text;
@@ -37,8 +63,8 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     positionOpen = textController[4].text;
     val = textController[1].text.isNotEmpty ? textController[1].text.replaceAll(" ", "").split(",") : null;
     wage = textController[5].text.isNotEmpty ? textController[5].text.split("-") : null;
-
-    description = textController[6].text.isNotEmpty ? textController[6].text : null;
+    date = textController[6].text;
+    description = textController[7].text.isNotEmpty ? textController[7].text : null;
     provinceValue = provinceValue;
     if (val != null) {
       skills = [];
@@ -65,9 +91,10 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     [StringData.level, MyIcons.level, ""],
     [StringData.positionOpen, MyIcons.number, ""],
     [StringData.wage, MyIcons.wage, StringData.salaryRange],
+    [StringData.applicationDate, MyIcons.date, ""],
     [StringData.description],
   ];
-  getProvince() async {
+  void getProvince() async {
     Map? province;
     Future(() {
       NavigationService().showLoading(context);
@@ -105,15 +132,15 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         updateJob?.skills != null &&
         updateJob?.timing != null &&
         updateJob?.level != null &&
-        updateJob?.positionOpen != null) {
-      updateJob = widget.updateJob;
-
+        updateJob?.positionOpen != null &&
+        updateJob?.date != null) {
       textController[0].text = updateJob!.jobTitle!;
       textController[1].text = updateJob!.skills!.join(",");
       textController[2].text = updateJob!.timing!;
       textController[3].text = updateJob!.level!;
       textController[4].text = updateJob!.positionOpen!;
-      textController[6].text = updateJob!.description!;
+      textController[6].text = updateJob!.date!;
+      textController[7].text = updateJob!.description!;
       currencyValue = updateJob?.currency;
       provinceValue = updateJob?.province;
       String result = "";
@@ -127,11 +154,17 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     }
   }
 
-  saveAdvert() async {
+  void saveAdvert() async {
     FocusScope.of(context).requestFocus(FocusNode());
 
     initController();
-    if (jobTitle == "" || val == null || level == "" || timing == "" || positionOpen == "" || description == null) {
+    if (jobTitle == "" ||
+        val == null ||
+        level == "" ||
+        timing == "" ||
+        positionOpen == "" ||
+        description == null ||
+        date == "") {
       nav.alertWithButon(StringData.missing, StringData.missingText);
       return;
     }
@@ -152,6 +185,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         jobs: Jobs(
           isSaveJob: false,
           jobTitle: jobTitle,
+          date: date,
           skills: skills,
           lowerWage: wage?[0] != null ? double.parse(wage?[0]) : null,
           upperWage: wage != null
