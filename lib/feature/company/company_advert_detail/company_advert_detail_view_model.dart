@@ -6,7 +6,7 @@ abstract class CompanyAdvertDetailViewModel extends State<CompanyAdvertDetailVie
   Company? advertList;
   @override
   void initState() {
-    advertList = widget.adverts!;
+    advertList = widget.adverts;
     super.initState();
   }
 }

@@ -28,7 +28,7 @@ class DataService {
       var getToken = await jsonDecode(response.body);
       return getToken;
     } catch (e) {
-      throw "Hata var ama nerede söylemem";
+      // throw "Hata var ama nerede söylemem";
     }
   }
 }

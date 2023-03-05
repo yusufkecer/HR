@@ -3,7 +3,6 @@ import 'package:hrapp/feature/company/company_advert_detail/company_advert_detai
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
-import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/models/company_model/company_model.dart';
 import 'package:hrapp/product/widgets/text_with_icon.dart';
 import '../../../Core/Constant/radius.dart';
@@ -11,13 +10,11 @@ import '../../../core/constant/project_padding.dart';
 import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
-import '../data/company_repo/advert_repo.dart';
-import 'button/icon_button.dart';
 
 class AdvertVerticalList extends StatefulWidget {
   final bool isSave;
   final List? saveIndex;
-  final void Function(int index)? saveFunc;
+  final void Function(int index, int parentIndex)? saveFunc;
   final List<Company>? advertRepo;
   final void Function()? updateAdvert;
   final void Function()? deleteAdvert;
@@ -212,21 +209,15 @@ class _AdvertVerticalListState extends State<AdvertVerticalList> {
   savedIcon(int index) {
     return Align(
       alignment: Alignment.topRight,
-      child: ChangeIconButton(
-        buttonIcon: MyIcons.saved,
-        changeIcon: MyIcons.save,
-        buttonTooltip: StringData.save,
-        pressButton: () {
-          print(index);
-
-          print("component içi ${widget.saveIndex}");
+      child: IconButton(
+        icon: const Icon(MyIcons.saved),
+        onPressed: () {
           if (widget.saveIndex == null) {
             throw "Save için index verilmedi";
           }
-          widget.saveFunc!(widget.saveIndex![index]);
+          widget.saveFunc!(index, widget.saveIndex![index]);
           setState(() {});
         },
-        change: AdvertRepo.instance.adverts[index].jobs?.isSaveJob,
       ),
     );
   }

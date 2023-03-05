@@ -74,16 +74,6 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
                 ),
               ],
             ),
-
-            // child: ListView.builder(
-            //   itemCount: AdvertRepo.instance.adverts.length,
-            //   shrinkWrap: true,
-            //   itemBuilder: (context, index) {
-            //     return AdvertRepo.instance.adverts[index].jobs!.isSaveJob == true
-            //         ? Text("${AdvertRepo.instance.adverts[index].jobs!.jobTitle}")
-            //         : const SizedBox();
-            //   },
-            // ),
           ),
         ),
       ),

@@ -18,11 +18,13 @@ class _SavedAdvertViewState extends SavedAdvertViewModel {
       appBar: AppBar(
         title: const AppBarLogoTitle(),
       ),
-      body: AdvertVerticalList(
-        isSave: true,
-        advertRepo: advertInstance.savedAdverts,
-        saveFunc: saveJob,
-        saveIndex: saveIndex,
+      body: SingleChildScrollView(
+        child: AdvertVerticalList(
+          isSave: true,
+          advertRepo: advertInstance.savedAdverts,
+          saveFunc: deleteSave,
+          saveIndex: saveIndex,
+        ),
       ),
     );
   }

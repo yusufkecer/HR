@@ -68,13 +68,13 @@ class NavigationService {
     );
   }
 
-  Future<DateTime?> showDate(BuildContext context) async {
+  Future<DateTime?> showDate(BuildContext context, [DateTime? initialDate]) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       locale: const Locale("tr", "TR"),
-      initialDate: DateTime.now().subtract(const Duration(days: 30)),
+      initialDate: initialDate ?? DateTime.now().subtract(const Duration(days: 30)),
       firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
       builder: (BuildContext context, Widget? child) {
         return Theme(
           data: ThemeData.light().copyWith(

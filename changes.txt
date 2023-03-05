@@ -127,6 +127,16 @@ kaydedilen iş ilanlarının listelendiği sayfa eklendi
 email validasyonu güncellendi
 home pagedeki profil satır sayısı güncellendi
 giriş ekranındaki intro screen güncellendi
+tc numarası telefon numarası olarak güncellendi
+05.03
+eklentiler yapıldı
+kaydedilen ilanlar sayfasında ilanlar artık başarılı bir şekilde siliniyor.
+kaydedilen ilanlar şirket anasayfasından da kaldırıldı
+iş ilanı ekleme kısmına son tarih eklendi
+ilanı düzenlerken son tarihi önceki oluşturulan ilan tarihi olarak getiriliyor düzenlendi
+son tarih iş detayı sayfasına eklendi
+birkaç küçük yeni update atıldı
+
 // Hatalar
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
 ilan tarihi eklenecek (geçerlilik tarihi ve oluşturma tarihi)

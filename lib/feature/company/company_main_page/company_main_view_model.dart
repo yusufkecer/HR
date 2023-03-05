@@ -30,10 +30,12 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     ));
   }
 
-  void navigateSavedAdvert() {
-    Navigator.of(context).push(MaterialPageRoute(
+  void navigateSavedAdvert() async {
+    await Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => const SavedAdvertView(),
     ));
+
+    setState(() {});
   }
 
   void navigateCreateAdvert() async {

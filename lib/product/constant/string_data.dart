@@ -46,11 +46,10 @@ class StringData {
   static const subtitleFirst = "Hayalinizdeki iş bir tık kadar uzağınızda.";
 
   static const titleSecond = "Kolay Kullanım";
-  static const subtitleSecond =
-      "Hızlı bir şekilde iş ilanlarını listeleyip inceleyebilir, kaydedebilir ve son olarak başvurabilirsin.";
+  static const subtitleSecond = "Hızlı bir şekilde iş ilanlarını inceleyebilir, kaydedebilir ve başvurabilirsin.";
 
   static const titleEnd = "Size En Uygun İlanları Öneriyoruz";
-  static const subtitleEnd = "Kullandığımız algoritmalarla birlikte size en uygun iş ilanlarını görüyorsunuz.";
+  static const subtitleEnd = "Kullandığımız algoritmalarla birlikte, size en uygun iş ilanlarını öneriyoruz.";
   static String companyInfo =
       "XYZ Şirketi, 20xx yılında kurulan ve müşteri odaklı hizmet anlayışı ile sektöründe öncü bir rol oynamaya devam eden bir teknolojik şirkettir. Şirket, kullanıcı dostu çözümler sunmak ve müşterilerine en iyi deneyimi sağlamak amacıyla sürekli olarak inovasyona odaklanmıştır. XYZ Şirketi, geniş müşteri kitlesine hitap eden ürün yelpazesi ve uzman ekibiyle tanınmaktadır. Şirket, müşterilerine en yüksek kalitede hizmet sunma amacıyla sürekli olarak büyür ve gelişir.";
   //Navbar
@@ -87,6 +86,7 @@ class StringData {
   static const salaryRange = "20000 - 30000";
   static const currencyUnit = "Birim";
   static const description = "Açıklama*";
+  static const applicationDate = "Son Başvuru Tarihi*";
   static const province = "Tercih Edilen Şehir";
   static const positionOpen = "Açık Pozisyon Sayısı*";
 
@@ -122,6 +122,7 @@ class StringData {
   static const levelD = "Deneyim:";
   static const descriptionD = "İş Tanımı:";
   static const positionOpenD = "Açık Pozisyon Sayısı:";
+  static const applicationDateD = "Son Başvuru Tarihi";
   static const provinceD = "Tercih Edilen Şehir:";
   static const camera = "Kamera";
   static const gallery = "Galeri";

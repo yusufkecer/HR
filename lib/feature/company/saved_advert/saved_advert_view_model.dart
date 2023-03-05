@@ -4,20 +4,15 @@ import 'package:hrapp/product/data/company_repo/advert_repo.dart';
 
 abstract class SavedAdvertViewModel extends State<SavedAdvertView> {
   final advertInstance = AdvertRepo.instance;
-  void saveJob(int index) async {
-    print("function içi $index");
+  void deleteSave(int index, int parentIndex) async {
     setState(() {
-      AdvertRepo.instance.saveJob(index);
-      getSaveAdvert();
+      AdvertRepo.instance.savedAdverts.removeAt(index);
+      AdvertRepo.instance.adverts[parentIndex].jobs?.isSaveJob = false;
     });
+
     // getWorkers();
   }
 
-// @override
-//   void didUpdateWidget(covariant SavedAdvertView oldWidget) {
-//     // TODO: implement didUpdateWidget
-//     super.didUpdateWidget(oldWidget);
-//   }
   List saveIndex = [];
   @override
   void initState() {

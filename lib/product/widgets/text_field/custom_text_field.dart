@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 import 'package:hrapp/core/constant/project_padding.dart';
@@ -11,10 +13,12 @@ class CustomTextField extends StatefulWidget {
   final TextInputType? textInputType;
   final TextEditingController? textEditingController;
   final IconData? icon;
+  final void Function()? tap;
   final String? hint;
 
   const CustomTextField({
     Key? key,
+    this.tap,
     this.title,
     this.maxLine,
     this.textInputType,
@@ -37,6 +41,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         maxLines: widget.maxLine,
         controller: widget.textEditingController,
         cursorColor: MyColor.black,
+        onTap: widget.tap,
         decoration: InputDecoration(
           contentPadding: const ProjectPadding.allTwenty().copyWith(left: 23),
           hintText: widget.hint,
