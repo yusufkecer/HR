@@ -4,8 +4,8 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/feature/company/company_advert_list/company_advert_view.dart';
 import 'package:hrapp/product/constant/font_size.dart';
+import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
-import 'package:hrapp/product/widgets/button/text_button_icon.dart';
 import '../../../Product/Constant/colors.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/constant/image_path.dart';
@@ -107,9 +107,8 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
             ),
           ),
           listTile(
-            //! FIXME: String dataya ekle
             MyIcons.add,
-            "İlan Oluştur",
+            StringData.createAdvert,
             MyIcons.nextIOSIcon,
             navigateCreateAdvert,
           ),
@@ -118,7 +117,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
           ),
           listTile(
             MyIcons.saveIcon,
-            "Kayıtlı İlanlar",
+            StringData.savedAdvert,
             MyIcons.nextIOSIcon,
             navigateSavedAdvert,
           ),
@@ -127,7 +126,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
           ),
           listTile(
             MyIcons.logout,
-            "Çıkış Yap",
+            StringData.logout,
             MyIcons.nextIOSIcon,
             navigateSavedAdvert,
           ),

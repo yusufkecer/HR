@@ -154,6 +154,11 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     }
   }
 
+  void visibility() {
+    updateJob!.isActive = !updateJob!.isActive;
+    setState(() {});
+  }
+
   void saveAdvert() async {
     FocusScope.of(context).requestFocus(FocusNode());
 

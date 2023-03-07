@@ -16,7 +16,6 @@ class Auth {
   String? status;
   Future login(String email, String password) async {
     var response = await ds.authLogin(email, password, ApiUri.loginCompnay);
-    print(response);
     if (response != null) {
       if (response["isSuccess"]) {
         String getToken = response["data"]["token"];

@@ -5,6 +5,7 @@ import 'package:hrapp/core/extensions/context_extension.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/data/company_repo/advert_repo.dart';
 import 'package:hrapp/product/widgets/app_bar_logo.dart';
+import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
 
@@ -54,12 +55,19 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                 Navigator.of(context).pop(false);
               },
             ),
-            actions: [
-              IconButton(
-                onPressed: saveAdvert,
-                icon: const Icon(MyIcons.confirm),
-              ),
-            ],
+            actions: updateJob?.isActive != null
+                ? [
+                    Padding(
+                      padding: const ProjectPadding.rightEight(),
+                      child: IconButton(
+                        tooltip: updateJob!.isActive ? StringData.pacify : StringData.activate,
+                        onPressed: visibility,
+                        icon:
+                            updateJob!.isActive ? const Icon(MyIcons.visibilityOn) : const Icon(MyIcons.visibilityOff),
+                      ),
+                    ),
+                  ]
+                : null,
           ),
           body: SizedBox(
             width: context.width,
@@ -146,6 +154,7 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                   child: InkWell(
                     onTap: getDate,
                     child: CustomTextField(
+                      selectionCursor: false,
                       textInputType: TextInputType.none,
                       maxLine: null,
                       tap: getDate,
@@ -177,6 +186,14 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                     textEditingController: textController[jobQualities.length - 1],
                   ),
                 ),
+                Padding(
+                  padding: const ProjectPadding.createJob(),
+                  child: MyElevatedIcons(
+                    buttonName: StringData.save,
+                    icons: const Icon(MyIcons.confirm),
+                    onPressed: saveAdvert,
+                  ),
+                )
               ],
             ),
           ),

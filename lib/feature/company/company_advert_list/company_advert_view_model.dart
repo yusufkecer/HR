@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/core/enum/advert_filter.dart';
 
 import '../company_create_advert/company_create_advert_view.dart';
 import 'company_advert_view.dart';
@@ -10,7 +11,7 @@ abstract class CompanyJobViewModel extends State<CompanyJobView> {
     super.initState();
   }
 
-  int filterIndex = 1;
+  AdvertFilterOptions filterOptions = AdvertFilterOptions.active;
   bool verticalDivider = true;
   void updateJob(index) async {
     Future(() async {
@@ -30,8 +31,8 @@ abstract class CompanyJobViewModel extends State<CompanyJobView> {
     });
   }
 
-  void filter(int index) {
-    filterIndex = index;
+  void filter(AdvertFilterOptions options) {
+    filterOptions = options;
     setState(() {});
   }
 

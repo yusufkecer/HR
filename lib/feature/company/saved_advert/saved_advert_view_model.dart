@@ -9,8 +9,6 @@ abstract class SavedAdvertViewModel extends State<SavedAdvertView> {
       AdvertRepo.instance.savedAdverts.removeAt(index);
       AdvertRepo.instance.adverts[parentIndex].jobs?.isSaveJob = false;
     });
-
-    // getWorkers();
   }
 
   List saveIndex = [];

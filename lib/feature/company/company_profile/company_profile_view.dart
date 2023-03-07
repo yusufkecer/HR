@@ -10,7 +10,7 @@ import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/widgets/info_card.dart';
 import 'package:hrapp/product/widgets/card_listtile.dart';
 import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
-import 'package:hrapp/product/widgets/title_text_button.dart';
+import 'package:hrapp/product/widgets/button/title_text_button.dart';
 import '../../../product/Constant/colors.dart';
 import '../../../product/widgets/app_bar_logo.dart';
 

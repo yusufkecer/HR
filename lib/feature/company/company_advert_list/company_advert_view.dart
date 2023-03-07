@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/core/enum/advert_filter.dart';
 import 'package:hrapp/feature/company/company_advert_detail/company_advert_detail_view.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/image_path.dart';
@@ -41,24 +42,24 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                   alignment: WrapAlignment.center,
                   children: [
                     CustomChipButton(
-                      title: "Aktif",
-                      selected: filterIndex == 1,
+                      title: AdvertFilterOptions.active.options,
+                      selected: filterOptions == AdvertFilterOptions.active,
                       ontap: () {
-                        filter(1);
+                        filter(AdvertFilterOptions.active);
                       },
                     ),
                     CustomChipButton(
-                      title: "Pasif",
-                      selected: filterIndex == 2,
+                      title: AdvertFilterOptions.passive.options,
+                      selected: filterOptions == AdvertFilterOptions.passive,
                       ontap: () {
-                        filter(2);
+                        filter(AdvertFilterOptions.passive);
                       },
                     ),
                     CustomChipButton(
-                      title: "Tümü",
-                      selected: filterIndex == 3,
+                      title: AdvertFilterOptions.all.options,
+                      selected: filterOptions == AdvertFilterOptions.all,
                       ontap: () {
-                        filter(3);
+                        filter(AdvertFilterOptions.all);
                       },
                     )
                   ],

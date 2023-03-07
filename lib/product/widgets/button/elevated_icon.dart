@@ -9,9 +9,9 @@ class MyElevatedIcons extends StatelessWidget {
   final Icon? icons;
   const MyElevatedIcons({
     Key? key,
-    this.onPressed,
-    this.buttonName,
-    this.icons,
+    @required this.onPressed,
+    @required this.buttonName,
+    @required this.icons,
   }) : super(key: key);
 
   @override

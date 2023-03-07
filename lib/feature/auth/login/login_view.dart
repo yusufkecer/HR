@@ -1,5 +1,4 @@
 import 'package:hrapp/core/constant/size.dart';
-import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/feature/auth/reset_password/reset_password_view.dart';
 import 'package:hrapp/product/widgets/checkbox_text.dart';
 import 'package:hrapp/product/widgets/text_field/auth_field.dart';
