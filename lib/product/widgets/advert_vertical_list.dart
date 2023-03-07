@@ -216,6 +216,7 @@ class _AdvertVerticalListState extends State<AdvertVerticalList> {
             throw "Save için index verilmedi";
           }
           widget.saveFunc!(index, widget.saveIndex![index]);
+          widget.saveIndex!.remove(index);
           setState(() {});
         },
       ),

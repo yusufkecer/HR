@@ -28,7 +28,7 @@ class CustomChipButton extends StatelessWidget {
               color: selected! ? MyColor.white : MyColor.black,
             ),
           ),
-          backgroundColor: selected! ? MyColor.ocianLavender : MyColor.desertStorm,
+          backgroundColor: selected! ? MyColor.fuchsiaBlue : MyColor.desertStorm,
         ),
       ),
     );

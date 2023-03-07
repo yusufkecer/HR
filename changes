@@ -142,9 +142,17 @@ componentleri oluşturuldu
 yeni drawer görünümü güncellendi
 çıkış butonu eklendi
 drawer arka plan rengi güncellendi
+07.03
+kaydedilen ilanların anasayfadan kalırma işlemi tamamlandı
+ilan kaydetme butonu güncellendi
+aktif pasif ilan bilgisi eklendi
+ilanları aktif pasif hale getirme özelliği eklendi
+dateTimedan birden fazla tarih seçince imleç gözükme hatası çözüldü
+filtre butonlarının rengi güncellendi
+enum yapısı oluşturuldu
 
 // Hatalar
-//! birden fazla iş ilanı kaydedip silince sadece bir tane kaydedilen siliniyor 
+
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
 ilan tarihi eklenecek (geçerlilik tarihi ve oluşturma tarihi)
 

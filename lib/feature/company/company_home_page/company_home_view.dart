@@ -191,7 +191,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
     return Padding(
       padding: const ProjectPadding.allEight().copyWith(left: 18),
       child: Text(
-        "₺ ${jobInfo[index].jobs?.lowerWage?.toDouble().toStringAsFixed(3) ?? "-"}/Ay",
+        "₺ ${jobInfo[index].jobs?.lowerWage?.toDouble().toStringAsFixed(0) ?? "-"}/Ay",
         style: const TextStyle(fontWeight: Weight.midium),
       ),
     );

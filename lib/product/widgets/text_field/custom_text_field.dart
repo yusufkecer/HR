@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 import 'package:hrapp/core/constant/project_padding.dart';
@@ -9,6 +7,7 @@ import 'package:hrapp/product/constant/font_size.dart';
 
 class CustomTextField extends StatefulWidget {
   final String? title;
+  final bool selectionCursor;
   final int? maxLine;
   final TextInputType? textInputType;
   final TextEditingController? textEditingController;
@@ -18,12 +17,13 @@ class CustomTextField extends StatefulWidget {
 
   const CustomTextField({
     Key? key,
-    this.tap,
     this.title,
+    this.selectionCursor = true,
     this.maxLine,
     this.textInputType,
     this.textEditingController,
     this.icon,
+    this.tap,
     this.hint,
   }) : super(key: key);
 
@@ -37,6 +37,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Theme(
       data: ThemeData(colorScheme: ThemeData().colorScheme.copyWith(primary: MyColor.fuchsiaBlueLight)),
       child: TextField(
+        enableInteractiveSelection: false,
         keyboardType: widget.textInputType ?? TextInputType.text,
         maxLines: widget.maxLine,
         controller: widget.textEditingController,

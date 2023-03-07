@@ -123,8 +123,13 @@ class StringData {
   static const levelD = "Deneyim:";
   static const descriptionD = "İş Tanımı:";
   static const positionOpenD = "Açık Pozisyon Sayısı:";
-  static const applicationDateD = "Son Başvuru Tarihi";
+  static const applicationDateD = "Son Başvuru Tarihi:";
   static const provinceD = "Tercih Edilen Şehir:";
   static const camera = "Kamera";
   static const gallery = "Galeri";
+  static const savedAdvert = "Kayıtlı İlanlar";
+  static const activate = "Aktifleştir";
+  static const pacify = "Pasifleştir";
+
+  static const logout = "Çıkış Yap";
 }
