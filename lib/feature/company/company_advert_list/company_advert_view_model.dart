@@ -6,11 +6,11 @@ import 'company_advert_view.dart';
 abstract class CompanyJobViewModel extends State<CompanyJobView> {
   @override
   void initState() {
-    Future(() {});
     setState(() {});
     super.initState();
   }
 
+  int filterIndex = 1;
   bool verticalDivider = true;
   void updateJob(index) async {
     Future(() async {
@@ -28,6 +28,11 @@ abstract class CompanyJobViewModel extends State<CompanyJobView> {
         setState(() {});
       }
     });
+  }
+
+  void filter(int index) {
+    filterIndex = index;
+    setState(() {});
   }
 
   void deleteJob(int index) async {

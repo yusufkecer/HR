@@ -74,7 +74,8 @@ class StringData {
   static const cancel = "İptal";
   static const ok = "Tamam";
   static const createAdvert = "İlan Oluştur";
-  static const jobAdvertNotFound = "İlanınız bulunmamaktadır.\nHemen oluşturun!";
+  static const advertNotFound = "İlanınız bulunmamaktadır.\nHemen oluşturun!";
+  static const saveNotFound = "Favori ilanınız bulunmamaktadır.\nHemen favorilere ekleyin!";
 
   //create advert
   static const jobPosition = "Pozisyon*";

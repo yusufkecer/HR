@@ -2,18 +2,27 @@ import 'package:flutter/material.dart';
 
 import '../../constant/colors.dart';
 
-class TextButtonWeight extends StatelessWidget {
+class TextButtonIcon extends StatelessWidget {
   final FontWeight? weight;
   final String? buttonName;
-  final Function? onPressed;
-  const TextButtonWeight({this.weight = FontWeight.normal, this.buttonName = "", this.onPressed, super.key});
+  final IconData? myIcons;
+  final Color? colors;
+  final void Function()? onPressed;
+  const TextButtonIcon({
+    Key? key,
+    @required this.buttonName,
+    @required this.myIcons,
+    @required this.onPressed,
+    this.weight,
+    this.colors = MyColor.lightBlack,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-      style: TextButton.styleFrom(foregroundColor: MyColor.lightBlack),
+      style: TextButton.styleFrom(foregroundColor: colors),
       onPressed: () => onPressed!(),
-      icon: const Icon(Icons.lock_person_outlined),
+      icon: Icon(myIcons!),
       label: Text(
         buttonName!,
         textAlign: TextAlign.right,

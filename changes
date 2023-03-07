@@ -136,8 +136,15 @@ iş ilanı ekleme kısmına son tarih eklendi
 ilanı düzenlerken son tarihi önceki oluşturulan ilan tarihi olarak getiriliyor düzenlendi
 son tarih iş detayı sayfasına eklendi
 birkaç küçük yeni update atıldı
+06.03
+iş ilanlarını kategorilere ayırmak için butonlar eklendi (pasif aktfi tümü gibi)
+componentleri oluşturuldu
+yeni drawer görünümü güncellendi
+çıkış butonu eklendi
+drawer arka plan rengi güncellendi
 
 // Hatalar
+//! birden fazla iş ilanı kaydedip silince sadece bir tane kaydedilen siliniyor 
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
 ilan tarihi eklenecek (geçerlilik tarihi ve oluşturma tarihi)
 
