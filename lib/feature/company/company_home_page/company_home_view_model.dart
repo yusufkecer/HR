@@ -11,11 +11,6 @@ abstract class CompanyHomeViewModel extends State<CompanyHomeView> with CheckMix
     });
   }
 
-  @override
-  void didUpdateWidget(covariant CompanyHomeView oldWidget) {
-    super.didUpdateWidget(oldWidget);
-  }
-
   double aspectRatio = 1;
   int cardCount = 4;
   List<Company> jobInfo = AdvertRepo.instance.adverts.toList();
