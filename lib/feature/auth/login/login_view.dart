@@ -37,7 +37,11 @@ class _LoginViewState extends LoginViewModel {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    titles(),
+                    GestureDetector(
+                        onTap: () {
+                          nav.navigteToCompany(context);
+                        },
+                        child: titles()),
                     BoxSpace(
                       height: ProjectSize.veryBigHeight().height,
                     ),
@@ -80,11 +84,12 @@ class _LoginViewState extends LoginViewModel {
     );
   }
 
-  TextButtonWeight resetPassword() {
-    return TextButtonWeight(
+  TextButtonIcon resetPassword() {
+    return TextButtonIcon(
       weight: Weight.midium,
       buttonName: StringData.resetPassword,
       onPressed: navigateResetPassword,
+      myIcons: MyIcons.lock,
     );
   }
 

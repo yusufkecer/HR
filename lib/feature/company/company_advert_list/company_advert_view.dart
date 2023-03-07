@@ -12,6 +12,8 @@ import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/data/company_repo/advert_repo.dart';
 
+import '../../../product/widgets/button/chip_button.dart';
+import '../../../product/widgets/not_found.dart';
 import 'company_advert_view_model.dart';
 
 class CompanyJobView extends StatefulWidget {
@@ -35,6 +37,32 @@ class _CompanyJobViewState extends CompanyJobViewModel {
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               children: [
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  children: [
+                    CustomChipButton(
+                      title: "Aktif",
+                      selected: filterIndex == 1,
+                      ontap: () {
+                        filter(1);
+                      },
+                    ),
+                    CustomChipButton(
+                      title: "Pasif",
+                      selected: filterIndex == 2,
+                      ontap: () {
+                        filter(2);
+                      },
+                    ),
+                    CustomChipButton(
+                      title: "Tümü",
+                      selected: filterIndex == 3,
+                      ontap: () {
+                        filter(3);
+                      },
+                    )
+                  ],
+                ),
                 const SubTitle(
                   title: StringData.myAdvertisement,
                 ),
@@ -42,26 +70,8 @@ class _CompanyJobViewState extends CompanyJobViewModel {
               ],
             ),
           )
-        : Padding(
-            padding: const EdgeInsets.only(bottom: 80.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  ImagePath.dontResult,
-                  height: 100,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  StringData.jobAdvertNotFound,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: MyColor.osloGrey, fontWeight: Weight.midium),
-                  textScaleFactor: ProjectFontSize.oneToFour,
-                ),
-              ],
-            ),
+        : const NotFound(
+            text: StringData.advertNotFound,
           );
   }
 
