@@ -17,6 +17,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     super.initState();
   }
 
+  bool isActive = true;
   List<TextEditingController> textController = [];
   Jobs? updateJob;
   String? jobTitle;
@@ -143,6 +144,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       textController[7].text = updateJob!.description!;
       currencyValue = updateJob?.currency;
       provinceValue = updateJob?.province;
+      isActive = updateJob!.isActive;
       String result = "";
       if (updateJob?.upperWage != null && updateJob?.upperWage != null) {
         result = "${updateJob?.lowerWage?.toStringAsFixed(0)}-${updateJob?.upperWage?.toStringAsFixed(0)}";
@@ -155,7 +157,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   }
 
   void visibility() {
-    updateJob!.isActive = !updateJob!.isActive;
+    isActive = !isActive;
     setState(() {});
   }
 
@@ -188,6 +190,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         companyName: "PAÜ",
         sector: "Yazılım",
         jobs: Jobs(
+          isActive: isActive,
           isSaveJob: false,
           jobTitle: jobTitle,
           date: date,
@@ -209,9 +212,12 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
 
       if (updateJob == null) {
         widget.advertRepo?.adverts.add(data);
+        widget.advertRepo?.filterAdvert();
       } else {
         widget.advertRepo?.adverts[widget.index!].jobs?.skills = [];
         widget.advertRepo?.adverts[widget.index!] = data;
+
+        widget.advertRepo?.filterAdvert();
       }
       setState(() {});
 

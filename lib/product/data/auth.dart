@@ -25,7 +25,11 @@ class Auth {
     }
   }
 
-  Map<String, dynamic>? getToken() {
+  set resetToken(Map<String, dynamic> value) {
+    token = value;
+  }
+
+  Map<String, dynamic>? get getToken {
     return token;
   }
 }

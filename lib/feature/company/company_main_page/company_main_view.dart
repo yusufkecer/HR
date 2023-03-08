@@ -26,7 +26,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
   String? name;
   @override
   void initState() {
-    var response = Auth.instance.getToken();
+    var response = Auth.instance.getToken;
     name = response?["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
     super.initState();
   }
@@ -128,7 +128,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
             MyIcons.logout,
             StringData.logout,
             MyIcons.nextIOSIcon,
-            navigateSavedAdvert,
+            logout,
           ),
         ],
       ),

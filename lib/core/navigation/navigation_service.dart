@@ -230,7 +230,7 @@ class NavigationService {
                 ),
               ),
               ListTile(
-                onTap: choice,
+                onTap: choice2,
                 leading: Icon(icon2),
                 title: Text(
                   text2 ?? "",

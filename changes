@@ -150,7 +150,9 @@ ilanları aktif pasif hale getirme özelliği eklendi
 dateTimedan birden fazla tarih seçince imleç gözükme hatası çözüldü
 filtre butonlarının rengi güncellendi
 enum yapısı oluşturuldu
-
+08.03
+filtreleme işlemi tamamlandı
+uygulamadan çıkış yapma eklendi  
 // Hatalar
 
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor

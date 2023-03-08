@@ -28,6 +28,7 @@ abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMi
     closeKeyboard();
     Future(() => nav.showLoading(context));
     var val = await Auth.instance.login(emailController.text, passwordController.text);
+
     Future(() => nav.hideLoading(context));
     if (val == true) {
       Future(() => nav.navigteToCompany(context));

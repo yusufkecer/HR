@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/feature/auth/login/login_view.dart';
 import 'package:hrapp/feature/company/company_create_advert/company_create_advert_view.dart';
+import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/data/company_repo/advert_repo.dart';
 import '../../../core/navigation/navigation_service.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/constant/string_data.dart';
-
 import '../../../product/models/worker_model/worker_model.dart';
 import '../../../product/service/api.dart';
-
 import '../../../product/service/data_service.dart';
 import '../company_profile/company_profile_view.dart';
 import '../saved_advert/saved_advert_view.dart';
@@ -28,6 +28,16 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => const CompanyProfileView(),
     ));
+  }
+
+  void logout() async {
+    Auth.instance.resetToken = {};
+    print(Auth.instance.token);
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => const LoginView(),
+    ));
+
+    setState(() {});
   }
 
   void navigateSavedAdvert() async {

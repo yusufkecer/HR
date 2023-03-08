@@ -60,10 +60,9 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
                     Padding(
                       padding: const ProjectPadding.rightEight(),
                       child: IconButton(
-                        tooltip: updateJob!.isActive ? StringData.pacify : StringData.activate,
+                        tooltip: isActive ? StringData.pacify : StringData.activate,
                         onPressed: visibility,
-                        icon:
-                            updateJob!.isActive ? const Icon(MyIcons.visibilityOn) : const Icon(MyIcons.visibilityOff),
+                        icon: isActive ? const Icon(MyIcons.visibilityOn) : const Icon(MyIcons.visibilityOff),
                       ),
                     ),
                   ]
