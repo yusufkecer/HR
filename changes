@@ -154,6 +154,10 @@ enum yapısı oluşturuldu
 filtreleme işlemi tamamlandı
 uygulamadan çıkış yapma eklendi  
 save bug çözüldü
+09.03
+company apisine bağlanıldı
+10.03
+apiden veriler çekildi
 // Hatalar
 
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor

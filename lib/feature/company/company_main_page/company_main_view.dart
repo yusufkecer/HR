@@ -58,7 +58,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
             connectionError: dontReachApi,
           ),
           CompanyJobView(
-            advertRepo: jobList,
+            adverts: adverts,
           ),
         ]),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

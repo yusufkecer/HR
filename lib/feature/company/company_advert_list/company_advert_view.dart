@@ -4,7 +4,6 @@ import 'package:hrapp/feature/company/company_advert_detail/company_advert_detai
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
-import 'package:hrapp/product/models/company_model/company_model.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_with_icon.dart';
 import '../../../Core/Constant/radius.dart';
@@ -12,26 +11,26 @@ import '../../../core/constant/project_padding.dart';
 import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
-import '../../../product/data/company_repo/advert_repo.dart';
+import '../../../product/models/general_company_model.dart';
 import '../../../product/widgets/button/chip_button.dart';
 import '../../../product/widgets/not_found.dart';
 import 'company_advert_view_model.dart';
 
 class CompanyJobView extends StatefulWidget {
-  final AdvertRepo? advertRepo;
+  final List<Job>? adverts;
   const CompanyJobView({
     Key? key,
-    this.advertRepo,
+    this.adverts,
   }) : super(key: key);
 
   @override
   State<CompanyJobView> createState() => _CompanyJobViewState();
 }
 
-class _CompanyJobViewState extends CompanyJobViewModel {
+class _CompanyJobViewState extends CompanyAdvertViewModel {
   @override
   Widget build(BuildContext context) {
-    return widget.advertRepo!.adverts.isNotEmpty
+    return widget.adverts != null
         ? Padding(
             padding: const ProjectPadding.bottomTwentySix(),
             child: ListView(
@@ -67,11 +66,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                 const SubTitle(
                   title: StringData.myAdvertisement,
                 ),
-                filterOptions == AdvertFilterOptions.active
-                    ? jobs(widget.advertRepo!.activeAdverts)
-                    : filterOptions == AdvertFilterOptions.passive
-                        ? jobs(widget.advertRepo!.passiveAdverts)
-                        : jobs(widget.advertRepo!.adverts),
+                jobs(widget.adverts!)
               ],
             ),
           )
@@ -80,21 +75,22 @@ class _CompanyJobViewState extends CompanyJobViewModel {
           );
   }
 
-  SizedBox jobs(List<Company> advertRepo) {
+  SizedBox jobs(List<Job> adverts) {
     return SizedBox(
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        itemCount: advertRepo.length,
+        itemCount: adverts.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CompanyAdvertDetailView(adverts: advertRepo[index]),
-                  ));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CompanyAdvertDetailView(adverts: adverts[index]),
+                ),
+              );
             },
             child: Padding(
               padding: const ProjectPadding.allEight(),
@@ -116,19 +112,19 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                jobTitle(index, advertRepo),
+                                jobTitle(index, adverts),
                                 const SizedBox(
                                   height: 7,
                                 ),
-                                jobInfo(advertRepo, index),
+                                jobInfo(adverts, index),
                               ],
                             )
                           ],
                         ),
-                        skills(advertRepo, index),
+                        skills(adverts, index),
                         Row(
                           children: [
-                            jobWage(advertRepo, index),
+                            jobWage(adverts, index),
                             verticalDivider
                                 ? const SizedBox(
                                     height: 17,
@@ -139,8 +135,8 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                                     ),
                                   )
                                 : const SizedBox(),
-                            jobTiming(advertRepo, index),
-                            advertRepo[index].jobs!.province != null
+                            jobTiming(adverts, index),
+                            adverts[index].province != null
                                 ? const SizedBox(
                                     height: 18,
                                     child: VerticalDivider(
@@ -150,12 +146,12 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                                     ),
                                   )
                                 : const SizedBox(),
-                            advertRepo[index].jobs!.province != null ? province(advertRepo, index) : const SizedBox()
+                            adverts[index].province != null ? province(adverts, index) : const SizedBox()
                           ],
                         )
                       ],
                     ),
-                    jobSettings(index, advertRepo),
+                    jobSettings(index, adverts),
                   ],
                 ),
               ),
@@ -185,9 +181,9 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     );
   }
 
-  Text jobTitle(int index, advertRepo) {
+  Text jobTitle(int index, List<Job> advert) {
     return Text(
-      advertRepo[index].jobs?.jobTitle ?? "-",
+      advert[index].jobTitle ?? "-",
       textScaleFactor: ProjectFontSize.oneToThree,
       style: const TextStyle(
         fontWeight: Weight.midium,
@@ -195,11 +191,11 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     );
   }
 
-  Widget jobInfo(advertRepo, int index) {
+  Widget jobInfo(List<Job> advert, int index) {
     return RichText(
         text: TextSpan(children: [
       TextSpan(
-        text: "${advertRepo[index].jobs?.level}",
+        text: "${advert[index].level}",
         style: const TextStyle(
           fontWeight: Weight.midium,
           color: MyColor.black,
@@ -217,7 +213,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
         ),
       )),
       TextSpan(
-        text: "${advertRepo[index].jobs?.positionOpen} Kişi",
+        text: "${advert[index].positionOpen} Kişi",
         style: const TextStyle(
           fontWeight: Weight.midium,
           color: MyColor.black,
@@ -227,7 +223,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     ]));
   }
 
-  Align jobSettings(index, advertRepo) {
+  Align jobSettings(int index, List<Job>? advert) {
     return Align(
       alignment: Alignment.topRight,
       child: Padding(
@@ -251,7 +247,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                 StringData.update,
                 updateJob,
                 0,
-                advertRepo,
+                advert,
               ),
               popupItem(
                 index,
@@ -259,6 +255,7 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                 StringData.delete,
                 deleteAdvert,
                 1,
+                advert,
               ),
             ];
           },
@@ -267,8 +264,14 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     );
   }
 
-  PopupMenuItem popupItem(int index, IconData icon, String info, Function onTap, int value,
-      [List<Company>? advertRepo]) {
+  PopupMenuItem popupItem(
+    int index,
+    IconData icon,
+    String info,
+    Function onTap,
+    int value,
+    List<Job>? advert,
+  ) {
     return PopupMenuItem(
         value: value,
         child: TextWithIcon(
@@ -276,17 +279,17 @@ class _CompanyJobViewState extends CompanyJobViewModel {
           text: info,
         ),
         onTap: () {
-          onTap(index, advertRepo);
+          onTap(index, advert);
         });
   }
 
-  SizedBox skills(List<Company> advertRepo, parentIndex) {
+  SizedBox skills(List<Job> advert, parentIndex) {
     return SizedBox(
       height: 44,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: advertRepo[parentIndex].jobs?.skills != null ? advertRepo[parentIndex].jobs?.skills?.length : 0,
+        itemCount: advert[parentIndex].skills != null ? advert[parentIndex].skills?.length : 0,
         itemBuilder: (context, index) {
           return Padding(
             padding: const ProjectPadding.allEight().copyWith(
@@ -301,9 +304,9 @@ class _CompanyJobViewState extends CompanyJobViewModel {
                   borderRadius: ProjectRadius.verySmallAll(),
                   color: MyColor.white,
                 ),
-                child: advertRepo[parentIndex].jobs?.skills?[index] != null
+                child: advert[parentIndex].skills?[index] != null
                     ? Text(
-                        advertRepo[parentIndex].jobs?.skills?[index], //textAlign: TextAlign.center,
+                        advert[parentIndex].skills![index],
                         //  textScaleFactor: ProjectFontSize.zeroToNine,
                       )
                     : const SizedBox(),
@@ -315,26 +318,26 @@ class _CompanyJobViewState extends CompanyJobViewModel {
     );
   }
 
-  Padding jobWage(List<Company> advertRepo, int index) {
+  Padding jobWage(List<Job> advert, int index) {
     return Padding(
       padding: const ProjectPadding.allEightTeen().copyWith(left: 18, right: 0),
-      child: wageConditions(advertRepo, index),
+      child: wageConditions(advert, index),
     );
   }
 
-  Text jobTiming(List<Company> advertRepo, int index) {
+  Text jobTiming(List<Job> advert, int index) {
     return Text(
-      "${advertRepo[index].jobs!.timing}",
+      "${advert[index].timing}",
       textScaleFactor: ProjectFontSize.oneToOne,
       style: const TextStyle(fontWeight: Weight.midium),
     );
   }
 
-  Widget province(List<Company> advertRepo, int index) => Flexible(
+  Widget province(List<Job> advert, int index) => Flexible(
         child: Padding(
           padding: const ProjectPadding.rightEight(),
           child: Text(
-            "${advertRepo[index].jobs!.province}",
+            "${advert[index].province}",
             textScaleFactor: ProjectFontSize.oneToOne,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
@@ -343,22 +346,22 @@ class _CompanyJobViewState extends CompanyJobViewModel {
         ),
       );
 
-  Text wageConditions(List<Company> advertRepo, int index) {
-    String? currency;
+  Text wageConditions(List<Job> advert, int index) {
+    String? currency = "\$";
     String? data;
-    if (advertRepo[index].jobs?.currency == null) {
-      currency = StringData.turkishLiraSymbol;
-    } else {
-      currency = advertRepo[index].jobs!.currency;
-    }
-    if (advertRepo[index].jobs?.lowerWage != null && advertRepo[index].jobs?.upperWage != null) {
-      data = "$currency ${advertRepo[index].jobs?.lowerWage?.toStringAsFixed(0)}"
+    // if (advert[index].currency == null) {
+    //   currency = StringData.turkishLiraSymbol;
+    // } else {
+    //   currency = advert[index].currency;
+    // }
+    if (advert[index].lowerWage != null && advert[index].upperWage != null) {
+      data = "$currency ${advert[index].lowerWage?.toStringAsFixed(0)}"
           "-"
-          "${advertRepo[index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
-    } else if (advertRepo[index].jobs?.upperWage != null) {
-      data = "$currency ${advertRepo[index].jobs?.upperWage?.toStringAsFixed(0)}/Ay";
-    } else if (advertRepo[index].jobs?.lowerWage != null) {
-      data = "$currency ${advertRepo[index].jobs?.lowerWage?.toStringAsFixed(0)}/Ay";
+          "${advert[index].upperWage?.toStringAsFixed(0)}/Ay";
+    } else if (advert[index].upperWage != null) {
+      data = "$currency ${advert[index].upperWage?.toStringAsFixed(0)}/Ay";
+    } else if (advert[index].lowerWage != null) {
+      data = "$currency ${advert[index].lowerWage?.toStringAsFixed(0)}/Ay";
     } else {
       data = "";
       verticalDivider = false;

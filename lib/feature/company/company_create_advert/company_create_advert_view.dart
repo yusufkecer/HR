@@ -10,17 +10,16 @@ import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
 
 import '../../../product/constant/icons.dart';
-import '../../../product/models/job_model/job_model.dart';
+import '../../../product/models/general_company_model.dart';
+
 import '../../../product/widgets/costom_dropdown.dart';
 import 'company_create_advert_view_model.dart';
 
 class CompanyCreateJobView extends StatefulWidget {
-  final AdvertRepo? advertRepo;
-  final Jobs? updateJob;
+  final Job? updateJob;
   final int? index;
   const CompanyCreateJobView({
     Key? key,
-    required this.advertRepo,
     this.updateJob,
     this.index,
   }) : super(key: key);

@@ -4,6 +4,7 @@ import 'package:hrapp/product/service/api.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/constant/string_data.dart';
 import '../../../product/models/company_model/company_model.dart';
+import '../../../product/models/general_company_model.dart';
 import '../../../product/models/job_model/job_model.dart';
 import '../../../product/service/data_service.dart';
 import 'company_create_advert_view.dart';
@@ -11,15 +12,16 @@ import 'company_create_advert_view.dart';
 abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   @override
   void initState() {
-    getProvince();
-    controllerSettings();
+    print("init");
+    // getProvince();
+    // controllerSettings();
 
     super.initState();
   }
 
   bool isActive = true;
   List<TextEditingController> textController = [];
-  Jobs? updateJob;
+  Job? updateJob;
   String? jobTitle;
   String? positionOpen;
   String? timing;
@@ -35,8 +37,8 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   DateTime? selectedDate;
 
   void getDate() async {
-    if (updateJob?.date != null) {
-      List<String> dateParts = updateJob!.date!.split('/');
+    if (updateJob?.deadline != null) {
+      List<String> dateParts = updateJob!.deadline.toString().split('/');
 
       String newDateString = "${dateParts[2]}-${dateParts[1]}-${dateParts[0]} 00:00:00.000";
       selectedDate = DateTime.parse(newDateString);
@@ -134,17 +136,17 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         updateJob?.timing != null &&
         updateJob?.level != null &&
         updateJob?.positionOpen != null &&
-        updateJob?.date != null) {
+        updateJob?.deadline != null) {
       textController[0].text = updateJob!.jobTitle!;
       textController[1].text = updateJob!.skills!.join(",");
       textController[2].text = updateJob!.timing!;
       textController[3].text = updateJob!.level!;
-      textController[4].text = updateJob!.positionOpen!;
-      textController[6].text = updateJob!.date!;
+      textController[4].text = updateJob!.positionOpen.toString();
+      textController[6].text = updateJob!.deadline.toString();
       textController[7].text = updateJob!.description!;
       currencyValue = updateJob?.currency;
       provinceValue = updateJob?.province;
-      isActive = updateJob!.isActive;
+      isActive = updateJob!.isActive!;
       String result = "";
       if (updateJob?.upperWage != null && updateJob?.upperWage != null) {
         result = "${updateJob?.lowerWage?.toStringAsFixed(0)}-${updateJob?.upperWage?.toStringAsFixed(0)}";
@@ -211,13 +213,13 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       );
 
       if (updateJob == null) {
-        widget.advertRepo?.adverts.add(data);
-        widget.advertRepo?.filterAdvert();
+        //  widget.updateJob!.add(data);
+        // widget.advertRepo?.filterAdvert();
       } else {
-        widget.advertRepo?.adverts[widget.index!].jobs?.skills = [];
-        widget.advertRepo?.adverts[widget.index!] = data;
+        //   widget.updateJob![widget.index!].jobs?.skills = [];
+        // widget.updateJob![widget.index!] = data;
 
-        widget.advertRepo?.filterAdvert();
+        // widget.updateJob?.filterAdvert();
       }
       setState(() {});
 
