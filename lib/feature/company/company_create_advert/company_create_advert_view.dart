@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/extensions/context_extension.dart';
 import 'package:hrapp/product/constant/string_data.dart';
-import 'package:hrapp/product/data/company_repo/advert_repo.dart';
 import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';

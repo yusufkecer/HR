@@ -12,9 +12,8 @@ import 'company_create_advert_view.dart';
 abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   @override
   void initState() {
-    print("init");
-    // getProvince();
-    // controllerSettings();
+    getProvince();
+    controllerSettings();
 
     super.initState();
   }
@@ -97,7 +96,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     [StringData.applicationDate, MyIcons.date, ""],
     [StringData.description],
   ];
-  void getProvince() async {
+  Future<void> getProvince() async {
     Map? province;
     Future(() {
       NavigationService().showLoading(context);
@@ -124,7 +123,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     setState(() {});
   }
 
-  void controllerSettings() {
+  Future<void> controllerSettings() async {
     for (var i = 0; i < jobQualities.length; i++) {
       textController.add(TextEditingController());
     }
