@@ -14,7 +14,8 @@ class Auth {
   DataService ds = DataService();
   Map<String, dynamic>? token;
   String? status;
-  Future login(String email, String password) async {
+
+  Future login(String email, String password, String endpoint) async {
     var response = await ds.authLogin(email, password, ApiUri.loginCompnay);
     if (response != null) {
       if (response["isSuccess"]) {
@@ -25,7 +26,11 @@ class Auth {
     }
   }
 
-  Map<String, dynamic>? getToken() {
+  set resetToken(Map<String, dynamic> value) {
+    token = value;
+  }
+
+  Map<String, dynamic>? get getToken {
     return token;
   }
 }

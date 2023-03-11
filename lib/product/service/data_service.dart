@@ -11,10 +11,10 @@ class DataService {
     } else {}
   }
 
-  Future authLogin(String email, String password, String endPoint) async {
+  Future authLogin(String email, String password, String endpoint) async {
     try {
       final response = await http.post(
-        Uri.parse(endPoint),
+        Uri.parse(endpoint),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

@@ -5,6 +5,7 @@ import 'package:hrapp/feature/auth/login/login_view.dart';
 import 'package:hrapp/product/service/data_service.dart';
 import '../../../core/mixin/password_visible.dart';
 import '../../../product/data/auth.dart';
+import '../reset_password/reset_password_view.dart';
 
 abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMixin, CheckMixin {
   late TextEditingController emailController;
@@ -24,10 +25,19 @@ abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMi
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
+  void navigateResetPassword() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ResetPassword(),
+      ),
+    );
+  }
+
   void navigateApp() async {
     closeKeyboard();
     Future(() => nav.showLoading(context));
-    var val = await Auth.instance.login(emailController.text, passwordController.text);
+    var val = await Auth.instance.login(emailController.text, passwordController.text, widget.endpoint!);
+
     Future(() => nav.hideLoading(context));
     if (val == true) {
       Future(() => nav.navigteToCompany(context));

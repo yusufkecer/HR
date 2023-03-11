@@ -1,9 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/size.dart';
-import 'package:hrapp/feature/auth/reset_password/reset_password_view.dart';
 import 'package:hrapp/product/widgets/checkbox_text.dart';
 import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
-import 'package:flutter/material.dart';
 import '../../../Product/Constant/colors.dart';
 import '../../../Product/widgets/sized_box/box_space.dart';
 import '../../../core/constant/project_padding.dart';
@@ -16,7 +15,11 @@ import '../../../product/widgets/button/text_button_icon.dart';
 import 'login_view_model.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+  final String? endpoint;
+  const LoginView({
+    Key? key,
+    this.endpoint,
+  }) : super(key: key);
 
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -89,14 +92,6 @@ class _LoginViewState extends LoginViewModel {
       buttonName: StringData.resetPassword,
       onPressed: navigateResetPassword,
       myIcons: MyIcons.lock,
-    );
-  }
-
-  void navigateResetPassword() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const ResetPassword(),
-      ),
     );
   }
 

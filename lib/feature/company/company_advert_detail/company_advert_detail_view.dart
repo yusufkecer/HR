@@ -8,14 +8,14 @@ import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
-import 'package:hrapp/product/models/company_model/company_model.dart';
+import 'package:hrapp/product/models/general_company_model.dart';
 import 'package:hrapp/product/widgets/app_bar_logo.dart';
 
 class CompanyAdvertDetailView extends StatefulWidget {
-  final Company? adverts;
+  final Job? adverts;
   const CompanyAdvertDetailView({
     Key? key,
-    required this.adverts,
+    this.adverts,
   }) : super(key: key);
 
   @override
@@ -51,8 +51,8 @@ class _CompanyAdvertDetailViewState extends CompanyAdvertDetailViewModel {
                       height: 100,
                       width: 100,
                       decoration: const BoxDecoration(borderRadius: ProjectRadius.bigAll()),
-                      child: Image(
-                        image: NetworkImage(advertList?.companyImage ?? ImagePath.temporaryImage),
+                      child: const Image(
+                        image: NetworkImage(ImagePath.temporaryImage),
                         //fit: BoxFit.cover,
                       ),
                     ),
@@ -71,18 +71,18 @@ class _CompanyAdvertDetailViewState extends CompanyAdvertDetailViewModel {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            richText(StringData.jobPositionD, advertList!.jobs!.jobTitle!),
-                            richText(StringData.skillsD, advertList!.jobs!.skills!.join(", ")),
-                            richText(StringData.timingD, advertList!.jobs!.timing!),
-                            richText(StringData.levelD, advertList!.jobs!.level!),
-                            richText(StringData.positionOpenD, "${advertList!.jobs!.positionOpen!} kişi"),
-                            richText(StringData.applicationDateD, advertList!.jobs!.date!),
+                            richText(StringData.jobPositionD, advertList!.jobTitle!),
+                            richText(StringData.skillsD, advertList!.skills!.join(", ")),
+                            richText(StringData.timingD, advertList!.timing!),
+                            richText(StringData.levelD, advertList!.level!),
+                            richText(StringData.positionOpenD, "${advertList!.positionOpen!} kişi"),
+                            richText(StringData.applicationDateD, advertList!.deadline!.toString()),
                             wageConditions(),
-                            advertList!.jobs!.province != null
-                                ? richText(StringData.positionOpenD, advertList!.jobs!.province!)
+                            advertList!.province != null
+                                ? richText(StringData.positionOpenD, advertList!.province!)
                                 : const SizedBox(),
-                            advertList!.jobs!.description != null
-                                ? richText(StringData.descriptionD, advertList!.jobs!.description!)
+                            advertList!.description != null
+                                ? richText(StringData.descriptionD, advertList!.description!)
                                 : const SizedBox(),
                           ],
                         ),
@@ -120,19 +120,19 @@ class _CompanyAdvertDetailViewState extends CompanyAdvertDetailViewModel {
     String? currency;
     String? data;
 
-    if (advertList!.jobs?.currency == null) {
+    if (advertList?.currency == null) {
       currency = StringData.turkishLiraSymbol;
     } else {
-      currency = advertList!.jobs!.currency;
+      currency = advertList!.currency;
     }
-    if (advertList!.jobs?.lowerWage != null && advertList!.jobs?.upperWage != null) {
-      data = "$currency ${advertList!.jobs?.lowerWage?.toStringAsFixed(0)}"
+    if (advertList?.lowerWage != null && advertList?.upperWage != null) {
+      data = "$currency ${advertList?.lowerWage?.toStringAsFixed(0)}"
           "-"
-          "${advertList!.jobs?.upperWage?.toStringAsFixed(0)}/Ay";
-    } else if (advertList!.jobs?.upperWage != null) {
-      data = "$currency ${advertList!.jobs?.upperWage?.toStringAsFixed(0)}/Ay";
-    } else if (advertList!.jobs?.lowerWage != null) {
-      data = "$currency ${advertList!.jobs?.lowerWage?.toStringAsFixed(0)}/Ay";
+          "${advertList?.upperWage?.toStringAsFixed(0)}/Ay";
+    } else if (advertList?.upperWage != null) {
+      data = "$currency ${advertList?.upperWage?.toStringAsFixed(0)}/Ay";
+    } else if (advertList?.lowerWage != null) {
+      data = "$currency ${advertList?.lowerWage?.toStringAsFixed(0)}/Ay";
     } else {
       data = "";
       return const SizedBox();

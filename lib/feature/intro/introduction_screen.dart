@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/core/constant/size.dart';
-import 'package:hrapp/feature/auth/login/login_view.dart';
+import 'package:hrapp/feature/auth/chose_auth.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-
 import '../../Product/Constant/colors.dart';
 
 class Introduction extends StatelessWidget {
@@ -23,7 +22,7 @@ class Introduction extends StatelessWidget {
         pages: [
           pageView(StringData.titleFirst, StringData.subtitleFirst, ImagePath.contact),
           pageView(StringData.titleSecond, StringData.subtitleSecond, ImagePath.join),
-          pageView(StringData.titleEnd, StringData.subtitleEnd, ImagePath.programmer),
+          pageView(StringData.titleEnd, StringData.subtitleEnd, ImagePath.user),
         ],
         done: doneText(),
         dotsDecorator: dotsDecorator(),
@@ -33,7 +32,7 @@ class Introduction extends StatelessWidget {
         onDone: () {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (context) => const LoginView(),
+                builder: (context) => const ChoseAuth(),
               ),
               (route) => false);
         },
