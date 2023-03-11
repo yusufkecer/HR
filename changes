@@ -164,6 +164,9 @@ ilan detay sayfası buna göre güncellendi
 apiden gelen veriler ilan güncelleme sayfasında listeleniyor.
 11.03
 giriş işleminin seçileceği sayfa tasarlandı
+sayfalara göre endpoint işlemi gerçekleştirildi
+istek atılan apilerin yapısı güncellendi
+çıkış yaparken önceki bütün sayfalar kaldırılıyor
 // Hatalar
 
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor

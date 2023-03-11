@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hrapp/Product/Constant/colors.dart';
 import 'package:hrapp/core/navigation/navigator_key.dart';
-import 'package:hrapp/feature/auth/chose_auth.dart';
 import 'feature/splash/splash_screen.dart';
 
 void main() {
@@ -35,8 +34,7 @@ class MyApp extends StatelessWidget {
         primaryColor: MyColor.discovreyPurplishBlue,
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(background: const Color(0xFF6711fe)),
       ),
-      home: ChoseAuth(),
-      //const Splash(),
+      home: const Splash(),
     );
   }
 }

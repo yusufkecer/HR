@@ -71,7 +71,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => CompanyAdvertDetailView(),
+                  builder: (context) => const CompanyAdvertDetailView(),
                 ),
               );
             },

@@ -87,7 +87,6 @@ class _ChoseAuthState extends State<ChoseAuth> {
   }
 
   void navigate(endpoint) {
-    print(endpoint);
     Navigator.push(
       context,
       MaterialPageRoute(
