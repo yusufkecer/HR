@@ -14,7 +14,6 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   void initState() {
     getProvince();
     controllerSettings();
-
     super.initState();
   }
 
@@ -144,7 +143,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       textController[6].text = updateJob!.deadline.toString();
       textController[7].text = updateJob!.description!;
       currencyValue = updateJob?.currency;
-      provinceValue = updateJob?.province;
+      provinceValue = "İstanbul";
       isActive = updateJob!.isActive!;
       String result = "";
       if (updateJob?.upperWage != null && updateJob?.upperWage != null) {

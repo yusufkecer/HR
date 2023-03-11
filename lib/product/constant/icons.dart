@@ -28,7 +28,7 @@ class MyIcons {
   static const popupMenu = Icons.more_vert;
   static const editNote = Icons.edit_note;
   static const confirm = Icons.check_outlined;
-
+  static const company = Icons.apartment_outlined;
   //create advert
   static const position = Icons.badge_outlined;
   static const level = Icons.grade_outlined;

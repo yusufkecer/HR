@@ -158,6 +158,12 @@ save bug çözüldü
 company apisine bağlanıldı
 10.03
 apiden veriler çekildi
+şirketin ilanlarım sayfası apiye göre güncellendi
+entity oluşturuldu
+ilan detay sayfası buna göre güncellendi
+apiden gelen veriler ilan güncelleme sayfasında listeleniyor.
+11.03
+giriş işleminin seçileceği sayfa tasarlandı
 // Hatalar
 
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor

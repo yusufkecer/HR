@@ -1,5 +1,5 @@
 class StringData {
-  static const welcome = "Hoşgeldiniz";
+  static const welcome = "Hoş Geldiniz";
   static const singin = "Giriş Yap";
   static const registerNow = "Hemen Hesap Oluştur";
   static const changePassword = "Şifremi Sıfırla";
@@ -132,4 +132,9 @@ class StringData {
   static const pacify = "Pasifleştir";
 
   static const logout = "Çıkış Yap";
+
+  static const individual = "Bireysel Giriş";
+  static const institutional = "Kurumal Giriş";
+
+  static const authChoise = "Giriş Seçeneği Seçiniz";
 }

@@ -35,7 +35,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   bool status = false;
   List<Job> adverts = [];
   Future<void> getAllAdvert() async {
-    var response = await dt.fetchData(ApiUri.getAdvertActive);
+    var response = await dt.fetchData(ApiUri.getAdvertAll);
     Iterable data = response["data"];
     List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
     setState(() {
@@ -53,9 +53,12 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   void logout() async {
     Auth.instance.resetToken = {};
     print(Auth.instance.token);
-    await Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const LoginView(),
-    ));
+    await Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) => const LoginView(),
+      ),
+      (route) => false,
+    );
 
     setState(() {});
   }

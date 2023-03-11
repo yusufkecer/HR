@@ -43,6 +43,7 @@ class Job {
 
   factory Job.fromJson(Map<String, dynamic> json) {
     return Job(
+      currency: json["currency"],
       level: json["experience"],
       employerId: json['employerId'],
       companyName: json['companyName'],
