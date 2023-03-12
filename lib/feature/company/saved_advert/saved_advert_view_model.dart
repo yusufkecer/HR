@@ -5,9 +5,7 @@ import 'package:hrapp/product/data/company_repo/advert_repo.dart';
 abstract class SavedAdvertViewModel extends State<SavedAdvertView> {
   final advertInstance = AdvertRepo.instance;
   void deleteSave(int index, int parentIndex) async {
-    print("index $index");
-    print("parentindex $parentIndex");
-    print(saveIndex);
+
     setState(() {
       AdvertRepo.instance.savedAdverts.removeAt(index);
       saveIndex.removeAt(index);
@@ -31,6 +29,6 @@ abstract class SavedAdvertViewModel extends State<SavedAdvertView> {
         advertInstance.savedAdverts.add(advertInstance.adverts[i]);
       }
     }
-    print("saveindex $saveIndex");
+
   }
 }

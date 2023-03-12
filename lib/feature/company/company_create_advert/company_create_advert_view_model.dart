@@ -1,32 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
+import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/service/api.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/constant/string_data.dart';
-import '../../../product/models/company_model/company_model.dart';
 import '../../../product/models/general_company_model.dart';
-import '../../../product/models/job_model/job_model.dart';
 import '../../../product/service/data_service.dart';
 import 'company_create_advert_view.dart';
 
 abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   @override
   void initState() {
+    token = Auth.instance.getToken!;
+    print(token);
     getProvince();
     controllerSettings();
     super.initState();
   }
 
+  Map? token;
   bool isActive = true;
   List<TextEditingController> textController = [];
   Job? updateJob;
   String? jobTitle;
-  String? positionOpen;
+  int? positionOpen;
   String? timing;
   String? level;
   String? description;
   String? currencyValue;
-  List skills = [];
+  List<String> skills = [];
   List? val;
   List? wage = [];
   String? date;
@@ -61,7 +63,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     jobTitle = textController[0].text;
     timing = textController[2].text;
     level = textController[3].text;
-    positionOpen = textController[4].text;
+    positionOpen = int.parse(textController[4].text);
     val = textController[1].text.isNotEmpty ? textController[1].text.replaceAll(" ", "").split(",") : null;
     wage = textController[5].text.isNotEmpty ? textController[5].text.split("-") : null;
     date = textController[6].text;
@@ -169,7 +171,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         val == null ||
         level == "" ||
         timing == "" ||
-        positionOpen == "" ||
+        positionOpen == null ||
         description == null ||
         date == "") {
       nav.alertWithButon(StringData.missing, StringData.missingText);
@@ -186,39 +188,36 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     check = await nav.checkDialog(StringData.checkTitle, StringData.checkText);
 
     if (check ?? false) {
-      var data = Company(
-        companyName: "PAÜ",
-        sector: "Yazılım",
-        jobs: Jobs(
-          isActive: isActive,
-          isSaveJob: false,
-          jobTitle: jobTitle,
-          date: date,
-          skills: skills,
-          lowerWage: wage?[0] != null ? double.parse(wage?[0]) : null,
-          upperWage: wage != null
-              ? wage!.length >= 2
-                  ? double.parse(wage?[1])
-                  : null
-              : null,
-          timing: timing,
-          positionOpen: positionOpen,
-          currency: currencyValue,
-          level: level,
-          province: provinceValue,
-          description: description,
-        ),
+      var data = Job(
+        id: token!["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"],
+        isActive: isActive,
+        title: jobTitle,
+        jobTitle: jobTitle,
+        date: date,
+        skills: skills,
+        lowerWage: wage?[0] != null ? int.parse(wage?[0]) : null,
+        upperWage: wage != null
+            ? wage!.length >= 2
+                ? int.parse(wage?[1])
+                : null
+            : null,
+        timing: timing,
+        positionOpen: positionOpen,
+        currency: currencyValue,
+        level: level,
+        province: provinceValue,
+        description: description,
       );
+      var res = await DataService().postAdvert(data);
+      print(res);
+      // if (updateJob == null) {
+      //   DataService().postAdvert(data);
+      // } else {
+      //   //   widget.updateJob![widget.index!].jobs?.skills = [];
+      //   // widget.updateJob![widget.index!] = data;
 
-      if (updateJob == null) {
-        //  widget.updateJob!.add(data);
-        // widget.advertRepo?.filterAdvert();
-      } else {
-        //   widget.updateJob![widget.index!].jobs?.skills = [];
-        // widget.updateJob![widget.index!] = data;
-
-        // widget.updateJob?.filterAdvert();
-      }
+      //   // widget.updateJob?.filterAdvert();
+      // }
       setState(() {});
 
       nav.alertWithButon(

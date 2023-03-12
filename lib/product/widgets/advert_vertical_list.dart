@@ -52,7 +52,7 @@ class _AdvertVerticalListState extends State<AdvertVerticalList> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CompanyAdvertDetailView(),
+                    builder: (context) =>const CompanyAdvertDetailView(),
                   ));
             },
             child: Padding(

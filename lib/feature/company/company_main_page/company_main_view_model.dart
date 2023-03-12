@@ -41,7 +41,6 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     setState(() {
       adverts = jobs;
     });
-    print(adverts.first.email);
   }
 
   void navigateProfile() {
