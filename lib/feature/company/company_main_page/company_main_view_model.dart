@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/feature/auth/login/login_view.dart';
+import 'package:hrapp/feature/company/company_advert_list/company_advert_view.dart';
 import 'package:hrapp/feature/company/company_create_advert/company_create_advert_view.dart';
 import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/data/company_repo/advert_repo.dart';
@@ -23,7 +24,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
       length: 2,
       vsync: this,
     );
-    getAllAdvert();
+    updateList();
     Future(() => nav.hideLoading(context));
     super.initState();
   }
@@ -34,6 +35,16 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   };
   bool status = false;
   List<Job> adverts = [];
+  List<Job> activeAdverts = [];
+  List<Job> passiveAdverts = [];
+
+  Future<void> updateList() async {
+    await getAllAdvert();
+    await getActiveAdvert();
+    await getPassiveAdvert();
+    setState(() {});
+  }
+
   Future<void> getAllAdvert() async {
     var response = await dt.fetchData(ApiUri.getAdvertAll);
     Iterable data = response["data"];
@@ -41,7 +52,24 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     setState(() {
       adverts = jobs;
     });
-    print(adverts.first.email);
+  }
+
+  Future<void> getActiveAdvert() async {
+    var response = await dt.fetchData(ApiUri.getAdvertActive);
+    Iterable data = response["data"];
+    List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
+    setState(() {
+      activeAdverts = jobs;
+    });
+  }
+
+  Future<void> getPassiveAdvert() async {
+    var response = await dt.fetchData(ApiUri.getAdvertPassive);
+    Iterable data = response["data"];
+    List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
+    setState(() {
+      passiveAdverts = jobs;
+    });
   }
 
   void navigateProfile() {
@@ -77,6 +105,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     ));
 
     if (status) {
+      updateList();
       setState(() {});
     }
   }

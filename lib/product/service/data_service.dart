@@ -1,5 +1,8 @@
 import 'dart:convert';
+import 'package:hrapp/product/service/api.dart';
 import 'package:http/http.dart' as http;
+
+import '../models/general_company_model.dart';
 
 class DataService {
   dynamic fetchData(String api) async {
@@ -29,6 +32,23 @@ class DataService {
       return getToken;
     } catch (e) {
       // throw "Hata var ama nerede söylemem";
+    }
+  }
+
+  Future postAdvert(Job jobs) async {
+    try {
+      final response = await http.post(
+        Uri.parse(ApiUri.postAdvert),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(jobs.toJson()),
+      );
+      var res = await jsonDecode(response.body);
+
+      return res;
+    } catch (e) {
+      print(e);
     }
   }
 }

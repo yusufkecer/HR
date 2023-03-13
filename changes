@@ -167,6 +167,15 @@ giriş işleminin seçileceği sayfa tasarlandı
 sayfalara göre endpoint işlemi gerçekleştirildi
 istek atılan apilerin yapısı güncellendi
 çıkış yaparken önceki bütün sayfalar kaldırılıyor
+12.03
+apiye post atılacak yapı oluşturuldu modeller ayarlandı
+toJson methodu oluşturuldu ve veriler düzenlendi
+filtreleme işlemi eklendi
+işlem için singleton yapı oluşturuldu
+iş ilanı esnasında hataya göre değer eklendi
+13.03
+loading başka bir sayfada gerçekleştiriliyor ve iş ilanı gerçekleştirildiğinde o sayfa uyarılıyor
+bu sayede anasayfada loading işlemi yapılmasnın önüne geçildi
 // Hatalar
 
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hrapp/core/enum/advert_filter.dart';
 import 'package:hrapp/feature/company/company_advert_detail/company_advert_detail_view.dart';
 import 'package:hrapp/product/constant/colors.dart';
@@ -6,21 +7,27 @@ import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_with_icon.dart';
+
 import '../../../Core/Constant/radius.dart';
 import '../../../core/constant/project_padding.dart';
 import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/models/general_company_model.dart';
+import '../../../product/service/api.dart';
 import '../../../product/widgets/button/chip_button.dart';
 import '../../../product/widgets/not_found.dart';
 import 'company_advert_view_model.dart';
 
 class CompanyJobView extends StatefulWidget {
   final List<Job>? adverts;
+  final List<Job>? activeAdverts;
+  final List<Job>? passiveAdverts;
   const CompanyJobView({
     Key? key,
     this.adverts,
+    this.activeAdverts,
+    this.passiveAdverts,
   }) : super(key: key);
 
   @override
@@ -42,23 +49,23 @@ class _CompanyJobViewState extends CompanyAdvertViewModel {
                   children: [
                     CustomChipButton(
                       title: AdvertFilterOptions.all.options,
-                      selected: filterOptions == AdvertFilterOptions.all,
+                      selected: filters.getFilter == AdvertFilterOptions.all,
                       ontap: () {
-                        filter(AdvertFilterOptions.all);
+                        filter(AdvertFilterOptions.all, ApiUri.getAdvertAll);
                       },
                     ),
                     CustomChipButton(
                       title: AdvertFilterOptions.active.options,
-                      selected: filterOptions == AdvertFilterOptions.active,
+                      selected: filters.getFilter == AdvertFilterOptions.active,
                       ontap: () {
-                        filter(AdvertFilterOptions.active);
+                        filter(AdvertFilterOptions.active, ApiUri.getAdvertActive);
                       },
                     ),
                     CustomChipButton(
                       title: AdvertFilterOptions.passive.options,
-                      selected: filterOptions == AdvertFilterOptions.passive,
+                      selected: filters.getFilter == AdvertFilterOptions.passive,
                       ontap: () {
-                        filter(AdvertFilterOptions.passive);
+                        filter(AdvertFilterOptions.passive, ApiUri.getAdvertPassive);
                       },
                     ),
                   ],
@@ -66,7 +73,11 @@ class _CompanyJobViewState extends CompanyAdvertViewModel {
                 const SubTitle(
                   title: StringData.myAdvertisement,
                 ),
-                jobs(widget.adverts!)
+                filters.getFilter == AdvertFilterOptions.all
+                    ? jobs(widget.adverts!)
+                    : filters.getFilter == AdvertFilterOptions.active
+                        ? jobs(widget.activeAdverts!)
+                        : jobs(widget.passiveAdverts!)
               ],
             ),
           )
@@ -245,7 +256,7 @@ class _CompanyJobViewState extends CompanyAdvertViewModel {
                 index,
                 MyIcons.editNote,
                 StringData.update,
-                updateJob,
+                updateAdvert,
                 0,
                 advert,
               ),

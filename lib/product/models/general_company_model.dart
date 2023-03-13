@@ -1,9 +1,9 @@
 class Job {
-  final String? employerId;
   final String? companyName;
   final String? companyPhone;
   final String? webSite;
   final String? level;
+  final String? title;
   final String? email;
   final String? currency;
   final String? jobTitle;
@@ -13,20 +13,20 @@ class Job {
   final int? lowerWage;
   final int? upperWage;
   final int? positionOpen;
+  final String? date;
   final String? timing;
   final DateTime? deadline;
   final bool? isActive;
-  final String? id;
-  final DateTime? updatedAt;
+  final String id;
 
   Job({
-    this.currency,
-    this.level,
-    this.employerId,
     this.companyName,
     this.companyPhone,
     this.webSite,
+    this.level,
+    this.title,
     this.email,
+    this.currency,
     this.jobTitle,
     this.description,
     this.skills,
@@ -34,18 +34,17 @@ class Job {
     this.lowerWage,
     this.upperWage,
     this.positionOpen,
+    this.date,
     this.timing,
     this.deadline,
-    this.isActive,
-    this.id,
-    this.updatedAt,
+    this.isActive = true,
+    required this.id,
   });
 
   factory Job.fromJson(Map<String, dynamic> json) {
     return Job(
       currency: json["currency"],
       level: json["experience"],
-      employerId: json['employerId'],
       companyName: json['companyName'],
       companyPhone: json['companyPhone'],
       webSite: json['webSite'],
@@ -61,7 +60,29 @@ class Job {
       deadline: DateTime.parse(json['deadline']),
       isActive: json['status'],
       id: json['id'],
-      updatedAt: json['updatedAt'] == null ? null : DateTime.parse(json['updatedAt']),
     );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      "title": title,
+      'currency': currency,
+      'experience': level,
+      'employerId': id,
+      'jobPositionName': jobTitle,
+      'description': description,
+      'skills': skills!.toList(),
+      'city': province,
+      'minSalary': lowerWage,
+      'maxSalary': upperWage,
+      'openPosition': positionOpen,
+      'jobType': timing,
+      'deadline': date,
+      //'status': isActive,
+    };
+  }
+
+  @override
+  String toString() {
+    return 'Job(id: $id, companyName: $companyName, companyPhone: $companyPhone, webSite: $webSite, level: $level, email: $email, currency: $currency, jobTitle: $jobTitle, description: $description, skills: $skills, province: $province, lowerWage: $lowerWage, upperWage: $upperWage, positionOpen: $positionOpen, timing: $timing, deadline: $deadline, isActive: $isActive, id: $id)';
   }
 }

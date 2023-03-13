@@ -7,10 +7,8 @@ import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
-
 import '../../../product/constant/icons.dart';
 import '../../../product/models/general_company_model.dart';
-
 import '../../../product/widgets/costom_dropdown.dart';
 import 'company_create_advert_view_model.dart';
 
