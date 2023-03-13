@@ -63,6 +63,8 @@ class StringData {
 
   static const save = "Kaydet";
   static const saved = "Kaydedildi";
+  static const notSaved = "Kaydedilemedi";
+  static const advertNotSaved = "Kayıt esnasında bir hata oluştu. Lütfen tekrar deneyin.";
   static const advertSaved = "İlanınız başarıyla kaydedildi.";
 
   static const changeView = "Görünümü değiştir";
@@ -113,7 +115,8 @@ class StringData {
   static const aboutCompany = "Şirket Hakkında";
 
   static const error = "Hata";
-  static const errorWage = "Girilen birincil ücret, ikincil ücretten büyük olamaz.";
+  static const errorWage = "Geçerli bir ücret aralığı giriniz";
+  static const errorDescription = "Açıklama 20 karakterden az olamaz.";
 
   //advert detail
   static const skillsD = "Aranan Nitelikler:";

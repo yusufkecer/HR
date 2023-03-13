@@ -35,13 +35,13 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   String? provinceValue;
   bool? check = false;
   DateTime? selectedDate;
-
+  String? newDateString;
   void getDate() async {
     if (updateJob?.deadline != null) {
       List<String> dateParts = updateJob!.deadline.toString().split('/');
 
-      String newDateString = "${dateParts[2]}-${dateParts[1]}-${dateParts[0]} 00:00:00.000";
-      selectedDate = DateTime.parse(newDateString);
+      newDateString = "${dateParts[2]}-${dateParts[1]}-${dateParts[0]}";
+      selectedDate = DateTime.parse(newDateString!);
     }
     FocusScope.of(context).requestFocus(FocusNode());
     selectedDate = await nav.showDate(context, selectedDate);
@@ -53,9 +53,9 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
 
   void saveDate() {
     if (selectedDate != null) {
-      textController[6].text = ("${selectedDate!.day > 10 ? selectedDate!.day : "0${selectedDate!.day}"}/"
-          "${selectedDate!.month > 10 ? selectedDate!.month : "0${selectedDate!.month}"}/"
-          "${selectedDate!.year}");
+      textController[6].text = ("${selectedDate!.year}-"
+          "${selectedDate!.month > 9 ? selectedDate!.month : "0${selectedDate!.month}"}-"
+          "${selectedDate!.day > 9 ? selectedDate!.day : "0${selectedDate!.day}"}");
     }
   }
 
@@ -185,6 +185,13 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         }
       }
     }
+    if (description != null) {
+      if (description!.length < 20) {
+        nav.alertWithButon(
+            StringData.error, "${StringData.errorDescription} Siz ${description!.length} karakter girdiniz.");
+        return;
+      }
+    }
     check = await nav.checkDialog(StringData.checkTitle, StringData.checkText);
 
     if (check ?? false) {
@@ -208,8 +215,11 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         province: provinceValue,
         description: description,
       );
+      Future(() => nav.showLoading(context));
       var res = await DataService().postAdvert(data);
-      print(res);
+      // ignore: use_build_context_synchronously
+      nav.hideLoading(context);
+
       // if (updateJob == null) {
       //   DataService().postAdvert(data);
       // } else {
@@ -218,8 +228,15 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
 
       //   // widget.updateJob?.filterAdvert();
       // }
-      setState(() {});
 
+      if (res == null) {
+        nav.alertWithButon(
+          StringData.notSaved,
+          StringData.advertNotSaved,
+          StringData.ok,
+        );
+        return;
+      }
       nav.alertWithButon(
         StringData.saved,
         StringData.advertSaved,

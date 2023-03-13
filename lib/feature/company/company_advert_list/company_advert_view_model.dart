@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/enum/advert_filter.dart';
+import 'package:hrapp/core/navigation/navigation_service.dart';
+import 'package:hrapp/product/service/data_service.dart';
+import '../../../core/filter/filter.dart';
 import '../../../product/models/general_company_model.dart';
 import '../company_create_advert/company_create_advert_view.dart';
 import 'company_advert_view.dart';
 
 abstract class CompanyAdvertViewModel extends State<CompanyJobView> {
+  DataService service = DataService();
+  Filter filters = Filter.instance;
+  List<Job>? adverts;
+  NavigationService nav = NavigationService();
   @override
   void initState() {
     super.initState();
   }
 
-  AdvertFilterOptions filterOptions = AdvertFilterOptions.all;
   bool verticalDivider = true;
 
-  void updateJob(int index, List<Job> advert) async {
+  void updateAdvert(int index, List<Job> advert) async {
     Future(() async {
       bool check = await Navigator.of(context).push(
         MaterialPageRoute(
@@ -23,11 +29,21 @@ abstract class CompanyAdvertViewModel extends State<CompanyJobView> {
           ),
         ),
       );
+
+      if (check == true) {}
+      print("yusuffff");
     });
   }
 
-  void filter(AdvertFilterOptions options) {
-    filterOptions = options;
+  Future<void> filter(AdvertFilterOptions options, api) async {
+    // nav.showLoading(context);
+
+    // var res = await service.fetchData(api);
+    // Iterable list = res["data"];
+    // adverts = list.map((e) => Job.fromJson(e)).toList();
+
+    // Future(() => nav.hideLoading(context));
+
     setState(() {});
   }
 
