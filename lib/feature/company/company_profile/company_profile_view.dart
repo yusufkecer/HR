@@ -7,6 +7,7 @@ import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
+import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/widgets/info_card.dart';
 import 'package:hrapp/product/widgets/card_listtile.dart';
 import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
@@ -24,7 +25,7 @@ class CompanyProfileView extends StatefulWidget {
 class _CompanyProfileViewState extends CompanyProfileWiewModel {
   @override
   void dispose() {
-    mailControoler.dispose();
+    mailController.dispose();
     generalInfoController.dispose();
     phoneController.dispose();
     webController.dispose();
@@ -123,7 +124,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              company.companyName!,
+              Auth.instance.getName,
               textScaleFactor: ProjectFontSize.oneToFive,
               style: const TextStyle(
                 fontWeight: Weight.bold,
@@ -179,7 +180,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
                   textColor: MyColor.osloGrey,
                   color: MyColor.ocianLavender,
                   iconLeading: MyIcons.mail,
-                  text: company.mail,
+                  text: Auth.instance.getEmail,
                 )
               : Padding(
                   padding: const ProjectPadding.allEight(),
@@ -187,7 +188,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
                     hint: StringData.email,
                     maxLine: 1,
                     textInputType: TextInputType.emailAddress,
-                    textEditingController: mailControoler,
+                    textEditingController: mailController,
                   ),
                 ),
           const Divider(

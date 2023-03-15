@@ -52,6 +52,7 @@ class _CompanyJobViewState extends CompanyAdvertViewModel {
                       selected: filters.getFilter == AdvertFilterOptions.all,
                       ontap: () {
                         filter(AdvertFilterOptions.all, ApiUri.getAdvertAll);
+                        filters.updateFilter = AdvertFilterOptions.all;
                       },
                     ),
                     CustomChipButton(
@@ -59,12 +60,14 @@ class _CompanyJobViewState extends CompanyAdvertViewModel {
                       selected: filters.getFilter == AdvertFilterOptions.active,
                       ontap: () {
                         filter(AdvertFilterOptions.active, ApiUri.getAdvertActive);
+                        filters.updateFilter = AdvertFilterOptions.active;
                       },
                     ),
                     CustomChipButton(
                       title: AdvertFilterOptions.passive.options,
                       selected: filters.getFilter == AdvertFilterOptions.passive,
                       ontap: () {
+                        filters.updateFilter = AdvertFilterOptions.passive;
                         filter(AdvertFilterOptions.passive, ApiUri.getAdvertPassive);
                       },
                     ),

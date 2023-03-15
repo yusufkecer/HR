@@ -1,10 +1,12 @@
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+
 import '../../../Product/Constant/colors.dart';
 import '../../../core/constant/size.dart';
 import '../../../product/constant/font_size.dart';
@@ -15,7 +17,11 @@ import '../../../product/widgets/sized_box/box_space.dart';
 import 'register_model.dart';
 
 class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
+  final bool? isCompany;
+  const RegisterView({
+    Key? key,
+    this.isCompany,
+  }) : super(key: key);
 
   @override
   State<RegisterView> createState() => _RegisterViewState();
@@ -87,8 +93,8 @@ class _RegisterViewState extends LoginViewModel {
                   ..onTap = () {
                     nav.showBottomModal(
                       context,
-                      StringData.termsSheetTitle,
-                      StringData.termsSheetText,
+                      TermsAndConditions.termsSheetTitle,
+                      TermsAndConditions.termsSheetText,
                     );
                   },
               ),
@@ -111,8 +117,8 @@ class _RegisterViewState extends LoginViewModel {
                       ..onTap = () {
                         nav.showBottomModal(
                           context,
-                          StringData.conditionsTitle,
-                          StringData.conditionsText,
+                          TermsAndConditions.conditionsTitle,
+                          TermsAndConditions.conditionsText,
                         );
                       },
                   ),
@@ -147,11 +153,11 @@ class _RegisterViewState extends LoginViewModel {
       key: formKey,
       child: Column(
         children: [
-          name(),
+          nameView(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          email(),
+          emailView(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
@@ -159,11 +165,11 @@ class _RegisterViewState extends LoginViewModel {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          datePicker(),
+          widget.isCompany! ? webSiteView() : datePicker(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          password(),
+          passwordView(),
         ],
       ),
     );
@@ -191,15 +197,17 @@ class _RegisterViewState extends LoginViewModel {
     );
   }
 
-  AuthField password() {
+  AuthField passwordView() {
     return AuthField(
       validation: (value) {
-        if (!value.passwordValid()) {
-          return StringData.writePassword;
-        }
+        // if (!value.passwordValid()) {
+        //   return StringData.writePassword;
+        // }
         return null;
       },
-      listener: (value) {},
+      listener: (value) {
+        password = value;
+      },
       titlePadding: const ProjectPadding.textFieldTitle(),
       icon: const Icon(
         MyIcons.password,
@@ -224,24 +232,25 @@ class _RegisterViewState extends LoginViewModel {
     );
   }
 
-  AuthField name() {
+  AuthField nameView() {
     return AuthField(
       listener: (value) {
+        name = value;
         return;
       },
       validation: (value) {
-        if (!value.nameValid()) {
+        if (!value.nameValid() && widget.isCompany == false) {
           return StringData.writeName;
         }
         return null;
       },
       titlePadding: const ProjectPadding.textFieldTitle(),
-      icon: const Icon(
-        MyIcons.user,
+      icon: Icon(
+        widget.isCompany! ? MyIcons.company : MyIcons.user,
         color: MyColor.black,
       ),
       fontWeight: Weight.midium,
-      info: StringData.name,
+      info: widget.isCompany! ? StringData.companyName : StringData.name,
     );
   }
 
@@ -249,13 +258,14 @@ class _RegisterViewState extends LoginViewModel {
     return AuthField(
       textType: TextInputType.number,
       listener: (value) {
+        phone = value;
         return;
       },
       validation: (value) {
         if (value.phoneNumberValidator()) {
           return null;
         }
-        return StringData.writeTC;
+        return StringData.writePhone;
       },
       titlePadding: const ProjectPadding.textFieldTitle(),
       icon: const Icon(
@@ -267,10 +277,34 @@ class _RegisterViewState extends LoginViewModel {
     );
   }
 
-  AuthField email() {
+  AuthField webSiteView() {
+    return AuthField(
+      textType: TextInputType.url,
+      listener: (value) {
+        webSite = value;
+        return;
+      },
+      validation: (value) {
+        if (!value.urlValid()) {
+          return StringData.webSite;
+        }
+        return null;
+      },
+      titlePadding: const ProjectPadding.textFieldTitle(),
+      icon: const Icon(
+        MyIcons.website,
+        color: MyColor.black,
+      ),
+      fontWeight: Weight.midium,
+      info: StringData.webSite,
+    );
+  }
+
+  AuthField emailView() {
     return AuthField(
       textType: TextInputType.emailAddress,
       listener: (value) {
+        email = value;
         return;
       },
       validation: (value) {

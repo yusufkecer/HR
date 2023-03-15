@@ -76,7 +76,7 @@ class _CompanyAdvertDetailViewState extends CompanyAdvertDetailViewModel {
                             richText(StringData.timingD, advertList!.timing!),
                             richText(StringData.levelD, advertList!.level!),
                             richText(StringData.positionOpenD, "${advertList!.positionOpen!} kişi"),
-                            richText(StringData.applicationDateD, advertList!.deadline!.toString()),
+                            richText(StringData.applicationDateD, date!),
                             wageConditions(),
                             advertList!.province != null
                                 ? richText(StringData.positionOpenD, advertList!.province!)

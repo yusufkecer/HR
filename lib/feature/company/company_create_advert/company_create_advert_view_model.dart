@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/product/data/auth.dart';
@@ -11,14 +13,11 @@ import 'company_create_advert_view.dart';
 abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   @override
   void initState() {
-    token = Auth.instance.getToken!;
-    print(token);
     getProvince();
     controllerSettings();
     super.initState();
   }
 
-  Map? token;
   bool isActive = true;
   List<TextEditingController> textController = [];
   Job? updateJob;
@@ -142,10 +141,11 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       textController[2].text = updateJob!.timing!;
       textController[3].text = updateJob!.level!;
       textController[4].text = updateJob!.positionOpen.toString();
-      textController[6].text = updateJob!.deadline.toString();
+      textController[6].text = updateJob!.deadline!.toString().split(" ")[0];
+
       textController[7].text = updateJob!.description!;
       currencyValue = updateJob?.currency;
-      provinceValue = "İstanbul";
+      provinceValue = updateJob?.province;
       isActive = updateJob!.isActive!;
       String result = "";
       if (updateJob?.upperWage != null && updateJob?.upperWage != null) {
@@ -195,39 +195,62 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     check = await nav.checkDialog(StringData.checkTitle, StringData.checkText);
 
     if (check ?? false) {
-      var data = Job(
-        id: token!["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"],
-        isActive: isActive,
-        title: jobTitle,
-        jobTitle: jobTitle,
-        date: date,
-        skills: skills,
-        lowerWage: wage?[0] != null ? int.parse(wage?[0]) : null,
-        upperWage: wage != null
-            ? wage!.length >= 2
-                ? int.parse(wage?[1])
-                : null
-            : null,
-        timing: timing,
-        positionOpen: positionOpen,
-        currency: currencyValue,
-        level: level,
-        province: provinceValue,
-        description: description,
-      );
-      Future(() => nav.showLoading(context));
-      var res = await DataService().postAdvert(data);
-      // ignore: use_build_context_synchronously
-      nav.hideLoading(context);
+      var res;
 
-      // if (updateJob == null) {
-      //   DataService().postAdvert(data);
-      // } else {
-      //   //   widget.updateJob![widget.index!].jobs?.skills = [];
-      //   // widget.updateJob![widget.index!] = data;
-
-      //   // widget.updateJob?.filterAdvert();
-      // }
+      if (widget.updateJob == null) {
+        Job data = Job(
+          companyId: Auth.instance.getId,
+          isActive: isActive,
+          title: jobTitle,
+          jobTitle: jobTitle,
+          date: date,
+          skills: skills,
+          lowerWage: wage?[0] != null ? int.parse(wage?[0]) : null,
+          upperWage: wage != null
+              ? wage!.length >= 2
+                  ? int.parse(wage?[1])
+                  : null
+              : null,
+          timing: timing,
+          positionOpen: positionOpen,
+          currency: currencyValue,
+          level: level,
+          province: provinceValue,
+          description: description,
+        );
+        final json = jsonEncode(data.toJson());
+        Future(() => nav.showLoading(context));
+        res = await DataService().postAdvert(ApiUri.postAdvert, json);
+        // ignore: use_build_context_synchronously
+        nav.hideLoading(context);
+      } else {
+        Job data = Job(
+          id: widget.updateJob!.id,
+          jobPositionId: widget.updateJob!.jobPositionId,
+          isActive: isActive,
+          title: jobTitle,
+          jobTitle: jobTitle,
+          date: date,
+          skills: skills,
+          lowerWage: wage?[0] != null ? int.parse(wage?[0]) : null,
+          upperWage: wage != null
+              ? wage!.length >= 2
+                  ? int.parse(wage?[1])
+                  : null
+              : null,
+          timing: timing,
+          positionOpen: positionOpen,
+          currency: currencyValue,
+          level: level,
+          province: provinceValue,
+          description: description,
+        );
+        final json = jsonEncode(data.toJson());
+        Future(() => nav.showLoading(context));
+        res = await DataService().postAdvert(ApiUri.updateAdvert, json);
+        // ignore: use_build_context_synchronously
+        nav.hideLoading(context);
+      }
 
       if (res == null) {
         nav.alertWithButon(

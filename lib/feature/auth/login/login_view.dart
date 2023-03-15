@@ -15,10 +15,10 @@ import '../../../product/widgets/button/text_button_icon.dart';
 import 'login_view_model.dart';
 
 class LoginView extends StatefulWidget {
-  final String? endpoint;
+  final bool? isCompany;
   const LoginView({
     Key? key,
-    this.endpoint,
+    this.isCompany,
   }) : super(key: key);
 
   @override
@@ -111,7 +111,7 @@ class _LoginViewState extends LoginViewModel {
             style: TextButton.styleFrom(
               padding: const ProjectPadding.edgeZero(),
             ),
-            onPressed: () => nav.navigateToRegister(context),
+            onPressed: () => goToRegister(context, widget.isCompany),
             child: const Text(
               StringData.registerHere,
               style: TextStyle(

@@ -1,7 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:hrapp/product/constant/icons.dart';
+import 'package:hrapp/product/data/auth.dart';
+
 import 'package:image_picker/image_picker.dart';
 import '../../../core/navigation/navigation_service.dart';
 import '../../../product/constant/string_data.dart';
@@ -12,7 +13,6 @@ abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
   File? selectedImage;
   var company = Company(
     phoneNumber: "05333333333",
-    mail: "info@info.com",
     website: "www.blablabla.com",
     sector: "Yazılım Geliştirme",
     companyName: "PAÜ",
@@ -36,7 +36,7 @@ abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
 
   void contactInfoTitleEdit() {
     if (isEditContact) {
-      company.mail = mailControoler.text;
+      company.mail = mailController.text;
       company.phoneNumber = phoneController.text;
       company.website = webController.text;
       company.address = locationController.text;
@@ -45,7 +45,7 @@ abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
 
       nav.callSnackbar(context, StringData.saved);
     } else {
-      mailControoler.text = company.mail ?? "";
+      mailController.text = Auth.instance.getEmail;
       phoneController.text = company.phoneNumber ?? "";
       webController.text = company.website ?? "";
       locationController.text = company.address ?? "";
@@ -73,7 +73,7 @@ abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
   NavigationService nav = NavigationService();
   TextEditingController generalInfoController = TextEditingController();
   TextEditingController locationController = TextEditingController();
-  TextEditingController mailControoler = TextEditingController();
+  TextEditingController mailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController webController = TextEditingController();
 

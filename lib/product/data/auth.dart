@@ -30,6 +30,18 @@ class Auth {
     token = value;
   }
 
+  String get getName {
+    return token?["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+  }
+
+  String get getId {
+    return token?["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+  }
+
+  String get getEmail {
+    return token?["email"];
+  }
+
   Map<String, dynamic>? get getToken {
     return token;
   }

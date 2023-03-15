@@ -62,13 +62,13 @@ class _ChoseAuthState extends State<ChoseAuth> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           button(() {
-            navigate(ApiUri.loginCompnay);
+            navigate(true);
           }, StringData.institutional, MyIcons.company),
           const SizedBox(
             height: 10,
           ),
           button(() {
-            navigate(ApiUri.loginUser);
+            navigate(false);
           }, StringData.individual, MyIcons.user),
         ],
       ),
@@ -86,11 +86,11 @@ class _ChoseAuthState extends State<ChoseAuth> {
     );
   }
 
-  void navigate(endpoint) {
+  void navigate(isCompany) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginView(endpoint: endpoint),
+        builder: (context) => LoginView(isCompany: isCompany),
       ),
     );
   }

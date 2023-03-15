@@ -244,14 +244,6 @@ class NavigationService {
     );
   }
 
-  void navigateToRegister(context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: ((context) => const RegisterView()),
-      ),
-    );
-  }
-
   void navigteToCompany(context) {
     Navigator.of(context).push(
       MaterialPageRoute(

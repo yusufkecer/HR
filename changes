@@ -176,10 +176,20 @@ iş ilanı esnasında hataya göre değer eklendi
 13.03
 loading başka bir sayfada gerçekleştiriliyor ve iş ilanı gerçekleştirildiğinde o sayfa uyarılıyor
 bu sayede anasayfada loading işlemi yapılmasnın önüne geçildi
-// Hatalar
+14.03
+ilan güncelleme sayfasına gelen veriler o ilana göre güncellendi
+ilanlar düzenlendi
+profildeki isim ve mail adresi tokena göre düzenlendi
+company ve user için register sayfası ayrı ayrı ayarlandı
+ilan detay sayfasındaki tarih hatası giderildi
+şartlar ve sözleşmeler eklendi
+15.03
+ilan tarihi eklendi (geçerlilik tarihi ve oluşturma tarihi)
 
+// Hatalar
+ilanlarım sayfasınaki kaydırma işlemi
+ürün güncelleme işlemi
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
-ilan tarihi eklenecek (geçerlilik tarihi ve oluşturma tarihi)
 
 
 
