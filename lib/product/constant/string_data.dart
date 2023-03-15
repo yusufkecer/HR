@@ -17,6 +17,7 @@ class StringData {
 
 //validation
   static const writeWebSite = "Geçerli bir url giriniz.";
+  static const writeAddress = "Geçerli bir adres giriniz.";
   static const writeEmail = "Geçerli bir mail adresi giriniz.";
   static const writePassword = "Geçerli bir şifre giriniz. (sayı ve büyük harf ve özel karakter.)";
   static const writeName = "Geçerli bir isim giriniz.";

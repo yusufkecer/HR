@@ -262,7 +262,7 @@ class _RegisterViewState extends LoginViewModel {
         return;
       },
       validation: (value) {
-        if (value.phoneNumberValidator()) {
+        if (value.phoneValid()) {
           return null;
         }
         return StringData.writePhone;

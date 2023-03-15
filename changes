@@ -185,11 +185,19 @@ ilan detay sayfasındaki tarih hatası giderildi
 şartlar ve sözleşmeler eklendi
 15.03
 ilan tarihi eklendi (geçerlilik tarihi ve oluşturma tarihi)
-
+kayıt olma işlemi company ve user için dinamik hale getirildi
+kodlar düzenlendi
+ilanlarım sayfasınaki kaydırma işlemi hatası çözüldü
+profilim sayfasına validasyon eklendi
+prfildeki tasarım değiştirildi
+çıkış yapıp kayıt ekranına gidince hata hatası çözüldü.
+phone number valid check
+kayıt olduktan sonra giriş sayfasında dönünce oluşan hata çözüldü
 // Hatalar
-ilanlarım sayfasınaki kaydırma işlemi
+
 ürün güncelleme işlemi
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
+
 
 
 

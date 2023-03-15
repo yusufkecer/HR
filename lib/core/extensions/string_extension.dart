@@ -15,7 +15,7 @@ extension EmailValidator on String? {
         .hasMatch(this ?? '');
   }
 
-  bool phoneNumberValidator() {
+  bool phoneValid() {
     return RegExp(r'^(?:[+0]9)?[0-9]{10}$').hasMatch(this ?? "");
   }
 

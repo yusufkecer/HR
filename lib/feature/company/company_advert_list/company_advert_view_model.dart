@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/enum/advert_filter.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
-import 'package:hrapp/product/service/data_service.dart';
+
 import '../../../core/filter/filter.dart';
 import '../../../product/models/general_company_model.dart';
 import '../company_create_advert/company_create_advert_view.dart';
 import 'company_advert_view.dart';
 
-abstract class CompanyAdvertViewModel extends State<CompanyJobView> {
-  DataService service = DataService();
+abstract class CompanyAdvertViewModel extends State<CompanyAdvertView> {
   Filter filters = Filter.instance;
-  List<Job>? adverts;
   NavigationService nav = NavigationService();
   @override
   void initState() {
@@ -31,7 +29,6 @@ abstract class CompanyAdvertViewModel extends State<CompanyJobView> {
       );
 
       if (check == true) {}
-      print("yusuffff");
     });
   }
 
@@ -48,8 +45,6 @@ abstract class CompanyAdvertViewModel extends State<CompanyJobView> {
   }
 
   void deleteAdvert(int index) async {
-    setState(() {
-      // widget.adverts!.delete(index);
-    });
+    setState(() {});
   }
 }

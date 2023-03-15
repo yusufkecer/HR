@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/feature/auth/chose_auth.dart';
 import 'package:hrapp/feature/auth/login/login_view.dart';
 import 'package:hrapp/feature/company/company_create_advert/company_create_advert_view.dart';
 import 'package:hrapp/product/data/auth.dart';
@@ -83,7 +84,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     print(Auth.instance.token);
     await Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
-        builder: (context) => const LoginView(),
+        builder: (context) => const ChoseAuth(),
       ),
       (route) => false,
     );

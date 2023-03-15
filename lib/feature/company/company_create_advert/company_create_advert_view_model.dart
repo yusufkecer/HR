@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/product/data/auth.dart';
@@ -18,7 +17,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     super.initState();
   }
 
-  bool isActive = true;
+  bool? isActive;
   List<TextEditingController> textController = [];
   Job? updateJob;
   String? jobTitle;
@@ -37,7 +36,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   String? newDateString;
   void getDate() async {
     if (updateJob?.deadline != null) {
-      List<String> dateParts = updateJob!.deadline.toString().split('/');
+      List<String> dateParts = updateJob!.deadline.toString().split('  ');
 
       newDateString = "${dateParts[2]}-${dateParts[1]}-${dateParts[0]}";
       selectedDate = DateTime.parse(newDateString!);
@@ -159,7 +158,8 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   }
 
   void visibility() {
-    isActive = !isActive;
+    isActive = !isActive!;
+
     setState(() {});
   }
 
@@ -247,7 +247,9 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         );
         final json = jsonEncode(data.toJson());
         Future(() => nav.showLoading(context));
-        res = await DataService().postAdvert(ApiUri.updateAdvert, json);
+        print(json);
+        res = await DataService().upteAdvert(ApiUri.updateAdvert, json);
+        // print(res);
         // ignore: use_build_context_synchronously
         nav.hideLoading(context);
       }

@@ -23,14 +23,6 @@ class CompanyMainView extends StatefulWidget {
 }
 
 class _CompanyMainViewState extends CopmanyMainViewModel {
-  String? name;
-  @override
-  void initState() {
-    var response = Auth.instance.getToken;
-    name = response?["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
-    super.initState();
-  }
-
   final zoomController = ZoomDrawerController();
   @override
   Widget build(BuildContext context) {
@@ -57,7 +49,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
             workers: workers,
             connectionError: dontReachApi,
           ),
-          CompanyJobView(
+          CompanyAdvertView(
             activeAdverts: activeAdverts,
             passiveAdverts: passiveAdverts,
             adverts: adverts,
@@ -92,8 +84,9 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  name ?? "Yusuf Keçer",
+                  Auth.instance.getName ?? "",
                   textScaleFactor: ProjectFontSize.oneToThree,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(fontWeight: Weight.midium, color: MyColor.white),
                 ),
               ),

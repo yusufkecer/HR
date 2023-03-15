@@ -18,7 +18,7 @@ class LoginView extends StatefulWidget {
   final bool? isCompany;
   const LoginView({
     Key? key,
-    this.isCompany,
+    required this.isCompany,
   }) : super(key: key);
 
   @override

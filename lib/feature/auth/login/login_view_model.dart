@@ -3,7 +3,6 @@ import 'package:hrapp/core/mixin/check_mixin.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/feature/auth/login/login_view.dart';
 import 'package:hrapp/product/service/api.dart';
-import 'package:hrapp/product/service/data_service.dart';
 import '../../../core/mixin/password_visible.dart';
 import '../../../product/data/auth.dart';
 import '../register/register_view.dart';
@@ -13,7 +12,6 @@ abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMi
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
-  DataService ds = DataService();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   NavigationService nav = NavigationService();
   @override
