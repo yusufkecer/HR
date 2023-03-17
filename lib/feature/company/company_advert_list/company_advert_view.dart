@@ -14,16 +14,17 @@ import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/models/general_company_model.dart';
-import '../../../product/service/api.dart';
+
 import '../../../product/widgets/button/chip_button.dart';
 import '../../../product/widgets/not_found.dart';
 import 'company_advert_view_model.dart';
 
-class CompanyJobView extends StatefulWidget {
-  final List<Job>? adverts;
-  final List<Job>? activeAdverts;
-  final List<Job>? passiveAdverts;
-  const CompanyJobView({
+// ignore: must_be_immutable
+class CompanyAdvertView extends StatefulWidget {
+ final List<Job>? adverts;
+ final List<Job>? activeAdverts;
+ final List<Job>? passiveAdverts;
+ const CompanyAdvertView({
     Key? key,
     this.adverts,
     this.activeAdverts,
@@ -31,10 +32,10 @@ class CompanyJobView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CompanyJobView> createState() => _CompanyJobViewState();
+  State<CompanyAdvertView> createState() => _CompanyAdvertViewState();
 }
 
-class _CompanyJobViewState extends CompanyAdvertViewModel {
+class _CompanyAdvertViewState extends CompanyAdvertViewModel {
   @override
   Widget build(BuildContext context) {
     return widget.adverts != null
@@ -51,21 +52,24 @@ class _CompanyJobViewState extends CompanyAdvertViewModel {
                       title: AdvertFilterOptions.all.options,
                       selected: filters.getFilter == AdvertFilterOptions.all,
                       ontap: () {
-                        filter(AdvertFilterOptions.all, ApiUri.getAdvertAll);
+                        filters.updateFilter = AdvertFilterOptions.all;
+                        setState(() {});
                       },
                     ),
                     CustomChipButton(
                       title: AdvertFilterOptions.active.options,
                       selected: filters.getFilter == AdvertFilterOptions.active,
                       ontap: () {
-                        filter(AdvertFilterOptions.active, ApiUri.getAdvertActive);
+                        filters.updateFilter = AdvertFilterOptions.active;
+                        setState(() {});
                       },
                     ),
                     CustomChipButton(
                       title: AdvertFilterOptions.passive.options,
                       selected: filters.getFilter == AdvertFilterOptions.passive,
                       ontap: () {
-                        filter(AdvertFilterOptions.passive, ApiUri.getAdvertPassive);
+                        filters.updateFilter = AdvertFilterOptions.passive;
+                        setState(() {});
                       },
                     ),
                   ],
@@ -297,34 +301,39 @@ class _CompanyJobViewState extends CompanyAdvertViewModel {
   SizedBox skills(List<Job> advert, parentIndex) {
     return SizedBox(
       height: 44,
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: advert[parentIndex].skills != null ? advert[parentIndex].skills?.length : 0,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const ProjectPadding.allEight().copyWith(
-              left: index == 0 ? 18 : 0,
-              top: 0,
-            ),
-            child: Align(
-              alignment: Alignment.center,
-              child: Container(
-                padding: const ProjectPadding.allEight(),
-                decoration: const BoxDecoration(
-                  borderRadius: ProjectRadius.verySmallAll(),
-                  color: MyColor.white,
-                ),
-                child: advert[parentIndex].skills?[index] != null
-                    ? Text(
-                        advert[parentIndex].skills![index],
-                        //  textScaleFactor: ProjectFontSize.zeroToNine,
-                      )
-                    : const SizedBox(),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10.0, right: 10),
+        child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemCount: advert[parentIndex].skills != null ? advert[parentIndex].skills?.length : 0,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const ProjectPadding.allEight().copyWith(
+                top: 0,
+                right: index == advert.length - 1 ? 5 : 5,
+                left: index == 0 ? 10 : 5,
               ),
-            ),
-          );
-        },
+              child: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  padding: const ProjectPadding.allEight(),
+                  decoration: const BoxDecoration(
+                    borderRadius: ProjectRadius.verySmallAll(),
+                    color: MyColor.white,
+                  ),
+                  child: advert[parentIndex].skills?[index] != null
+                      ? Text(
+                          advert[parentIndex].skills![index],
+                          //  textScaleFactor: ProjectFontSize.zeroToNine,
+                        )
+                      : const SizedBox(),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -358,13 +367,13 @@ class _CompanyJobViewState extends CompanyAdvertViewModel {
       );
 
   Text wageConditions(List<Job> advert, int index) {
-    String? currency = "\$";
+    String? currency = advert[index].currency;
     String? data;
-    // if (advert[index].currency == null) {
-    //   currency = StringData.turkishLiraSymbol;
-    // } else {
-    //   currency = advert[index].currency;
-    // }
+    if (advert[index].currency == null) {
+      currency = StringData.turkishLiraSymbol;
+    } else {
+      currency = advert[index].currency;
+    }
     if (advert[index].lowerWage != null && advert[index].upperWage != null) {
       data = "$currency ${advert[index].lowerWage?.toStringAsFixed(0)}"
           "-"

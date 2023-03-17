@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:hrapp/Core/Constant/size.dart';
 import 'package:flutter/material.dart';
 import '../Constant/colors.dart';
@@ -10,8 +8,7 @@ class CheckboxText extends StatefulWidget {
   final bool? value;
   final Function(bool?)? onChange;
   final String checkboxName;
-  const CheckboxText(this.fontWeight, this.checkboxName,
-      {this.onChange, this.value, super.key});
+  const CheckboxText(this.fontWeight, this.checkboxName, {this.onChange, this.value, super.key});
 
   @override
   State<CheckboxText> createState() => _CheckboxTextState();

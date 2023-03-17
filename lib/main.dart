@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorKey: NavigationKey.instance.navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: 'IK App',
+      title: 'HRMS',
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

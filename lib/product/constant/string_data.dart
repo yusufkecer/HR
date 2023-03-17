@@ -5,7 +5,7 @@ class StringData {
   static const changePassword = "Şifremi Sıfırla";
   static const resetPassword = "Şifremi Unuttum";
   static const rememberMe = "Beni Hatırla";
-
+  static const companyName = "Şirket Adı";
   static const name = "İsim Soyisim";
   static const email = "Email";
   static const password = "Şifre";
@@ -16,10 +16,12 @@ class StringData {
   static const register = "Kayıt Ol";
 
 //validation
+  static const writeWebSite = "Geçerli bir url giriniz.";
+  static const writeAddress = "Geçerli bir adres giriniz.";
   static const writeEmail = "Geçerli bir mail adresi giriniz.";
   static const writePassword = "Geçerli bir şifre giriniz. (sayı ve büyük harf ve özel karakter.)";
   static const writeName = "Geçerli bir isim giriniz.";
-  static const writeTC = "Geçerli bir telefon numarası giriniz.";
+  static const writePhone = "Geçerli bir telefon numarası giriniz.";
   static const selectBirthOfDay = "Lütfen doğum tarihi seçiniz";
 
   //Terms
@@ -30,16 +32,7 @@ class StringData {
   static const termsTextEnd = " kabul etmiş sayılırsınız.";
 
 // Bottom sheet text
-  static const termsSheetTitle = "Nullam non magna elit";
 
-  static const termsSheetText =
-      "Donec eget libero quis ipsum tempus ultricies pellentesque vitae sem. Integer ut congue risus, non aliquet nibh. Cras aliquam ante est, ut tincidunt erat gravida eu. Sed sed odio odio. Integer non massa et erat congue auctor ac mattis elit. Vivamus eu odio est. Donec vulputate pharetra tellus, dignissim volutpat leo ultrices eu. Morbi semper turpis turpis, at condimentum ante tincidunt sed. Vivamus tempor metus vel erat congue commodo. Nullam pretium porttitor magna non maximus. Quisque porta pellentesque nisl, lacinia dignissim justo euismod semper."
-      "Vestibulum urna nisl, varius sodales porta et, consequat at quam. Donec in laoreet turpis, sit amet sodales urna. In eleifend at odio et venenatis. Donec fringilla ornare sagittis. Mauris sagittis urna vel volutpat egestas. Praesent arcu orci, sodales et lorem mattis, posuere vestibulum massa. Mauris congue, metus ut porta faucibus, sapien nisi dictum arcu, a bibendum ex eros a nisl. In tristique ullamcorper scelerisque. Ut scelerisque ligula a iaculis cursus.1"
-      "Donec eget libero quis ipsum tempus ultricies pellentesque vitae sem. Integer ut congue risus, non aliquet nibh. Cras aliquam ante est, ut tincidunt erat gravida eu. Sed sed odio odio. Integer non massa et erat congue auctor ac mattis elit. Vivamus eu odio est. Donec vulputate pharetra tellus, dignissim volutpat leo ultrices eu. Morbi semper turpis turpis, at condimentum ante tincidunt sed. Vivamus tempor metus vel erat congue commodo. Nullam pretium porttitor magna non maximus. Quisque porta pellentesque nisl, lacinia dignissim justo euismod semper."
-      "Vestibulum urna nisl, varius sodales porta et, consequat at quam. Donec in laoreet turpis, sit amet sodales urna. In eleifend at odio et venenatis. Donec fringilla ornare sagittis. Mauris sagittis urna vel volutpat egestas. Praesent arcu orci, sodales et lorem mattis, posuere vestibulum massa. Mauris congue, metus ut porta faucibus, sapien nisi dictum arcu, a bibendum ex eros a nisl. In tristique ullamcorper scelerisque. Ut scelerisque ligula a iaculis cursus.1sdf";
-  static const conditionsText =
-      "Sed interdum massa ac lorem malesuada lobortis. Praesent pharetra commodo ligula, et commodo nulla molestie a. Integer orci nunc, luctus id libero ac, mattis cursus nibh. Phasellus rhoncus massa sit amet elementum euismod. Integer accumsan nulla non augue semper, in faucibus augue maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras ligula mauris, vehicula sit amet sodales sed, tristique et nisl. Phasellus in augue vitae diam venenatis varius. Nullam sodales rhoncus urna, eu faucibus nisi rhoncus vitae. Integer vitae dolor ut tortor pellentesque pellentesque quis eu eros.";
-  static const conditionsTitle = "Nullam non bibendum quam";
 //Intro
   static const titleFirst = "Hoş Geldiniz...";
   static const done = "Geç";
@@ -140,4 +133,60 @@ class StringData {
   static const institutional = "Kurumal Giriş";
 
   static const authChoise = "Giriş Seçeneği Seçiniz";
+}
+
+class TermsAndConditions {
+  static const termsSheetTitle = "Kullanıcı Sözleşmesi";
+
+  static const termsSheetText = """
+          Bu sözleşme,  ("Şirket" veya "Biz") tarafından işletilen ("Web Sitesi" veya "Platform") üzerinden sunulan hizmetlerimizi kullanarak, Platform'a erişen tüm kullanıcılar için geçerlidir ("Kullanıcı" veya "Siz"). Lütfen bu sözleşmeyi dikkatlice okuyunuz.
+
+          Toplanan Bilgiler
+          Web Sitesi'ni kullanarak, Şirket, kullanıcıların adı, soyadı, e-posta adresi, şirket adı ve telefon numarası gibi kişisel bilgilerini toplar. Bu bilgiler, Şirket'in hizmetlerini sağlamak, Kullanıcılara destek ve yardım sağlamak, Şirket'in pazarlama ve reklam çalışmalarını yürütmek, Web Sitesi'ni optimize etmek ve Kullanıcı deneyimini geliştirmek için kullanılabilir.
+
+          Gizlilik Politikası
+          Şirket, Kullanıcıların kişisel bilgilerinin gizliliğine önem verir. Şirket'in Gizlilik Politikası, Kullanıcının kişisel bilgilerinin nasıl kullanıldığını ve korunduğunu açıklar.
+
+          Kullanım Şartları
+          Kullanıcılar, Web Sitesi üzerinden hizmetlerimizi kullanırken aşağıdaki koşulları kabul etmektedirler:
+
+          Web Sitesi'ni yasadışı amaçlarla kullanamazlar.
+          Web Sitesi'ni, Web Sitesi'nin işleyişini veya sunucularını engelleyen veya hasar veren herhangi bir faaliyette bulunamazlar.
+          Web Sitesi'ni, diğer kullanıcıların hizmetlerimizi kullanmasını engelleyecek şekilde aşırı yükleyemezler.
+          Web Sitesi'nde yer alan herhangi bir materyali çoğaltamazlar veya yeniden dağıtamazlar.
+          İptal ve Geri Ödeme
+          Kullanıcılar, hesaplarını herhangi bir zamanda iptal edebilirler. Hizmetlerimiz için ödenen herhangi bir ücret geri ödenmez.
+
+          Değişiklikler
+          Şirket, bu sözleşmedeki şartları değiştirme hakkını saklı tutar. Değişiklikler Web Sitesi'nde yayınlanacak ve değişikliklerden önce Kullanıcılar bilgilendirilecektir.
+
+          Kullanım Şartlarının Kabulü
+          Web Sitesi'ni kullanarak, bu sözleşmeyi okuduğunuzu anladığınızı ve kabul ettiğinizi beyan etmiş olursunuz. Bu sözleşme, Kullanıcılar ve Şirket arasındaki anlaşmanın tamamını oluşturur ve önceki yazılı veya sözlü anlaşmaların yerini alır.
+
+          Sorumluluk Reddi
+          Web Sitesi, mümkün olan en iyi şekilde sunulmuştur ancak Şirket, Web Sitesi'nin kesintisiz, güvenli veya hatasız olduğunu garanti etmez. Şirket, Web Sitesi'nin kullanımından kaynaklanan herhangi bir kayıp veya zarardan sorumlu değildir.
+
+          Yürürlük
+          Bu sözleşme kayıt tarihinizle birlikte yürürlülüktedir.""";
+  static const conditionsTitle = "Şartlar";
+  static const conditionsText =
+      """Kullanıcı, Platform'a erişerek, Şirketin Toplanan Bilgileri'nin toplanmasını, işlenmesini ve kullanılmasını kabul eder.
+
+        Kullanıcı, Platform'daki tüm faaliyetlerinin yasalara ve düzenlemelere uygun olduğunu beyan eder.
+
+        Kullanıcı, Platform'un işleyişini veya güvenliğini engelleyen veya etkileyen herhangi bir davranışta bulunmamayı kabul eder.
+
+        Kullanıcı, Platform'da paylaşılan içeriklerin içeriği, doğruluğu, eksiksizliği veya yasallığı konusunda tamamen sorumlu olduğunu kabul eder.
+
+        Kullanıcı, Platform'da diğer kullanıcılara karşı saygılı ve olumlu bir iletişim kurmayı kabul eder.
+
+        Kullanıcı, Platform'da Şirketin diğer kullanıcıların veya üçüncü şahısların haklarını ihlal eden herhangi bir içerik veya davranış bildirmesi durumunda, Şirketin tüm makul isteklerine uymayı kabul eder.
+
+        Kullanıcı, Platform'un kullanımından kaynaklanabilecek herhangi bir hasar veya kayıptan Şirketi sorumlu tutmamayı kabul eder.
+
+        Kullanıcı, Platform'un tüm fikri mülkiyet haklarının Şirkete ait olduğunu kabul eder.
+
+        Kullanıcı, Platform'un kullanımı sırasında elde ettiği tüm bilgilerin Şirketin fikri mülkiyeti olduğunu ve Şirketin önceden yazılı onayı olmadan kullanamayacağını kabul eder.
+
+        Kullanıcı, Platform'un kullanımı sırasında, Şirket'in fikri mülkiyet haklarını veya ticari sırlarını ifşa etmeyecek, çoğaltmayacak veya kullanmayacaklarını kabul eder.""";
 }

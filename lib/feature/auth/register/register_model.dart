@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/mixin/password_visible.dart';
-import 'package:hrapp/feature/auth/login/login_view.dart';
-
+import 'package:hrapp/product/models/general_company_model.dart';
+import 'package:hrapp/product/service/api.dart';
+import 'package:hrapp/product/service/data_service.dart';
 import '../../../core/navigation/navigation_service.dart';
 import 'register_view.dart';
 
@@ -15,8 +17,37 @@ abstract class LoginViewModel extends State<RegisterView> with PasswordVisibilit
     super.initState();
   }
 
-  onpressed() {
-    checkvalid();
+  DataService dataService = DataService();
+  String? email;
+  String? name;
+  String? webSite;
+  String? password;
+  String? phone;
+
+  Future<void> onpressed() async {
+    bool isPassed = checkvalid();
+    if (isPassed == false) {
+      return;
+    }
+    nav.showLoading(context);
+    Job data = Job(companyName: name, email: email, webSite: webSite, companyPhone: phone, password: password);
+    final json = jsonEncode(data.companyToJson());
+    var res;
+    if (widget.isCompany == true) {
+      res = await dataService.postAdvert(ApiUri.registerCompany, json);
+    } else {
+      res = await dataService.postAdvert(ApiUri.registerUser, json);
+    }
+
+    if (res == null) {
+      return;
+    }
+    Future(() => nav.hideLoading(context));
+    goToLogin();
+  }
+
+  goToLogin() {
+    Navigator.of(context).pop();
   }
 
   openPicker() async {
@@ -34,11 +65,10 @@ abstract class LoginViewModel extends State<RegisterView> with PasswordVisibilit
         "${selectedDate!.year}");
   }
 
-  checkvalid() {
+  bool checkvalid() {
     if (formKey.currentState!.validate()) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const LoginView(),
-      ));
+      return true;
     }
+    return false;
   }
 }

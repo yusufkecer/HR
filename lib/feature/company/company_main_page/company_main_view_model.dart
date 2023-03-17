@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/feature/auth/chose_auth.dart';
 import 'package:hrapp/feature/auth/login/login_view.dart';
-import 'package:hrapp/feature/company/company_advert_list/company_advert_view.dart';
 import 'package:hrapp/feature/company/company_create_advert/company_create_advert_view.dart';
 import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/data/company_repo/advert_repo.dart';
@@ -49,6 +49,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     var response = await dt.fetchData(ApiUri.getAdvertAll);
     Iterable data = response["data"];
     List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
+    print(jobs.first.id);
     setState(() {
       adverts = jobs;
     });
@@ -83,7 +84,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     print(Auth.instance.token);
     await Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
-        builder: (context) => const LoginView(),
+        builder: (context) => const ChoseAuth(),
       ),
       (route) => false,
     );

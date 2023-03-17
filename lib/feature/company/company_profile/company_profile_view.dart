@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/Constant/radius.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
+import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/feature/company/company_profile/company_profile_view_model.dart';
 import 'package:hrapp/product/Constant/weight.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
+import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/widgets/info_card.dart';
 import 'package:hrapp/product/widgets/card_listtile.dart';
 import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
@@ -24,7 +26,7 @@ class CompanyProfileView extends StatefulWidget {
 class _CompanyProfileViewState extends CompanyProfileWiewModel {
   @override
   void dispose() {
-    mailControoler.dispose();
+    mailController.dispose();
     generalInfoController.dispose();
     phoneController.dispose();
     webController.dispose();
@@ -63,8 +65,8 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
     );
   }
 
-  Row titleAndImage() {
-    return Row(
+  Column titleAndImage() {
+    return Column(
       children: [
         profileImage(),
         nameAndInfo(),
@@ -118,27 +120,33 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
     return Padding(
       padding: const EdgeInsets.all(5.0).copyWith(top: 0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              company.companyName!,
-              textScaleFactor: ProjectFontSize.oneToFive,
-              style: const TextStyle(
-                fontWeight: Weight.bold,
-              ),
+          RichText(
+            textScaleFactor: ProjectFontSize.oneToFive,
+            text: TextSpan(
+              style: const TextStyle(fontWeight: Weight.bold, color: MyColor.lightBlack),
+              children: [
+                TextSpan(
+                  text: Auth.instance.getName,
+                )
+              ],
             ),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "${company.sector}\n${company.numberWorker} Kişi",
-              textAlign: TextAlign.start,
-              textScaleFactor: ProjectFontSize.oneToTwo,
-              style: const TextStyle(
-                fontWeight: Weight.midium,
-              ),
+          Text(
+            "${company.sector}",
+            textAlign: TextAlign.start,
+            textScaleFactor: ProjectFontSize.oneToTwo,
+            style: const TextStyle(
+              fontWeight: Weight.midium,
+            ),
+          ),
+          Text(
+            "${company.numberWorker} Kişi",
+            textAlign: TextAlign.start,
+            textScaleFactor: ProjectFontSize.oneToTwo,
+            style: const TextStyle(
+              fontWeight: Weight.midium,
             ),
           ),
         ],
@@ -169,93 +177,120 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
 
   Widget contactInfo() {
     return InfoCard(
-      child: Column(
-        children: [
-          sizedSpace(
-            height: 15,
-          ),
-          !isEditContact
-              ? ContactCard(
-                  textColor: MyColor.osloGrey,
-                  color: MyColor.ocianLavender,
-                  iconLeading: MyIcons.mail,
-                  text: company.mail,
-                )
-              : Padding(
-                  padding: const ProjectPadding.allEight(),
-                  child: CustomTextField(
-                    hint: StringData.email,
-                    maxLine: 1,
-                    textInputType: TextInputType.emailAddress,
-                    textEditingController: mailControoler,
+      child: Form(
+        key: key,
+        child: Column(
+          children: [
+            sizedSpace(
+              height: 15,
+            ),
+            !isEditContact
+                ? ContactCard(
+                    textColor: MyColor.osloGrey,
+                    color: MyColor.ocianLavender,
+                    iconLeading: MyIcons.mail,
+                    text: Auth.instance.getEmail,
+                  )
+                : Padding(
+                    padding: const ProjectPadding.allEight(),
+                    child: CustomTextField(
+                      validation: (val) {
+                        if (val.emailValid()) {
+                          return null;
+                        }
+                        return StringData.writeEmail;
+                      },
+                      hint: StringData.email,
+                      maxLine: 1,
+                      textInputType: TextInputType.emailAddress,
+                      textEditingController: mailController,
+                    ),
                   ),
-                ),
-          const Divider(
-            color: MyColor.ocianLavender,
-            indent: 20,
-            endIndent: 20,
-          ),
-          !isEditContact
-              ? ContactCard(
-                  textColor: MyColor.osloGrey,
-                  color: MyColor.hollandOrange,
-                  iconLeading: MyIcons.phone,
-                  text: company.phoneNumber,
-                )
-              : Padding(
-                  padding: const ProjectPadding.allEight(),
-                  child: CustomTextField(
-                    textInputType: TextInputType.number,
-                    hint: StringData.phoneNumber,
-                    maxLine: 1,
-                    textEditingController: phoneController,
+            const Divider(
+              color: MyColor.ocianLavender,
+              indent: 20,
+              endIndent: 20,
+            ),
+            !isEditContact
+                ? ContactCard(
+                    textColor: MyColor.osloGrey,
+                    color: MyColor.hollandOrange,
+                    iconLeading: MyIcons.phone,
+                    text: company.phoneNumber,
+                  )
+                : Padding(
+                    padding: const ProjectPadding.allEight(),
+                    child: CustomTextField(
+                      validation: (val) {
+                        if (val.phoneValid()) {
+                          return null;
+                        }
+                        return StringData.writePhone;
+                      },
+                      textInputType: TextInputType.number,
+                      hint: StringData.phoneNumber,
+                      maxLine: 1,
+                      textEditingController: phoneController,
+                    ),
                   ),
-                ),
-          const Divider(
-            color: MyColor.ocianLavender,
-            indent: 20,
-            endIndent: 20,
-          ),
-          !isEditContact
-              ? ContactCard(
-                  color: MyColor.darkYellow,
-                  textColor: MyColor.osloGrey,
-                  iconLeading: MyIcons.website,
-                  text: company.website,
-                )
-              : Padding(
-                  padding: const ProjectPadding.allEight(),
-                  child: CustomTextField(
-                    hint: StringData.webSite,
-                    maxLine: 1,
-                    textEditingController: webController,
+            const Divider(
+              color: MyColor.ocianLavender,
+              indent: 20,
+              endIndent: 20,
+            ),
+            !isEditContact
+                ? ContactCard(
+                    color: MyColor.darkYellow,
+                    textColor: MyColor.osloGrey,
+                    iconLeading: MyIcons.website,
+                    text: company.website,
+                  )
+                : Padding(
+                    padding: const ProjectPadding.allEight(),
+                    child: CustomTextField(
+                      validation: (val) {
+                        if (val.urlValid()) {
+                          return null;
+                        }
+                        return StringData.writeWebSite;
+                      },
+                      hint: StringData.webSite,
+                      maxLine: 1,
+                      textEditingController: webController,
+                    ),
                   ),
-                ),
-          const Divider(
-            color: MyColor.ocianLavender,
-            indent: 20,
-            endIndent: 20,
-          ),
-          !isEditContact
-              ? ContactCard(
-                  scale: 1,
-                  color: MyColor.recycleGreen,
-                  textColor: MyColor.osloGrey,
-                  iconLeading: MyIcons.location,
-                  text: company.address,
-                )
-              : Padding(
-                  padding: const ProjectPadding.allEight(),
-                  child: CustomTextField(
-                    hint: StringData.address,
-                    maxLine: null,
-                    textEditingController: locationController,
+            const Divider(
+              color: MyColor.ocianLavender,
+              indent: 20,
+              endIndent: 20,
+            ),
+            !isEditContact
+                ? ContactCard(
+                    scale: 1,
+                    color: MyColor.recycleGreen,
+                    textColor: MyColor.osloGrey,
+                    iconLeading: MyIcons.location,
+                    text: company.address,
+                  )
+                : Padding(
+                    padding: const ProjectPadding.allEight(),
+                    child: CustomTextField(
+                      validation: (val) {
+                        if (val != null && val.length > 10) {
+                          return null;
+                        }
+                        return StringData.writeWebSite;
+                      },
+                      hint: StringData.address,
+                      maxLine: null,
+                      textEditingController: locationController,
+                    ),
                   ),
-                ),
-          sizedSpace(
-            height: 15,
-          ),
-        ],
+            sizedSpace(
+              height: 15,
+            ),
+          ],
+        ),
       ),
     );
   }

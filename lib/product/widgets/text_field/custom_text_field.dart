@@ -14,6 +14,7 @@ class CustomTextField extends StatefulWidget {
   final IconData? icon;
   final void Function()? tap;
   final String? hint;
+  final String? Function(String?)? validation;
 
   const CustomTextField({
     Key? key,
@@ -25,6 +26,7 @@ class CustomTextField extends StatefulWidget {
     this.icon,
     this.tap,
     this.hint,
+    this.validation,
   }) : super(key: key);
 
   @override
@@ -35,8 +37,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(colorScheme: ThemeData().colorScheme.copyWith(primary: MyColor.fuchsiaBlueLight)),
-      child: TextField(
+      data: ThemeData(
+        colorScheme: ThemeData().colorScheme.copyWith(primary: MyColor.fuchsiaBlueLight),
+      ),
+      child: TextFormField(
+        validator: widget.validation,
         enableInteractiveSelection: false,
         keyboardType: widget.textInputType ?? TextInputType.text,
         maxLines: widget.maxLine,

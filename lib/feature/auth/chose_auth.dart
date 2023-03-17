@@ -5,7 +5,6 @@ import 'package:hrapp/feature/auth/login/login_view.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
-import 'package:hrapp/product/service/api.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import '../../product/widgets/title.dart';
 
@@ -62,13 +61,13 @@ class _ChoseAuthState extends State<ChoseAuth> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           button(() {
-            navigate(ApiUri.loginCompnay);
+            navigate(true);
           }, StringData.institutional, MyIcons.company),
           const SizedBox(
             height: 10,
           ),
           button(() {
-            navigate(ApiUri.loginUser);
+            navigate(false);
           }, StringData.individual, MyIcons.user),
         ],
       ),
@@ -86,11 +85,11 @@ class _ChoseAuthState extends State<ChoseAuth> {
     );
   }
 
-  void navigate(endpoint) {
+  void navigate(isCompany) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginView(endpoint: endpoint),
+        builder: (context) => LoginView(isCompany: isCompany),
       ),
     );
   }

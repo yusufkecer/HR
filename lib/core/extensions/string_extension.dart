@@ -9,7 +9,13 @@ extension EmailValidator on String? {
     return RegExp(r'[(a-zA-Z)]').hasMatch(this ?? "");
   }
 
-  bool phoneNumberValidator() {
+  bool urlValid() {
+    return RegExp(
+            r"((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?")
+        .hasMatch(this ?? '');
+  }
+
+  bool phoneValid() {
     return RegExp(r'^(?:[+0]9)?[0-9]{10}$').hasMatch(this ?? "");
   }
 

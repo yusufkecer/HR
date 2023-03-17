@@ -1,7 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:hrapp/product/constant/icons.dart';
+import 'package:hrapp/product/data/auth.dart';
+
 import 'package:image_picker/image_picker.dart';
 import '../../../core/navigation/navigation_service.dart';
 import '../../../product/constant/string_data.dart';
@@ -9,10 +10,10 @@ import '../../../product/models/company_model/company_model.dart';
 import 'company_profile_view.dart';
 
 abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
+  GlobalKey<FormState> key = GlobalKey();
   File? selectedImage;
   var company = Company(
     phoneNumber: "05333333333",
-    mail: "info@info.com",
     website: "www.blablabla.com",
     sector: "Yazılım Geliştirme",
     companyName: "PAÜ",
@@ -35,24 +36,26 @@ abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
   }
 
   void contactInfoTitleEdit() {
-    if (isEditContact) {
-      company.mail = mailControoler.text;
-      company.phoneNumber = phoneController.text;
-      company.website = webController.text;
-      company.address = locationController.text;
+    if (key.currentState!.validate()) {
+      if (isEditContact) {
+        company.mail = mailController.text;
+        company.phoneNumber = phoneController.text;
+        company.website = webController.text;
+        company.address = locationController.text;
 
-      isEditContact = !isEditContact;
+        isEditContact = !isEditContact;
 
-      nav.callSnackbar(context, StringData.saved);
-    } else {
-      mailControoler.text = company.mail ?? "";
-      phoneController.text = company.phoneNumber ?? "";
-      webController.text = company.website ?? "";
-      locationController.text = company.address ?? "";
+        nav.callSnackbar(context, StringData.saved);
+      } else {
+        mailController.text = Auth.instance.getEmail ?? "";
+        phoneController.text = company.phoneNumber ?? "";
+        webController.text = company.website ?? "";
+        locationController.text = company.address ?? "";
 
-      isEditContact = !isEditContact;
+        isEditContact = !isEditContact;
+      }
+      setState(() {});
     }
-    setState(() {});
   }
 
   void changeInfoTitle() {
@@ -73,7 +76,7 @@ abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {
   NavigationService nav = NavigationService();
   TextEditingController generalInfoController = TextEditingController();
   TextEditingController locationController = TextEditingController();
-  TextEditingController mailControoler = TextEditingController();
+  TextEditingController mailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController webController = TextEditingController();
 

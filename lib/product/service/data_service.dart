@@ -1,8 +1,5 @@
 import 'dart:convert';
-import 'package:hrapp/product/service/api.dart';
 import 'package:http/http.dart' as http;
-
-import '../models/general_company_model.dart';
 
 class DataService {
   dynamic fetchData(String api) async {
@@ -31,24 +28,61 @@ class DataService {
       var getToken = await jsonDecode(response.body);
       return getToken;
     } catch (e) {
-      // throw "Hata var ama nerede söylemem";
+      throw "Hata var ama nerede söylemem";
     }
   }
 
-  Future postAdvert(Job jobs) async {
+  Future postAdvert(String endPoint, String json) async {
     try {
       final response = await http.post(
-        Uri.parse(ApiUri.postAdvert),
+        Uri.parse(endPoint),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(jobs.toJson()),
+        body: json,
       );
+      print("geçti");
       var res = await jsonDecode(response.body);
 
       return res;
     } catch (e) {
-      print(e);
+      print(e); //  print(e);
+    }
+  }
+
+  Future upteAdvert(String endPoint, String json) async {
+    try {
+      final response = await http.put(
+        Uri.parse(endPoint),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: json,
+      );
+      print("geçti");
+      var res = await jsonDecode(response.body);
+
+      return res;
+    } catch (e) {
+      print(e); //  print(e);
+    }
+  }
+
+  Future delete(String endPoint, String json) async {
+    try {
+      final response = await http.delete(
+        Uri.parse(endPoint),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: json,
+      );
+      print("geçti");
+      var res = await jsonDecode(response.body);
+
+      return res;
+    } catch (e) {
+      print(e); //  print(e);
     }
   }
 }
