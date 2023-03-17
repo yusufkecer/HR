@@ -14,16 +14,17 @@ import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/models/general_company_model.dart';
-import '../../../product/service/api.dart';
+
 import '../../../product/widgets/button/chip_button.dart';
 import '../../../product/widgets/not_found.dart';
 import 'company_advert_view_model.dart';
 
+// ignore: must_be_immutable
 class CompanyAdvertView extends StatefulWidget {
-  final List<Job>? adverts;
-  final List<Job>? activeAdverts;
-  final List<Job>? passiveAdverts;
-  const CompanyAdvertView({
+ final List<Job>? adverts;
+ final List<Job>? activeAdverts;
+ final List<Job>? passiveAdverts;
+ const CompanyAdvertView({
     Key? key,
     this.adverts,
     this.activeAdverts,
@@ -51,16 +52,16 @@ class _CompanyAdvertViewState extends CompanyAdvertViewModel {
                       title: AdvertFilterOptions.all.options,
                       selected: filters.getFilter == AdvertFilterOptions.all,
                       ontap: () {
-                        filter(AdvertFilterOptions.all, ApiUri.getAdvertAll);
                         filters.updateFilter = AdvertFilterOptions.all;
+                        setState(() {});
                       },
                     ),
                     CustomChipButton(
                       title: AdvertFilterOptions.active.options,
                       selected: filters.getFilter == AdvertFilterOptions.active,
                       ontap: () {
-                        filter(AdvertFilterOptions.active, ApiUri.getAdvertActive);
                         filters.updateFilter = AdvertFilterOptions.active;
+                        setState(() {});
                       },
                     ),
                     CustomChipButton(
@@ -68,7 +69,7 @@ class _CompanyAdvertViewState extends CompanyAdvertViewModel {
                       selected: filters.getFilter == AdvertFilterOptions.passive,
                       ontap: () {
                         filters.updateFilter = AdvertFilterOptions.passive;
-                        filter(AdvertFilterOptions.passive, ApiUri.getAdvertPassive);
+                        setState(() {});
                       },
                     ),
                   ],

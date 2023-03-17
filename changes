@@ -193,6 +193,7 @@ prfildeki tasarım değiştirildi
 çıkış yapıp kayıt ekranına gidince hata hatası çözüldü.
 phone number valid check
 kayıt olduktan sonra giriş sayfasında dönünce oluşan hata çözüldü
+null giriş için oluşan hata çözüldü
 // Hatalar
 
 ürün güncelleme işlemi

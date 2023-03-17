@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 
 import 'package:hrapp/core/constant/project_padding.dart';
@@ -7,6 +5,7 @@ import 'package:hrapp/product/widgets/decoration/custom_decoration.dart';
 
 import '../../constant/font_size.dart';
 
+//! FIXME const costructor
 class AuthField extends StatelessWidget {
   final TextEditingController? controller;
   final String? info;
