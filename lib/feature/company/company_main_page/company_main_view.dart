@@ -50,6 +50,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
             connectionError: dontReachApi,
           ),
           CompanyAdvertView(
+            updateList: updateList,
             activeAdverts: activeAdverts,
             passiveAdverts: passiveAdverts,
             adverts: adverts,

@@ -194,8 +194,18 @@ prfildeki tasarım değiştirildi
 phone number valid check
 kayıt olduktan sonra giriş sayfasında dönünce oluşan hata çözüldü
 null giriş için oluşan hata çözüldü
-// Hatalar
 
+18.03
+register sayfasına soyisim state yönetimiyle eklendi
+kullanıcıda soyisim diğerinde companyde ise web sitesi olarak gözüküyor.
+update işleminden sonra sayfa yenileme işlemi gerçekleştirildi ve req atılan işlem güncellendi (hatalar  düzeltildi)
+user model oluşturuldu
+company için kayıt işlemi güncellendi
+daha uygun textler ve iconlar eklendi
+çıkış yapınca artık seçim sayfasına yönlendiriyor
+
+// Hatalar
+değer girmeden giriş yapmaya çalışınca hata veriyor
 ürün güncelleme işlemi
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
 

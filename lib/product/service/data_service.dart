@@ -32,7 +32,7 @@ class DataService {
     }
   }
 
-  Future postAdvert(String endPoint, String json) async {
+  Future post(String endPoint, String json) async {
     try {
       final response = await http.post(
         Uri.parse(endPoint),
@@ -41,12 +41,12 @@ class DataService {
         },
         body: json,
       );
-      print("geçti");
+
       var res = await jsonDecode(response.body);
 
       return res;
     } catch (e) {
-      print(e); //  print(e);
+      //  print(e);
     }
   }
 
@@ -59,30 +59,30 @@ class DataService {
         },
         body: json,
       );
-      print("geçti");
+
       var res = await jsonDecode(response.body);
 
       return res;
     } catch (e) {
-      print(e); //  print(e);
+      //  print(e);
     }
   }
 
-  Future delete(String endPoint, String json) async {
+  Future delete(String endPoint, String id, String json) async {
     try {
       final response = await http.delete(
-        Uri.parse(endPoint),
+        Uri.parse(endPoint + id),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: json,
       );
-      print("geçti");
+
       var res = await jsonDecode(response.body);
 
       return res;
     } catch (e) {
-      print(e); //  print(e);
+      //  print(e);
     }
   }
 }

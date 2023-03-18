@@ -14,21 +14,23 @@ import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/models/general_company_model.dart';
-
 import '../../../product/widgets/button/chip_button.dart';
 import '../../../product/widgets/not_found.dart';
 import 'company_advert_view_model.dart';
 
 // ignore: must_be_immutable
 class CompanyAdvertView extends StatefulWidget {
- final List<Job>? adverts;
- final List<Job>? activeAdverts;
- final List<Job>? passiveAdverts;
- const CompanyAdvertView({
+  List<Job>? adverts;
+  List<Job>? activeAdverts;
+  List<Job>? passiveAdverts;
+  Future<void> Function()? updateList;
+
+  CompanyAdvertView({
     Key? key,
     this.adverts,
     this.activeAdverts,
     this.passiveAdverts,
+    this.updateList,
   }) : super(key: key);
 
   @override
@@ -68,6 +70,7 @@ class _CompanyAdvertViewState extends CompanyAdvertViewModel {
                       title: AdvertFilterOptions.passive.options,
                       selected: filters.getFilter == AdvertFilterOptions.passive,
                       ontap: () {
+                        print(widget.passiveAdverts);
                         filters.updateFilter = AdvertFilterOptions.passive;
                         setState(() {});
                       },

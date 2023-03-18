@@ -6,7 +6,8 @@ class StringData {
   static const resetPassword = "Şifremi Unuttum";
   static const rememberMe = "Beni Hatırla";
   static const companyName = "Şirket Adı";
-  static const name = "İsim Soyisim";
+  static const name = "İsim";
+  static const surname = "Soyisim";
   static const email = "Email";
   static const password = "Şifre";
   static const birthOfDay = "Doğum Tarihi";
@@ -21,6 +22,7 @@ class StringData {
   static const writeEmail = "Geçerli bir mail adresi giriniz.";
   static const writePassword = "Geçerli bir şifre giriniz. (sayı ve büyük harf ve özel karakter.)";
   static const writeName = "Geçerli bir isim giriniz.";
+  static const writeSurname = "Geçerli bir soyisim giriniz.";
   static const writePhone = "Geçerli bir telefon numarası giriniz.";
   static const selectBirthOfDay = "Lütfen doğum tarihi seçiniz";
 
@@ -89,7 +91,8 @@ class StringData {
   static const turkishLiraSymbol = "₺";
 //check showdialog
   static const checkTitle = "Emin Misiniz?";
-  static const checkText = "Kaydetmek stediğinize emin misiniz?";
+  static const checkCreate = "Kaydetmek stediğinize emin misiniz?";
+  static const checkDelete = "Kaydetmek stediğinize emin misiniz?";
   static const yes = "Evet";
   static const no = "Hayır";
   static const missing = "Lütfen Eksiksiz Doldurun";

@@ -27,7 +27,7 @@ class RegisterView extends StatefulWidget {
   State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _RegisterViewState extends LoginViewModel {
+class _RegisterViewState extends RegisterViewModel {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -157,15 +157,19 @@ class _RegisterViewState extends LoginViewModel {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
+          webSiteView(),
+          BoxSpace(
+            height: ProjectSize.bigHeight().height,
+          ),
           emailView(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          phoneNumber(),
+          datePicker(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          widget.isCompany! ? webSiteView() : datePicker(),
+          phoneNumber(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
@@ -269,7 +273,7 @@ class _RegisterViewState extends LoginViewModel {
       },
       titlePadding: const ProjectPadding.textFieldTitle(),
       icon: const Icon(
-        MyIcons.listAlt,
+        MyIcons.phone,
         color: MyColor.black,
       ),
       fontWeight: Weight.midium,
@@ -279,24 +283,24 @@ class _RegisterViewState extends LoginViewModel {
 
   AuthField webSiteView() {
     return AuthField(
-      textType: TextInputType.url,
+      textType: widget.isCompany! ? TextInputType.url : TextInputType.text,
       listener: (value) {
-        webSite = value;
+        siteOrName = value;
         return;
       },
       validation: (value) {
-        if (!value.urlValid()) {
-          return StringData.webSite;
+        if (widget.isCompany! ? !value.urlValid() : value.nameValid()) {
+          return widget.isCompany! ? StringData.writeWebSite : StringData.writeSurname;
         }
         return null;
       },
       titlePadding: const ProjectPadding.textFieldTitle(),
-      icon: const Icon(
-        MyIcons.website,
+      icon: Icon(
+        widget.isCompany! ? MyIcons.website : MyIcons.position,
         color: MyColor.black,
       ),
       fontWeight: Weight.midium,
-      info: StringData.webSite,
+      info: widget.isCompany! ? StringData.webSite : StringData.surname,
     );
   }
 
