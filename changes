@@ -198,7 +198,7 @@ null giriş için oluşan hata çözüldü
 18.03
 register sayfasına soyisim state yönetimiyle eklendi
 kullanıcıda soyisim diğerinde companyde ise web sitesi olarak gözüküyor.
-update işleminden sonra sayfa yenileme işlemi gerçekleştirildi ve req atılan işlem güncellendi
+update işleminden sonra sayfa yenileme işlemi gerçekleştirildi ve req atılan işlem güncellendi (hatalar  düzeltildi)
 user model oluşturuldu
 company için kayıt işlemi güncellendi
 daha uygun textler ve iconlar eklendi

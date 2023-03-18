@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/product/constant/string_data.dart';
@@ -33,29 +32,12 @@ abstract class CompanyAdvertViewModel extends State<CompanyAdvertView> {
 
       if (check == true) {
         Future(() => nav.showLoading(context));
-        await updateList();
+        await widget.updateList!();
+        setState(() {});
         check = false;
         Future(() => nav.hideLoading(context));
       }
     });
-    print(widget.passiveAdverts);
-  }
-
-  Future<void> updateList() async {
-    widget.adverts = [];
-    widget.passiveAdverts = [];
-    widget.activeAdverts = [];
-    widget.adverts = await getJobs(ApiUri.getAdvertAll);
-    widget.activeAdverts = await getJobs(ApiUri.getAdvertActive);
-    widget.passiveAdverts = await getJobs(ApiUri.getAdvertPassive);
-    setState(() {});
-  }
-
-  Future<List<Job>> getJobs(String endpoint) async {
-    var response = await dt.fetchData(endpoint);
-    Iterable data = response["data"];
-    List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
-    return jobs;
   }
 
   void deleteAdvert(int index, List<Job>? advert) async {
@@ -70,7 +52,7 @@ abstract class CompanyAdvertViewModel extends State<CompanyAdvertView> {
     var response = await dt.delete(ApiUri.deleteAdvert, advert[index].id!, json);
 
     if (response["isSuccess"]) {
-      await updateList();
+      // await updateList();
     }
 
     Future(() => nav.hideLoading(context));

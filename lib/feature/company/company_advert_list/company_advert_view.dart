@@ -14,7 +14,6 @@ import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/models/general_company_model.dart';
-
 import '../../../product/widgets/button/chip_button.dart';
 import '../../../product/widgets/not_found.dart';
 import 'company_advert_view_model.dart';
@@ -24,11 +23,14 @@ class CompanyAdvertView extends StatefulWidget {
   List<Job>? adverts;
   List<Job>? activeAdverts;
   List<Job>? passiveAdverts;
+  Future<void> Function()? updateList;
+
   CompanyAdvertView({
     Key? key,
     this.adverts,
     this.activeAdverts,
     this.passiveAdverts,
+    this.updateList,
   }) : super(key: key);
 
   @override
