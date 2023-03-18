@@ -192,9 +192,10 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         return;
       }
     }
-    check = await nav.checkDialog(StringData.checkTitle, StringData.checkText);
+    check = await nav.checkDialog(StringData.checkTitle, StringData.checkCreate);
 
     if (check ?? false) {
+      // ignore: prefer_typing_uninitialized_variables
       var res;
 
       if (widget.updateJob == null) {
@@ -220,7 +221,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         );
         final json = jsonEncode(data.toJson());
         Future(() => nav.showLoading(context));
-        res = await DataService().postAdvert(ApiUri.postAdvert, json);
+        res = await DataService().post(ApiUri.postAdvert, json);
         // ignore: use_build_context_synchronously
         nav.hideLoading(context);
       } else {
@@ -247,7 +248,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         );
         final json = jsonEncode(data.toJson());
         Future(() => nav.showLoading(context));
-        print(json);
+
         res = await DataService().upteAdvert(ApiUri.updateAdvert, json);
         // print(res);
         // ignore: use_build_context_synchronously

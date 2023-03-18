@@ -4,7 +4,6 @@ import 'package:hrapp/product/constant/string_data.dart';
 import 'package:lottie/lottie.dart';
 import '../../Product/Constant/colors.dart';
 import '../../Product/widgets/sized_box/box_space.dart';
-import '../../feature/auth/register/register_view.dart';
 import '../../feature/company/company_main_page/company_main_view.dart';
 import '../../product/Constant/weight.dart';
 import '../../product/constant/font_size.dart';

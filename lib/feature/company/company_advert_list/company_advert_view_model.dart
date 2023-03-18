@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:hrapp/core/enum/advert_filter.dart';
-import 'package:hrapp/core/navigation/navigation_service.dart';
-import 'package:hrapp/product/service/data_service.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:hrapp/core/navigation/navigation_service.dart';
+import 'package:hrapp/product/constant/string_data.dart';
+import 'package:hrapp/product/service/data_service.dart';
 import '../../../core/filter/filter.dart';
 import '../../../product/models/general_company_model.dart';
 import '../../../product/service/api.dart';
@@ -26,49 +27,52 @@ abstract class CompanyAdvertViewModel extends State<CompanyAdvertView> {
         MaterialPageRoute(
           builder: (context) => CompanyCreateJobView(
             updateJob: advert[index],
-            index: index,
           ),
         ),
       );
 
       if (check == true) {
-        // getAllAdvert();
-        // getActiveAdvert();
-        // getPassiveAdvert();
+        Future(() => nav.showLoading(context));
+        await updateList();
         check = false;
+        Future(() => nav.hideLoading(context));
       }
     });
+    print(widget.passiveAdverts);
   }
 
-  // Future<void> getAllAdvert() async {
-  //   var response = await dt.fetchData(ApiUri.getAdvertAll);
-  //   Iterable data = response["data"];
-  //   List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
-  //   print(jobs.first.id);
-  //   setState(() {
-  //     widget.adverts = jobs;
-  //   });
-  // }
-
-  // Future<void> getActiveAdvert() async {
-  //   var response = await dt.fetchData(ApiUri.getAdvertActive);
-  //   Iterable data = response["data"];
-  //   List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
-  //   setState(() {
-  //     widget.activeAdverts = jobs;
-  //   });
-  // }
-
-  // Future<void> getPassiveAdvert() async {
-  //   var response = await dt.fetchData(ApiUri.getAdvertPassive);
-  //   Iterable data = response["data"];
-  //   List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
-  //   setState(() {
-  //     widget.passiveAdverts = jobs;
-  //   });
-  // }
-
-  void deleteAdvert(int index) async {
+  Future<void> updateList() async {
+    widget.adverts = [];
+    widget.passiveAdverts = [];
+    widget.activeAdverts = [];
+    widget.adverts = await getJobs(ApiUri.getAdvertAll);
+    widget.activeAdverts = await getJobs(ApiUri.getAdvertActive);
+    widget.passiveAdverts = await getJobs(ApiUri.getAdvertPassive);
     setState(() {});
+  }
+
+  Future<List<Job>> getJobs(String endpoint) async {
+    var response = await dt.fetchData(endpoint);
+    Iterable data = response["data"];
+    List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
+    return jobs;
+  }
+
+  void deleteAdvert(int index, List<Job>? advert) async {
+    nav.checkDialog(StringData.checkTitle, StringData.checkDelete);
+    if (advert == null) {
+      return;
+    }
+    Future(() => nav.showLoading(context));
+
+    Job data = advert[index];
+    String json = jsonEncode(data);
+    var response = await dt.delete(ApiUri.deleteAdvert, advert[index].id!, json);
+
+    if (response["isSuccess"]) {
+      await updateList();
+    }
+
+    Future(() => nav.hideLoading(context));
   }
 }

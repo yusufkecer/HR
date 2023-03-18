@@ -6,6 +6,7 @@ import 'package:hrapp/product/widgets/decoration/custom_decoration.dart';
 import '../../constant/font_size.dart';
 
 //! FIXME const costructor
+// ignore: must_be_immutable
 class AuthField extends StatelessWidget {
   final TextEditingController? controller;
   final String? info;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/feature/auth/chose_auth.dart';
-import 'package:hrapp/feature/auth/login/login_view.dart';
 import 'package:hrapp/feature/company/company_create_advert/company_create_advert_view.dart';
 import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/data/company_repo/advert_repo.dart';
@@ -39,38 +38,22 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   List<Job> passiveAdverts = [];
 
   Future<void> updateList() async {
-    await getAllAdvert();
-    await getActiveAdvert();
-    await getPassiveAdvert();
-    setState(() {});
-  }
+    List<Job> jobsAll = await getJobs(ApiUri.getAdvertAll);
+    List<Job> jobsActive = await getJobs(ApiUri.getAdvertActive);
+    List<Job> jobsPassive = await getJobs(ApiUri.getAdvertPassive);
 
-  Future<void> getAllAdvert() async {
-    var response = await dt.fetchData(ApiUri.getAdvertAll);
-    Iterable data = response["data"];
-    List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
-    print(jobs.first.id);
     setState(() {
-      adverts = jobs;
+      adverts = jobsAll;
+      activeAdverts = jobsActive;
+      passiveAdverts = jobsPassive;
     });
   }
 
-  Future<void> getActiveAdvert() async {
-    var response = await dt.fetchData(ApiUri.getAdvertActive);
+  Future<List<Job>> getJobs(String endpoint) async {
+    var response = await dt.fetchData(endpoint);
     Iterable data = response["data"];
     List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
-    setState(() {
-      activeAdverts = jobs;
-    });
-  }
-
-  Future<void> getPassiveAdvert() async {
-    var response = await dt.fetchData(ApiUri.getAdvertPassive);
-    Iterable data = response["data"];
-    List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
-    setState(() {
-      passiveAdverts = jobs;
-    });
+    return jobs;
   }
 
   void navigateProfile() {
@@ -81,7 +64,6 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
 
   void logout() async {
     Auth.instance.resetToken = {};
-    print(Auth.instance.token);
     await Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) => const ChoseAuth(),

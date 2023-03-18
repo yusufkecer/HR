@@ -5,9 +5,10 @@ import 'package:hrapp/product/models/general_company_model.dart';
 import 'package:hrapp/product/service/api.dart';
 import 'package:hrapp/product/service/data_service.dart';
 import '../../../core/navigation/navigation_service.dart';
+import '../../../product/models/user_model/user_model.dart';
 import 'register_view.dart';
 
-abstract class LoginViewModel extends State<RegisterView> with PasswordVisibilityMixin {
+abstract class RegisterViewModel extends State<RegisterView> with PasswordVisibilityMixin {
   TextEditingController dateController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   NavigationService nav = NavigationService();
@@ -19,8 +20,9 @@ abstract class LoginViewModel extends State<RegisterView> with PasswordVisibilit
 
   DataService dataService = DataService();
   String? email;
+  String? surname;
   String? name;
-  String? webSite;
+  String? siteOrName;
   String? password;
   String? phone;
 
@@ -30,19 +32,24 @@ abstract class LoginViewModel extends State<RegisterView> with PasswordVisibilit
       return;
     }
     nav.showLoading(context);
-    Job data = Job(companyName: name, email: email, webSite: webSite, companyPhone: phone, password: password);
-    final json = jsonEncode(data.companyToJson());
+
+    // ignore: prefer_typing_uninitialized_variables
     var res;
     if (widget.isCompany == true) {
-      res = await dataService.postAdvert(ApiUri.registerCompany, json);
-    } else {
-      res = await dataService.postAdvert(ApiUri.registerUser, json);
-    }
+      Job data = Job(companyName: name, email: email, webSite: siteOrName, companyPhone: phone, password: password);
 
+      final json = jsonEncode(data.companyToJson());
+      res = await dataService.post(ApiUri.registerCompany, json);
+    } else {
+      User data = User(name: name, surname: siteOrName, email: email, phoneNumber: phone, password: password);
+      final json = jsonEncode(data.toJson());
+      res = await dataService.post(ApiUri.registerUser, json);
+    }
+    Future(() => nav.hideLoading(context));
     if (res == null) {
       return;
     }
-    Future(() => nav.hideLoading(context));
+
     goToLogin();
   }
 

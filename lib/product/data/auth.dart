@@ -1,6 +1,4 @@
-import 'package:hrapp/product/service/api.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-
 import '../service/data_service.dart';
 
 class Auth {
@@ -16,12 +14,13 @@ class Auth {
   String? status;
 
   Future login(String email, String password, String endpoint) async {
-    var response = await ds.authLogin(email, password, ApiUri.loginCompnay);
+    var response = await ds.authLogin(email, password, endpoint);
     if (response != null) {
       if (response["isSuccess"]) {
         String getToken = response["data"]["token"];
         token = JwtDecoder.decode(getToken);
       }
+
       return response["isSuccess"];
     }
   }
