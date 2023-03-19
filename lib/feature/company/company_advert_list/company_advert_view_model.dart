@@ -40,19 +40,24 @@ abstract class CompanyAdvertViewModel extends State<CompanyAdvertView> {
     });
   }
 
-  void deleteAdvert(int index, List<Job>? advert) async {
-    nav.checkDialog(StringData.checkTitle, StringData.checkDelete);
+  Future<void> deleteAdvert(int index, List<Job>? advert) async {
     if (advert == null) {
       return;
     }
-    Future(() => nav.showLoading(context));
+    bool? val;
+    await Future(() async => val = await nav.checkDialog(StringData.checkTitle, StringData.checkDelete));
 
-    Job data = advert[index];
-    String json = jsonEncode(data);
-    var response = await dt.delete(ApiUri.deleteAdvert, advert[index].id!, json);
+    if (val == true) {
+      Future(() => nav.showLoading(context));
+      Job data = advert[index];
+      String json = jsonEncode(data);
+      var response = await dt.delete(ApiUri.deleteAdvert, advert[index].id!, json);
 
-    if (response["isSuccess"]) {
-      // await updateList();
+      if (response["isSuccess"]) {
+        await widget.updateList!();
+      } else {
+        nav.checkDialog(StringData.error, StringData.generalErr);
+      }
     }
 
     Future(() => nav.hideLoading(context));

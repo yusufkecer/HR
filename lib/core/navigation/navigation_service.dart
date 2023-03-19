@@ -12,10 +12,10 @@ import '../Constant/size.dart';
 import '../constant/project_padding.dart';
 
 class NavigationService {
-  showLoading(context) {
+  showLoading([context]) {
     showDialog(
       barrierDismissible: false,
-      context: context,
+      context: context ?? NavigationKey.instance.navigatorKey.currentContext,
       builder: (context) {
         return Center(
           child: SizedBox(

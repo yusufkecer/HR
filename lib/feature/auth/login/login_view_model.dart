@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hrapp/core/mixin/check_mixin.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/feature/auth/login/login_view.dart';
+import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/service/api.dart';
 import '../../../core/mixin/password_visible.dart';
 import '../../../product/data/auth.dart';
@@ -51,14 +52,15 @@ abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMi
       passwordController.text,
       widget.isCompany! ? ApiUri.loginCompnay : ApiUri.loginUser,
     );
-
     Future(() => nav.hideLoading(context));
     if (val == true) {
       Future(() => nav.navigteToCompany(context));
-    } else if (val == false) {
-      Future(() => nav.callSnackbar(context, "E-posta Veya Şifre Hatalı"));
+    } else if (val.runtimeType == String) {
+      Future(() => nav.callSnackbar(context, val));
+    } else if (val.runtimeType == List) {
+      Future(() => nav.callSnackbar(context, val.join()));
     } else {
-      Future(() => nav.callSnackbar(context, "Bir Hata Oluştu"));
+      Future(() => nav.callSnackbar(context, StringData.generalErr));
     }
   }
 }
