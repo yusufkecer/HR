@@ -34,16 +34,18 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   bool? check = false;
   DateTime? selectedDate;
   String? newDateString;
+  bool isChange = false;
   void getDate() async {
-    if (updateJob?.deadline != null) {
-      List<String> dateParts = updateJob!.deadline.toString().split('  ');
-
-      newDateString = "${dateParts[2]}-${dateParts[1]}-${dateParts[0]}";
+    if (updateJob?.deadline != null && isChange == false) {
+      List<String> parse = updateJob!.deadline.toString().split(' ')[0].split("-");
+      newDateString = "${parse[0]}-${parse[1]}-${parse[2]} 00:00:00.00";
       selectedDate = DateTime.parse(newDateString!);
+      isChange = true;
     }
     FocusScope.of(context).requestFocus(FocusNode());
+    print("first date$selectedDate");
     selectedDate = await nav.showDate(context, selectedDate);
-
+    print("last date$selectedDate");
     if (selectedDate != null) {
       saveDate();
     }

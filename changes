@@ -183,6 +183,9 @@ profildeki isim ve mail adresi tokena göre düzenlendi
 company ve user için register sayfası ayrı ayrı ayarlandı
 ilan detay sayfasındaki tarih hatası giderildi
 şartlar ve sözleşmeler eklendi
+
+
+
 15.03
 ilan tarihi eklendi (geçerlilik tarihi ve oluşturma tarihi)
 kayıt olma işlemi company ve user için dinamik hale getirildi
@@ -204,11 +207,16 @@ company için kayıt işlemi güncellendi
 daha uygun textler ve iconlar eklendi
 çıkış yapınca artık seçim sayfasına yönlendiriyor
 
+19.03
+giriş yapma ekranında bilgilerin boş olaması, hatalı olması gibi durumlar için validasyun eklendi
+değer girmeden giriş yapmaya çalışınca olşan hata düzeltilidi veriyor
+ilan silme işlemi tamamlandı
+silinmeden önce artı soru soruluyor
+advert güncelleme işleminde oluşan tarih seçim hatası düzeltildi
+ilan ekleme sayfasındaki input alanlarındaki kopyalama ya da seçme işlemini oluşturan bug çözüldü 
+sadece güncelleme işleminde tarih seçince güncelleme tarihinin gelmesi ve yeni tarihin seçim ekranında kaybolmasıyla oluşan hata çözüldü
 // Hatalar
-değer girmeden giriş yapmaya çalışınca hata veriyor
-ürün güncelleme işlemi
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
-
 
 
 

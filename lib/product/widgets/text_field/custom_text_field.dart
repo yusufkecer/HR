@@ -42,7 +42,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       ),
       child: TextFormField(
         validator: widget.validation,
-        enableInteractiveSelection: false,
+        enableInteractiveSelection: widget.selectionCursor,
         keyboardType: widget.textInputType ?? TextInputType.text,
         maxLines: widget.maxLine,
         controller: widget.textEditingController,

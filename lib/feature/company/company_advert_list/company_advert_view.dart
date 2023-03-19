@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:hrapp/core/enum/advert_filter.dart';
 import 'package:hrapp/feature/company/company_advert_detail/company_advert_detail_view.dart';
 import 'package:hrapp/product/constant/colors.dart';
@@ -7,7 +6,6 @@ import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/widgets/sub_title.dart';
 import 'package:hrapp/product/widgets/text_with_icon.dart';
-
 import '../../../Core/Constant/radius.dart';
 import '../../../core/constant/project_padding.dart';
 import '../../../product/Constant/weight.dart';

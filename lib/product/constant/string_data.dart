@@ -136,6 +136,12 @@ class StringData {
   static const institutional = "Kurumal Giriş";
 
   static const authChoise = "Giriş Seçeneği Seçiniz";
+
+  static const generalErr = "Bir hata oluştu. Lütfen tekrar deneyiniz.";
+
+  static const success = "Başarılı";
+
+  //static var successfullyDeleted="Başarılı bir şekilde silindi";
 }
 
 class TermsAndConditions {
