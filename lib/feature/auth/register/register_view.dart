@@ -165,7 +165,7 @@ class _RegisterViewState extends RegisterViewModel {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          datePicker(),
+          widget.isCompany == false ? datePicker() : const SizedBox(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),

@@ -214,7 +214,12 @@ ilan silme işlemi tamamlandı
 silinmeden önce artı soru soruluyor
 advert güncelleme işleminde oluşan tarih seçim hatası düzeltildi
 ilan ekleme sayfasındaki input alanlarındaki kopyalama ya da seçme işlemini oluşturan bug çözüldü 
-sadece güncelleme işleminde tarih seçince güncelleme tarihinin gelmesi ve yeni tarihin seçim ekranında kaybolmasıyla oluşan hata çözüldü
+sadece güncelleme işleminde tarih seçince güncelleme tarihinin gelmesi ve yeni tarihin seçim ekranında kaybolmasıyla oluşan hata çözüldü 
+
+21.03
+şirket için doğum tarihi bilgisi olma hatası çözüldü
+ilanlar tamamen silinince ilan bulunmuyor hatası çözüldü
+iş ilanı eklenince loading ekranı gelmiyor
 // Hatalar
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
 

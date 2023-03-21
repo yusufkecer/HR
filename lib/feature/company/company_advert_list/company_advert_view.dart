@@ -16,14 +16,13 @@ import '../../../product/widgets/button/chip_button.dart';
 import '../../../product/widgets/not_found.dart';
 import 'company_advert_view_model.dart';
 
-// ignore: must_be_immutable
 class CompanyAdvertView extends StatefulWidget {
-  List<Job>? adverts;
-  List<Job>? activeAdverts;
-  List<Job>? passiveAdverts;
-  Future<void> Function()? updateList;
+  final List<Job>? adverts;
+  final List<Job>? activeAdverts;
+  final List<Job>? passiveAdverts;
+  final Future<void> Function()? updateList;
 
-  CompanyAdvertView({
+  const CompanyAdvertView({
     Key? key,
     this.adverts,
     this.activeAdverts,
@@ -38,7 +37,7 @@ class CompanyAdvertView extends StatefulWidget {
 class _CompanyAdvertViewState extends CompanyAdvertViewModel {
   @override
   Widget build(BuildContext context) {
-    return widget.adverts != null
+    return widget.adverts!.isNotEmpty
         ? Padding(
             padding: const ProjectPadding.bottomTwentySix(),
             child: ListView(

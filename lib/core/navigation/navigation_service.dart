@@ -125,8 +125,8 @@ class NavigationService {
     ).pop(true);
   }
 
-  void hideLoading(context) {
-    Navigator.of(context, rootNavigator: true).pop();
+  void hideLoading([context]) {
+    Navigator.of(context ?? NavigationKey.instance.navigatorKey.currentContext, rootNavigator: true).pop();
   }
 
   showBottomModal(context, String title, String subtitle) {

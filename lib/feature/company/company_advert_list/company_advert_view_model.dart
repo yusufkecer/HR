@@ -58,8 +58,7 @@ abstract class CompanyAdvertViewModel extends State<CompanyAdvertView> {
       } else {
         nav.checkDialog(StringData.error, StringData.generalErr);
       }
+      Future(() => nav.hideLoading(context));
     }
-
-    Future(() => nav.hideLoading(context));
   }
 }

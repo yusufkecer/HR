@@ -52,6 +52,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   Future<List<Job>> getJobs(String endpoint) async {
     var response = await dt.fetchData(endpoint);
     Iterable data = response["data"];
+
     List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
     return jobs;
   }
@@ -89,6 +90,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
 
     if (status) {
       updateList();
+
       setState(() {});
     }
   }
