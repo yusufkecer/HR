@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/product/widgets/decoration/custom_decoration.dart';
 
+import '../../Constant/colors.dart';
 import '../../constant/font_size.dart';
 
 //! FIXME const costructor
@@ -31,7 +32,7 @@ class AuthField extends StatelessWidget {
     this.icon,
     this.titlePadding,
     this.validation,
-    required this.listener,
+    this.listener,
     this.secure = false,
   }) : super(key: key);
 
@@ -70,7 +71,7 @@ class AuthField extends StatelessWidget {
       onChanged: listener,
       onTap: onTap,
       keyboardType: textType,
-      cursorColor: Colors.black,
+      cursorColor: MyColor.black,
       decoration: InputDecoration(
         contentPadding: const ProjectPadding.textFieldContent(14.8),
         border: InputBorder.none,

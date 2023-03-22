@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/product/Constant/colors.dart';
-import 'package:hrapp/product/widgets/sub_title.dart';
+import 'package:hrapp/product/widgets/subtitle.dart';
 import '../../constant/font_size.dart';
 
 class TitleWithTextButton extends StatelessWidget {
@@ -20,7 +20,7 @@ class TitleWithTextButton extends StatelessWidget {
     return SizedBox(
       height: 30,
       child: Row(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        SubTitle(
+        Subtitle(
           title: title,
         ),
         TextButton(

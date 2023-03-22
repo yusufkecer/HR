@@ -105,7 +105,6 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
           listTile(
             MyIcons.add,
             StringData.createAdvert,
-            MyIcons.nextIOSIcon,
             navigateCreateAdvert,
           ),
           const SizedBox(
@@ -114,8 +113,15 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
           listTile(
             MyIcons.saveIcon,
             StringData.savedAdvert,
-            MyIcons.nextIOSIcon,
             navigateSavedAdvert,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          listTile(
+            MyIcons.edit,
+            StringData.info,
+            navigateUpdateInfo,
           ),
           const SizedBox(
             height: 5,
@@ -123,7 +129,6 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
           listTile(
             MyIcons.logout,
             StringData.logout,
-            MyIcons.nextIOSIcon,
             logout,
           ),
         ],
@@ -131,7 +136,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
     );
   }
 
-  ListTile listTile(IconData leadingIcon, String title, IconData tralingIcon, void Function()? ontap) {
+  ListTile listTile(IconData leadingIcon, String title, void Function()? ontap) {
     return ListTile(
       textColor: MyColor.white,
       iconColor: MyColor.white,

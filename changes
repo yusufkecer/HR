@@ -219,7 +219,12 @@ sadece güncelleme işleminde tarih seçince güncelleme tarihinin gelmesi ve ye
 21.03
 şirket için doğum tarihi bilgisi olma hatası çözüldü
 ilanlar tamamen silinince ilan bulunmuyor hatası çözüldü
+ilana giriş tarihi için içerik eklendi
+hatalar çözüldü
 iş ilanı eklenince loading ekranı gelmiyor
+22.03
+company için detay bilgileri girebileceği sayfa oluşturuldu
+ bu sayfada çeşitli validasyonlar yapıldı
 // Hatalar
 düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
 

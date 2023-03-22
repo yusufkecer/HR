@@ -229,7 +229,7 @@ class _RegisterViewState extends RegisterViewModel {
             : const Icon(
                 MyIcons.visibilityOff,
               ),
-        color: Colors.black,
+        color: MyColor.black,
       ),
       fontWeight: Weight.midium,
       info: StringData.password,

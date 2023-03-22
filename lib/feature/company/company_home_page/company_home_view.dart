@@ -9,7 +9,7 @@ import 'package:hrapp/product/constant/weight.dart';
 import 'package:hrapp/product/models/worker_model/worker_model.dart';
 import 'package:hrapp/product/widgets/button/icon_button.dart';
 import 'package:hrapp/product/widgets/profile_list.dart';
-import 'package:hrapp/product/widgets/sub_title.dart';
+import 'package:hrapp/product/widgets/subtitle.dart';
 import 'package:hrapp/product/widgets/text_field/search_field.dart';
 
 import '../../../Product/Constant/colors.dart';
@@ -46,7 +46,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
               padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
               child: SearchField(),
             ),
-            const SubTitle(
+            const Subtitle(
               title: StringData.popularJobs,
             ),
             topJobs(),
@@ -199,7 +199,7 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const SubTitle(
+        const Subtitle(
           title: StringData.companyWorker,
         ),
         ChangeIconButton(
