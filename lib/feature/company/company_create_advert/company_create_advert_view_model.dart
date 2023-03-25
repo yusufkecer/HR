@@ -30,6 +30,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   List? val;
   List? wage = [];
   String? date;
+  String? createValue;
   String? provinceValue;
   bool? check = false;
   DateTime? selectedDate;
@@ -43,17 +44,23 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       isChange = true;
     }
     FocusScope.of(context).requestFocus(FocusNode());
-    print("first date$selectedDate");
     selectedDate = await nav.showDate(context, selectedDate);
-    print("last date$selectedDate");
     if (selectedDate != null) {
-      saveDate();
+      saveDate(textController[6]);
     }
   }
 
-  void saveDate() {
+  void createDate() async {
+    FocusScope.of(context).requestFocus(FocusNode());
+    selectedDate = await nav.showDate(context, selectedDate);
     if (selectedDate != null) {
-      textController[6].text = ("${selectedDate!.year}-"
+      saveDate(textController[7]);
+    }
+  }
+
+  void saveDate(TextEditingController textController) {
+    if (selectedDate != null) {
+      textController.text = ("${selectedDate!.year}-"
           "${selectedDate!.month > 9 ? selectedDate!.month : "0${selectedDate!.month}"}-"
           "${selectedDate!.day > 9 ? selectedDate!.day : "0${selectedDate!.day}"}");
     }
@@ -67,7 +74,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     val = textController[1].text.isNotEmpty ? textController[1].text.replaceAll(" ", "").split(",") : null;
     wage = textController[5].text.isNotEmpty ? textController[5].text.split("-") : null;
     date = textController[6].text;
-    description = textController[7].text.isNotEmpty ? textController[7].text : null;
+    description = textController[8].text.isNotEmpty ? textController[8].text : null;
     provinceValue = provinceValue;
     if (val != null) {
       skills = [];
@@ -95,6 +102,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
     [StringData.positionOpen, MyIcons.number, ""],
     [StringData.wage, MyIcons.wage, StringData.salaryRange],
     [StringData.applicationDate, MyIcons.date, ""],
+    [StringData.createDate, MyIcons.update, ""],
     [StringData.description],
   ];
   Future<void> getProvince() async {
@@ -143,8 +151,8 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       textController[3].text = updateJob!.level!;
       textController[4].text = updateJob!.positionOpen.toString();
       textController[6].text = updateJob!.deadline!.toString().split(" ")[0];
-
-      textController[7].text = updateJob!.description!;
+      // textController[7].text = updateJob!.description!;
+      textController[8].text = updateJob!.description!;
       currencyValue = updateJob?.currency;
       provinceValue = updateJob?.province;
       isActive = updateJob!.isActive!;

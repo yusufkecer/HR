@@ -10,6 +10,7 @@ import '../../../product/models/general_company_model.dart';
 import '../../../product/models/worker_model/worker_model.dart';
 import '../../../product/service/api.dart';
 import '../../../product/service/data_service.dart';
+import '../company_complete_info/company_complete_info_view.dart';
 import '../company_profile/company_profile_view.dart';
 import '../saved_advert/saved_advert_view.dart';
 import 'company_main_view.dart';
@@ -52,6 +53,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   Future<List<Job>> getJobs(String endpoint) async {
     var response = await dt.fetchData(endpoint);
     Iterable data = response["data"];
+
     List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
     return jobs;
   }
@@ -74,6 +76,12 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     setState(() {});
   }
 
+  void navigateUpdateInfo() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => const CompaynCompleteInfoView(),
+    ));
+  }
+
   void navigateSavedAdvert() async {
     await Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => const SavedAdvertView(),
@@ -89,6 +97,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
 
     if (status) {
       updateList();
+
       setState(() {});
     }
   }

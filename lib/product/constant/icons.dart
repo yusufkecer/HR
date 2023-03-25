@@ -22,6 +22,7 @@ class MyIcons {
   static const grid = Icons.grid_view_outlined;
   static const profile = Icons.person;
   static const date = Icons.date_range_outlined;
+  static const update = Icons.update;
   static const save = Icons.bookmark_add_outlined;
   static const saveIcon = Icons.bookmark;
   static const saved = Icons.bookmark_added_rounded;
@@ -30,6 +31,9 @@ class MyIcons {
   static const editNote = Icons.edit_note;
   static const confirm = Icons.check_outlined;
   static const company = Icons.business_center_outlined;
+  static const department = Icons.apartment_outlined;
+  static const alert = Icons.info_outline;
+
   //create advert
   static const position = Icons.badge_outlined;
   static const level = Icons.grade_outlined;

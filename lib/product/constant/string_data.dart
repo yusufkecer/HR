@@ -85,6 +85,7 @@ class StringData {
   static const currencyUnit = "Birim";
   static const description = "Açıklama*";
   static const applicationDate = "Son Başvuru Tarihi*";
+  static const createDate = "Yayınlanacağı Tarih*";
   static const province = "Tercih Edilen Şehir";
   static const positionOpen = "Açık Pozisyon Sayısı*";
 
@@ -96,6 +97,7 @@ class StringData {
   static const yes = "Evet";
   static const no = "Hayır";
   static const missing = "Lütfen Eksiksiz Doldurun";
+  static const updateInfo = "Bilgilerimi Güncelle";
 
   static const missingText = "İşaretli alanları (*) lütfen doldurunuz.";
 
@@ -140,6 +142,13 @@ class StringData {
   static const generalErr = "Bir hata oluştu. Lütfen tekrar deneyiniz.";
 
   static const success = "Başarılı";
+
+  static const departments = "Departman ve Çalışan Sayısı";
+  static const totalEmployees = "Toplam Çalışan";
+
+  static const sector = "Sektör";
+
+  static const departmentsInfo = "Bilgi İşlem: 20, İnsan Kaynakları: 30";
 
   //static var successfullyDeleted="Başarılı bir şekilde silindi";
 }

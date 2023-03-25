@@ -78,11 +78,11 @@ class NavigationService {
         return Theme(
           data: ThemeData.light().copyWith(
             colorScheme: ColorScheme.light(
-              primary: Theme.of(context).primaryColor, // header background color
-              onPrimary: Colors.white, // header text color
-              surface: Colors.white, // background color
-              onSurface: Colors.black, // text color
-            ),
+                primary: Theme.of(context).primaryColor, // header background color
+                onPrimary: MyColor.white, // header text color
+                surface: MyColor.white, // background color
+                onSurface: MyColor.black // text color
+                ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
                 iconColor: Theme.of(context).primaryColor, // button text color
@@ -125,8 +125,8 @@ class NavigationService {
     ).pop(true);
   }
 
-  void hideLoading(context) {
-    Navigator.of(context, rootNavigator: true).pop();
+  void hideLoading([context]) {
+    Navigator.of(context ?? NavigationKey.instance.navigatorKey.currentContext, rootNavigator: true).pop();
   }
 
   showBottomModal(context, String title, String subtitle) {

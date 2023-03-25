@@ -169,14 +169,14 @@ class _LoginViewState extends LoginViewModel {
       titlePadding: const ProjectPadding.textFieldTitle(),
       icon: const Icon(
         MyIcons.password,
-        color: Colors.black,
+        color: MyColor.black,
       ),
       suffixButton: IconButton(
         onPressed: () {
           changeVisibility();
         },
         icon: isVisible ? const Icon(MyIcons.visibilityOn) : const Icon(MyIcons.visibilityOff),
-        color: Colors.black,
+        color: MyColor.black,
       ),
       fontWeight: Weight.midium,
       secure: !isVisible,
@@ -192,7 +192,7 @@ class _LoginViewState extends LoginViewModel {
       titlePadding: const ProjectPadding.textFieldTitle(),
       icon: const Icon(
         MyIcons.mail,
-        color: Colors.black,
+        color: MyColor.black,
       ),
       fontWeight: Weight.midium,
       info: StringData.email,

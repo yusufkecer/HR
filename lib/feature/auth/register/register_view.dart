@@ -165,7 +165,7 @@ class _RegisterViewState extends RegisterViewModel {
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
-          datePicker(),
+          widget.isCompany == false ? datePicker() : const SizedBox(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
@@ -229,7 +229,7 @@ class _RegisterViewState extends RegisterViewModel {
             : const Icon(
                 MyIcons.visibilityOff,
               ),
-        color: Colors.black,
+        color: MyColor.black,
       ),
       fontWeight: Weight.midium,
       info: StringData.password,
