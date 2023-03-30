@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/navigation/navigator_key.dart';
+import 'package:hrapp/feature/user/user_main_page/user_main_view.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:lottie/lottie.dart';
 import '../../Product/Constant/colors.dart';
@@ -247,7 +248,7 @@ class NavigationService {
   void navigteToUser(context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => Example(),
+        builder: (context) => const UserMainView(),
       ),
     );
   }

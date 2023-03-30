@@ -17,11 +17,11 @@ class MyIcons {
   static const nextIOSIcon = Icons.arrow_forward_ios_outlined;
   static const logout = Icons.logout_outlined;
   static const backIOSIcon = Icons.arrow_back_ios_new_outlined;
-  static const home = Icons.home;
+  static const home = Icons.home_outlined;
   static const listAlt = Icons.list_alt_outlined;
   static const list = Icons.list;
   static const grid = Icons.grid_view_outlined;
-  static const profile = Icons.person;
+  static const profile = Icons.person_2_outlined;
   static const date = Icons.date_range_outlined;
   static const update = Icons.update;
   static const save = Icons.bookmark_add_outlined;
