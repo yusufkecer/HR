@@ -58,7 +58,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
         ]),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: floatingButton(),
-        bottomNavigationBar: NavBar(
+        bottomNavigationBar: CompanyNavBar(
           tabController: tabController,
           navBarItem: bottomBar,
         ),

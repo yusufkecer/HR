@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/mixin/password_visible.dart';
+import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/models/general_company_model.dart';
 import 'package:hrapp/product/service/api.dart';
 import 'package:hrapp/product/service/data_service.dart';
@@ -25,8 +26,14 @@ abstract class RegisterViewModel extends State<RegisterView> with PasswordVisibi
   String? siteOrName;
   String? password;
   String? phone;
+  String? birthOfDay;
+
+  void closeKeyboard() {
+    FocusScope.of(context).requestFocus(FocusNode());
+  }
 
   Future<void> onpressed() async {
+    closeKeyboard();
     bool isPassed = checkvalid();
     if (isPassed == false) {
       return;
@@ -41,23 +48,35 @@ abstract class RegisterViewModel extends State<RegisterView> with PasswordVisibi
       final json = jsonEncode(data.companyToJson());
       res = await dataService.post(ApiUri.registerCompany, json);
     } else {
-      User data = User(name: name, surname: siteOrName, email: email, phoneNumber: phone, password: password);
+      User data = User(
+          name: name, surname: siteOrName, email: email, phoneNumber: phone, password: password, birthDay: birthOfDay);
+
       final json = jsonEncode(data.toJson());
       res = await dataService.post(ApiUri.registerUser, json);
     }
-    Future(() => nav.hideLoading(context));
-    if (res == null) {
-      return;
+    // ignore: use_build_context_synchronously
+    nav.hideLoading(context);
+    try {
+      if (res == null) {
+        return;
+      } else if (res["isSuccess"]) {
+        nav.alertWithButon(
+          "Başarılı",
+          "Kayıdınız başarıyla gerçekleşti!",
+          StringData.ok,
+          () => nav.back(),
+        );
+      }
+    } catch (e) {
+      nav.alertWithButon("Hata", "Kayıt sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin");
     }
-
-    goToLogin();
   }
 
   goToLogin() {
     Navigator.of(context).pop();
   }
 
-  openPicker() async {
+  void openPicker() async {
     FocusScope.of(context).requestFocus(FocusNode());
     selectedDate = await nav.showDate(context);
     if (selectedDate == null) {
@@ -70,6 +89,8 @@ abstract class RegisterViewModel extends State<RegisterView> with PasswordVisibi
     dateController.text = ("${selectedDate!.day > 10 ? selectedDate!.day : "0${selectedDate!.day}"}/"
         "${selectedDate!.month > 10 ? selectedDate!.month : "0${selectedDate!.month}"}/"
         "${selectedDate!.year}");
+    birthOfDay =
+        """${selectedDate?.year}-${selectedDate!.month > 10 ? selectedDate!.month : "0${selectedDate!.month}"}-${selectedDate!.day > 10 ? selectedDate!.day : "0${selectedDate!.day}"}""";
   }
 
   bool checkvalid() {

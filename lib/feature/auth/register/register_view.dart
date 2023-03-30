@@ -1,12 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
-
 import '../../../Product/Constant/colors.dart';
 import '../../../core/constant/size.dart';
 import '../../../product/constant/font_size.dart';
@@ -32,7 +30,7 @@ class _RegisterViewState extends RegisterViewModel {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
+        closeKeyboard();
       },
       child: Scaffold(
         body: Center(
@@ -183,7 +181,10 @@ class _RegisterViewState extends RegisterViewModel {
     return AuthField(
       controller: dateController,
       textType: TextInputType.none,
-      listener: (value) {},
+      listener: (value) {
+        birthOfDay = value;
+        print(birthOfDay);
+      },
       validation: (value) {
         if (value == null) {
           return StringData.selectBirthOfDay;

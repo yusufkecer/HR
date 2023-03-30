@@ -3,6 +3,7 @@ class Job {
   final String? companyPhone;
   final String? webSite;
   final String? level;
+  final String? address;
   final String? title;
   final String? email;
   final String? currency;
@@ -21,12 +22,16 @@ class Job {
   final String? id;
   final String? jobPositionId;
   final String? companyId;
+  final String? totalWorker;
+  final List? sector;
+  final List? departments;
+
   Job({
-    this.password,
     this.companyName,
     this.companyPhone,
     this.webSite,
     this.level,
+    this.address,
     this.title,
     this.email,
     this.currency,
@@ -34,6 +39,7 @@ class Job {
     this.description,
     this.skills,
     this.province,
+    this.password,
     this.lowerWage,
     this.upperWage,
     this.positionOpen,
@@ -44,6 +50,9 @@ class Job {
     this.id,
     this.jobPositionId,
     this.companyId,
+    this.totalWorker,
+    this.sector,
+    this.departments,
   });
 
   factory Job.fromJson(Map<String, dynamic> json) {
@@ -69,6 +78,19 @@ class Job {
       id: json['id'],
     );
   }
+  factory Job.fromJsonCompanyInfo(Map<String, dynamic> json) {
+    return Job(
+      companyId: json["employerId"],
+      sector: json["sector"],
+      totalWorker: json["numberOfEmployees"],
+      companyName: json['companyName'],
+      companyPhone: json['companyPhone'],
+      webSite: json['webSite'],
+      email: json['email'],
+      departments: json["departments"],
+      address: json["address"],
+    );
+  }
   Map<String, dynamic> toJson() => {
         "title": title,
         'currency': currency,
@@ -90,13 +112,13 @@ class Job {
 
   Map<String, dynamic> companyToJson() => {
         'companyName': companyName,
-        //   'sector': sector,
-        // 'companyImage': companyImage,
+        'sector': sector,
         'companyPhone': companyPhone,
-        'website': webSite,
+        'webSite': webSite,
         'email': email,
         "password": password,
-        //  'numberWorker': numberWorker,
+        'numberOfEmployees': totalWorker,
+        "departments": departments
         // 'address': address,
       };
 

@@ -6,10 +6,10 @@ import 'package:hrapp/product/widgets/nav_bar_shape.dart';
 
 import '../constant/colors.dart';
 
-class NavBar extends StatelessWidget {
+class CompanyNavBar extends StatelessWidget {
   final Map? navBarItem;
   final TabController? tabController;
-  const NavBar({
+  const CompanyNavBar({
     Key? key,
     this.navBarItem,
     this.tabController,

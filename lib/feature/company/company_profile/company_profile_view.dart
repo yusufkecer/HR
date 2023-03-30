@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hrapp/core/Constant/radius.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/extensions/string_extension.dart';
@@ -9,15 +10,20 @@ import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/data/auth.dart';
-import 'package:hrapp/product/widgets/info_card.dart';
-import 'package:hrapp/product/widgets/card_listtile.dart';
-import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
 import 'package:hrapp/product/widgets/button/title_text_button.dart';
+import 'package:hrapp/product/widgets/card_listtile.dart';
+import 'package:hrapp/product/widgets/info_card.dart';
+import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
 import '../../../product/Constant/colors.dart';
+import '../../../product/models/general_company_model.dart';
 import '../../../product/widgets/app_bar_logo.dart';
 
 class CompanyProfileView extends StatefulWidget {
-  const CompanyProfileView({super.key});
+  final Job? companyInfo;
+  const CompanyProfileView({
+    Key? key,
+    required this.companyInfo,
+  }) : super(key: key);
 
   @override
   State<CompanyProfileView> createState() => _CompanyProfileViewState();
@@ -134,7 +140,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
             ),
           ),
           Text(
-            "${company.sector}",
+            "${widget.companyInfo?.sector?.join() ?? ""}",
             textAlign: TextAlign.start,
             textScaleFactor: ProjectFontSize.oneToTwo,
             style: const TextStyle(
@@ -142,7 +148,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
             ),
           ),
           Text(
-            "${company.numberWorker} Kişi",
+            "${widget.companyInfo?.totalWorker} Kişi",
             textAlign: TextAlign.start,
             textScaleFactor: ProjectFontSize.oneToTwo,
             style: const TextStyle(
@@ -155,10 +161,11 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
   }
 
   TitleWithTextButton infoTitle() {
-    return TitleWithTextButton(
-        buttonName: isEditGeneralInfo ? StringData.save : StringData.edit,
-        title: StringData.generalInfo,
-        onPress: changeInfoTitle);
+    return const TitleWithTextButton(
+      //  onPress: changeInfoTitle,
+      //   buttonName: isEditGeneralInfo ? StringData.save : StringData.edit,
+      title: StringData.generalInfo,
+    );
   }
 
   InfoCard generalInfo() {
@@ -168,9 +175,9 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
   }
 
   TitleWithTextButton contactInfoTitle() {
-    return TitleWithTextButton(
-      buttonName: !isEditContact ? StringData.edit : StringData.save,
-      onPress: contactInfoTitleEdit,
+    return const TitleWithTextButton(
+      // buttonName: !isEditContact ? StringData.edit : StringData.save,
+      // onPress: contactInfoTitleEdit,
       title: StringData.contactInfo,
     );
   }
@@ -216,7 +223,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
                     textColor: MyColor.osloGrey,
                     color: MyColor.hollandOrange,
                     iconLeading: MyIcons.phone,
-                    text: company.phoneNumber,
+                    text: widget.companyInfo?.companyPhone,
                   )
                 : Padding(
                     padding: const ProjectPadding.allEight(),
@@ -243,7 +250,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
                     color: MyColor.darkYellow,
                     textColor: MyColor.osloGrey,
                     iconLeading: MyIcons.website,
-                    text: company.website,
+                    text: widget.companyInfo?.webSite,
                   )
                 : Padding(
                     padding: const ProjectPadding.allEight(),
@@ -270,7 +277,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
                     color: MyColor.recycleGreen,
                     textColor: MyColor.osloGrey,
                     iconLeading: MyIcons.location,
-                    text: company.address,
+                    text: widget.companyInfo?.address,
                   )
                 : Padding(
                     padding: const ProjectPadding.allEight(),

@@ -225,8 +225,23 @@ iş ilanı eklenince loading ekranı gelmiyor
 22.03
 company için detay bilgileri girebileceği sayfa oluşturuldu
  bu sayfada çeşitli validasyonlar yapıldı
+ user detay bilgileri apiden çekildi
+ çekilen bilgiler için model oluşturuldu ve işlendi
+ apiye uygun şekilde encode edilecek şekilde tasarlandı
+ şirket adı email gibi bilgileri girmesi için yeni bir alan oluşturuldu
+ 28.03
+ düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itme hatası çözüldü
+ 29.03
+ şirket bilgileri düzenleme sayfasında kullanılan bilgiler geliyor 
+ gelen bilgiler değiştirilebiliyor
+ apiye istek atılıyor istek sonucu yeni bilgiler uygun mesajlarla gekleniyor
+ veriler istenilen formatta değilse uygun hata mesajı döndürülüyor
+ company profil sayfasındaki bilgileri güncelleme işlemi farklı bir sayfaya taşındı fakat kodlar duruyor
+ user giriş ve kayıt işlemi gözden geçirildi
+ kayıt esnasında doğum tarihinin sebep olduğu hata giderildi
 // Hatalar
-düzenlemeden sonra diğer sayfaya gelince snackbar butonu yukarı itiyor
+
+//vergi numarası eklenecek
 
 
 
