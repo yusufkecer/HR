@@ -53,7 +53,7 @@ class StringData {
   static const profile = "Profil";
 
   static const companyWorker = "Şirketteki Çalışanlar";
-
+  static const advert = "İlanlar";
   static const popularJobs = "Popüler İlanlar";
 
   static const save = "Kaydet";
@@ -106,7 +106,7 @@ class StringData {
   static const generalInfo = "Temel Bilgiler";
   static const info = "Bilgiler";
   static const cv = "CV";
-
+  static const navCv = "Özgeçmiş";
   static const address = "Adres";
   static const phoneNumber = "Telefon No";
   static const webSite = "Web Sitesi";

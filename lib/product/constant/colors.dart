@@ -15,7 +15,6 @@ class MyColor {
   static const osloGrey = Color(0xFF8f8f8f);
 
   static const transparent = Colors.transparent;
-  static const navColor = Color(0xFFE9D4EF);
   static const darkYellow = Colors.amber;
   static const recycleGreen = Color.fromARGB(214, 102, 187, 106);
   static const tints = Color.fromARGB(129, 219, 212, 242);

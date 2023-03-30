@@ -239,8 +239,15 @@ company için detay bilgileri girebileceği sayfa oluşturuldu
  company profil sayfasındaki bilgileri güncelleme işlemi farklı bir sayfaya taşındı fakat kodlar duruyor
  user giriş ve kayıt işlemi gözden geçirildi
  kayıt esnasında doğum tarihinin sebep olduğu hata giderildi
+30.03 
+user tarafına navbar eklendi
+31.03
+user anasayfası tasarlanmaya başlandı
+searchbar title populer ilanlar eklendi
+navbar revizesi yapıldı
+populer ilanlar component haline getirildi
 // Hatalar
-
+validasyonlar kontrol edilecek
 //vergi numarası eklenecek
 
 
