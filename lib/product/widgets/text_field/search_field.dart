@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/product/constant/icons.dart';
+import 'package:hrapp/product/constant/string_data.dart';
 import '../../../Core/Constant/radius.dart';
 import '../../../core/constant/project_padding.dart';
 import '../../constant/colors.dart';
@@ -25,22 +27,22 @@ class SearchField extends StatelessWidget {
             cursorColor: MyColor.butterflyBush,
             decoration: InputDecoration(
               contentPadding: const ProjectPadding.textFieldContent(14.0),
-              hintText: "Ara",
+              hintText: StringData.search,
               suffixIcon: Padding(
                 padding: const ProjectPadding.rightEight(),
                 child: IconButton(
                   onPressed: () {},
                   icon: const Icon(
-                    Icons.filter_list,
+                    MyIcons.search,
                   ),
                 ),
               ),
               border: InputBorder.none,
-              prefixIconColor: Colors.grey,
+              prefixIconColor: MyColor.osloGrey,
               prefixIcon: const Padding(
                 padding: ProjectPadding.leftEight(),
                 child: Icon(
-                  Icons.search,
+                  MyIcons.search,
                 ),
               ),
             ),

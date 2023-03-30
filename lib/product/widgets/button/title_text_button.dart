@@ -12,7 +12,7 @@ class TitleWithTextButton extends StatelessWidget {
     Key? key,
     this.title,
     this.buttonName,
-    required this.onPress,
+    this.onPress,
   }) : super(key: key);
 
   @override
@@ -31,7 +31,7 @@ class TitleWithTextButton extends StatelessWidget {
           child: Padding(
             padding: const ProjectPadding.allEight().copyWith(bottom: 0),
             child: Text(
-              "$buttonName",
+              buttonName ?? "",
               style: const TextStyle(color: MyColor.purplishBlue),
               textScaleFactor: ProjectFontSize.oneToThree,
               textAlign: TextAlign.center,

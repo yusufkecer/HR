@@ -54,7 +54,7 @@ abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMi
     );
     Future(() => nav.hideLoading(context));
     if (val == true) {
-      Future(() => nav.navigteToCompany(context));
+      Future(() => widget.isCompany! ? nav.navigteToCompany(context) : nav.navigteToUser(context));
     } else if (val.runtimeType == String) {
       Future(() => nav.callSnackbar(context, val));
     } else if (val.runtimeType == List) {

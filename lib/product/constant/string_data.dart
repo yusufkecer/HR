@@ -144,11 +144,13 @@ class StringData {
   static const success = "Başarılı";
 
   static const departments = "Departman ve Çalışan Sayısı";
-  static const totalEmployees = "Toplam Çalışan";
+  static const totalWorkers = "Toplam Çalışan";
 
   static const sector = "Sektör";
 
   static const departmentsInfo = "Bilgi İşlem: 20, İnsan Kaynakları: 30";
+
+  static const search = "Ara";
 
   //static var successfullyDeleted="Başarılı bir şekilde silindi";
 }

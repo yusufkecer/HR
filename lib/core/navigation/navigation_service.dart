@@ -7,6 +7,7 @@ import '../../Product/widgets/sized_box/box_space.dart';
 import '../../feature/company/company_main_page/company_main_view.dart';
 import '../../product/Constant/weight.dart';
 import '../../product/constant/font_size.dart';
+import '../../product/widgets/user_nav_bar.dart';
 import '../Constant/radius.dart';
 import '../Constant/size.dart';
 import '../constant/project_padding.dart';
@@ -96,7 +97,7 @@ class NavigationService {
     return picked;
   }
 
-  void alertWithButon(alertTitle, text, [buttonText = "Tamam", Function? onPress]) {
+  void alertWithButon(alertTitle, text, [buttonText = StringData.ok, Function()? onPress]) {
     showDialog(
       context: NavigationKey.instance.navigatorKey.currentContext!,
       builder: (context) {
@@ -239,6 +240,14 @@ class NavigationService {
             ],
           );
         },
+      ),
+    );
+  }
+
+  void navigteToUser(context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => Example(),
       ),
     );
   }

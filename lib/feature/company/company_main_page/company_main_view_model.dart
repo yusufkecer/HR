@@ -25,6 +25,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
       vsync: this,
     );
     updateList();
+    getCompanyInfo();
     Future(() => nav.hideLoading(context));
     super.initState();
   }
@@ -60,7 +61,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
 
   void navigateProfile() {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const CompanyProfileView(),
+      builder: (context) => CompanyProfileView(companyInfo: companyInfo),
     ));
   }
 
@@ -76,10 +77,12 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     setState(() {});
   }
 
-  void navigateUpdateInfo() {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const CompaynCompleteInfoView(),
+  void navigateUpdateInfo() async {
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => CompaynCompleteInfoView(info: companyInfo),
     ));
+
+    getCompanyInfo();
   }
 
   void navigateSavedAdvert() async {
@@ -122,6 +125,23 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
       nav.hideLoading(context);
     });
   }
+
+  Future<void> getCompanyInfo() async {
+    try {
+      var res = await dt.fetchData(ApiUri.companyInfoById + Auth.instance.getId!);
+      if (res == null) {
+        return;
+      }
+
+      Map<String, dynamic> data = res["data"];
+      companyInfo = Job.fromJsonCompanyInfo(data);
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
+
+  Job? companyInfo;
 
   String? dontReachApi;
   Iterable? futureWorker;
