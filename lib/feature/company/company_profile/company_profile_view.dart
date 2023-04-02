@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:hrapp/core/Constant/radius.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
-import 'package:hrapp/core/extensions/string_extension.dart';
+import 'package:hrapp/core/extensions/regex.dart';
 import 'package:hrapp/feature/company/company_profile/company_profile_view_model.dart';
 import 'package:hrapp/product/Constant/weight.dart';
 import 'package:hrapp/product/constant/font_size.dart';
@@ -140,7 +139,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
             ),
           ),
           Text(
-            "${widget.companyInfo?.sector?.join() ?? ""}",
+            widget.companyInfo?.sector?.join() ?? "",
             textAlign: TextAlign.start,
             textScaleFactor: ProjectFontSize.oneToTwo,
             style: const TextStyle(

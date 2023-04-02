@@ -17,6 +17,7 @@ class StringData {
   static const register = "Kayıt Ol";
 
 //validation
+  static const writeTax = "Geçerli bir vergi numarası giriniz.";
   static const writeWebSite = "Geçerli bir url giriniz.";
   static const writeAddress = "Geçerli bir adres giriniz.";
   static const writeEmail = "Geçerli bir mail adresi giriniz.";
@@ -109,6 +110,7 @@ class StringData {
   static const navCv = "Özgeçmiş";
   static const address = "Adres";
   static const phoneNumber = "Telefon No";
+  static const taxNumber = "Vergi No";
   static const webSite = "Web Sitesi";
   static const aboutCompany = "Şirket Hakkında";
 

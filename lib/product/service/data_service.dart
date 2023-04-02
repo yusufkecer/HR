@@ -1,10 +1,22 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../data/auth.dart';
+
 class DataService {
   dynamic fetchData(String api) async {
     final String url = api;
     final http.Response response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {}
+  }
+
+  dynamic fetchDataWithToken(String api) async {
+    final String url = api;
+    final http.Response response =
+        await http.get(headers: {"Authorization": "Bearer ${Auth.instance.rawToken}"}, Uri.parse(url));
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);

@@ -20,6 +20,7 @@ abstract class RegisterViewModel extends State<RegisterView> with PasswordVisibi
   }
 
   DataService dataService = DataService();
+  String? tax;
   String? email;
   String? surname;
   String? name;
