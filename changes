@@ -246,9 +246,16 @@ user anasayfası tasarlanmaya başlandı
 searchbar title populer ilanlar eklendi
 navbar revizesi yapıldı
 populer ilanlar component haline getirildi
+validasyonlar kontrol edildi
+vergi numarası eklendi
+1.04
+ilanlar listelenirken token gönderme işlemi gerçekleştirildi
+ayrı ayrı fonksiyonlarla veriler çekildi
+ilan detay sayfasındaki hata giderildi
+vergi numarası hatası giderildi
 // Hatalar
-validasyonlar kontrol edilecek
-//vergi numarası eklenecek
+
+
 
 
 

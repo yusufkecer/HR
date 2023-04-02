@@ -14,9 +14,10 @@ abstract class CompaynCompleteInfoViewModel extends State<CompaynCompleteInfoVie
   TextEditingController siteController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController mailController = TextEditingController();
-
+  TextEditingController taxController = TextEditingController();
   DataService dt = DataService();
   Job? jobs;
+  String? tax;
   List department = [];
   NavigationService nav = NavigationService();
   List<String>? sectorList;

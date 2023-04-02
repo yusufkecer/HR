@@ -3,6 +3,12 @@ import '../service/data_service.dart';
 
 class Auth {
   static final Auth _singleton = Auth._internal();
+
+  String? companyToken;
+  String? get rawToken {
+    return companyToken;
+  }
+
   static Auth get instance {
     return _singleton;
   }
@@ -24,8 +30,8 @@ class Auth {
       } else if (!(response["isSuccess"])) {
         return response["message"];
       } else if (response["isSuccess"]) {
-        String getToken = response["data"]["token"];
-        token = JwtDecoder.decode(getToken);
+        companyToken = response["data"]["token"];
+        token = JwtDecoder.decode(companyToken!);
         return response["isSuccess"];
       }
     }

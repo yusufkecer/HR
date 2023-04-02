@@ -60,6 +60,7 @@ class CompaynCompleteInfoViewState extends CompaynCompleteInfoViewModel {
             sector(),
             departments(),
             totalWorkers(),
+            taxNumber(),
             SizedBox(
               width: 300,
               child: Padding(
@@ -284,6 +285,32 @@ class CompaynCompleteInfoViewState extends CompaynCompleteInfoViewModel {
         ),
         textType: TextInputType.number,
         info: StringData.totalWorkers,
+      ),
+    );
+  }
+
+  Padding taxNumber() {
+    return Padding(
+      padding: const ProjectPadding.topTen().copyWith(left: 15, right: 15, top: 15),
+      child: AuthField(
+        textType: TextInputType.number,
+        listener: (value) {
+          tax = value;
+          return;
+        },
+        validation: (value) {
+          if (value?.length == 10) {
+            return null;
+          }
+          return StringData.writeTax;
+        },
+        titlePadding: const ProjectPadding.textFieldTitle(),
+        icon: const Icon(
+          MyIcons.department,
+          color: MyColor.black,
+        ),
+        fontWeight: Weight.midium,
+        info: StringData.taxNumber,
       ),
     );
   }

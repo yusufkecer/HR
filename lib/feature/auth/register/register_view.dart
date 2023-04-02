@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
-import 'package:hrapp/core/extensions/string_extension.dart';
+import 'package:hrapp/core/extensions/regex.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/text_field/auth_field.dart';
 import 'package:hrapp/product/widgets/title.dart';
@@ -18,7 +18,7 @@ class RegisterView extends StatefulWidget {
   final bool? isCompany;
   const RegisterView({
     Key? key,
-    this.isCompany,
+    required this.isCompany,
   }) : super(key: key);
 
   @override
@@ -161,13 +161,17 @@ class _RegisterViewState extends RegisterViewModel {
           ),
           emailView(),
           BoxSpace(
-            height: ProjectSize.bigHeight().height,
+            height: widget.isCompany! ? 0 : ProjectSize.bigHeight().height,
           ),
           widget.isCompany == false ? datePicker() : const SizedBox(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
           phoneNumber(),
+          BoxSpace(
+            height: widget.isCompany! ? ProjectSize.bigHeight().height : 0,
+          ),
+          taxNumber(),
           BoxSpace(
             height: ProjectSize.bigHeight().height,
           ),
@@ -282,6 +286,33 @@ class _RegisterViewState extends RegisterViewModel {
     );
   }
 
+  SizedBox taxNumber() {
+    return widget.isCompany!
+        ? SizedBox(
+            child: AuthField(
+              textType: TextInputType.number,
+              listener: (value) {
+                tax = value;
+                return;
+              },
+              validation: (value) {
+                if (value?.length == 10) {
+                  return null;
+                }
+                return StringData.writeTax;
+              },
+              titlePadding: const ProjectPadding.textFieldTitle(),
+              icon: const Icon(
+                MyIcons.department,
+                color: MyColor.black,
+              ),
+              fontWeight: Weight.midium,
+              info: StringData.taxNumber,
+            ),
+          )
+        : const SizedBox();
+  }
+
   AuthField webSiteView() {
     return AuthField(
       textType: widget.isCompany! ? TextInputType.url : TextInputType.text,
@@ -290,7 +321,7 @@ class _RegisterViewState extends RegisterViewModel {
         return;
       },
       validation: (value) {
-        if (widget.isCompany! ? !value.urlValid() : value.nameValid()) {
+        if (widget.isCompany! ? !value.urlValid() : !(value.nameValid())) {
           return widget.isCompany! ? StringData.writeWebSite : StringData.writeSurname;
         }
         return null;
