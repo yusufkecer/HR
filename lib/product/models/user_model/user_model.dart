@@ -19,7 +19,7 @@ class User {
     this.cv,
     this.password,
   });
-  // 'fromJson' yöntemi, bir JSON verisini Users nesnesine dönüştürür
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'],
@@ -32,7 +32,7 @@ class User {
     );
   }
 
-  // 'toJson' yöntemi, Users nesnesini JSON verisine dönüştürür
+
   Map<String, dynamic> toJson() => {
         'phoneNumber': phoneNumber,
         'firstName': name,
