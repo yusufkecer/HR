@@ -42,7 +42,7 @@ class _CompanyCreateJobViewState extends CompanyCreateJobViewModel {
         return true;
       },
       child: GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        onTap: () => nav.closeKeyboard(),
         child: Scaffold(
           appBar: AppBar(
             title: const AppBarLogoTitle(),

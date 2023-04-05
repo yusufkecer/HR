@@ -245,6 +245,10 @@ class NavigationService {
     );
   }
 
+  void closeKeyboard() {
+    FocusScope.of(NavigationKey.instance.navigatorKey.currentContext!).requestFocus(FocusNode());
+  }
+
   void navigteToUser(context) {
     Navigator.of(context).push(
       MaterialPageRoute(

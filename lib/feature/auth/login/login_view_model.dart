@@ -22,10 +22,6 @@ abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMi
     super.initState();
   }
 
-  void closeKeyboard() {
-    FocusScope.of(context).requestFocus(FocusNode());
-  }
-
   void navigateResetPassword() {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -45,7 +41,7 @@ abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMi
   }
 
   void navigateApp() async {
-    closeKeyboard();
+    nav.closeKeyboard();
     Future(() => nav.showLoading(context));
     var val = await Auth.instance.login(
       emailController.text,

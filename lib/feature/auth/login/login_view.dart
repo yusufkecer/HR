@@ -29,7 +29,7 @@ class _LoginViewState extends LoginViewModel {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: closeKeyboard,
+      onTap: () => nav.closeKeyboard(),
       child: Scaffold(
         body: Center(
           child: SingleChildScrollView(

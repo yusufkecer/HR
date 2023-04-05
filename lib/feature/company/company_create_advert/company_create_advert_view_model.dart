@@ -43,7 +43,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
       selectedDate = DateTime.parse(newDateString!);
       isChange = true;
     }
-    FocusScope.of(context).requestFocus(FocusNode());
+    nav.closeKeyboard();
     selectedDate = await nav.showDate(context, selectedDate);
     if (selectedDate != null) {
       saveDate(textController[6]);
@@ -51,7 +51,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   }
 
   void createDate() async {
-    FocusScope.of(context).requestFocus(FocusNode());
+    nav.closeKeyboard();
     selectedDate = await nav.showDate(context, selectedDate);
     if (selectedDate != null) {
       saveDate(textController[7]);
@@ -174,7 +174,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
   }
 
   void saveAdvert() async {
-    FocusScope.of(context).requestFocus(FocusNode());
+    nav.closeKeyboard();
 
     initController();
     if (jobTitle == "" ||

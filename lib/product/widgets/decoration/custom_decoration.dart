@@ -9,7 +9,7 @@ class CustomPrefixDecoration extends BoxDecoration {
           border: Border(
             right: BorderSide(
               width: borderWidth,
-              color: MyColor.osloGrey,
+              color: borderColor,
             ),
           ),
         );
