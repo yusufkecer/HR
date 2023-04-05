@@ -42,7 +42,7 @@ class CompaynCompleteInfoViewState extends CompaynCompleteInfoViewModel {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        closeKeyboard();
+        nav.closeKeyboard();
       },
       child: Scaffold(
         appBar: AppBar(
@@ -68,7 +68,8 @@ class CompaynCompleteInfoViewState extends CompaynCompleteInfoViewModel {
                 child: MyElevatedIcons(
                   onPressed: () async {
                     nav.showLoading();
-                    closeKeyboard();
+                    nav.closeKeyboard();
+
                     if (departmentController.text == "") {
                       return;
                     }

@@ -29,12 +29,8 @@ abstract class RegisterViewModel extends State<RegisterView> with PasswordVisibi
   String? phone;
   String? birthOfDay;
 
-  void closeKeyboard() {
-    FocusScope.of(context).requestFocus(FocusNode());
-  }
-
   Future<void> onpressed() async {
-    closeKeyboard();
+    nav.closeKeyboard();
     bool isPassed = checkvalid();
     if (isPassed == false) {
       return;
@@ -78,7 +74,7 @@ abstract class RegisterViewModel extends State<RegisterView> with PasswordVisibi
   }
 
   void openPicker() async {
-    FocusScope.of(context).requestFocus(FocusNode());
+    nav.closeKeyboard();
     selectedDate = await nav.showDate(context);
     if (selectedDate == null) {
       return;

@@ -30,7 +30,7 @@ class _RegisterViewState extends RegisterViewModel {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        closeKeyboard();
+        nav.closeKeyboard();
       },
       child: Scaffold(
         body: Center(

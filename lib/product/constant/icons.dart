@@ -11,7 +11,7 @@ class MyIcons {
   static const resetPassword = Icons.key_outlined;
   static const add = Icons.add;
   static const search = Icons.search;
-  static const filter = Icons.filter_list;
+  static const filter = Icons.tune_outlined;
   static const lock = Icons.lock_person_rounded;
   static const nextIcon = Icons.arrow_forward_outlined;
   static const nextIOSIcon = Icons.arrow_forward_ios_outlined;

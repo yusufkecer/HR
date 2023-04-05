@@ -1,5 +1,6 @@
 class StringData {
   static const welcome = "Hoş Geldiniz";
+  static const welcomeToUser = "Hoş Geldin";
   static const singin = "Giriş Yap";
   static const registerNow = "Hemen Hesap Oluştur";
   static const changePassword = "Şifremi Sıfırla";
@@ -153,6 +154,8 @@ class StringData {
   static const departmentsInfo = "Bilgi İşlem: 20, İnsan Kaynakları: 30";
 
   static const search = "Ara";
+
+  static const topCompany = "En İyi Şirketler";
 
   //static var successfullyDeleted="Başarılı bir şekilde silindi";
 }

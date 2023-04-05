@@ -5,10 +5,12 @@ import '../Constant/weight.dart';
 import '../constant/font_size.dart';
 
 class Subtitle extends StatelessWidget {
+  final double fontSize;
   final String? title;
   const Subtitle({
     Key? key,
-    this.title,
+    this.fontSize = ProjectFontSize.oneToThree,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -19,7 +21,7 @@ class Subtitle extends StatelessWidget {
         alignment: Alignment.topLeft,
         child: Text(
           title!,
-          textScaleFactor: ProjectFontSize.oneToThree,
+          textScaleFactor: fontSize,
           style: const TextStyle(
             fontWeight: Weight.midium,
           ),

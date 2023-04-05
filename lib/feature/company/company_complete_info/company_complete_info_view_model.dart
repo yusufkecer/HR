@@ -33,10 +33,6 @@ abstract class CompaynCompleteInfoViewModel extends State<CompaynCompleteInfoVie
     super.initState();
   }
 
-  void closeKeyboard() {
-    FocusScope.of(context).requestFocus(FocusNode());
-  }
-
   Future<void> getCompany() async {
     Future(() => nav.showLoading());
     var res = await dt.fetchData(ApiUri.companyInfoById + Auth.instance.getId!);
