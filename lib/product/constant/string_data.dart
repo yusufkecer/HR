@@ -56,6 +56,7 @@ class StringData {
 
   static const companyWorker = "Şirketteki Çalışanlar";
   static const advert = "İlanlar";
+  static const topAdvert = "En İyi İlanlar";
   static const popularJobs = "Popüler İlanlar";
 
   static const save = "Kaydet";

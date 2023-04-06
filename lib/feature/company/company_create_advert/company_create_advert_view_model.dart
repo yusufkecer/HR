@@ -260,7 +260,6 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
         Future(() => nav.showLoading(context));
 
         res = await DataService().upteAdvert(ApiUri.updateAdvert, json);
-        // print(res);
         // ignore: use_build_context_synchronously
         nav.hideLoading(context);
       }

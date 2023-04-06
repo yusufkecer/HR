@@ -187,7 +187,6 @@ class _RegisterViewState extends RegisterViewModel {
       textType: TextInputType.none,
       listener: (value) {
         birthOfDay = value;
-        print(birthOfDay);
       },
       validation: (value) {
         if (value == null) {

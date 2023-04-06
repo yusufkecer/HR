@@ -18,6 +18,7 @@ abstract class UserHomeViewModel extends State<UserHomeView> {
     super.initState();
   }
 
+  List adverts = ["Full Stack Developer", "UI/UX Designer", "Backend Developer", "Mobile Developer"];
   List<Color> color = [MyColor.fuchsiaBlue, MyColor.butterflyBush, MyColor.darkLevander, MyColor.black];
   List imageList = [
     [

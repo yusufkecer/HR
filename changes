@@ -253,6 +253,15 @@ ilanlar listelenirken token gönderme işlemi gerçekleştirildi
 ayrı ayrı fonksiyonlarla veriler çekildi
 ilan detay sayfasındaki hata giderildi
 vergi numarası hatası giderildi
+05.04
+top companys home viewa eklendi
+arama butonu düzenlendi
+yeni color listesi oluşturuldu
+06.04
+date extension tamamlandı 
+kullanıcıya iyi geceler/günaydın mesajı vs döndürülüyor
+bunun için enum kullanılarak extension yapısı kurgulandı
+isim ve günaydım mesajı düzenlendi
 // Hatalar
 
 

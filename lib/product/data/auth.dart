@@ -21,11 +21,9 @@ class Auth {
 
   Future login(String email, String password, String endpoint) async {
     var response = await ds.authLogin(email, password, endpoint);
-    print(response);
     if (response != null) {
       if (response.runtimeType == List) {
         List data = response[0]["value"];
-        print(data);
         return data;
       } else if (!(response["isSuccess"])) {
         return response["message"];

@@ -4,10 +4,10 @@ import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/feature/user/user_home_page/user_home_view_model.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/icons.dart';
-import 'package:hrapp/product/constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/string_data.dart';
 import '../../../product/widgets/subtitle.dart';
+import '../../../product/widgets/time.dart';
 
 class UserHomeView extends StatefulWidget {
   const UserHomeView({super.key});
@@ -24,80 +24,27 @@ class UserHomeViewState extends UserHomeViewModel {
       child: ListView(
         shrinkWrap: true,
         children: [
-          userName(),
-          const Subtitle(
-            fontSize: ProjectFontSize.oneToFive,
-            title: StringData.welcomeToUser,
-          ),
+          const Time(),
           searchBar(),
           const Subtitle(
             title: StringData.topCompany,
           ),
           topCompany(),
-          const Subtitle(title: StringData.advert),
+          const Subtitle(
+            title: StringData.topAdvert,
+          ),
           const SizedBox(
             height: 8,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 100,
-              decoration: const DecorationUserHome(),
-              child: Center(
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(imageList[2][0]),
-                  ),
-                  title: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "Full Stack Developer",
-                            textScaleFactor: ProjectFontSize.oneToTwo,
-                            style: TextStyle(fontWeight: Weight.bold),
-                          ),
-                          IconButton(onPressed: () {}, icon: const Icon(MyIcons.save))
-                        ],
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Container(
-                          height: 30,
-                          width: 110,
-                          decoration: BoxDecoration(
-                            borderRadius: ProjectRadius.verySmallAll(),
-                            color: Colors.purple.withOpacity(.1),
-                          ),
-                          child: const Center(child: Text("Tam Zamanlı")),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          )
+          advertList()
         ],
-      ),
-    );
-  }
-
-  Padding userName() {
-    return Padding(
-      padding: const ProjectPadding.allEight().copyWith(bottom: 0, top: 3),
-      child: const Text(
-        "Yusuf",
-        textScaleFactor: ProjectFontSize.oneToThree,
-        style: TextStyle(color: MyColor.osloGrey),
       ),
     );
   }
 
   Padding searchBar() {
     return Padding(
-      padding: const ProjectPadding.allEight(),
+      padding: const ProjectPadding.allEight().copyWith(top: 0),
       child: Row(
         children: [
           searchfied(),
@@ -197,6 +144,79 @@ class UserHomeViewState extends UserHomeViewModel {
           );
         },
       ),
+    );
+  }
+
+  ListView advertList() {
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: 4,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 100,
+            decoration: const DecorationUserHome(),
+            child: ListTile(
+              title: Row(
+                children: [
+                  Image(
+                    height: 65,
+                    width: 65,
+                    image: NetworkImage(
+                      imageList[index][0],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Flexible(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            adverts[index],
+                            textScaleFactor: ProjectFontSize.oneToTwo,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            height: 30,
+                            width: 110,
+                            decoration: BoxDecoration(
+                              borderRadius: const ProjectRadius.verySmallAll(),
+                              color: Colors.purple.withOpacity(.1),
+                            ),
+                            child: const Center(child: Text("Tam Zamanlı")),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      iconSize: 32,
+                      onPressed: () {},
+                      icon: const Icon(MyIcons.save),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
