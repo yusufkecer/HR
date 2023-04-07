@@ -10,5 +10,6 @@ class ProjectFontSize {
   static const double oneToThree = 1.3;
   static const double oneToFour = 1.4;
   static const double oneToFive = 1.5;
+  static const double oneToSix = 1.6;
   static const double mainTitle = 2.3;
 }

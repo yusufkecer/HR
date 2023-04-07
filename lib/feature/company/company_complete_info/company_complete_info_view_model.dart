@@ -51,7 +51,6 @@ abstract class CompaynCompleteInfoViewModel extends State<CompaynCompleteInfoVie
       departmentController.text += jobs!.departments![i]["name"];
       departmentController.text += ":${jobs!.departments![i]["numberOfEmployees"]}";
     }
-    print(departmentController.text);
 
     sectorController.text = jobs?.sector?.join(",") ?? "";
     totalWorkerController.text = jobs?.totalWorker ?? "";

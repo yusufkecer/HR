@@ -67,7 +67,6 @@ class _CompanyAdvertViewState extends CompanyAdvertViewModel {
                       title: AdvertFilterOptions.passive.options,
                       selected: filters.getFilter == AdvertFilterOptions.passive,
                       ontap: () {
-                        print(widget.passiveAdverts);
                         filters.updateFilter = AdvertFilterOptions.passive;
                         setState(() {});
                       },

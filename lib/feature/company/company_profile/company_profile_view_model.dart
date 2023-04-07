@@ -1,12 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hrapp/product/constant/icons.dart';
-import 'package:hrapp/product/data/auth.dart';
 
 import 'package:image_picker/image_picker.dart';
 import '../../../core/navigation/navigation_service.dart';
 import '../../../product/constant/string_data.dart';
-import '../../../product/models/company_model/company_model.dart';
 import 'company_profile_view.dart';
 
 abstract class CompanyProfileWiewModel extends State<CompanyProfileView> {

@@ -136,8 +136,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
       Map<String, dynamic> data = res["data"];
       companyInfo = Job.fromJsonCompanyInfo(data);
     } catch (e) {
-      // ignore: avoid_print
-      print(e);
+      rethrow;
     }
   }
 
