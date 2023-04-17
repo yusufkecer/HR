@@ -34,7 +34,7 @@ class MyIcons {
   static const company = Icons.business_center_outlined;
   static const department = Icons.apartment_outlined;
   static const alert = Icons.info_outline;
-
+  static const drawer = Icons.menu;
   //create advert
   static const position = Icons.badge_outlined;
   static const level = Icons.grade_outlined;
