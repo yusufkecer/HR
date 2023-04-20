@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/feature/user/user_advert_list/user_advert_list_view.dart';
 import 'package:hrapp/feature/user/user_main_page/user_main_view_model.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import '../../../product/widgets/custom_appbar.dart';
@@ -53,9 +54,7 @@ class _UserMainViewState extends UserMainViewModel {
 
   static const List<Widget> _widgetOptions = [
     UserHomeView(),
-    Text(
-      'İlanlar',
-    ),
+    UserAdvertListView(),
     Text(
       'CV',
     ),

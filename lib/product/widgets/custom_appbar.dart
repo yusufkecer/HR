@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/Product/Constant/colors.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
-import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/weight.dart';
@@ -27,7 +26,7 @@ class CustomAppBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        width: 48,
+        width: 45,
         decoration: BoxDecoration(
           image: const DecorationImage(
             image: NetworkImage(
@@ -36,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
             fit: BoxFit.contain,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          border: Border.all(color: MyColor.butterflyBush, width: 2),
+          border: Border.all(color: MyColor.white, width: 2),
         ),
       ),
     );
