@@ -23,7 +23,7 @@ class MyColor {
   static const discovreyPurplishBlue = Color.fromARGB(214, 104, 17, 254);
   static const fuchsiaBlueLight = Color(0xFF650e8c);
   static const hollandOrange = Color(0XFFFC5130);
-
+  static Color lightPurple = Colors.purple.withOpacity(.1);
   static const ocianLavender = Color(0XFF8B80F9);
   static const red = Color.fromARGB(214, 190, 48, 48);
 }

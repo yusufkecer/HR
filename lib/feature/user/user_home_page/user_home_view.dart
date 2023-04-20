@@ -195,7 +195,7 @@ class UserHomeViewState extends UserHomeViewModel {
                             width: 110,
                             decoration: BoxDecoration(
                               borderRadius: const ProjectRadius.verySmallAll(),
-                              color: Colors.purple.withOpacity(.1),
+                              color: MyColor.lightPurple,
                             ),
                             child: const Center(child: Text("Tam Zamanlı")),
                           ),

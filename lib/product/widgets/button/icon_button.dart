@@ -22,7 +22,7 @@ class ChangeIconButton extends StatelessWidget {
     return IconButton(
       splashRadius: 20,
       splashColor: MyColor.fuchsiaBlue,
-      iconSize: 27,
+      iconSize: 30,
       icon: Icon(
         change == false ? buttonIcon : changeIcon,
       ),

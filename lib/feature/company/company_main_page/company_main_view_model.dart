@@ -40,9 +40,9 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   List<Job> passiveAdverts = [];
 
   Future<void> updateList() async {
-    List<Job> jobsAll = await getJobs(ApiUri.getAdvertAll);
-    List<Job> jobsActive = await getJobs(ApiUri.getAdvertActive);
-    List<Job> jobsPassive = await getJobs(ApiUri.getAdvertPassive);
+    List<Job> jobsAll = await getJobs(ApiUri.getCompanyAdvertById);
+    List<Job> jobsActive = await getJobs(ApiUri.getAdvertByEmployerIdStatus, "true");
+    List<Job> jobsPassive = await getJobs(ApiUri.getAdvertByEmployerIdStatus, "false");
 
     setState(() {
       adverts = jobsAll;
@@ -51,8 +51,8 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     });
   }
 
-  Future<List<Job>> getJobs(String endpoint) async {
-    var response = await dt.fetchDataWithToken(endpoint);
+  Future<List<Job>> getJobs(String endpoint, [String status = ""]) async {
+    var response = await dt.fetchDataWithToken(endpoint, Auth.instance.getId, status);
     Iterable data = response["data"];
 
     List<Job> jobs = data.map((json) => Job.fromJson(json)).toList();
@@ -86,9 +86,11 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   }
 
   void navigateSavedAdvert() async {
-    await Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const SavedAdvertView(),
-    ));
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SavedAdvertView(),
+      ),
+    );
 
     setState(() {});
   }
