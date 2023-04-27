@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hrapp/feature/user/user_advert_list/user_advert_list_view.dart';
 import 'package:hrapp/feature/user/user_main_page/user_main_view_model.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import '../../../product/widgets/custom_appbar.dart';
 import '../../../product/widgets/user_nav_bar.dart';
-import '../user_home_page/user_home_view.dart';
 
 class UserMainView extends StatefulWidget {
   const UserMainView({super.key});
@@ -24,7 +22,7 @@ class _UserMainViewState extends UserMainViewModel {
         backgroundColor: const Color(0XFFE7EBF5),
         appBar: const PreferredSize(preferredSize: Size.fromHeight(65), child: CustomAppBar()),
         body: Center(
-          child: _widgetOptions.elementAt(selectedIndex),
+          child: widgetOptions.isEmpty ? const SizedBox() : widgetOptions.elementAt(selectedIndex),
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
@@ -51,15 +49,4 @@ class _UserMainViewState extends UserMainViewModel {
       ),
     );
   }
-
-  static const List<Widget> _widgetOptions = [
-    UserHomeView(),
-    UserAdvertListView(),
-    Text(
-      'CV',
-    ),
-    Text(
-      'Profil',
-    ),
-  ];
 }

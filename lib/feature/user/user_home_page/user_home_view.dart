@@ -29,6 +29,9 @@ class UserHomeViewState extends UserHomeViewModel {
           const Subtitle(
             title: StringData.topCompany,
           ),
+          const SizedBox(
+            height: 8,
+          ),
           topCompany(),
           const Subtitle(
             title: StringData.topAdvert,
