@@ -22,7 +22,7 @@ class _UserMainViewState extends UserMainViewModel {
         backgroundColor: const Color(0XFFE7EBF5),
         appBar: const PreferredSize(preferredSize: Size.fromHeight(65), child: CustomAppBar()),
         body: Center(
-          child: widgetOptions.isEmpty ? const SizedBox() : widgetOptions.elementAt(selectedIndex),
+          child: widgetOptions.elementAt(selectedIndex),
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(

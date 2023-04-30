@@ -96,7 +96,7 @@ abstract class CompanyCreateJobViewModel extends State<CompanyCreateJobView> {
 
   List jobQualities = [
     [StringData.jobPosition, MyIcons.position, ""],
-    [StringData.skills, MyIcons.skill, StringData.skillsHint],
+    [StringData.requiredSkills, MyIcons.skill, StringData.skillsHint],
     [StringData.timing, MyIcons.timinig, ""],
     [StringData.level, MyIcons.level, ""],
     [StringData.positionOpen, MyIcons.number, ""],

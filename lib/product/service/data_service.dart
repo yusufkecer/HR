@@ -20,8 +20,10 @@ class DataService {
   ]) async {
     late String url = "$api/$id/$status";
     print(url);
-    final http.Response response =
-        await http.get(headers: {"Authorization": "Bearer ${Auth.instance.rawToken}"}, Uri.parse(url));
+    final http.Response response = await http.get(
+      headers: {"Authorization": "Bearer ${Auth.instance.rawToken}"},
+      Uri.parse(url),
+    );
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);

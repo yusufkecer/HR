@@ -188,7 +188,7 @@ class _UserAdvertListViewState extends UserAdvertViewModel {
           color: MyColor.lightPurple,
         ),
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const ProjectPadding.allEight(),
           child: Text(
             "${advertList[index].timing}",
             textScaleFactor: ProjectFontSize.oneToOne,
@@ -215,15 +215,16 @@ class _UserAdvertListViewState extends UserAdvertViewModel {
               child: Align(
                 alignment: Alignment.center,
                 child: Container(
-                    padding: const ProjectPadding.allEight(),
-                    decoration: BoxDecoration(
-                      borderRadius: const ProjectRadius.verySmallAll(),
-                      color: MyColor.lightPurple,
-                    ),
-                    child: const Text(
-                      "Flutter",
-                      style: TextStyle(color: MyColor.discovreyPurplishBlue),
-                    )),
+                  padding: const ProjectPadding.allEight(),
+                  decoration: BoxDecoration(
+                    borderRadius: const ProjectRadius.verySmallAll(),
+                    color: MyColor.lightPurple,
+                  ),
+                  child: const Text(
+                    "Flutter",
+                    style: TextStyle(color: MyColor.discovreyPurplishBlue),
+                  ),
+                ),
               ),
             );
           },
