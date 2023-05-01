@@ -76,11 +76,27 @@ class StringData {
   static const createAdvert = "İlan Oluştur";
   static const advertNotFound = "İlanınız bulunmamaktadır.\nHemen oluşturun!";
   static const saveNotFound = "Favori ilanınız bulunmamaktadır.\nHemen favorilere ekleyin!";
+  //cv
+  static const languagesHint = "İngilizce, Almanca";
+  static const languages = "Yabancı Diller";
+  static const socialMedia = "Sosyal Medya";
+  static const socialMediaHint = "Sosyal Medya Hesapları";
+  static const education = "Eğitim";
+  static const educationHint = "Pamukkale Üniversitesi, ODTÜ";
+  static const experiance = "Deneyim";
+  static const fillAllArea = "Lütfen bütün alanları eksiksiz doldurun.";
+  static const experianceHint = "Google, Microsoft";
+  static const projects = "Projeler";
+  static const projectsHint = "HRMS, Flutter";
+  static const hobbies = "Hobiler";
+  static const hobbiesHint = "Kitap Okumak, Koşu";
+  static const informations = "Pozisyon";
 
   //create advert
   static const jobPosition = "Pozisyon*";
-  static const skills = "Aranan Nitelikler*";
-  static const skillsHint = "Word, Excel, Power Point";
+  static const skills = "Yetenekler";
+  static const requiredSkills = "Nitelikler*";
+  static const skillsHint = "Word, Excel, PowerPoint";
   static const timing = "Çalışma Türü*";
   static const level = "Deneyim*";
   static const wage = "Maaş Aralığı";
@@ -96,7 +112,7 @@ class StringData {
 //check showdialog
   static const checkTitle = "Emin Misiniz?";
   static const checkCreate = "Kaydetmek stediğinize emin misiniz?";
-  static const checkDelete = "Kaydetmek stediğinize emin misiniz?";
+  static const checkDelete = "Silmek stediğinize emin misiniz?";
   static const yes = "Evet";
   static const no = "Hayır";
   static const missing = "Lütfen Eksiksiz Doldurun";
@@ -109,6 +125,7 @@ class StringData {
   static const generalInfo = "Temel Bilgiler";
   static const info = "Bilgiler";
   static const cv = "CV";
+  static const createCv = "Özgeçmiş Oluştur";
   static const navCv = "Özgeçmiş";
   static const address = "Adres";
   static const phoneNumber = "Telefon No";

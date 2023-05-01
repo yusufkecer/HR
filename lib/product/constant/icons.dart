@@ -41,8 +41,10 @@ class MyIcons {
   static const timinig = Icons.access_time_outlined;
   static const skill = Icons.computer_outlined;
   static const wage = Icons.money;
+  static const language = Icons.language;
   static const number = Icons.format_list_numbered_outlined;
-
+  static const hobbies = Icons.sports_esports;
+  static const smartPhone = Icons.phone_android_outlined;
   static const phone = Icons.phone_outlined;
   static const website = Icons.web_outlined;
   static const edit = Icons.edit_outlined;
