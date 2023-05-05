@@ -19,7 +19,7 @@ class MyColor {
   static const recycleGreen = Color.fromARGB(214, 102, 187, 106);
   static const tints = Color.fromARGB(129, 219, 212, 242);
   static const darkTints = Color.fromARGB(255, 219, 212, 242);
-
+  static const backgroundColor = Color(0XFFE7EBF5);
   static const discovreyPurplishBlue = Color.fromARGB(214, 104, 17, 254);
   static const fuchsiaBlueLight = Color(0xFF650e8c);
   static const hollandOrange = Color(0XFFFC5130);

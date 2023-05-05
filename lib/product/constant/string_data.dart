@@ -77,24 +77,18 @@ class StringData {
   static const advertNotFound = "İlanınız bulunmamaktadır.\nHemen oluşturun!";
   static const saveNotFound = "Favori ilanınız bulunmamaktadır.\nHemen favorilere ekleyin!";
   //cv
-  static const languagesHint = "İngilizce, Almanca";
+
   static const languages = "Yabancı Diller";
   static const socialMedia = "Sosyal Medya";
-  static const socialMediaHint = "Sosyal Medya Hesapları";
+
   static const education = "Eğitim";
-  static const educationHint = "Pamukkale Üniversitesi, ODTÜ";
+
   static const experiance = "Deneyim";
   static const fillAllArea = "Lütfen bütün alanları eksiksiz doldurun.";
-  static const experianceHint = "Google, Microsoft";
   static const projects = "Projeler";
-  static const projectsHint = "HRMS, Flutter";
-  static const hobbies = "Hobiler";
-  static const hobbiesHint = "Kitap Okumak, Koşu";
-  static const informations = "Pozisyon";
 
   //create advert
   static const jobPosition = "Pozisyon*";
-  static const skills = "Yetenekler";
   static const requiredSkills = "Nitelikler*";
   static const skillsHint = "Word, Excel, PowerPoint";
   static const timing = "Çalışma Türü*";

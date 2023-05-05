@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/core/extensions/context_extension.dart';
+import 'package:hrapp/feature/user/user_advert_detail/user_advert_detail_view.dart';
 import 'package:hrapp/feature/user/user_advert_list/user_advert_view_model.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
@@ -51,36 +52,49 @@ class _UserAdvertListViewState extends UserAdvertViewModel {
         itemBuilder: (context, index) {
           return Column(
             children: [
-              Container(
-                height: 213,
-                width: context.width,
-                decoration: const BoxDecoration(borderRadius: ProjectRadius.mediumAll(), color: MyColor.white),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    children: [
-                      companyInfo(index),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0).copyWith(right: 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                advertPosition(),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                wage()
-                              ],
-                            ),
-                            timing(index)
-                          ],
+              InkWell(
+                customBorder: const RoundedRectangleBorder(
+                  borderRadius: ProjectRadius.mediumAll(),
+                ),
+                splashColor: MyColor.tints,
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => UserAdvertDetailView(
+                      job: widget.adverts?[index],
+                    ),
+                  ));
+                },
+                child: Ink(
+                  height: 213,
+                  width: context.width,
+                  decoration: const BoxDecoration(borderRadius: ProjectRadius.mediumAll(), color: MyColor.white),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      children: [
+                        companyInfo(index),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0).copyWith(right: 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  advertPosition(index),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  wage(index)
+                                ],
+                              ),
+                              timing(index)
+                            ],
+                          ),
                         ),
-                      ),
-                      skills()
-                    ],
+                        skills(index)
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -161,21 +175,39 @@ class _UserAdvertListViewState extends UserAdvertViewModel {
     );
   }
 
-  Align wage() {
-    return const Align(
+  Align wage(index) {
+    String? currency = widget.adverts?[index].currency;
+    String? data;
+    if (widget.adverts?[index].currency == null) {
+      currency = StringData.turkishLiraSymbol;
+    } else {
+      currency = widget.adverts?[index].currency;
+    }
+    if (widget.adverts?[index].lowerWage != null && widget.adverts?[index].upperWage != null) {
+      data = "$currency ${widget.adverts?[index].lowerWage?.toStringAsFixed(0)}"
+          "-"
+          "${widget.adverts?[index].upperWage?.toStringAsFixed(0)}";
+    } else if (widget.adverts?[index].upperWage != null) {
+      data = "$currency ${widget.adverts?[index].upperWage?.toStringAsFixed(0)}";
+    } else if (widget.adverts?[index].lowerWage != null) {
+      data = "$currency ${widget.adverts?[index].lowerWage?.toStringAsFixed(0)}";
+    } else {
+      data = "";
+    }
+    return Align(
       child: Text(
-        "\$ 60.000-70.000",
+        data,
         textScaleFactor: ProjectFontSize.oneToTwo,
-        style: TextStyle(color: MyColor.osloGrey),
+        style: const TextStyle(color: MyColor.osloGrey),
       ),
     );
   }
 
-  Text advertPosition() {
-    return const Text(
-      "Sr Product Desinger",
+  Text advertPosition(index) {
+    return Text(
+      "${advertList[index].jobTitle}",
       textScaleFactor: ProjectFontSize.oneToThree,
-      style: TextStyle(fontWeight: Weight.midium),
+      style: const TextStyle(fontWeight: Weight.midium),
     );
   }
 
@@ -199,7 +231,7 @@ class _UserAdvertListViewState extends UserAdvertViewModel {
     );
   }
 
-  Align skills() {
+  Align skills(pindex) {
     return Align(
       alignment: Alignment.centerLeft,
       child: SizedBox(
@@ -208,7 +240,7 @@ class _UserAdvertListViewState extends UserAdvertViewModel {
           physics: const BouncingScrollPhysics(),
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          itemCount: 5,
+          itemCount: widget.adverts?[pindex].skills?.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const ProjectPadding.leftEight(),
@@ -220,9 +252,9 @@ class _UserAdvertListViewState extends UserAdvertViewModel {
                     borderRadius: const ProjectRadius.verySmallAll(),
                     color: MyColor.lightPurple,
                   ),
-                  child: const Text(
-                    "Flutter",
-                    style: TextStyle(color: MyColor.discovreyPurplishBlue),
+                  child: Text(
+                    "${widget.adverts?[pindex].skills?[index]}",
+                    style: const TextStyle(color: MyColor.discovreyPurplishBlue),
                   ),
                 ),
               ),

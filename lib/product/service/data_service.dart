@@ -19,7 +19,6 @@ class DataService {
     String? status,
   ]) async {
     late String url = "$api/$id/$status";
-    print(url);
     final http.Response response = await http.get(
       headers: {"Authorization": "Bearer ${Auth.instance.rawToken}"},
       Uri.parse(url),
