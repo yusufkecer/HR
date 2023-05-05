@@ -98,6 +98,7 @@ class Introduction extends StatelessWidget {
     );
   }
 
+  
   DotsDecorator dotsDecorator() {
     return const DotsDecorator(
       color: MyColor.osloGrey,

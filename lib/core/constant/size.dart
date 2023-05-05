@@ -10,10 +10,8 @@ class ProjectSize extends Size {
   ProjectSize.veryBigHeight() : super.fromHeight(25);
   ProjectSize.veryBigWidth() : super.fromWidth(25);
 
-//border disgn
   ProjectSize.border() : super.fromWidth(2);
 
-//title disgn
   ProjectSize.authSize(context)
       : super(MediaQuery.of(context).size.width / 1.2, 50);
 }
