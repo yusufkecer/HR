@@ -24,15 +24,18 @@ class _ChoseAuthState extends State<ChoseAuth> {
           children: [
             title(),
             buttons(),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 210,
-                width: context.width,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(ImagePath.auth),
-                    fit: BoxFit.fill,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 210,
+                  width: context.width,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(ImagePath.auth),
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
               ),

@@ -4,7 +4,7 @@ class ImagePath {
   static const programmer = "assets/images/programmer.png";
   static const join = "assets/images/join.png";
   static const dontResult = "assets/images/dontResult.png";
-  static const auth = "assets/images/auth.jpg";
+  static const auth = "assets/images/auth.png";
   static const company = "assets/images/company.png";
   static const user = "assets/images/user.png";
 

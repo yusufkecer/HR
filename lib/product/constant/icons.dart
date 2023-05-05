@@ -16,6 +16,8 @@ class MyIcons {
   static const nextIcon = Icons.arrow_forward_outlined;
   static const nextIOSIcon = Icons.arrow_forward_ios_outlined;
   static const logout = Icons.logout_outlined;
+  static const upIOSIcon = Icons.keyboard_arrow_up_sharp;
+  static const downIOSIcon = Icons.keyboard_arrow_down_sharp;
   static const backIOSIcon = Icons.arrow_back_ios_new_outlined;
   static const home = Icons.home_outlined;
   static const listAlt = Icons.list_alt_outlined;

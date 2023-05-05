@@ -11,6 +11,7 @@ class ProjectPadding extends EdgeInsets {
   const ProjectPadding.allTwenty() : super.all(20);
   const ProjectPadding.edgeZero() : super.all(0);
 //only
+  const ProjectPadding.leftFive() : super.only(left: 5);
   const ProjectPadding.leftEight() : super.only(left: 8);
   const ProjectPadding.rightEight() : super.only(right: 8);
   const ProjectPadding.appBarPadding() : super.fromLTRB(8, 0, 8, 15);

@@ -6,7 +6,7 @@ class CV {
   List<String>? experiance;
   List<String>? projects;
   List<String>? socialMedia;
-  List<String>? hobbies;
+  String? hobbies;
 
   CV({
     this.informations,
