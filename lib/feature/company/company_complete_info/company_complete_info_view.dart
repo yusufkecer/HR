@@ -34,7 +34,6 @@ class CompaynCompleteInfoViewState extends CompaynCompleteInfoViewModel {
     totalWorkerController.dispose();
     phoneController.dispose();
     siteController.dispose();
-
     super.dispose();
   }
 
