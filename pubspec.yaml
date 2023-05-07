@@ -13,7 +13,8 @@ dependencies:
     sdk: flutter
   flutter_localizations: 
     sdk: flutter  
-
+  
+  shared_preferences: ^2.1.0
   google_nav_bar: ^5.0.6
   cupertino_icons: ^1.0.2
   firebase_core: ^1.24.0
