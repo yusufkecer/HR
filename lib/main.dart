@@ -1,18 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:hrapp/Product/Constant/colors.dart';
 import 'package:hrapp/core/navigation/navigator_key.dart';
+import 'package:hrapp/feature/auth/chose_auth.dart';
+import 'package:hrapp/feature/company/company_main_page/company_main_view.dart';
+import 'package:hrapp/feature/user/user_main_page/user_main_view.dart';
+import 'package:hrapp/product/data/auth.dart';
+
+import 'core/navigation/local_service.dart';
 import 'feature/splash/splash_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  LocalStorage storage = LocalStorage.instance;
+  await storage.initLocalStorage();
+
+  Auth instance = Auth.instance;
+  await Auth.instance.login();
+
+  String path = "company";
+
+  if (instance.token != null) {
+    if (instance.getRole == "jobseeker") {
+      path = "user";
+    } else {
+      path = "company";
+    }
+  }
+
+  runApp(MyApp(
+    path: path,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String path;
+  const MyApp({
+    Key? key,
+    required this.path,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: path,
+      routes: {
+        "splash": (context) => const Splash(),
+        "company": (context) => const CompanyMainView(),
+        "user": (context) => const UserMainView(),
+        "auth": (context) => const ChoseAuth(),
+      },
       navigatorKey: NavigationKey.instance.navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'HRMS',
