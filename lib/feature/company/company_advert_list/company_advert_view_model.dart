@@ -17,7 +17,6 @@ abstract class CompanyAdvertViewModel extends State<CompanyAdvertView> {
   void initState() {
     super.initState();
   }
-
   bool verticalDivider = true;
 
   void updateAdvert(int index, List<Job> advert) async {
