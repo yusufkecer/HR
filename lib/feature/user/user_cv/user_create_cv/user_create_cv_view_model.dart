@@ -52,15 +52,13 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
     if (check != true) {
       return;
     }
-    saveAdvert();
+    saveCV();
   }
 
-  Future<void> saveAdvert() async {
+  Future<void> saveCV() async {
     Map cv = {
-      "information": textController[0].text,
-      "skills": textController[1].text.split(","),
-      "hobbies": textController[2].text,
-      "education": [
+      "jobSeekerId": Auth.instance.getId,
+      "educations": [
         {
           "school": textController[3].text,
           "major": textController[4].text,
@@ -79,6 +77,7 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
           "leaveWorkYear": textController[13].text,
         }
       ],
+      "skills": textController[1].text.split(","),
       "languages": [
         {
           "languages": textController[14].text,
@@ -91,16 +90,19 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
           "description": textController[17].text,
         }
       ],
+      "imageUrl": "asdfasdfasdfasdfdsfsdfsdf",
       "socialMedias": {
         "github": textController[18].text,
         "linkedin": textController[19].text,
         "webSite": textController[20].text,
       },
+      "information": textController[0].text,
+      "hobbies": textController[2].text,
     };
 
     final data = jsonEncode(cv);
     print("data-> $data");
-    var res = await dataService.post("${ApiUri.loginUser}${Auth.instance.getId}", data);
+    var res = await dataService.post(ApiUri.createCv, data);
     print("cv add res-> $res");
   }
 
@@ -148,7 +150,7 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
       MyIcons.department,
     ],
     [
-      "Bitiş Tarihi",
+      "Durum",
       MyIcons.department,
     ],
   ];

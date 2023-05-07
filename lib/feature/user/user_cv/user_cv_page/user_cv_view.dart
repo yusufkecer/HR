@@ -17,7 +17,7 @@ class _UserCVViewState extends State<UserCVView> {
   List cv = ["1"];
   @override
   Widget build(BuildContext context) {
-    return cv.isNotEmpty
+    return cv.isEmpty
         ? ListView(
             children: [
               Padding(

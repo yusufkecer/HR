@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
-import 'package:hrapp/feature/user/user_cv/user_create_cv/user_create_cv_view.dart';
 import 'package:hrapp/feature/user/user_cv/user_cv_page/user_cv_view.dart';
 import 'package:hrapp/feature/user/user_main_page/user_main_view.dart';
-
 import '../../../product/models/general_company_model.dart';
 import '../../../product/service/api.dart';
 import '../../../product/service/data_service.dart';
