@@ -38,7 +38,6 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
 
     for (var i = 0; i < textController.length; i++) {
       if (textController[i].text == "") {
-        print("i-> $i text-> ${textController[i].text}");
         isEmpty = true;
         break;
       }
@@ -48,7 +47,7 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
       return;
     }
     bool? check = await nav.checkDialog(StringData.checkTitle, StringData.checkCreate);
-    print("check -> $check");
+
     if (check != true) {
       return;
     }
@@ -56,6 +55,7 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
   }
 
   Future<void> saveCV() async {
+    nav.showLoading();
     Map cv = {
       "jobSeekerId": Auth.instance.getId,
       "educations": [
@@ -101,9 +101,14 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
     };
 
     final data = jsonEncode(cv);
-    print("data-> $data");
+
     var res = await dataService.post(ApiUri.createCv, data);
-    print("cv add res-> $res");
+    nav.hideLoading();
+    if (res is List) {
+      nav.alertWithButon(StringData.error, res[0]["value"].join("").toString());
+    } else {
+      nav.alertWithButon(StringData.success, StringData.createdCV);
+    }
   }
 
   List generalInfo = [

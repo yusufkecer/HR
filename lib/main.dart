@@ -13,16 +13,14 @@ import 'feature/splash/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  String path = "splash";
 
   LocalStorage storage = LocalStorage.instance;
   await storage.initLocalStorage();
 
-  Auth instance = Auth.instance;
-  await Auth.instance.login();
-
-  String path = "company";
-
-  if (instance.token != null) {
+  if (storage.getToken != null) {
+    Auth instance = Auth.instance;
+    await Auth.instance.login();
     if (instance.getRole == "jobseeker") {
       path = "user";
     } else {

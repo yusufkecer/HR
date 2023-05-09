@@ -7,6 +7,7 @@ import '../../../product/service/api.dart';
 import '../../../product/service/data_service.dart';
 import '../user_advert_list/user_advert_list_view.dart';
 import '../user_home_page/user_home_view.dart';
+import '../user_access/user_access_view.dart';
 
 abstract class UserMainViewModel extends State<UserMainView> {
   NavigationService nav = NavigationService();
@@ -34,9 +35,7 @@ abstract class UserMainViewModel extends State<UserMainView> {
       widgetOptions[1] = UserAdvertListView(adverts: advertList);
 
       widgetOptions[2] = const UserCVView();
-      widgetOptions[3] = const Text(
-        'Profil',
-      );
+      widgetOptions[3] = const UserAccess();
     });
 
     Future(() => nav.hideLoading());

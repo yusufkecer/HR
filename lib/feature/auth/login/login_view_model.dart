@@ -47,6 +47,8 @@ abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMi
       emailController.text,
       passwordController.text,
       widget.isCompany! ? ApiUri.loginCompnay : ApiUri.loginUser,
+      true,
+      check,
     );
     Future(() => nav.hideLoading(context));
     if (val == true) {

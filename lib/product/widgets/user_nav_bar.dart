@@ -43,8 +43,8 @@ class UserNavBar extends StatelessWidget {
         ),
         GButton(
           iconSize: 26,
-          icon: MyIcons.profile,
-          text: StringData.profile,
+          icon: MyIcons.access,
+          text: StringData.access,
         ),
       ],
       selectedIndex: selectedIndex,
