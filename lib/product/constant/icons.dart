@@ -22,8 +22,9 @@ class MyIcons {
   static const home = Icons.home_outlined;
   static const listAlt = Icons.list_alt_outlined;
   static const list = Icons.list;
+  static const message = Icons.message;
   static const grid = Icons.grid_view_outlined;
-  static const profile = Icons.person_2_outlined;
+  static const settings = Icons.settings;
   static const date = Icons.date_range_outlined;
   static const update = Icons.update;
   static const save = Icons.bookmark_add_outlined;
@@ -35,6 +36,7 @@ class MyIcons {
   static const confirm = Icons.check_outlined;
   static const company = Icons.business_center_outlined;
   static const department = Icons.apartment_outlined;
+  static const access = Icons.account_tree;
   static const alert = Icons.info_outline;
   static const drawer = Icons.menu;
   //create advert

@@ -11,14 +11,20 @@ class LocalStorage {
   static LocalStorage get instance => _instance;
   Future<void> initLocalStorage() async {
     prefs = await SharedPreferences.getInstance();
-    print("started");
   }
 
-  void setString(String? val) async {
+  void setToken(String? val) async {
     if (val == null) {
       return;
     }
     await prefs?.setString('token', val);
+  }
+
+  void remove(String? params) async {
+    if (params == null) {
+      return;
+    }
+    await prefs?.remove(params);
   }
 
   void setbool(String? val) async {

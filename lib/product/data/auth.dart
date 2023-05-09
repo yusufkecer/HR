@@ -20,11 +20,14 @@ class Auth {
   Map<String, dynamic>? token;
   String? status;
 
-  Future login([String? email, String? password, String? endpoint]) async {
+  Future login(
+      [String? email, String? password, String? endpoint, bool isLoginPage = false, bool isRemember = false]) async {
     LocalStorage storage = LocalStorage.instance;
     storage.initLocalStorage();
-    if (storage.getToken == null) {
-      print("new token-> ${storage.getToken}");
+    if (isLoginPage == false) {
+      String? userToken = storage.getToken;
+      token = JwtDecoder.decode(userToken!);
+    } else {
       var response = await ds.authLogin(email!, password!, endpoint!);
       if (response != null) {
         if (response.runtimeType == List) {
@@ -33,19 +36,16 @@ class Auth {
         } else if (!(response["isSuccess"])) {
           return response["message"];
         } else if (response["isSuccess"]) {
-          print("yess");
           userToken = response["data"]["token"];
-          storage.setString(userToken);
+
+          if (isRemember) {
+            storage.setToken(userToken);
+          }
+
           token = JwtDecoder.decode(userToken!);
-          print(token);
           return response["isSuccess"];
         }
       }
-    } else {
-      print("local api");
-      String? userToken = storage.getToken;
-      token = JwtDecoder.decode(userToken!);
-      print(token);
     }
   }
 

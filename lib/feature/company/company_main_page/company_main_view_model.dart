@@ -3,6 +3,7 @@ import 'package:hrapp/feature/auth/chose_auth.dart';
 import 'package:hrapp/feature/company/company_create_advert/company_create_advert_view.dart';
 import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/data/company_repo/advert_repo.dart';
+import '../../../core/navigation/local_service.dart';
 import '../../../core/navigation/navigation_service.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/constant/string_data.dart';
@@ -66,15 +67,20 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   }
 
   void logout() async {
-    Auth.instance.resetToken = {};
-    await Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-        builder: (context) => const ChoseAuth(),
-      ),
-      (route) => false,
-    );
+    bool? check = await nav.checkDialog(StringData.checkTitle, StringData.checkOut);
+    if (check == true) {
+      LocalStorage storage = LocalStorage.instance;
+      Auth auth = Auth.instance;
 
-    setState(() {});
+      storage.remove("token");
+      auth.token = {};
+      auth.userToken = "";
+      Future(() => Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const ChoseAuth(),
+          ),
+          (route) => false));
+    }
   }
 
   void navigateUpdateInfo() async {

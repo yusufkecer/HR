@@ -52,7 +52,7 @@ class StringData {
   //Navbar
   static const homePage = "Ana Sayfa";
   static const myAdvertisement = "İlanlarım";
-  static const profile = "Profil";
+  static const access = "Erişim";
 
   static const companyWorker = "Şirketteki Çalışanlar";
   static const advert = "İlanlar";
@@ -77,7 +77,7 @@ class StringData {
   static const advertNotFound = "İlanınız bulunmamaktadır.\nHemen oluşturun!";
   static const saveNotFound = "Favori ilanınız bulunmamaktadır.\nHemen favorilere ekleyin!";
   //cv
-
+  static const createdCV = "Özgeçmiş başarılı bir şekilde oluşturuldu.";
   static const languages = "Yabancı Diller";
   static const socialMedia = "Sosyal Medya";
 
@@ -106,6 +106,7 @@ class StringData {
 //check showdialog
   static const checkTitle = "Emin Misiniz?";
   static const checkCreate = "Kaydetmek stediğinize emin misiniz?";
+  static const checkOut = "Kaydetmek stediğinize emin misiniz?";
   static const checkDelete = "Silmek stediğinize emin misiniz?";
   static const yes = "Evet";
   static const no = "Hayır";

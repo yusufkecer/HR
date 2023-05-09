@@ -12,14 +12,25 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: const Color(0XFFE7EBF5),
-      leading: const Icon(MyIcons.drawer, size: 35),
+      leading: profileImage(),
+      leadingWidth: 65,
       toolbarHeight: 70,
       title: title(),
       centerTitle: true,
       actions: [
-        profileImage(),
+        advertButton(),
       ],
     );
+  }
+
+  IconButton advertButton() {
+    return IconButton(
+        onPressed: () {},
+        icon: const Icon(
+          MyIcons.company,
+          size: 30,
+          color: MyColor.osloGrey,
+        ));
   }
 
   Padding profileImage() {
@@ -62,9 +73,7 @@ class CustomAppBar extends StatelessWidget {
               height: 27,
               child: IconButton(
                   padding: const ProjectPadding.edgeZero(),
-                  onPressed: () {
-                    print("tested");
-                  },
+                  onPressed: () {},
                   icon: const Icon(
                     Icons.arrow_drop_down_outlined,
                     color: MyColor.veryLightBlack,
