@@ -23,7 +23,7 @@ abstract class UserMainViewModel extends State<UserMainView> {
 
   Future<void> getAdverts() async {
     Future(() => nav.showLoading());
-    var response = await dataService.fetchData(ApiUri.getAdvertAll);
+    var response = await dataService.fetchData(ApiUri.getAdvertActive);
     if (response == null) {
       Future(() => nav.hideLoading());
       return;

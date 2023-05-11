@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   flutter_localizations: 
     sdk: flutter  
-  
+  dotted_border: ^2.0.0+3 
   shared_preferences: ^2.1.0
   google_nav_bar: ^5.0.6
   cupertino_icons: ^1.0.2
@@ -24,7 +24,7 @@ dependencies:
   flutter_zoom_drawer: ^3.0.4+1
   image_picker: ^0.8.6+2
   jwt_decoder: ^2.0.1
-
+  url_launcher: ^6.1.11
 dev_dependencies:
   flutter_test:
     sdk: flutter
