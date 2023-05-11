@@ -4,6 +4,8 @@ import 'package:hrapp/feature/user/user_access/user_access_view_model.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
+import 'package:hrapp/product/constant/uri.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../product/constant/string_data.dart';
 import '../../../product/widgets/user_profile_settings.dart';
@@ -39,7 +41,10 @@ class _UserAccessState extends UserAccessViewModel {
           trailing: MyIcons.nextIOSIcon,
         ),
         UserProfileSettings(
-          ontap: () {},
+          ontap: () async {
+            final Uri url = Uri.https(WebUri.contactUs, "/contact");
+            await launchUrl(url);
+          },
           leading: MyIcons.message,
           title: "İletişim ",
           trailing: MyIcons.nextIOSIcon,
