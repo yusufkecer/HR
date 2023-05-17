@@ -27,7 +27,7 @@ class StringData {
   static const writeSurname = "Geçerli bir soyisim giriniz.";
   static const writePhone = "Geçerli bir telefon numarası giriniz.";
   static const selectBirthOfDay = "Lütfen doğum tarihi seçiniz";
-
+  static const hobbies = "Hobiler";
   //Terms
   static const termsText = "Kayıt işlemini tamamladığınızda, ";
   static const condition = "şartları ";
@@ -79,6 +79,7 @@ class StringData {
   //cv
   static const createdCV = "Özgeçmiş başarılı bir şekilde oluşturuldu.";
   static const languages = "Yabancı Diller";
+  static const languagesLevel = "Yabancı Dil Seviyesi";
   static const socialMedia = "Sosyal Medya";
 
   static const education = "Eğitim";
@@ -131,13 +132,14 @@ class StringData {
   static const error = "Hata";
   static const errorWage = "Geçerli bir ücret aralığı giriniz";
   static const errorDescription = "Açıklama 20 karakterden az olamaz.";
-
+  static const skills = "Yetenekler";
   //advert detail
   static const skillsD = "Aranan Nitelikler:";
   static const jobPositionD = "Pozisyon:";
   static const timingD = "Çalışma Türü:";
   static const wageD = "Maaş Aralığı:";
   static const levelD = "Deneyim:";
+  static const levelCv = "Deneyim";
   static const descriptionD = "İş Tanımı:";
   static const positionOpenD = "Açık Pozisyon Sayısı:";
   static const applicationDateD = "Son Başvuru Tarihi:";
@@ -158,17 +160,28 @@ class StringData {
   static const generalErr = "Bir hata oluştu. Lütfen tekrar deneyiniz.";
 
   static const success = "Başarılı";
-
+  static const workedYears = "Çalışma Yılı";
   static const departments = "Departman ve Çalışan Sayısı";
+  static const department = "Departman";
   static const totalWorkers = "Toplam Çalışan";
 
   static const sector = "Sektör";
 
   static const departmentsInfo = "Bilgi İşlem: 20, İnsan Kaynakları: 30";
-
+  static const leaveWorkYear = "Ayrılma Yılı";
   static const search = "Ara";
-
+  static const companyDescription = "Şirket Tanımı";
   static const topCompany = "En İyi Şirketler";
+
+  static const school = "Okul";
+
+  static const grade = "Not Ortalaması";
+
+  static const years = "Yıllar";
+
+  static const major = "Bölüm";
+
+  static const projectsDescription = "Proje Tanımı";
 
   //static var successfullyDeleted="Başarılı bir şekilde silindi";
 }
