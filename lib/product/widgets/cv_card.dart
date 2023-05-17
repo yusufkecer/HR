@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/core/extensions/context_extension.dart';
@@ -14,7 +15,13 @@ import '../constant/icons.dart';
 import '../constant/string_data.dart';
 
 class CVCard extends StatefulWidget {
-  const CVCard({super.key});
+  final void Function()? onTap;
+  final Map<String, dynamic>? cv;
+  const CVCard({
+    Key? key,
+    required this.onTap,
+    required this.cv,
+  }) : super(key: key);
 
   @override
   State<CVCard> createState() => _CVCardState();
@@ -29,162 +36,170 @@ class _CVCardState extends State<CVCard> with TickerProviderStateMixin {
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Padding(
-        padding: const ProjectPadding.createJob(),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          width: context.width,
-          height: !isExpanded ? 95 : 300,
-          decoration: const CVDecoration(),
-          child: Stack(
-            children: [
-              Row(
-                children: [
-                  Align(
-                    alignment: !isExpanded ? Alignment.center : Alignment.topCenter,
-                    child: Padding(
-                      padding: const ProjectPadding.allTen().copyWith(top: !isExpanded ? 0 : 16, left: 13),
-                      child: Container(
-                        height: 55,
-                        width: 55,
-                        decoration: const BoxDecoration(
-                          borderRadius: ProjectRadius.smallAll(),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              ImagePath.temporaryImage,
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Padding(
+          padding: const ProjectPadding.createJob(),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            width: context.width,
+            height: !isExpanded ? 95 : 300,
+            decoration: const CVDecoration(),
+            child: Stack(
+              children: [
+                Row(
+                  children: [
+                    Align(
+                      alignment: !isExpanded ? Alignment.center : Alignment.topCenter,
+                      child: Padding(
+                        padding: const ProjectPadding.allTen().copyWith(top: !isExpanded ? 0 : 16, left: 13),
+                        child: Container(
+                          height: 55,
+                          width: 55,
+                          decoration: const BoxDecoration(
+                            borderRadius: ProjectRadius.smallAll(),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                ImagePath.temporaryImage,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const ProjectPadding.allTen().copyWith(top: !isExpanded ? 0 : 21, left: 13),
-                      child: Column(
-                        mainAxisAlignment: !isExpanded ? MainAxisAlignment.center : MainAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "Full Stack Developer",
-                            textScaleFactor: ProjectFontSize.oneToTwo,
-                            style: TextStyle(fontWeight: Weight.midium),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "Deneyim: Senior",
-                            textScaleFactor: ProjectFontSize.oneToTwo,
-                            style: TextStyle(fontWeight: Weight.midium),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  popupMenu(),
-                ],
-              ),
-              isExpanded
-                  ? Padding(
-                      padding: const ProjectPadding.allSixteen().copyWith(bottom: 40),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
+                    Expanded(
+                      child: Padding(
+                        padding: const ProjectPadding.allTen().copyWith(top: !isExpanded ? 0 : 21, left: 13),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: !isExpanded ? MainAxisAlignment.center : MainAxisAlignment.start,
                           children: [
-                            DottedBorder(
-                              borderType: BorderType.RRect,
-                              radius: const Radius.circular(12),
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.all(Radius.circular(12)),
-                                child: SizedBox(
-                                  height: 170,
-                                  width: context.width,
-                                  child: Column(
-                                    children: [
-                                      const Subtitle(title: StringData.levelD),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      const Text(
-                                        "Shelby Company Limited",
-                                        style: TextStyle(
-                                          fontWeight: Weight.midium,
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              children: const [
-                                                Padding(
-                                                  padding: ProjectPadding.leftFive(),
-                                                  child: Text(
-                                                    "Departman: Yazılım Departmanı",
-                                                    maxLines: 2,
-                                                    overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Padding(
-                                                  padding: ProjectPadding.leftFive(),
-                                                  child: Text(
-                                                    "Pozisyon: Full Stack Developer",
-                                                    maxLines: 2,
-                                                    overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Padding(
-                                                  padding: ProjectPadding.leftFive(),
-                                                  child: Text(
-                                                    "Ayrılma Tarihi: 14-02-2013",
-                                                    maxLines: 2,
-                                                    overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Container(
-                                              color: Colors.black,
-                                              height: 90,
-                                              width: 1,
-                                            ),
-                                          ),
-                                          const Expanded(
-                                            child: Align(
-                                              alignment: Alignment.topCenter,
-                                              child: Text(
-                                                maxLines: 6,
-                                                overflow: TextOverflow.ellipsis,
-                                                "Açıklama: Blabla şirketinde 4 yıl full stack developer pozisyonunda çalıştım. Projelerde aktif görev aldımadsfasdfasfd",
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )
+                            Text(
+                              widget.cv?["information"],
+                              textScaleFactor: ProjectFontSize.oneToTwo,
+                              style: const TextStyle(fontWeight: Weight.midium),
+                            ),
+                            const SizedBox(
+                              height: 4,
+                            ),
+                            Text(
+                              "Eğitim: ${widget.cv?["educations"].first["school"]}",
+                              textScaleFactor: ProjectFontSize.oneToTwo,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: const TextStyle(fontWeight: Weight.midium),
+                            ),
                           ],
                         ),
                       ),
-                    )
-                  : const SizedBox(),
-              expandButton(),
-            ],
+                    ),
+                    popupMenu(),
+                  ],
+                ),
+                isExpanded
+                    ? Padding(
+                        padding: const ProjectPadding.allSixteen().copyWith(bottom: 40),
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              DottedBorder(
+                                borderType: BorderType.RRect,
+                                radius: const Radius.circular(12),
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                                  child: SizedBox(
+                                    height: 170,
+                                    width: context.width,
+                                    child: Column(
+                                      children: [
+                                        const Subtitle(title: StringData.levelD),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          "${widget.cv?["jobExperiences"].first["companyName"]}",
+                                          style: const TextStyle(
+                                            fontWeight: Weight.midium,
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                children: [
+                                                  Padding(
+                                                    padding: const ProjectPadding.leftFive(),
+                                                    child: Text(
+                                                      "Departman: ${widget.cv?["jobExperiences"].first["department"]}",
+                                                      maxLines: 2,
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Padding(
+                                                    padding: const ProjectPadding.leftFive(),
+                                                    child: Text(
+                                                      "Pozisyon: ${widget.cv?["jobExperiences"].first["position"]}",
+                                                      maxLines: 2,
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Align(
+                                                    alignment: Alignment.centerLeft,
+                                                    child: Padding(
+                                                      padding: const ProjectPadding.leftFive(),
+                                                      child: Text(
+                                                        "Ayrılma Tarihi: ${widget.cv?["jobExperiences"].first["leaveWorkYear"]}",
+                                                        maxLines: 2,
+                                                        overflow: TextOverflow.ellipsis,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Container(
+                                                color: Colors.black,
+                                                height: 90,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Text(
+                                                  maxLines: 6,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  "Açıklama: ${widget.cv?["jobExperiences"].first["description"]}",
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
+                expandButton(),
+              ],
+            ),
           ),
         ),
       ),
