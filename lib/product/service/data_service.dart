@@ -86,14 +86,13 @@ class DataService {
     }
   }
 
-  Future delete(String endPoint, String id, String json) async {
+  Future delete(String endPoint, String id) async {
     try {
       final response = await http.delete(
         Uri.parse(endPoint + id),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: json,
       );
 
       var res = await jsonDecode(response.body);

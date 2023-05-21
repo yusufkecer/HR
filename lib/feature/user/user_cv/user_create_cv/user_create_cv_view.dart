@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hrapp/feature/user/user_cv/user_create_cv/user_create_cv_view_model.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/string_data.dart';
@@ -10,7 +11,11 @@ import 'package:hrapp/product/widgets/text_field/custom_text_field.dart';
 import '../../../../core/constant/project_padding.dart';
 
 class UserCreateCvView extends StatefulWidget {
-  const UserCreateCvView({super.key});
+  final Map<String, dynamic>? cv;
+  const UserCreateCvView({
+    Key? key,
+    this.cv,
+  }) : super(key: key);
 
   @override
   State<UserCreateCvView> createState() => _UserCreateCvViewState();
@@ -21,48 +26,59 @@ class _UserCreateCvViewState extends UserCreateCvViewModel {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(
+          onPressed: () {
+            Navigator.pop(context, isEdit);
+          },
+        ),
         title: const AppBarLogoTitle(),
       ),
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        physics: const BouncingScrollPhysics(),
-        shrinkWrap: true,
-        children: [
-          const Padding(
-            padding: ProjectPadding.leftFive(),
-            child: Subtitle(title: StringData.createCv),
-          ),
-          info(),
-          const Padding(
-            padding: ProjectPadding.leftFive(),
-            child: Subtitle(title: StringData.education),
-          ),
-          educations(),
-          const Padding(
-            padding: ProjectPadding.leftFive(),
-            child: Subtitle(title: StringData.experiance),
-          ),
-          level(),
-          const Padding(
-            padding: ProjectPadding.leftFive(),
-            child: Subtitle(title: StringData.languages),
-          ),
-          languages(),
-          const Padding(
-            padding: ProjectPadding.leftFive(),
-            child: Subtitle(title: StringData.projects),
-          ),
-          projects(),
-          const Padding(
-            padding: ProjectPadding.leftFive(),
-            child: Subtitle(title: StringData.socialMedia),
-          ),
-          social(),
-          saveButton(),
-          const SizedBox(
-            height: 20,
-          )
-        ],
+      body: WillPopScope(
+        onWillPop: () async {
+          Navigator.pop(context, isEdit);
+          return true;
+        },
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          physics: const BouncingScrollPhysics(),
+          shrinkWrap: true,
+          children: [
+            const Padding(
+              padding: ProjectPadding.leftFive(),
+              child: Subtitle(title: StringData.createCv),
+            ),
+            info(),
+            const Padding(
+              padding: ProjectPadding.leftFive(),
+              child: Subtitle(title: StringData.education),
+            ),
+            educations(),
+            const Padding(
+              padding: ProjectPadding.leftFive(),
+              child: Subtitle(title: StringData.experiance),
+            ),
+            level(),
+            const Padding(
+              padding: ProjectPadding.leftFive(),
+              child: Subtitle(title: StringData.languages),
+            ),
+            languages(),
+            const Padding(
+              padding: ProjectPadding.leftFive(),
+              child: Subtitle(title: StringData.projects),
+            ),
+            projects(),
+            const Padding(
+              padding: ProjectPadding.leftFive(),
+              child: Subtitle(title: StringData.socialMedia),
+            ),
+            social(),
+            saveButton(),
+            const SizedBox(
+              height: 20,
+            )
+          ],
+        ),
       ),
     );
   }

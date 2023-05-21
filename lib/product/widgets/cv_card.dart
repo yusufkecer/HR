@@ -17,10 +17,14 @@ import '../constant/string_data.dart';
 class CVCard extends StatefulWidget {
   final void Function()? onTap;
   final Map<String, dynamic>? cv;
+  final void Function()? deleteCv;
+  final void Function()? updateCv;
   const CVCard({
     Key? key,
     required this.onTap,
     required this.cv,
+    this.deleteCv,
+    this.updateCv,
   }) : super(key: key);
 
   @override
@@ -28,11 +32,6 @@ class CVCard extends StatefulWidget {
 }
 
 class _CVCardState extends State<CVCard> with TickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
@@ -206,11 +205,6 @@ class _CVCardState extends State<CVCard> with TickerProviderStateMixin {
     );
   }
 
-/*     
-    
-      "years": "string",
-      "description": "string",
-      "leaveWorkYear": "string"*/
   Padding popupMenu() {
     return Padding(
       padding: const ProjectPadding.rightEight().copyWith(top: 16),
@@ -232,18 +226,29 @@ class _CVCardState extends State<CVCard> with TickerProviderStateMixin {
               popupItem(
                 MyIcons.editNote,
                 StringData.update,
-                () {},
+                widget.updateCv,
                 0,
               ),
               popupItem(
                 MyIcons.delete,
                 StringData.delete,
-                () {},
+                widget.deleteCv,
                 1,
               ),
             ];
           },
         ),
+      ),
+    );
+  }
+
+  PopupMenuItem popupItem(IconData icon, String info, void Function()? onTap, int value) {
+    return PopupMenuItem(
+      value: value,
+      onTap: onTap,
+      child: TextWithIcon(
+        icon: icon,
+        text: info,
       ),
     );
   }
@@ -265,16 +270,6 @@ class _CVCardState extends State<CVCard> with TickerProviderStateMixin {
         ),
       ),
     );
-  }
-
-  PopupMenuItem popupItem(IconData icon, String info, Function? onTap, int value) {
-    return PopupMenuItem(
-        value: value,
-        child: TextWithIcon(
-          icon: icon,
-          text: info,
-        ),
-        onTap: () {});
   }
 }
 

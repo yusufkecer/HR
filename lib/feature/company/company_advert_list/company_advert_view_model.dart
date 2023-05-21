@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/navigation/navigation_service.dart';
 import 'package:hrapp/product/constant/string_data.dart';
@@ -17,6 +16,7 @@ abstract class CompanyAdvertViewModel extends State<CompanyAdvertView> {
   void initState() {
     super.initState();
   }
+
   bool verticalDivider = true;
 
   void updateAdvert(int index, List<Job> advert) async {
@@ -48,9 +48,7 @@ abstract class CompanyAdvertViewModel extends State<CompanyAdvertView> {
 
     if (val == true) {
       Future(() => nav.showLoading(context));
-      Job data = advert[index];
-      String json = jsonEncode(data);
-      var response = await dt.delete(ApiUri.deleteAdvert, advert[index].id!, json);
+      var response = await dt.delete(ApiUri.deleteAdvert, advert[index].id!);
 
       if (response["isSuccess"]) {
         await widget.updateList!();

@@ -20,22 +20,24 @@ abstract class UserMainViewModel extends State<UserMainView> {
   @override
   void initState() {
     getCv();
-
     super.initState();
   }
 
   Future<void> getCv() async {
+    cv = {};
     Future(() => nav.showLoading());
     var response = await dataService.fetchData("${ApiUri.getCv}${Auth.instance.getId}");
     if (response != null) {
       setState(() {
         cv = response["data"];
       });
+      print("cv main-> $cv");
     }
     getAdverts();
   }
 
   Future<void> getAdverts() async {
+    print("çalıştı");
     var response = await dataService.fetchData(ApiUri.getAdvertActive);
     if (response == null) {
       Future(() => nav.hideLoading());
@@ -49,6 +51,7 @@ abstract class UserMainViewModel extends State<UserMainView> {
 
       widgetOptions[2] = UserCVView(
         cv: cv,
+        getCv: getCv,
       );
       widgetOptions[3] = const UserAccess();
     });
