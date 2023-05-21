@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
+import 'package:hrapp/core/extensions/context_extension.dart';
 import 'package:hrapp/feature/user/user_cv/user_create_cv/user_create_cv_view.dart';
 import 'package:hrapp/feature/user/user_cv/user_cv_page/user_cv_view_model.dart';
 import 'package:hrapp/product/widgets/cv_card.dart';
 import 'package:hrapp/product/widgets/subtitle.dart';
-
 import '../../../../product/widgets/not_found.dart';
 
 class UserCVView extends StatefulWidget {
+  final Future<void> Function() getCv;
   final Map<String, dynamic>? cv;
-  const UserCVView({required this.cv, super.key});
+  const UserCVView({
+    Key? key,
+    required this.getCv,
+    this.cv,
+  }) : super(key: key);
 
   @override
   State<UserCVView> createState() => _UserCVViewState();
@@ -18,27 +23,43 @@ class UserCVView extends StatefulWidget {
 class _UserCVViewState extends UserCvViewModel {
   @override
   Widget build(BuildContext context) {
-    return cv != null
-        ? ListView(
-            children: [
-              Padding(
-                padding: const ProjectPadding.createJob().copyWith(top: 0, bottom: 5),
-                child: const Subtitle(title: "Özgeçmişlerim"),
-              ),
-              CVCard(cv: cv, onTap: navigateDetail),
-            ],
-          )
-        : GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const UserCreateCvView(),
+    return widget.cv != null
+        ? RefreshIndicator(
+            onRefresh: widget.getCv,
+            child: ListView(
+              children: [
+                Padding(
+                  padding: const ProjectPadding.createJob().copyWith(top: 0, bottom: 5),
+                  child: const Subtitle(title: "Özgeçmişlerim"),
                 ),
-              );
-            },
-            child: const NotFound(
-              text: "Özgeçmiş bulunamadı.\nResime tıklayıp hemen oluşturun!",
+                CVCard(
+                  cv: widget.cv!,
+                  onTap: navigateDetail,
+                  deleteCv: deleteCv,
+                  updateCv: () {
+                    navigateCreateCv(widget.cv);
+                  },
+                ),
+              ],
+            ),
+          )
+        : RefreshIndicator(
+            onRefresh: widget.getCv,
+            child: ListView(
+              children: [
+                SizedBox(
+                  height: context.height * 0.7,
+                  child: GestureDetector(
+                    onTap: () {
+                      navigateCreateCv({});
+                    },
+                    child: const NotFound(
+                      text: "Özgeçmiş bulunamadı.\nResime tıklayıp hemen oluşturun!",
+                      padding: 0,
+                    ),
+                  ),
+                ),
+              ],
             ),
           );
   }

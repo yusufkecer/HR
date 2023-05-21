@@ -40,7 +40,7 @@ abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMi
     );
   }
 
-  void navigateApp() async {
+  Future<void> navigateApp() async {
     nav.closeKeyboard();
     Future(() => nav.showLoading(context));
     var val = await Auth.instance.login(

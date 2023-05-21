@@ -14,7 +14,9 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
   NavigationService nav = NavigationService();
   DataService dataService = DataService();
   List<TextEditingController> textController = [];
+  Map<String, dynamic>? cv;
   num listLength = 0;
+  bool isEdit = false;
   @override
   void initState() {
     listLength = generalInfo.length +
@@ -24,7 +26,37 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
         project.length +
         socialMedia.length;
     initController();
+    typeControl();
     super.initState();
+  }
+
+  void typeControl() {
+    if (widget.cv == null) {
+      return;
+    }
+    cv = widget.cv;
+    isEdit = true;
+    textController[0].text = cv!["information"];
+    textController[1].text = cv!["skills"].join(",");
+    textController[2].text = cv!["hobbies"];
+    textController[3].text = cv!["educations"][0]["school"];
+    textController[4].text = cv!["educations"][0]["major"];
+    textController[5].text = cv!["educations"][0]["grade"];
+    textController[6].text = cv!["educations"][0]["years"].join(",");
+    textController[7].text = cv!["educations"][0]["graduate"];
+    textController[8].text = cv!["jobExperiences"][0]["companyName"];
+    textController[9].text = cv!["jobExperiences"][0]["department"];
+    textController[10].text = cv!["jobExperiences"][0]["position"];
+    textController[11].text = cv!["jobExperiences"][0]["years"];
+    textController[12].text = cv!["jobExperiences"][0]["description"];
+    textController[13].text = cv!["jobExperiences"][0]["leaveWorkYear"];
+    textController[14].text = cv!["languages"][0]["languages"];
+    textController[15].text = cv!["languages"][0]["languageLevel"];
+    textController[16].text = cv!["projects"][0]["projectName"];
+    textController[17].text = cv!["projects"][0]["description"];
+    textController[18].text = cv!["socialMedias"]["github"];
+    textController[19].text = cv!["socialMedias"]["linkedin"];
+    textController[20].text = cv!["socialMedias"]["webSite"];
   }
 
   void initController() {
@@ -58,6 +90,7 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
     nav.showLoading();
     Map cv = {
       "jobSeekerId": Auth.instance.getId,
+      "id": widget.cv!["id"],
       "educations": [
         {
           "school": textController[3].text,
@@ -101,8 +134,14 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
     };
 
     final data = jsonEncode(cv);
-
-    var res = await dataService.post(ApiUri.createCv, data);
+    var res;
+    if (isEdit == false) {
+      res = await dataService.post(ApiUri.createCv, data);
+    } else {
+      print("isEdit");
+      res = await dataService.upteAdvert(ApiUri.updateCv, data);
+      print(res);
+    }
     nav.hideLoading();
     if (res is List) {
       nav.alertWithButon(StringData.error, res[0]["value"].join("").toString());

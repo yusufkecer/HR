@@ -7,15 +7,17 @@ import '../constant/image_path.dart';
 
 class NotFound extends StatelessWidget {
   final String? text;
+  final double padding;
   const NotFound({
     Key? key,
     required this.text,
+    this.padding = 80,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 80.0),
+      padding: EdgeInsets.only(bottom: padding),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

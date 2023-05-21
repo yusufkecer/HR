@@ -183,6 +183,8 @@ class StringData {
 
   static const projectsDescription = "Proje Tanımı";
 
+  static const deleteCv = "Özgeçmişi silmek istediğinize emin misiniz?";
+
   //static var successfullyDeleted="Başarılı bir şekilde silindi";
 }
 
