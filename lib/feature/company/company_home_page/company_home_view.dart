@@ -9,16 +9,17 @@ import 'package:hrapp/product/widgets/popular_adverts.dart';
 import 'package:hrapp/product/widgets/profile_list.dart';
 import 'package:hrapp/product/widgets/subtitle.dart';
 import 'package:hrapp/product/widgets/text_field/search_field.dart';
-
-import '../../../product/data/company_repo/advert_repo.dart';
+import '../../../product/models/general_company_model.dart';
 import 'company_home_view_model.dart';
 
 class CompanyHomeView extends StatefulWidget {
   final List<Worker>? workers;
+  final List<Job>? topJobList;
   final String? connectionError;
   const CompanyHomeView({
     Key? key,
     this.workers,
+    required this.topJobList,
     required this.connectionError,
   }) : super(key: key);
 
@@ -29,6 +30,7 @@ class CompanyHomeView extends StatefulWidget {
 class _CompanyHomeViewState extends CompanyHomeViewModel {
   @override
   Widget build(BuildContext context) {
+    print("home top job list" + widget.topJobList.toString());
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -42,10 +44,22 @@ class _CompanyHomeViewState extends CompanyHomeViewModel {
               padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
               child: SearchField(),
             ),
-            topJobsTitle(),
-            PopularAdverts(advertInfo: AdvertRepo.instance.adverts, saveButton: saveJob),
-            companyWorkerTitle(),
-            companyWorkers(),
+            widget.topJobList != null
+                ? Column(
+                    children: [
+                      topJobsTitle(),
+                      PopularAdverts(advertInfo: widget.topJobList, saveButton: saveJob),
+                    ],
+                  )
+                : const SizedBox(),
+            widget.workers != null
+                ? Column(
+                    children: [
+                      companyWorkerTitle(),
+                      companyWorkers(),
+                    ],
+                  )
+                : const SizedBox()
           ],
         ),
       ),

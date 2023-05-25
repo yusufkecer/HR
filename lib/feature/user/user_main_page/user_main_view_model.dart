@@ -14,12 +14,14 @@ abstract class UserMainViewModel extends State<UserMainView> {
   DataService dataService = DataService();
   Map<String, dynamic>? cv;
   NavigationService nav = NavigationService();
-
+  List<Job>? topJobList;
+  List<Job>? topCompany;
   List<Job> advertList = [];
   List<Widget> widgetOptions = List.filled(4, const SizedBox());
   @override
   void initState() {
     getCv();
+
     super.initState();
   }
 
@@ -31,13 +33,39 @@ abstract class UserMainViewModel extends State<UserMainView> {
       setState(() {
         cv = response["data"];
       });
-      print("cv main-> $cv");
     }
     getAdverts();
   }
 
+  Future<void> getTopCompany() async {
+    var res = await dataService.fetchData(ApiUri.getTopCompany);
+    if (res == null) {
+      return;
+    }
+    Iterable? data = res["data"];
+
+    if (data == null) {
+      return;
+    }
+    topCompany = data.map((e) => Job.fromJsonCompanyInfo(e)).toList();
+  }
+
+  Future<void> getTopJobs() async {
+    var res = await dataService.fetchData(ApiUri.getTopJobAdvert);
+    if (res == null) {
+      return;
+    }
+    Iterable? data = res["data"];
+
+    if (data == null) {
+      return;
+    }
+    topJobList = data.map((e) => Job.fromJson(e)).toList();
+  }
+
   Future<void> getAdverts() async {
-    print("çalıştı");
+    await getTopJobs();
+    await getTopCompany();
     var response = await dataService.fetchData(ApiUri.getAdvertActive);
     if (response == null) {
       Future(() => nav.hideLoading());
@@ -46,7 +74,10 @@ abstract class UserMainViewModel extends State<UserMainView> {
     Iterable data = response["data"];
     setState(() {
       advertList = data.map((e) => Job.fromJson(e)).toList();
-      widgetOptions[0] = const UserHomeView();
+      widgetOptions[0] = UserHomeView(
+        topJobList: topJobList,
+        topCompany: topCompany,
+      );
       widgetOptions[1] = UserAdvertListView(adverts: advertList);
 
       widgetOptions[2] = UserCVView(

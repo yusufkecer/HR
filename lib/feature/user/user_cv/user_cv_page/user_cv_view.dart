@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/extensions/context_extension.dart';
-import 'package:hrapp/feature/user/user_cv/user_create_cv/user_create_cv_view.dart';
 import 'package:hrapp/feature/user/user_cv/user_cv_page/user_cv_view_model.dart';
 import 'package:hrapp/product/widgets/cv_card.dart';
 import 'package:hrapp/product/widgets/subtitle.dart';

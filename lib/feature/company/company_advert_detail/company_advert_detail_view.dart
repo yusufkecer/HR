@@ -59,7 +59,7 @@ class _CompanyAdvertDetailViewState extends CompanyAdvertDetailViewModel {
                     Padding(
                       padding: const ProjectPadding.allEight(),
                       child: Text(
-                        advertList!.companyName!,
+                        "${advertList?.companyName!}",
                         textScaleFactor: ProjectFontSize.oneToFour,
                         style: const TextStyle(fontWeight: Weight.midium),
                       ),

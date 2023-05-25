@@ -46,6 +46,7 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
         ),
         body: TabBarView(controller: tabController, children: [
           CompanyHomeView(
+            topJobList: topJobList,
             workers: workers,
             connectionError: dontReachApi,
           ),

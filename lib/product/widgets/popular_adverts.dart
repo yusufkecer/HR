@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/product/constant/image_path.dart';
 
 import '../../Core/Constant/radius.dart';
 import '../../core/constant/project_padding.dart';
@@ -9,11 +10,11 @@ import '../constant/font_size.dart';
 import '../constant/icons.dart';
 import '../constant/string_data.dart';
 import '../data/company_repo/advert_repo.dart';
-import '../models/company_model/company_model.dart';
+import '../models/general_company_model.dart';
 import 'button/icon_button.dart';
 
 class PopularAdverts extends StatefulWidget {
-  final List<Company> advertInfo;
+  final List<Job>? advertInfo;
   final Function(int) saveButton;
   const PopularAdverts({
     Key? key,
@@ -26,66 +27,59 @@ class PopularAdverts extends StatefulWidget {
 }
 
 class _PopularAdvertsState extends State<PopularAdverts> {
-  List<Company>? advertInfo;
-  @override
-  void initState() {
-    advertInfo = widget.advertInfo;
-    super.initState();
-  }
+  List<Job>? advertInfo;
 
   @override
   Widget build(BuildContext context) {
-    return advertInfo != null
-        ? SizedBox(
-            height: 200,
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const CompanyAdvertDetailView(),
-                      ),
-                    );
-                  },
-                  child: Padding(
-                    padding: const ProjectPadding.allEight(),
-                    child: Container(
-                      width: 280,
-                      decoration: const BoxDecoration(
-                        borderRadius: ProjectRadius.mediumAll(),
-                        color: MyColor.tints,
-                      ),
-                      child: Stack(
-                        children: [
-                          saveJobButton(index),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  jobImage(advertInfo?[index]),
-                                  jobTitle(index),
-                                ],
-                              ),
-                              skills(index),
-                              jobWage(index)
-                            ],
-                          ),
-                        ],
-                      ),
+    return SizedBox(
+      height: 200,
+      child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: 4,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CompanyAdvertDetailView(adverts: widget.advertInfo?[index]),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const ProjectPadding.allEight(),
+              child: Container(
+                width: 280,
+                decoration: const BoxDecoration(
+                  borderRadius: ProjectRadius.mediumAll(),
+                  color: MyColor.tints,
+                ),
+                child: Stack(
+                  children: [
+                    saveJobButton(index),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            jobImage(index),
+                            jobTitle(index),
+                          ],
+                        ),
+                        skills(index),
+                        jobWage(index)
+                      ],
                     ),
-                  ),
-                );
-              },
+                  ],
+                ),
+              ),
             ),
-          )
-        : const SizedBox();
+          );
+        },
+      ),
+    );
   }
 
   Align saveJobButton(index) {
@@ -109,13 +103,13 @@ class _PopularAdvertsState extends State<PopularAdverts> {
       child: Container(
         height: 60,
         width: 60,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
-              index.companyImage ?? "",
+              ImagePath.temporaryImage,
             ),
           ),
-          borderRadius: const ProjectRadius.smallAll(),
+          borderRadius: ProjectRadius.smallAll(),
           color: MyColor.transparent,
         ),
       ),
@@ -124,7 +118,7 @@ class _PopularAdvertsState extends State<PopularAdverts> {
 
   Text jobTitle(int index) {
     return Text(
-      advertInfo?[index].jobs?.jobTitle ?? "-",
+      widget.advertInfo?[index].jobTitle ?? "-",
       textScaleFactor: ProjectFontSize.oneToTwo,
       style: const TextStyle(
         fontWeight: Weight.midium,
@@ -139,7 +133,7 @@ class _PopularAdvertsState extends State<PopularAdverts> {
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemCount:
-            advertInfo![parentIndex].jobs!.skills!.length > 3 ? 3 : advertInfo?[parentIndex].jobs!.skills!.length,
+            widget.advertInfo![parentIndex].skills!.length > 3 ? 3 : widget.advertInfo?[parentIndex].skills!.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const ProjectPadding.allEight().copyWith(
@@ -153,7 +147,7 @@ class _PopularAdvertsState extends State<PopularAdverts> {
                 color: MyColor.white,
               ),
               child: Text(
-                advertInfo?[parentIndex].jobs!.skills![index],
+                "${widget.advertInfo?[parentIndex].skills![index]}",
                 textScaleFactor: ProjectFontSize.zeroToNine,
               ),
             ),
@@ -167,7 +161,9 @@ class _PopularAdvertsState extends State<PopularAdverts> {
     return Padding(
       padding: const ProjectPadding.allEight().copyWith(left: 18),
       child: Text(
-        "₺ ${advertInfo?[index].jobs?.lowerWage?.toDouble().toStringAsFixed(0) ?? "-"}/Ay",
+        widget.advertInfo?[index].lowerWage == null
+            ? " ${widget.advertInfo?[index].currency} ${widget.advertInfo?[index].lowerWage?.toDouble().toStringAsFixed(0) ?? "-"}/Ay"
+            : "₺ ${widget.advertInfo?[index].upperWage?.toDouble().toStringAsFixed(0) ?? "-"}/Ay",
         style: const TextStyle(fontWeight: Weight.midium),
       ),
     );

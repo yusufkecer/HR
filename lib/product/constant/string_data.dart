@@ -185,6 +185,9 @@ class StringData {
 
   static const deleteCv = "Özgeçmişi silmek istediğinize emin misiniz?";
 
+  static const notFoundCompany = "Şirket Bulunamadı";
+  static const notFoundAdvert = "İlan Bulunamadı";
+
   //static var successfullyDeleted="Başarılı bir şekilde silindi";
 }
 
