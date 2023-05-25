@@ -138,9 +138,7 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
     if (isEdit == false) {
       res = await dataService.post(ApiUri.createCv, data);
     } else {
-      print("isEdit");
       res = await dataService.upteAdvert(ApiUri.updateCv, data);
-      print(res);
     }
     nav.hideLoading();
     if (res is List) {

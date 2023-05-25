@@ -35,53 +35,59 @@ class CompanyAdvertView extends StatefulWidget {
 }
 
 class _CompanyAdvertViewState extends CompanyAdvertViewModel {
+  void refresh() {}
   @override
   Widget build(BuildContext context) {
     return widget.adverts!.isNotEmpty
-        ? Padding(
-            padding: const ProjectPadding.bottomTwentySix(),
-            child: ListView(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              children: [
-                Wrap(
-                  alignment: WrapAlignment.center,
-                  children: [
-                    CustomChipButton(
-                      title: AdvertFilterOptions.all.options,
-                      selected: filters.getFilter == AdvertFilterOptions.all,
-                      ontap: () {
-                        filters.updateFilter = AdvertFilterOptions.all;
-                        setState(() {});
-                      },
-                    ),
-                    CustomChipButton(
-                      title: AdvertFilterOptions.active.options,
-                      selected: filters.getFilter == AdvertFilterOptions.active,
-                      ontap: () {
-                        filters.updateFilter = AdvertFilterOptions.active;
-                        setState(() {});
-                      },
-                    ),
-                    CustomChipButton(
-                      title: AdvertFilterOptions.passive.options,
-                      selected: filters.getFilter == AdvertFilterOptions.passive,
-                      ontap: () {
-                        filters.updateFilter = AdvertFilterOptions.passive;
-                        setState(() {});
-                      },
-                    ),
-                  ],
-                ),
-                const Subtitle(
-                  title: StringData.myAdvertisement,
-                ),
-                filters.getFilter == AdvertFilterOptions.all
-                    ? jobs(widget.adverts!)
-                    : filters.getFilter == AdvertFilterOptions.active
-                        ? jobs(widget.activeAdverts!)
-                        : jobs(widget.passiveAdverts!)
-              ],
+        ? RefreshIndicator(
+            onRefresh: () async {
+              widget.updateList!();
+            },
+            child: Padding(
+              padding: const ProjectPadding.bottomTwentySix(),
+              child: ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    children: [
+                      CustomChipButton(
+                        title: AdvertFilterOptions.all.options,
+                        selected: filters.getFilter == AdvertFilterOptions.all,
+                        ontap: () {
+                          filters.updateFilter = AdvertFilterOptions.all;
+                          setState(() {});
+                        },
+                      ),
+                      CustomChipButton(
+                        title: AdvertFilterOptions.active.options,
+                        selected: filters.getFilter == AdvertFilterOptions.active,
+                        ontap: () {
+                          filters.updateFilter = AdvertFilterOptions.active;
+                          setState(() {});
+                        },
+                      ),
+                      CustomChipButton(
+                        title: AdvertFilterOptions.passive.options,
+                        selected: filters.getFilter == AdvertFilterOptions.passive,
+                        ontap: () {
+                          filters.updateFilter = AdvertFilterOptions.passive;
+                          setState(() {});
+                        },
+                      ),
+                    ],
+                  ),
+                  const Subtitle(
+                    title: StringData.myAdvertisement,
+                  ),
+                  filters.getFilter == AdvertFilterOptions.all
+                      ? jobs(widget.adverts!)
+                      : filters.getFilter == AdvertFilterOptions.active
+                          ? jobs(widget.activeAdverts!)
+                          : jobs(widget.passiveAdverts!)
+                ],
+              ),
             ),
           )
         : const NotFound(

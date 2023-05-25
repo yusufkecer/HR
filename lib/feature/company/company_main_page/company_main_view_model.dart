@@ -21,12 +21,15 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   void initState() {
     Future(() => nav.showLoading(context));
     getWorkers();
+    getPopulerAdverts();
     tabController = TabController(
       length: 2,
       vsync: this,
     );
+
     updateList();
     getCompanyInfo();
+
     Future(() => nav.hideLoading(context));
     super.initState();
   }
@@ -41,6 +44,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   List<Job> passiveAdverts = [];
 
   Future<void> updateList() async {
+    print("update list");
     List<Job> jobsAll = await getJobs(ApiUri.getCompanyAdvertById);
     List<Job> jobsActive = await getJobs(ApiUri.getAdvertByEmployerIdStatus, "true");
     List<Job> jobsPassive = await getJobs(ApiUri.getAdvertByEmployerIdStatus, "false");
@@ -148,8 +152,22 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
     }
   }
 
-  Job? companyInfo;
+  Future<void> getPopulerAdverts() async {
+    var res = await dt.fetchData(ApiUri.getTopJobAdvert);
+    if (res == null) {
+      return;
+    }
+    Iterable? data = res["data"];
+    if (data == null) {
+      return;
+    }
+    topJobList = data.map((e) => Job.fromJson(e)).toList();
+    print(topJobList.toString() + "top job list");
+    setState(() {});
+  }
 
+  Job? companyInfo;
+  List<Job>? topJobList;
   String? dontReachApi;
   Iterable? futureWorker;
   List<Worker>? workers;

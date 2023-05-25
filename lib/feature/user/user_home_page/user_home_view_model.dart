@@ -18,30 +18,7 @@ abstract class UserHomeViewModel extends State<UserHomeView> {
     super.initState();
   }
 
-  List adverts = ["Full Stack Developer", "UI/UX Designer", "Backend Developer", "Mobile Developer"];
   List<Color> color = [MyColor.fuchsiaBlue, MyColor.butterflyBush, MyColor.darkLevander, MyColor.black];
-  List imageList = [
-    [
-      "https://atiknakit.com/assets/images/atiknakitbeyaz.png",
-      "Atık Nakit",
-      "2 Yeni İlan",
-    ],
-    [
-      "https://static.dezeen.com/uploads/2021/11/meta-facebook-rebranding-name-news_dezeen_2364_col_sq.jpg",
-      "Meta",
-      "3 Yeni İlan",
-    ],
-    [
-      "https://play-lh.googleusercontent.com/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1",
-      "Google",
-      "4 Yeni İlan",
-    ],
-    [
-      "https://pbs.twimg.com/profile_images/1062993041324171265/CcUjyxc9_400x400.jpg",
-      "Microsoft",
-      "5 Yeni İlan",
-    ]
-  ];
 
   void refresh() {
     setState(() {});
