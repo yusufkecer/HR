@@ -2,16 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/core/extensions/context_extension.dart';
+import 'package:hrapp/core/navigation/navigation_service.dart';
+import 'package:hrapp/feature/company/company_profile/company_profile_view.dart';
 import 'package:hrapp/feature/user/user_advert_detail/user_advert_detail_view_model.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/image_path.dart';
+import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
+import 'package:hrapp/product/service/data_service.dart';
 import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/subtitle.dart';
 import '../../../Product/Constant/colors.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/models/general_company_model.dart';
+import '../../../product/service/api.dart';
 
 class UserAdvertDetailView extends StatefulWidget {
   final Job? job;
@@ -31,6 +36,38 @@ class _UserAdvertDetailViewState extends UserAdvertDetailViewModel {
       backgroundColor: MyColor.backgroundColor,
       appBar: AppBar(
         title: const AppBarLogoTitle(),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              Job? companyInfo;
+              DataService dt = DataService();
+              NavigationService nav = NavigationService();
+              nav.showLoading();
+              try {
+                var res = await dt.fetchData(ApiUri.companyInfoById + widget.job!.companyId.toString());
+                print(res);
+                nav.hideLoading();
+                if (res == null) {
+                  nav.alertWithButon(StringData.error, StringData.infoNotAvaible);
+
+                  return;
+                }
+
+                Map<String, dynamic> data = res["data"];
+                companyInfo = Job.fromJsonCompanyInfo(data);
+              } catch (e) {
+                rethrow;
+              }
+
+              Future(() => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => CompanyProfileView(companyInfo: companyInfo),
+                    ),
+                  ));
+            },
+            icon: const Icon(MyIcons.company),
+          ),
+        ],
       ),
       body: Padding(
         padding: const ProjectPadding.allTwelve().copyWith(top: 0),

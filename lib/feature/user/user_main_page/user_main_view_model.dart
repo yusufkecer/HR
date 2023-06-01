@@ -84,7 +84,9 @@ abstract class UserMainViewModel extends State<UserMainView> {
         cv: cv,
         getCv: getCv,
       );
-      widgetOptions[3] = const UserAccess();
+      widgetOptions[3] = UserAccess(
+        userInfo: cv,
+      );
     });
     Future(() => nav.hideLoading());
   }

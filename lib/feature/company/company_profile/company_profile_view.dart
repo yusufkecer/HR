@@ -18,9 +18,11 @@ import '../../../product/models/general_company_model.dart';
 import '../../../product/widgets/app_bar_logo.dart';
 
 class CompanyProfileView extends StatefulWidget {
+  final bool isEdit;
   final Job? companyInfo;
   const CompanyProfileView({
     Key? key,
+    this.isEdit = false,
     required this.companyInfo,
   }) : super(key: key);
 
@@ -94,29 +96,31 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
                   ),
           ),
         ),
-        SizedBox(
-          height: 140,
-          width: 140,
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              height: 40,
-              width: 40,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-                color: MyColor.desertStorm,
-              ),
-              child: IconButton(
-                onPressed: changeImage,
-                icon: const Icon(
-                  size: 28,
-                  color: MyColor.purplishBlue,
-                  MyIcons.camera,
+        widget.isEdit
+            ? SizedBox(
+                height: 140,
+                width: 140,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                      color: MyColor.desertStorm,
+                    ),
+                    child: IconButton(
+                      onPressed: changeImage,
+                      icon: const Icon(
+                        size: 28,
+                        color: MyColor.purplishBlue,
+                        MyIcons.camera,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-        )
+              )
+            : const SizedBox(),
       ],
     );
   }
@@ -319,9 +323,9 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
                   TextSpan(
                     style: const TextStyle(
                       color: MyColor.black,
-                      fontSize: 16,
+                      fontSize: 17,
                     ),
-                    text: StringData.companyInfo,
+                    text: widget.companyInfo?.description ?? "",
                   ),
                 ],
               ),

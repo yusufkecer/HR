@@ -27,11 +27,18 @@ class LocalStorage {
     await prefs?.remove(params);
   }
 
-  void setbool(String? val) async {
-    if (val == null) {
+  void setBool(String? key, bool? val) async {
+    if (val == null || key == null) {
       return;
     }
-    await prefs?.setString('token', val);
+    await prefs?.setBool(key, val);
+  }
+
+  bool? getBool(String? key) {
+    if (key == null) {
+      return false;
+    }
+    return prefs?.getBool(key);
   }
 
   String? get getToken {

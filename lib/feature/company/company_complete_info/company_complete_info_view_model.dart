@@ -15,9 +15,11 @@ abstract class CompaynCompleteInfoViewModel extends State<CompaynCompleteInfoVie
   TextEditingController nameController = TextEditingController();
   TextEditingController mailController = TextEditingController();
   TextEditingController taxController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   DataService dt = DataService();
   Job? jobs;
   String? tax;
+  String? companyDescription;
   List department = [];
   NavigationService nav = NavigationService();
   List<String>? sectorList;
@@ -58,5 +60,7 @@ abstract class CompaynCompleteInfoViewModel extends State<CompaynCompleteInfoVie
     siteController.text = jobs?.webSite ?? "";
     nameController.text = jobs?.companyName ?? "";
     mailController.text = jobs?.email ?? "";
+    descriptionController.text = jobs?.description ?? "";
+    taxController.text = jobs?.tax ?? "";
   }
 }

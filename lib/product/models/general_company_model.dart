@@ -25,7 +25,7 @@ class Job {
   final String? totalWorker;
   final List? sector;
   final List? departments;
-
+  final String? tax;
   Job({
     this.companyName,
     this.companyPhone,
@@ -53,6 +53,7 @@ class Job {
     this.totalWorker,
     this.sector,
     this.departments,
+    this.tax,
   });
 
   factory Job.fromJson(Map<String, dynamic> json) {
@@ -89,6 +90,8 @@ class Job {
       email: json['email'],
       departments: json["departments"],
       address: json["address"],
+      description: json['description'],
+      tax: json["tax"],
     );
   }
   Map<String, dynamic> toJson() => {
@@ -118,7 +121,8 @@ class Job {
         'email': email,
         "password": password,
         'numberOfEmployees': totalWorker,
-        "departments": departments
+        "departments": departments,
+        "description": description,
         // 'address': address,
       };
 
