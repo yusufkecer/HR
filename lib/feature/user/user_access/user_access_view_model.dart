@@ -10,7 +10,7 @@ import '../../auth/chose_auth.dart';
 abstract class UserAccessViewModel extends State<UserAccess> {
   NavigationService nav = NavigationService();
   void logOut() async {
-    bool? check = await nav.checkDialog(StringData.checkTitle, StringData.checkOut);
+    bool? check = await nav.checkDialog(StringData.checkOut, StringData.checkOut);
     if (check == true) {
       LocalStorage storage = LocalStorage.instance;
       Auth auth = Auth.instance;

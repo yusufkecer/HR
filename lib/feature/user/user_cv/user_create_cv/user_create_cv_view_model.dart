@@ -26,14 +26,15 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
         project.length +
         socialMedia.length;
     initController();
-    typeControl();
+    Map<String, dynamic> cv = widget.cv ?? {};
+    if (cv.isNotEmpty) {
+      typeControl();
+    }
+
     super.initState();
   }
 
   void typeControl() {
-    if (widget.cv == null) {
-      return;
-    }
     cv = widget.cv;
     isEdit = true;
     textController[0].text = cv!["information"];

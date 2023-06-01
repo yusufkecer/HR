@@ -60,6 +60,7 @@ class CompaynCompleteInfoViewState extends CompaynCompleteInfoViewModel {
             departments(),
             totalWorkers(),
             taxNumber(),
+            description(),
             SizedBox(
               width: 300,
               child: Padding(
@@ -91,14 +92,15 @@ class CompaynCompleteInfoViewState extends CompaynCompleteInfoViewModel {
                     companyName = nameController.text;
 
                     String json = jsonEncode(Job(
-                            sector: sectorList,
-                            totalWorker: totalWorker,
-                            departments: department,
-                            email: companyMail,
-                            webSite: site,
-                            companyPhone: phoneNumber,
-                            companyName: companyName)
-                        .companyToJson());
+                      sector: sectorList,
+                      totalWorker: totalWorker,
+                      departments: department,
+                      email: companyMail,
+                      webSite: site,
+                      companyPhone: phoneNumber,
+                      companyName: companyName,
+                      description: companyDescription,
+                    ).companyToJson());
                     var res = await dt.upteAdvert(ApiUri.updateCompany, json);
                     nav.hideLoading();
                     try {
@@ -293,6 +295,7 @@ class CompaynCompleteInfoViewState extends CompaynCompleteInfoViewModel {
     return Padding(
       padding: const ProjectPadding.topTen().copyWith(left: 15, right: 15, top: 15),
       child: AuthField(
+        controller: taxController,
         textType: TextInputType.number,
         listener: (value) {
           tax = value;
@@ -306,11 +309,38 @@ class CompaynCompleteInfoViewState extends CompaynCompleteInfoViewModel {
         },
         titlePadding: const ProjectPadding.textFieldTitle(),
         icon: const Icon(
-          MyIcons.department,
+          MyIcons.list,
           color: MyColor.black,
         ),
         fontWeight: Weight.midium,
         info: StringData.taxNumber,
+      ),
+    );
+  }
+
+  Padding description() {
+    return Padding(
+      padding: const ProjectPadding.topTen().copyWith(left: 15, right: 15, top: 15),
+      child: AuthField(
+        controller: descriptionController,
+        textType: TextInputType.text,
+        listener: (value) {
+          companyDescription = value;
+          return;
+        },
+        validation: (value) {
+          if (value!.length < 30) {
+            return null;
+          }
+          return StringData.writeDescription;
+        },
+        titlePadding: const ProjectPadding.textFieldTitle(),
+        icon: const Icon(
+          MyIcons.alert,
+          color: MyColor.black,
+        ),
+        fontWeight: Weight.midium,
+        info: StringData.description.substring(0, StringData.description.length - 1),
       ),
     );
   }

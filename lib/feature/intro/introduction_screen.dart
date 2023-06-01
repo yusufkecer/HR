@@ -10,6 +10,7 @@ import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import '../../Product/Constant/colors.dart';
+import '../../core/navigation/local_service.dart';
 
 class Introduction extends StatelessWidget {
   const Introduction({super.key});
@@ -30,6 +31,7 @@ class Introduction extends StatelessWidget {
         next: routeButton(MyIcons.nextIOSIcon),
         back: routeButton(MyIcons.backIOSIcon),
         onDone: () {
+          LocalStorage.instance.setBool("isFirstTime", true);
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
                 builder: (context) => const ChoseAuth(),
@@ -98,7 +100,6 @@ class Introduction extends StatelessWidget {
     );
   }
 
-  
   DotsDecorator dotsDecorator() {
     return const DotsDecorator(
       color: MyColor.osloGrey,

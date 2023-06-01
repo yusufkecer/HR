@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/feature/user/user_access/user_access_view_model.dart';
 import 'package:hrapp/product/constant/colors.dart';
 import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/uri.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../product/constant/string_data.dart';
 import '../../../product/widgets/user_profile_settings.dart';
+import '../user_profile/user_profile_view.dart';
 
 class UserAccess extends StatefulWidget {
-  const UserAccess({super.key});
+  final Map<String, dynamic>? userInfo;
+  const UserAccess({
+    Key? key,
+    required this.userInfo,
+  }) : super(key: key);
 
   @override
   State<UserAccess> createState() => _UserAccessState();
@@ -23,7 +29,15 @@ class _UserAccessState extends UserAccessViewModel {
     return ListView(
       children: [
         UserProfileSettings(
-          ontap: () {},
+          ontap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => UserProfileView(
+                  userInfo: widget.userInfo,
+                ),
+              ),
+            );
+          },
           leading: MyIcons.user,
           title: "Profil",
           trailing: MyIcons.nextIOSIcon,
@@ -38,6 +52,12 @@ class _UserAccessState extends UserAccessViewModel {
           ontap: () {},
           leading: MyIcons.saved,
           title: "Favori İlanlarım",
+          trailing: MyIcons.nextIOSIcon,
+        ),
+        UserProfileSettings(
+          ontap: () {},
+          leading: MyIcons.wage,
+          title: "Gelir Vergisi Hesapla",
           trailing: MyIcons.nextIOSIcon,
         ),
         UserProfileSettings(
@@ -61,9 +81,9 @@ class _UserAccessState extends UserAccessViewModel {
             padding: const ProjectPadding.allTwelve(),
             child: InkWell(
               onTap: logOut,
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Icon(
                     MyIcons.logout,
                     size: 27,

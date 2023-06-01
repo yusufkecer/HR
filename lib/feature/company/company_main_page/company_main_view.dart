@@ -112,6 +112,14 @@ class _CompanyMainViewState extends CopmanyMainViewModel {
             height: 5,
           ),
           listTile(
+            MyIcons.list,
+            StringData.application,
+            navigateApplications,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          listTile(
             MyIcons.saveIcon,
             StringData.savedAdvert,
             navigateSavedAdvert,

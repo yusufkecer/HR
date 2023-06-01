@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/feature/auth/chose_auth.dart';
+import 'package:hrapp/feature/company/company_advert_application/company_advert_app_view.dart';
 import 'package:hrapp/feature/company/company_create_advert/company_create_advert_view.dart';
 import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/data/company_repo/advert_repo.dart';
@@ -66,7 +67,10 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
 
   void navigateProfile() {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => CompanyProfileView(companyInfo: companyInfo),
+      builder: (context) => CompanyProfileView(
+        companyInfo: companyInfo,
+        isEdit: true,
+      ),
     ));
   }
 
@@ -90,6 +94,14 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   void navigateUpdateInfo() async {
     await Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => CompaynCompleteInfoView(info: companyInfo),
+    ));
+
+    getCompanyInfo();
+  }
+
+  void navigateApplications() async {
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => CompanyAdvertAppView(),
     ));
 
     getCompanyInfo();

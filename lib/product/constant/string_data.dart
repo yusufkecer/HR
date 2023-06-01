@@ -24,6 +24,7 @@ class StringData {
   static const writeEmail = "Geçerli bir mail adresi giriniz.";
   static const writePassword = "Geçerli bir şifre giriniz. (sayı ve büyük harf ve özel karakter.)";
   static const writeName = "Geçerli bir isim giriniz.";
+  static const writeDescription = "Geçerli bir açıklama giriniz.";
   static const writeSurname = "Geçerli bir soyisim giriniz.";
   static const writePhone = "Geçerli bir telefon numarası giriniz.";
   static const selectBirthOfDay = "Lütfen doğum tarihi seçiniz";
@@ -41,7 +42,7 @@ class StringData {
   static const titleFirst = "Hoş Geldiniz...";
   static const done = "Geç";
   static const subtitleFirst = "Hayalinizdeki iş bir tık kadar uzağınızda.";
-
+  static const infoNotAvaible = "Şirket bilgisi bulunmamaktadır.";
   static const titleSecond = "Kolay Kullanım";
   static const subtitleSecond = "Hızlı bir şekilde iş ilanlarını inceleyebilir, kaydedebilir ve başvurabilirsin.";
 
@@ -94,6 +95,7 @@ class StringData {
   static const skillsHint = "Word, Excel, PowerPoint";
   static const timing = "Çalışma Türü*";
   static const level = "Deneyim*";
+  static const experiances = "Seviye";
   static const wage = "Maaş Aralığı";
   static const salaryRange = "20000 - 30000";
   static const currencyUnit = "Birim";
@@ -120,6 +122,7 @@ class StringData {
 
   static const generalInfo = "Temel Bilgiler";
   static const info = "Bilgiler";
+  static const application = "Başvurular";
   static const cv = "CV";
   static const createCv = "Özgeçmiş Oluştur";
   static const navCv = "Özgeçmiş";
@@ -136,6 +139,8 @@ class StringData {
   //advert detail
   static const skillsD = "Aranan Nitelikler:";
   static const jobPositionD = "Pozisyon:";
+  static const startDate = "Başlangıç Tarihi:";
+  static const leaveDate = "Ayrılma Tarihi:";
   static const timingD = "Çalışma Türü:";
   static const wageD = "Maaş Aralığı:";
   static const levelD = "Deneyim:";
@@ -187,6 +192,8 @@ class StringData {
 
   static const notFoundCompany = "Şirket Bulunamadı";
   static const notFoundAdvert = "İlan Bulunamadı";
+
+  static const incomingApplications = "Gelen Başvurular";
 
   //static var successfullyDeleted="Başarılı bir şekilde silindi";
 }
