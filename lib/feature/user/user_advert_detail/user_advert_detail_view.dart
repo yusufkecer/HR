@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/core/extensions/context_extension.dart';
@@ -13,6 +14,7 @@ import 'package:hrapp/product/service/data_service.dart';
 import 'package:hrapp/product/widgets/app_bar_logo.dart';
 import 'package:hrapp/product/widgets/button/elevated_icon.dart';
 import 'package:hrapp/product/widgets/subtitle.dart';
+
 import '../../../Product/Constant/colors.dart';
 import '../../../product/constant/icons.dart';
 import '../../../product/models/general_company_model.dart';
@@ -20,9 +22,11 @@ import '../../../product/service/api.dart';
 
 class UserAdvertDetailView extends StatefulWidget {
   final Job? job;
+  final bool isApplication;
   const UserAdvertDetailView({
     Key? key,
     this.job,
+    this.isApplication = false,
   }) : super(key: key);
 
   @override
@@ -45,7 +49,6 @@ class _UserAdvertDetailViewState extends UserAdvertDetailViewModel {
               nav.showLoading();
               try {
                 var res = await dt.fetchData(ApiUri.companyInfoById + widget.job!.companyId.toString());
-                print(res);
                 nav.hideLoading();
                 if (res == null) {
                   nav.alertWithButon(StringData.error, StringData.infoNotAvaible);
@@ -75,7 +78,7 @@ class _UserAdvertDetailViewState extends UserAdvertDetailViewModel {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             Container(
-              height: context.height - 154,
+              height: widget.isApplication == false ? context.height - 154 : context.height - 100,
               width: context.width,
               decoration: const BoxDecoration(
                 color: MyColor.white,
@@ -168,14 +171,16 @@ class _UserAdvertDetailViewState extends UserAdvertDetailViewModel {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MyElevatedIcons(
-                onPressed: () {},
-                buttonName: "Başvur",
-                icons: const Icon(MyIcons.confirm),
-              ),
-            )
+            !(widget.isApplication)
+                ? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MyElevatedIcons(
+                      onPressed: advertApplication,
+                      buttonName: "Başvur",
+                      icons: const Icon(MyIcons.confirm),
+                    ),
+                  )
+                : const SizedBox(),
           ],
         ),
       ),

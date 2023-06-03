@@ -30,7 +30,6 @@ class CompanyHomeView extends StatefulWidget {
 class _CompanyHomeViewState extends CompanyHomeViewModel {
   @override
   Widget build(BuildContext context) {
-    print("home top job list" + widget.topJobList.toString());
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());

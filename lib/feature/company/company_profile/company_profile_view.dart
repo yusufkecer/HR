@@ -8,7 +8,6 @@ import 'package:hrapp/product/constant/font_size.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/string_data.dart';
-import 'package:hrapp/product/data/auth.dart';
 import 'package:hrapp/product/widgets/button/title_text_button.dart';
 import 'package:hrapp/product/widgets/card_listtile.dart';
 import 'package:hrapp/product/widgets/info_card.dart';
@@ -137,7 +136,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
               style: const TextStyle(fontWeight: Weight.bold, color: MyColor.lightBlack),
               children: [
                 TextSpan(
-                  text: Auth.instance.getName,
+                  text: widget.companyInfo?.companyName,
                 )
               ],
             ),
@@ -150,14 +149,16 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
               fontWeight: Weight.midium,
             ),
           ),
-          Text(
-            "${widget.companyInfo?.totalWorker} Kişi",
-            textAlign: TextAlign.start,
-            textScaleFactor: ProjectFontSize.oneToTwo,
-            style: const TextStyle(
-              fontWeight: Weight.midium,
-            ),
-          ),
+          widget.companyInfo?.totalWorker != null
+              ? Text(
+                  "${widget.companyInfo?.totalWorker} Kişi",
+                  textAlign: TextAlign.start,
+                  textScaleFactor: ProjectFontSize.oneToTwo,
+                  style: const TextStyle(
+                    fontWeight: Weight.midium,
+                  ),
+                )
+              : const SizedBox(),
         ],
       ),
     );
@@ -199,7 +200,7 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
                     textColor: MyColor.osloGrey,
                     color: MyColor.ocianLavender,
                     iconLeading: MyIcons.mail,
-                    text: Auth.instance.getEmail,
+                    text: widget.companyInfo?.email,
                   )
                 : Padding(
                     padding: const ProjectPadding.allEight(),
@@ -308,32 +309,37 @@ class _CompanyProfileViewState extends CompanyProfileWiewModel {
   Padding companyName() {
     return Padding(
       padding: const ProjectPadding.allSixteen(),
-      child: !isEditGeneralInfo
-          ? RichText(
-              text: TextSpan(
-                children: [
-                  const TextSpan(
-                    text: "${StringData.aboutCompany}\n\n",
-                    style: TextStyle(
-                      color: MyColor.black,
-                      fontWeight: Weight.midium,
-                      fontSize: 18,
-                    ),
+      child: widget.companyInfo?.description != null
+          ? !isEditGeneralInfo
+              ? RichText(
+                  text: TextSpan(
+                    children: [
+                      const TextSpan(
+                        text: "${StringData.aboutCompany}\n\n",
+                        style: TextStyle(
+                          color: MyColor.black,
+                          fontWeight: Weight.midium,
+                          fontSize: 18,
+                        ),
+                      ),
+                      TextSpan(
+                        style: const TextStyle(
+                          color: MyColor.black,
+                          fontSize: 17,
+                        ),
+                        text: widget.companyInfo?.description ?? "",
+                      ),
+                    ],
                   ),
-                  TextSpan(
-                    style: const TextStyle(
-                      color: MyColor.black,
-                      fontSize: 17,
-                    ),
-                    text: widget.companyInfo?.description ?? "",
-                  ),
-                ],
-              ),
-            )
-          : CustomTextField(
-              hint: StringData.aboutCompany,
-              maxLine: null,
-              textEditingController: generalInfoController,
+                )
+              : CustomTextField(
+                  hint: StringData.aboutCompany,
+                  maxLine: null,
+                  textEditingController: generalInfoController,
+                )
+          : const Text(
+              "Şirket hakkında bilgi bulunmamaktadır.",
+              style: TextStyle(color: MyColor.osloGrey, fontStyle: FontStyle.italic, fontSize: 16),
             ),
     );
   }

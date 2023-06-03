@@ -27,7 +27,6 @@ class UserProfileView extends StatefulWidget {
 class _UserProfileViewState extends UserProfileViewModel {
   @override
   Widget build(BuildContext context) {
-    print(widget.userInfo);
     return Scaffold(
       backgroundColor: MyColor.backgroundColor,
       appBar: AppBar(

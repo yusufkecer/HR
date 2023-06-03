@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hrapp/Product/Constant/colors.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/product/constant/icons.dart';
@@ -6,7 +7,11 @@ import 'package:hrapp/product/constant/image_path.dart';
 import 'package:hrapp/product/constant/weight.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  final void Function()? onTap;
+  const CustomAppBar({
+    Key? key,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,7 @@ class CustomAppBar extends StatelessWidget {
 
   IconButton advertButton() {
     return IconButton(
-        onPressed: () {},
+        onPressed: onTap,
         icon: const Icon(
           MyIcons.company,
           size: 30,

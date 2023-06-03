@@ -45,7 +45,6 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   List<Job> passiveAdverts = [];
 
   Future<void> updateList() async {
-    print("update list");
     List<Job> jobsAll = await getJobs(ApiUri.getCompanyAdvertById);
     List<Job> jobsActive = await getJobs(ApiUri.getAdvertByEmployerIdStatus, "true");
     List<Job> jobsPassive = await getJobs(ApiUri.getAdvertByEmployerIdStatus, "false");
@@ -101,7 +100,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
 
   void navigateApplications() async {
     await Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => CompanyAdvertAppView(),
+      builder: (context) => const CompanyAdvertAppView(),
     ));
 
     getCompanyInfo();
@@ -174,7 +173,6 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
       return;
     }
     topJobList = data.map((e) => Job.fromJson(e)).toList();
-    print(topJobList.toString() + "top job list");
     setState(() {});
   }
 

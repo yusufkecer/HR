@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/Product/Constant/colors.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
+import 'package:hrapp/core/constant/radius.dart';
 import 'package:hrapp/feature/company/company_advert_application/company_advert_app_view_model.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/image_path.dart';
@@ -34,7 +35,13 @@ class _CompanyAdvertAppViewState extends CompanyAdvertAppViewModel {
               itemCount: 3,
               itemBuilder: (context, index) => Column(
                 children: [
-                  userInfo(),
+                  InkWell(
+                    onTap: goToUserDetail,
+                    customBorder: const RoundedRectangleBorder(
+                      borderRadius: ProjectRadius.smallAll(),
+                    ),
+                    child: userInfo(),
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -47,14 +54,18 @@ class _CompanyAdvertAppViewState extends CompanyAdvertAppViewModel {
     );
   }
 
-  Container userInfo() {
-    return Container(
-      color: MyColor.tints,
+  Ink userInfo() {
+    return Ink(
+      decoration: const BoxDecoration(
+        color: MyColor.tints,
+        borderRadius: ProjectRadius.smallAll(),
+      ),
       child: const Center(
         child: Padding(
           padding: ProjectPadding.allEight(),
           child: ListTile(
             leading: CircleAvatar(
+              radius: 30,
               backgroundImage: NetworkImage(ImagePath.temporaryImage),
             ),
             title: Text("İşçi Adı Soyadı"),

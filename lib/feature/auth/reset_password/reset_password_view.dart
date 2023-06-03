@@ -1,6 +1,5 @@
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/size.dart';
-import 'package:hrapp/feature/splash/splash_screen.dart';
 import 'package:hrapp/product/constant/icons.dart';
 import 'package:hrapp/product/constant/string_data.dart';
 import 'package:hrapp/product/constant/weight.dart';
@@ -70,13 +69,7 @@ class _ResetPasswordState extends State<ResetPassword> {
 
   MyElevatedIcons resetPasswordButton(BuildContext context) {
     return MyElevatedIcons(
-      onPressed: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const Splash(),
-          ),
-        );
-      },
+      onPressed: () {},
       buttonName: StringData.changePassword,
       icons: const Icon(
         MyIcons.resetPassword,
