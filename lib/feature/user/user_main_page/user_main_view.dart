@@ -20,7 +20,11 @@ class _UserMainViewState extends UserMainViewModel {
       onTap: () => nav.closeKeyboard(),
       child: Scaffold(
         backgroundColor: const Color(0XFFE7EBF5),
-        appBar: const PreferredSize(preferredSize: Size.fromHeight(65), child: CustomAppBar()),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(65),
+            child: CustomAppBar(
+              onTap: navigateAdvertApp,
+            )),
         body: Center(
           child: widgetOptions.elementAt(selectedIndex),
         ),

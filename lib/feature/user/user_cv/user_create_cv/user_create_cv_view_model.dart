@@ -135,6 +135,7 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
     };
 
     final data = jsonEncode(cv);
+    // ignore: prefer_typing_uninitialized_variables
     var res;
     if (isEdit == false) {
       res = await dataService.post(ApiUri.createCv, data);

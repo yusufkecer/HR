@@ -26,7 +26,9 @@ class DataService {
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
-    } else {}
+    } else {
+      print("error");
+    }
   }
 
   Future authLogin(String email, String password, String endpoint) async {

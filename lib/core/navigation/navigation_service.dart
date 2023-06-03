@@ -33,6 +33,39 @@ class NavigationService {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
   }
 
+  Future<String?> displayTextInputDialog(alertTitle, text, textFieldController) async {
+    return showDialog<String>(
+        context: NavigationKey.instance.navigatorKey.currentContext!,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(alertTitle),
+            content: TextField(
+              maxLines: null,
+              controller: textFieldController,
+              decoration: InputDecoration(hintText: text),
+            ),
+            actions: <Widget>[
+              MaterialButton(
+                color: Theme.of(context).primaryColor,
+                textColor: Colors.white,
+                child: const Text(StringData.cancel),
+                onPressed: () {
+                  Navigator.of(context).pop("false");
+                },
+              ),
+              MaterialButton(
+                color: Theme.of(context).primaryColor,
+                textColor: Colors.white,
+                child: const Text(StringData.ok),
+                onPressed: () {
+                  Navigator.of(context).pop(textFieldController.text);
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   Future<bool?> checkDialog(alertTitle, text) async {
     return showDialog<bool>(
       context: NavigationKey.instance.navigatorKey.currentContext!,

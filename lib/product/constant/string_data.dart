@@ -117,7 +117,8 @@ class StringData {
   static const updateInfo = "Bilgilerimi Güncelle";
 
   static const missingText = "İşaretli alanları (*) lütfen doldurunuz.";
-
+  static const enterDescription = "Açıklama Giriniz";
+  static const sendDescriptionToCompany = "Kendinizden bahsedin";
   static const contactInfo = "İletişim Bilgileri";
 
   static const generalInfo = "Temel Bilgiler";
@@ -194,6 +195,10 @@ class StringData {
   static const notFoundAdvert = "İlan Bulunamadı";
 
   static const incomingApplications = "Gelen Başvurular";
+
+  static const checkApplication = "Başvuruyu tamamlamak istediğinize emin misiniz?";
+
+  static const applicationSuccess = "Başvuru işlemi başarılı bir şekilde gerçekleşti.";
 
   //static var successfullyDeleted="Başarılı bir şekilde silindi";
 }

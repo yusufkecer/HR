@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hrapp/core/constant/project_padding.dart';
 import 'package:hrapp/core/constant/radius.dart';
+import 'package:hrapp/feature/company/company_profile/company_profile_view.dart';
 import 'package:hrapp/feature/user/user_advert_detail/user_advert_detail_view.dart';
 import 'package:hrapp/feature/user/user_home_page/user_home_view_model.dart';
 import 'package:hrapp/product/constant/colors.dart';
@@ -124,38 +125,50 @@ class UserHomeViewState extends UserHomeViewModel {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const ProjectPadding.allEight(),
-                  child: Container(
-                    decoration: DecorationUserHome(decorationColor: color[index]),
-                    width: 130,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const ProjectPadding.allEight().copyWith(top: 13),
-                          child: const SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: ClipRRect(
-                              borderRadius: ProjectRadius.smallAll(),
-                              child: Image(
-                                image: NetworkImage(ImagePath.temporaryImage),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CompanyProfileView(
+                            companyInfo: widget.topCompany?[index],
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      decoration: DecorationUserHome(decorationColor: color[index]),
+                      width: 130,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const ProjectPadding.allEight().copyWith(top: 13),
+                            child: const SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: ClipRRect(
+                                borderRadius: ProjectRadius.smallAll(),
+                                child: Image(
+                                  image: NetworkImage(ImagePath.temporaryImage),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const ProjectPadding.allEight().copyWith(top: 0),
-                          child: Text(
-                            widget.topCompany![index].companyName ?? "",
-                            textScaleFactor: ProjectFontSize.oneToFour,
-                            style: const TextStyle(color: MyColor.white),
+                          Padding(
+                            padding: const ProjectPadding.allEight().copyWith(top: 0),
+                            child: Text(
+                              widget.topCompany![index].companyName ?? "",
+                              textScaleFactor: ProjectFontSize.oneToFour,
+                              style: const TextStyle(color: MyColor.white),
+                            ),
                           ),
-                        ),
-                        Text(
-                          widget.topCompany![index].sector?.first ?? "Yazılım",
-                          textScaleFactor: ProjectFontSize.oneToTwo,
-                          style: TextStyle(color: MyColor.white.withOpacity(.8)),
-                        )
-                      ],
+                          Text(
+                            widget.topCompany![index].sector?.first ?? "Yazılım",
+                            textScaleFactor: ProjectFontSize.oneToTwo,
+                            style: TextStyle(color: MyColor.white.withOpacity(.8)),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 );
