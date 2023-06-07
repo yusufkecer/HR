@@ -46,13 +46,13 @@ abstract class LoginViewModel extends State<LoginView> with PasswordVisibilityMi
     var val = await Auth.instance.login(
       emailController.text,
       passwordController.text,
-      widget.isCompany! ? ApiUri.loginCompnay : ApiUri.loginUser,
+      widget.isCompany == true ? ApiUri.loginCompnay : ApiUri.loginUser,
       true,
       check,
     );
     Future(() => nav.hideLoading(context));
     if (val == true) {
-      Future(() => widget.isCompany! ? nav.navigteToCompany(context) : nav.navigteToUser(context));
+      Future(() => widget.isCompany == true ? nav.navigteToCompany(context) : nav.navigteToUser(context));
     } else if (val.runtimeType == String) {
       Future(() => nav.callSnackbar(context, val));
     } else if (val.runtimeType == List) {

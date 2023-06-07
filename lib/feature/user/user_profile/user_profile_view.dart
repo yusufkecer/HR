@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hrapp/product/widgets/not_found.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 import 'package:hrapp/core/constant/project_padding.dart';
@@ -32,34 +33,40 @@ class _UserProfileViewState extends UserProfileViewModel {
       appBar: AppBar(
         title: const AppBarLogoTitle(),
       ),
-      body: Padding(
-        padding: const ProjectPadding.allTen(),
-        child: ListView(
-          children: [
-            profileInfo(),
-            const SizedBox(
-              height: 10,
+      body: widget.userInfo != null
+          ? Padding(
+              padding: const ProjectPadding.allTen(),
+              child: ListView(
+                children: [
+                  profileInfo(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  generalInfo(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  experiance(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  education(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  language(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  userInfo()
+                ],
+              ),
+            )
+          : const Center(
+              child: NotFound(
+                text: "Kullanıcı bilgileri bulunamadı",
+              ),
             ),
-            generalInfo(),
-            const SizedBox(
-              height: 10,
-            ),
-            experiance(),
-            const SizedBox(
-              height: 10,
-            ),
-            education(),
-            const SizedBox(
-              height: 10,
-            ),
-            language(),
-            const SizedBox(
-              height: 10,
-            ),
-            userInfo()
-          ],
-        ),
-      ),
     );
   }
 
@@ -81,10 +88,10 @@ class _UserProfileViewState extends UserProfileViewModel {
             children: [
               Column(
                 children: [
-                  info(MyIcons.mail, widget.userInfo!["email"]),
-                  info(SimpleIcons.github, widget.userInfo!["socialMedias"]["github"]),
-                  info(SimpleIcons.linkedin, widget.userInfo!["socialMedias"]["linkedin"]),
-                  info(MyIcons.website, widget.userInfo!["socialMedias"]["webSite"]),
+                  info(MyIcons.mail, widget.userInfo?["email"]),
+                  info(SimpleIcons.github, widget.userInfo?["socialMedias"]["github"]),
+                  info(SimpleIcons.linkedin, widget.userInfo?["socialMedias"]["linkedin"]),
+                  info(MyIcons.website, widget.userInfo?["socialMedias"]["webSite"]),
                 ],
               ),
             ],
@@ -104,7 +111,7 @@ class _UserProfileViewState extends UserProfileViewModel {
         ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: widget.userInfo!["languages"].length,
+            itemCount: widget.userInfo?["languages"].length,
             itemBuilder: (context, index) {
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
@@ -149,7 +156,7 @@ class _UserProfileViewState extends UserProfileViewModel {
         ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: widget.userInfo!["educations"].length,
+            itemCount: widget.userInfo?["educations"].length,
             itemBuilder: (context, index) {
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
@@ -161,7 +168,7 @@ class _UserProfileViewState extends UserProfileViewModel {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Center(
-                      child: richTextInfo(StringData.school, ": ${widget.userInfo!["educations"][index]["school"]}}"),
+                      child: richTextInfo(StringData.school, ": ${widget.userInfo?["educations"][index]["school"]}}"),
                     ),
                     const SizedBox(
                       height: 8,
@@ -171,11 +178,11 @@ class _UserProfileViewState extends UserProfileViewModel {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            richTextInfo("${StringData.major}:\n", widget.userInfo!["educations"][index]["major"]),
+                            richTextInfo("${StringData.major}:\n", widget.userInfo?["educations"][index]["major"]),
                             const SizedBox(
                               width: 5,
                             ),
-                            richTextInfo("${StringData.grade}:\n", widget.userInfo!["educations"][index]["grade"]),
+                            richTextInfo("${StringData.grade}:\n", widget.userInfo?["educations"][index]["grade"]),
                           ],
                         ),
                       ],
@@ -198,7 +205,7 @@ class _UserProfileViewState extends UserProfileViewModel {
         ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: widget.userInfo!["jobExperiences"].length,
+            itemCount: widget.userInfo?["jobExperiences"].length,
             itemBuilder: (context, index) {
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
@@ -210,7 +217,7 @@ class _UserProfileViewState extends UserProfileViewModel {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Center(
-                      child: richTextInfo("Şirket: ", widget.userInfo!["jobExperiences"][index]["companyName"]),
+                      child: richTextInfo("Şirket: ", widget.userInfo?["jobExperiences"][index]["companyName"]),
                     ),
                     const SizedBox(
                       height: 8,
@@ -221,12 +228,12 @@ class _UserProfileViewState extends UserProfileViewModel {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             richTextInfo(
-                                "${StringData.jobPositionD}\n", widget.userInfo!["jobExperiences"][index]["position"]),
+                                "${StringData.jobPositionD}\n", widget.userInfo?["jobExperiences"][index]["position"]),
                             const SizedBox(
                               width: 5,
                             ),
                             richTextInfo(
-                                "${StringData.department}:\n", widget.userInfo!["jobExperiences"][index]["department"]),
+                                "${StringData.department}:\n", widget.userInfo?["jobExperiences"][index]["department"]),
                           ],
                         ),
                         const SizedBox(
@@ -236,9 +243,9 @@ class _UserProfileViewState extends UserProfileViewModel {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             richTextInfo(
-                                "${StringData.startDate}\n", widget.userInfo!["jobExperiences"][index]["years"]),
+                                "${StringData.startDate}\n", widget.userInfo?["jobExperiences"][index]["years"]),
                             richTextInfo("${StringData.leaveDate}\n",
-                                widget.userInfo!["jobExperiences"][index]["leaveWorkYear"]),
+                                widget.userInfo?["jobExperiences"][index]["leaveWorkYear"]),
                           ],
                         ),
                         const SizedBox(
@@ -246,7 +253,7 @@ class _UserProfileViewState extends UserProfileViewModel {
                         ),
                         richTextInfo(
                           "${StringData.description.substring(0, StringData.description.length - 1)}: ",
-                          widget.userInfo!["jobExperiences"][index]["description"],
+                          widget.userInfo?["jobExperiences"][index]["description"],
                           TextAlign.start,
                         )
                       ],
@@ -272,7 +279,7 @@ class _UserProfileViewState extends UserProfileViewModel {
             color: MyColor.white,
             borderRadius: ProjectRadius.smallAll(),
           ),
-          child: Text(widget.userInfo!["information"]),
+          child: Text(widget.userInfo?["information"]),
         ),
       ],
     );
@@ -295,11 +302,11 @@ class _UserProfileViewState extends UserProfileViewModel {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.userInfo!["firstName"] + " " + widget.userInfo!["lastName"],
+              widget.userInfo?["firstName"] + " " + widget.userInfo?["lastName"],
               textScaleFactor: 1.7,
             ),
             Text(
-              widget.userInfo!["jobExperiences"].last["companyName"],
+              widget.userInfo?["jobExperiences"].last["companyName"],
               textScaleFactor: 1.5,
               style: const TextStyle(color: MyColor.osloGrey),
               textAlign: TextAlign.left,
