@@ -39,6 +39,11 @@ class _UserAdvertDetailViewState extends UserAdvertDetailViewModel {
     return Scaffold(
       backgroundColor: MyColor.backgroundColor,
       appBar: AppBar(
+        leading: BackButton(
+          onPressed: () {
+            Navigator.pop(context, true);
+          },
+        ),
         title: const AppBarLogoTitle(),
         actions: [
           IconButton(
@@ -72,116 +77,122 @@ class _UserAdvertDetailViewState extends UserAdvertDetailViewModel {
           ),
         ],
       ),
-      body: Padding(
-        padding: const ProjectPadding.allTwelve().copyWith(top: 0),
-        child: ListView(
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
-            Container(
-              height: widget.isApplication == false ? context.height - 154 : context.height - 100,
-              width: context.width,
-              decoration: const BoxDecoration(
-                color: MyColor.white,
-                borderRadius: ProjectRadius.mediumAll(),
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Padding(
-                      padding: ProjectPadding.allEight(),
-                      child: ClipRRect(
-                        borderRadius: ProjectRadius.smallAll(),
-                        child: Image(
-                          height: 90,
-                          image: NetworkImage(ImagePath.temporaryImage),
+      body: WillPopScope(
+        onWillPop: () async {
+          Navigator.pop(context, true);
+          return true;
+        },
+        child: Padding(
+          padding: const ProjectPadding.allTwelve().copyWith(top: 0),
+          child: ListView(
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              Container(
+                height: widget.isApplication == false ? context.height - 154 : context.height - 100,
+                width: context.width,
+                decoration: const BoxDecoration(
+                  color: MyColor.white,
+                  borderRadius: ProjectRadius.mediumAll(),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Padding(
+                        padding: ProjectPadding.allEight(),
+                        child: ClipRRect(
+                          borderRadius: ProjectRadius.smallAll(),
+                          child: Image(
+                            height: 90,
+                            image: NetworkImage(ImagePath.temporaryImage),
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      widget.job?.companyName ?? "",
-                      style: const TextStyle(fontWeight: Weight.midium),
-                      textScaleFactor: ProjectFontSize.oneToThree,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Padding(
-                      padding: ProjectPadding.horizontalTwelve(),
-                      child: Divider(),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 4.0),
-                      child: Subtitle(title: "Aranan Nitelikler"),
-                    ),
-                    Padding(
-                      padding: const ProjectPadding.allEight().copyWith(left: 12),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            advertInfo("Pozisyon: ", widget.job?.jobTitle ?? ""),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            advertInfo("Aranan Yetenekler: ", widget.job?.skills?.join(", ") ?? ""),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            advertInfo("Çalışma Türü: ", widget.job?.timing ?? ""),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            advertInfo("Açık Pozisyon Sayısı: ", widget.job?.positionOpen.toString() ?? ""),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            advertInfo("Tecrübe: ", widget.job?.level ?? ""),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            advertInfo("Şehir: ", widget.job?.province ?? ""),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            advertInfo("Son Başvuru Tarihi: ", date ?? ""),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            advertInfo(
-                              "Maaş: ",
-                              "${widget.job?.currency}${widget.job?.lowerWage} - ${widget.job?.upperWage}",
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            advertInfo(
-                              "Açıklama: ",
-                              "${widget.job?.description}",
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                          ],
-                        ),
+                      Text(
+                        widget.job?.companyName ?? "",
+                        style: const TextStyle(fontWeight: Weight.midium),
+                        textScaleFactor: ProjectFontSize.oneToThree,
                       ),
-                    )
-                  ],
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Padding(
+                        padding: ProjectPadding.horizontalTwelve(),
+                        child: Divider(),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 4.0),
+                        child: Subtitle(title: "Aranan Nitelikler"),
+                      ),
+                      Padding(
+                        padding: const ProjectPadding.allEight().copyWith(left: 12),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              advertInfo("Pozisyon: ", widget.job?.jobTitle ?? ""),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              advertInfo("Aranan Yetenekler: ", widget.job?.skills?.join(", ") ?? ""),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              advertInfo("Çalışma Türü: ", widget.job?.timing ?? ""),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              advertInfo("Açık Pozisyon Sayısı: ", widget.job?.positionOpen.toString() ?? ""),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              advertInfo("Tecrübe: ", widget.job?.level ?? ""),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              advertInfo("Şehir: ", widget.job?.province ?? ""),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              advertInfo("Son Başvuru Tarihi: ", date ?? ""),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              advertInfo(
+                                "Maaş: ",
+                                "${widget.job?.currency}${widget.job?.lowerWage} - ${widget.job?.upperWage}",
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              advertInfo(
+                                "Açıklama: ",
+                                "${widget.job?.description}",
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-            !(widget.isApplication)
-                ? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: MyElevatedIcons(
-                      onPressed: advertApplication,
-                      buttonName: "Başvur",
-                      icons: const Icon(MyIcons.confirm),
-                    ),
-                  )
-                : const SizedBox(),
-          ],
+              !(widget.isApplication)
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: MyElevatedIcons(
+                        onPressed: advertApplication,
+                        buttonName: "Başvur",
+                        icons: const Icon(MyIcons.confirm),
+                      ),
+                    )
+                  : const SizedBox(),
+            ],
+          ),
         ),
       ),
     );

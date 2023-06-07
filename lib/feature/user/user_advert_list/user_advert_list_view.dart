@@ -17,9 +17,11 @@ import '../../../core/constant/project_padding.dart';
 import '../../../product/models/general_company_model.dart';
 
 class UserAdvertListView extends StatefulWidget {
+  final void Function()? getApp;
   final List<Job>? adverts;
   const UserAdvertListView({
     Key? key,
+    this.getApp,
     this.adverts,
   }) : super(key: key);
 
@@ -57,12 +59,14 @@ class _UserAdvertListViewState extends UserAdvertViewModel {
                   borderRadius: ProjectRadius.mediumAll(),
                 ),
                 splashColor: MyColor.tints,
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                onTap: () async {
+                  await Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => UserAdvertDetailView(
                       job: widget.adverts?[index],
                     ),
                   ));
+                  widget.getApp!();
+                  print("iscalled");
                 },
                 child: Ink(
                   height: 213,

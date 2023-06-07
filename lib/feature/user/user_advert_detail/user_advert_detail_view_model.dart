@@ -25,7 +25,10 @@ abstract class UserAdvertDetailViewModel extends State<UserAdvertDetailView> {
 
   void advertApplication() async {
     String? val = await nav.displayTextInputDialog(
-        StringData.enterDescription, StringData.sendDescriptionToCompany, TextEditingController());
+      StringData.enterDescription,
+      StringData.sendDescriptionToCompany,
+      TextEditingController(),
+    );
     if (val == null || val == "false") {
       return;
     }

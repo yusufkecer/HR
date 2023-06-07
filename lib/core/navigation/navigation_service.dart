@@ -282,18 +282,20 @@ class NavigationService {
   }
 
   void navigteToUser(context) {
-    Navigator.of(context).push(
+    Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) => const UserMainView(),
       ),
+      (route) => false,
     );
   }
 
   void navigteToCompany(context) {
-    Navigator.of(context).push(
+    Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) => const CompanyMainView(),
       ),
+      (route) => false,
     );
   }
 }

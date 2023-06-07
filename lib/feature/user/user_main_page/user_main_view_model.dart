@@ -16,13 +16,14 @@ abstract class UserMainViewModel extends State<UserMainView> {
   Map<String, dynamic>? cv;
   NavigationService nav = NavigationService();
   List<Job>? topJobList;
+  List? userApplication;
   List<Job>? topCompany;
   List<Job> advertList = [];
   List<Widget> widgetOptions = List.filled(4, const SizedBox());
   @override
   void initState() {
     getCv();
-
+    getUserApplication();
     super.initState();
   }
 
@@ -64,6 +65,20 @@ abstract class UserMainViewModel extends State<UserMainView> {
     topJobList = data.map((e) => Job.fromJson(e)).toList();
   }
 
+  Future<void> getUserApplication() async {
+    var res = await dataService.fetchData("${ApiUri.getUserApplication}${Auth.instance.getId}");
+    if (res == null) {
+      return;
+    }
+    Iterable? data = res["data"];
+
+    if (data == null) {
+      return;
+    }
+    userApplication = data.toList();
+    print(userApplication);
+  }
+
   Future<void> getAdverts() async {
     await getTopJobs();
     await getTopCompany();
@@ -79,7 +94,10 @@ abstract class UserMainViewModel extends State<UserMainView> {
         topJobList: topJobList,
         topCompany: topCompany,
       );
-      widgetOptions[1] = UserAdvertListView(adverts: advertList);
+      widgetOptions[1] = UserAdvertListView(
+        adverts: advertList,
+        getApp: getUserApplication,
+      );
 
       widgetOptions[2] = UserCVView(
         cv: cv,
@@ -95,7 +113,7 @@ abstract class UserMainViewModel extends State<UserMainView> {
   void navigateAdvertApp() {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => UserAdvertAppView(
-        adverts: advertList,
+        adverts: userApplication,
       ),
     ));
   }

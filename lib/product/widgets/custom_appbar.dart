@@ -8,6 +8,7 @@ import 'package:hrapp/product/constant/weight.dart';
 
 class CustomAppBar extends StatelessWidget {
   final void Function()? onTap;
+
   const CustomAppBar({
     Key? key,
     this.onTap,

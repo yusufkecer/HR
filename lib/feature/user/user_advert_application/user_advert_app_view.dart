@@ -10,13 +10,12 @@ import '../../../product/Constant/weight.dart';
 import '../../../product/constant/font_size.dart';
 import '../../../product/constant/image_path.dart';
 import '../../../product/constant/string_data.dart';
-import '../../../product/models/general_company_model.dart';
 import '../../../product/widgets/app_bar_logo.dart';
 import '../../../product/widgets/subtitle.dart';
 import '../user_advert_detail/user_advert_detail_view.dart';
 
 class UserAdvertAppView extends StatefulWidget {
-  final List<Job>? adverts;
+  final List? adverts;
   const UserAdvertAppView({
     Key? key,
     this.adverts,
@@ -33,18 +32,20 @@ class _UserAdvertAppViewState extends UserAdvertAppViewModel {
       appBar: AppBar(
         title: const AppBarLogoTitle(),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0).copyWith(top: 0),
-        child: ListView(
-          children: [
-            const Subtitle(title: StringData.application),
-            const SizedBox(
-              height: 10,
-            ),
-            advertsList(),
-          ],
-        ),
-      ),
+      body: advertList.isNotEmpty || companyList.isEmpty
+          ? Padding(
+              padding: const EdgeInsets.all(10.0).copyWith(top: 0),
+              child: ListView(
+                children: [
+                  const Subtitle(title: StringData.application),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  advertsList(),
+                ],
+              ),
+            )
+          : const SizedBox(),
     );
   }
 
@@ -65,14 +66,14 @@ class _UserAdvertAppViewState extends UserAdvertAppViewModel {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => UserAdvertDetailView(
-                        job: widget.adverts?[index],
+                        job: advertList[index],
                         isApplication: true,
                       ),
                     ),
                   );
                 },
                 child: Ink(
-                  height: 213,
+                  height: 227,
                   width: context.width,
                   decoration: const BoxDecoration(borderRadius: ProjectRadius.mediumAll(), color: MyColor.white),
                   child: Padding(
@@ -99,7 +100,11 @@ class _UserAdvertAppViewState extends UserAdvertAppViewModel {
                             ],
                           ),
                         ),
-                        skills(index)
+                        skills(index),
+                        Text(
+                          widget.adverts?[index]["result"],
+                          style: const TextStyle(color: Colors.red),
+                        ),
                       ],
                     ),
                   ),
@@ -168,21 +173,21 @@ class _UserAdvertAppViewState extends UserAdvertAppViewModel {
   }
 
   Align wage(index) {
-    String? currency = widget.adverts?[index].currency;
+    String? currency = advertList[index].currency;
     String? data;
-    if (widget.adverts?[index].currency == null) {
+    if (advertList[index].currency == null) {
       currency = StringData.turkishLiraSymbol;
     } else {
-      currency = widget.adverts?[index].currency;
+      currency = advertList[index].currency;
     }
-    if (widget.adverts?[index].lowerWage != null && widget.adverts?[index].upperWage != null) {
-      data = "$currency ${widget.adverts?[index].lowerWage?.toStringAsFixed(0)}"
+    if (advertList[index].lowerWage != null && advertList[index].upperWage != null) {
+      data = "$currency ${advertList[index].lowerWage?.toStringAsFixed(0)}"
           "-"
-          "${widget.adverts?[index].upperWage?.toStringAsFixed(0)}";
-    } else if (widget.adverts?[index].upperWage != null) {
-      data = "$currency ${widget.adverts?[index].upperWage?.toStringAsFixed(0)}";
-    } else if (widget.adverts?[index].lowerWage != null) {
-      data = "$currency ${widget.adverts?[index].lowerWage?.toStringAsFixed(0)}";
+          "${advertList[index].upperWage?.toStringAsFixed(0)}";
+    } else if (advertList[index].upperWage != null) {
+      data = "$currency ${advertList[index].upperWage?.toStringAsFixed(0)}";
+    } else if (advertList[index].lowerWage != null) {
+      data = "$currency ${advertList[index].lowerWage?.toStringAsFixed(0)}";
     } else {
       data = "";
     }
@@ -232,7 +237,7 @@ class _UserAdvertAppViewState extends UserAdvertAppViewModel {
           physics: const BouncingScrollPhysics(),
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          itemCount: widget.adverts?[pindex].skills?.length,
+          itemCount: advertList[pindex].skills?.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const ProjectPadding.leftEight(),
@@ -245,7 +250,7 @@ class _UserAdvertAppViewState extends UserAdvertAppViewModel {
                     color: MyColor.lightPurple,
                   ),
                   child: Text(
-                    "${widget.adverts?[pindex].skills?[index]}",
+                    "${advertList[pindex].skills?[index]}",
                     style: const TextStyle(color: MyColor.discovreyPurplishBlue),
                   ),
                 ),
