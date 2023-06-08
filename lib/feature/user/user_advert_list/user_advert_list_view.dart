@@ -66,7 +66,6 @@ class _UserAdvertListViewState extends UserAdvertViewModel {
                     ),
                   ));
                   widget.getApp!();
-                  print("iscalled");
                 },
                 child: Ink(
                   height: 213,

@@ -22,6 +22,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   void initState() {
     Future(() => nav.showLoading(context));
     getWorkers();
+    getApplications();
     getPopulerAdverts();
     tabController = TabController(
       length: 2,
@@ -41,6 +42,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
   };
   bool status = false;
   List<Job> adverts = [];
+  List appList = [];
   List<Job> activeAdverts = [];
   List<Job> passiveAdverts = [];
 
@@ -100,7 +102,7 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
 
   void navigateApplications() async {
     await Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const CompanyAdvertAppView(),
+      builder: (context) => CompanyAdvertAppView(appList: appList),
     ));
 
     getCompanyInfo();
@@ -113,6 +115,20 @@ abstract class CopmanyMainViewModel extends State<CompanyMainView> with TickerPr
       ),
     );
 
+    setState(() {});
+  }
+
+  getApplications() async {
+    appList = [];
+    var res = await dt.fetchData(ApiUri.getCompanyApplication + Auth.instance.getId!);
+    if (res == null) {
+      return;
+    }
+    Iterable? data = res["data"];
+    if (data == null) {
+      return;
+    }
+    appList = data.toList();
     setState(() {});
   }
 
