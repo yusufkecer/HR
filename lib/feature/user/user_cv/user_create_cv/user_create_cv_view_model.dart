@@ -48,8 +48,8 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
     textController[8].text = cv!["jobExperiences"][0]["companyName"];
     textController[9].text = cv!["jobExperiences"][0]["department"];
     textController[10].text = cv!["jobExperiences"][0]["position"];
-    textController[11].text = cv!["jobExperiences"][0]["years"];
-    textController[12].text = cv!["jobExperiences"][0]["description"];
+    textController[11].text = cv!["jobExperiences"][0]["description"];
+    textController[12].text = cv!["jobExperiences"][0]["years"];
     textController[13].text = cv!["jobExperiences"][0]["leaveWorkYear"];
     textController[14].text = cv!["languages"][0]["languages"];
     textController[15].text = cv!["languages"][0]["languageLevel"];
@@ -106,8 +106,8 @@ abstract class UserCreateCvViewModel extends State<UserCreateCvView> {
           "companyName": textController[8].text,
           "department": textController[9].text,
           "position": textController[10].text,
-          "years": textController[11].text,
-          "description": textController[12].text,
+          "description": textController[11].text,
+          "years": textController[12].text,
           "leaveWorkYear": textController[13].text,
         }
       ],

@@ -22,7 +22,6 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['id'],
       phoneNumber: json['phoneNumber'],
       name: json['name'],
       surname: json['surname'],
@@ -31,7 +30,6 @@ class User {
       cv: json['cv'],
     );
   }
-
 
   Map<String, dynamic> toJson() => {
         'phoneNumber': phoneNumber,

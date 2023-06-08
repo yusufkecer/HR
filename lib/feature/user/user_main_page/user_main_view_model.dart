@@ -76,7 +76,6 @@ abstract class UserMainViewModel extends State<UserMainView> {
       return;
     }
     userApplication = data.toList();
-    print(userApplication);
   }
 
   Future<void> getAdverts() async {

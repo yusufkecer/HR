@@ -132,10 +132,13 @@ class _CVCardState extends State<CVCard> with TickerProviderStateMixin {
                                                 children: [
                                                   Padding(
                                                     padding: const ProjectPadding.leftFive(),
-                                                    child: Text(
-                                                      "Departman: ${widget.cv?["jobExperiences"].first["department"]}",
-                                                      maxLines: 2,
-                                                      overflow: TextOverflow.ellipsis,
+                                                    child: Align(
+                                                      alignment: Alignment.centerLeft,
+                                                      child: Text(
+                                                        "Departman: ${widget.cv?["jobExperiences"].first["department"]}",
+                                                        maxLines: 2,
+                                                        overflow: TextOverflow.ellipsis,
+                                                      ),
                                                     ),
                                                   ),
                                                   const SizedBox(

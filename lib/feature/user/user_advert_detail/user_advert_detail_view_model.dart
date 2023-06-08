@@ -47,7 +47,6 @@ abstract class UserAdvertDetailViewModel extends State<UserAdvertDetailView> {
     }
     nav.showLoading();
     description = val;
-    print("description: $description");
     Map<String, dynamic> data = {
       "jobAdvertisementId": widget.job!.id,
       "jobSeekerId": Auth.instance.getId,
