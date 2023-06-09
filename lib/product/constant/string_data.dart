@@ -109,7 +109,7 @@ class StringData {
 //check showdialog
   static const checkTitle = "Emin Misiniz?";
   static const checkCreate = "Kaydetmek stediğinize emin misiniz?";
-  static const checkOut = "Kaydetmek stediğinize emin misiniz?";
+  static const checkOut = "Çıkış yapmak istediğinize emin misiniz?";
   static const checkDelete = "Silmek stediğinize emin misiniz?";
   static const yes = "Evet";
   static const no = "Hayır";
