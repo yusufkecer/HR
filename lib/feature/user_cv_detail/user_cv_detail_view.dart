@@ -228,7 +228,7 @@ class _UserCvDetailViewState extends State<UserCvDetailView> {
               space(),
               textWidget("${StringData.grade}: ", "${widget.cv?["educations"][0]["grade"]}"),
               space(),
-              textWidget("${StringData.years}: ", "${widget.cv?["educations"][0]["years"].join()}"),
+              textWidget("${StringData.years}: ", "${widget.cv?["educations"][0]["years"].join(",")}"),
               space(),
             ],
           ),

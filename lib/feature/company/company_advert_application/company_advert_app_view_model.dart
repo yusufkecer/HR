@@ -20,6 +20,10 @@ abstract class CompanyAdvertAppViewModel extends State<CompanyAdvertAppView> {
     super.initState();
   }
 
+  void openDescription(int index) {
+    nav.alertWithButon("Kullanıcı Açıklaması", widget.appList?[index]["jobSeekerDescription"] ?? "");
+  }
+
   void getInfo() async {
     Future(() => nav.showLoading(context));
 

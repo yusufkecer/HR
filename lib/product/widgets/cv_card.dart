@@ -76,6 +76,8 @@ class _CVCardState extends State<CVCard> with TickerProviderStateMixin {
                           children: [
                             Text(
                               widget.cv?["information"],
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               textScaleFactor: ProjectFontSize.oneToTwo,
                               style: const TextStyle(fontWeight: Weight.midium),
                             ),

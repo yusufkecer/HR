@@ -29,6 +29,7 @@ class _UserAdvertAppViewState extends UserAdvertAppViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColor.backgroundColor,
       appBar: AppBar(
         title: const AppBarLogoTitle(),
       ),
