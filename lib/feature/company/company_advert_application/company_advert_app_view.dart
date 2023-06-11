@@ -83,7 +83,16 @@ class _CompanyAdvertAppViewState extends CompanyAdvertAppViewModel {
               padding: const ProjectPadding.topEight(),
               child: Text(advertList?[index].jobTitle ?? "", maxLines: 2, overflow: TextOverflow.ellipsis),
             ),
-            trailing: const Icon(MyIcons.nextIOSIcon),
+            trailing: SizedBox(
+              width: 35,
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                onPressed: () => openDescription(index),
+                icon: const Icon(
+                  MyIcons.message,
+                ),
+              ),
+            ),
           ),
         ),
       ),
