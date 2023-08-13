@@ -26,6 +26,7 @@ class Job {
   final List? sector;
   final List? departments;
   final String? tax;
+  
   Job({
     this.companyName,
     this.companyPhone,
