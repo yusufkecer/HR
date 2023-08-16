@@ -23,7 +23,6 @@ class CompanyAdvertDetailView extends StatefulWidget {
 }
 
 class _CompanyAdvertDetailViewState extends CompanyAdvertDetailViewModel {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
