@@ -12,7 +12,6 @@ class Jobs {
   bool? isSaveJob;
   String? date;
   bool isActive;
-  
   Jobs({
     this.jobTitle,
     this.skills,
