@@ -8,6 +8,7 @@ import 'package:hrapp/feature/company/company_main_page/company_main_view.dart';
 import 'package:hrapp/feature/user/user_main_page/user_main_view.dart';
 import 'package:hrapp/product/data/auth.dart';
 
+
 import 'core/navigation/local_service.dart';
 import 'feature/splash/splash_screen.dart';
 
