@@ -13,6 +13,7 @@ import 'package:hrapp/product/data/auth.dart';
 import 'core/navigation/local_service.dart';
 import 'feature/splash/splash_screen.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   String path = "splash";
