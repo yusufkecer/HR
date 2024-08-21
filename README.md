@@ -72,6 +72,5 @@ The application uses the following Flutter packages:
 ![Resim24](https://github.com/user-attachments/assets/6bfdc93f-d2a0-4507-82ce-45bceb20f7e0)
 ![Resim25](https://github.com/user-attachments/assets/2bca201a-922b-42ac-89e7-1c769fae8d11)
 
-![Resim26](https://github.com/user-attachments/assets/47185235-4127-4cc5-9a3f-4181ab54bedb)
 ![Resim28](https://github.com/user-attachments/assets/268bbf0d-fd4c-4471-b15d-6706d24e55ff)
 ![Resim27](https://github.com/user-attachments/assets/a062c464-c953-4746-aab6-04e1d6e584ad)
