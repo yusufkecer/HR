@@ -38,7 +38,6 @@ The application uses the following Flutter packages:
 - **jwt_decoder:** `^2.0.1` - For decoding JWT tokens.
 - **url_launcher:** `^6.1.11` - To launch URLs in the browser or other apps.
 - **simple_icons:** `^7.10.0` - For various icons used in the app.
-- 
 
 ![Resim2](https://github.com/user-attachments/assets/fc5396c9-f774-4eb8-9699-1498969a1c9c)
 ![Resim3](https://github.com/user-attachments/assets/2b2db70d-d03b-4ecc-a212-bbbc85aab824)
